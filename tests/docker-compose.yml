@@ -1,0 +1,8 @@
+version: '3.1'
+
+services:
+  php74:
+    image: php:7.4.33-apache
+    restart: always
+    volumes:
+      - ../:/var/www/html

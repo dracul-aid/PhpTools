@@ -2,6 +2,7 @@
 
 namespace DraculAid\PhpTools\tests\ExceptionTools;
 
+use DraculAid\PhpTools\Classes\ClassNotPublicManager;
 use DraculAid\PhpTools\ExceptionTools\ExceptionTools;
 use PHPUnit\Framework\TestCase;
 
@@ -174,5 +175,62 @@ class ExceptionToolsTest extends TestCase
             ExceptionTools::wasCalledWithException(function () {return 123;}, [], \Exception::class, null, null, $result)
         );
         self::assertEquals(123, $result);
+    }
+
+    /**
+     * Test for {@see ExceptionTools::functionCall()}
+     */
+    public function testFunctionCall(): void
+    {
+        $testObject = $this->createTestObjectForTestFunctionCall();
+
+        self::assertEquals(
+            'public-123',
+            ClassNotPublicManager::callMethod(
+                [ExceptionTools::class, 'functionCall'],
+                [
+                    [$testObject, 'f_public'],
+                    ['123'],
+                ]
+            )
+        );
+        self::assertEquals(
+            'private-321',
+            ClassNotPublicManager::callMethod(
+                [ExceptionTools::class, 'functionCall'],
+                [
+                    [$testObject, 'f_private'],
+                    ['321'],
+                ]
+            )
+        );
+
+        // * * *
+
+        $callWithError = [
+            'array, size 1' => [$testObject],
+            'array, size 3' => [$testObject, 'f_private', 'value'],
+            'string, not callable' => '_not_function_name_' . uniqid()
+        ];
+
+        foreach ($callWithError as $testName => $notCallable)
+        {
+            if (ExceptionTools::callAndReturnException($notCallable) === null)
+            {
+                $this->fail("Fail test call not callable: {$testName}");
+            }
+        }
+    }
+
+    private function createTestObjectForTestFunctionCall(): object
+    {
+        return new class() {
+            public function f_public(string $a) {
+                return "public-{$a}";
+            }
+            public function f_private(string $a) {
+                return "private-{$a}";
+            }
+        };
     }
 }

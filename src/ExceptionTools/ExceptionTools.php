@@ -17,10 +17,10 @@ use DraculAid\PhpTools\Classes\ClassNotPublicManager;
  * Инструменты, для облегчения работы с исключениями
  *
  * Оглавление:
- * <br>{@see ExceptionTools::safeCallWithResult()} - Безопасно вызовет функцию, в случае возникновения исключения, вернет переданное значение
- * <br>{@see ExceptionTools::safeCallWithCallable()} - Безопасно вызовет функцию, в случае возникновения исключения - перехватит его и выполнит переданную функцию
- * <br>{@see ExceptionTools::safeCallFunctions()} -  Безопасно вызовет список функций. Результаты выполнения функций - игнорируются
- * <br>{@see ExceptionTools::callAndReturnException()} - Выполнит функцию, и если ее выполнение привело к исключению, перехватит это исключение и вернет его
+ * <br>{@see ExceptionTools::safeCallWithResult()} - В случае возникновения исключения, вернет переданное значение
+ * <br>{@see ExceptionTools::safeCallWithCallable()} - В случае возникновения исключения - перехватит его и выполнит переданную функцию
+ * <br>{@see ExceptionTools::safeCallFunctions()} - Вызовет список функций. Результаты выполнения функций - игнорируются
+ * <br>{@see ExceptionTools::callAndReturnException()} - Перехватит и вернет пойманное исключение (или NULL)
  * <br>{@see ExceptionTools::wasCalledWithException()} - Выполнит функцию, и проверит, не вернула ли она необходимое исключение
  */
 final class ExceptionTools

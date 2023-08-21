@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "draculaid/php8forphp7",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dracul-aid/Php8forPhp7.git",
-                "reference": "35792c920e49744243cdd362c5ac23403ac921a2"
+                "reference": "dc232a847ec9f45061572d344c673f78d188aceb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dracul-aid/Php8forPhp7/zipball/35792c920e49744243cdd362c5ac23403ac921a2",
-                "reference": "35792c920e49744243cdd362c5ac23403ac921a2",
+                "url": "https://api.github.com/repos/dracul-aid/Php8forPhp7/zipball/dc232a847ec9f45061572d344c673f78d188aceb",
+                "reference": "dc232a847ec9f45061572d344c673f78d188aceb",
                 "shasum": ""
             },
             "require": {
@@ -42,9 +42,9 @@
             "description": "Php8forPhp7 - PHP 8 functions, and classes for PHP 7.4. Class for emulate enums",
             "support": {
                 "issues": "https://github.com/dracul-aid/Php8forPhp7/issues",
-                "source": "https://github.com/dracul-aid/Php8forPhp7/tree/v1.2.0"
+                "source": "https://github.com/dracul-aid/Php8forPhp7/tree/v1.3.0"
             },
-            "time": "2023-07-01T14:37:50+00:00"
+            "time": "2023-08-21T19:32:32+00:00"
         }
     ],
     "packages-dev": [

@@ -65,7 +65,9 @@ final class DateTimeObjectHelper
         if (is_float($dateTime))
         {
             $second = intval($dateTime);
-            $microsecond = substr((string)($dateTime - $second), 2);
+            // PHP7.4 ожидает, что дробная часть секунды, будет от 0 до 6 знаков после запятой,
+            // прочие варианты (например, наносекунды) приведут к ошибке разбора строки-даты времени (критическая ошибка)
+            $microsecond = substr((string)($dateTime - $second), 2, 6);
 
             return new $dateTimeClass(
                 date(DateTimeFormats::TIMESTAMP_SEC_TO_STRING, $second) . ".{$microsecond}"

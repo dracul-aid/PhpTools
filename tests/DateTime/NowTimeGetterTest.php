@@ -67,8 +67,5 @@ class NowTimeGetterTest extends TestCase
 
         self::assertEquals((int)date('G', $nowTime), NowTimeGetter::getHour());
         self::assertEquals(date('H', $nowTime), NowTimeGetter::getHour2());
-
-
-
     }
 }

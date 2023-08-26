@@ -41,23 +41,31 @@ class DateTimeObjectHelperTest extends AbstractProjectTestCase
         );
         self::assertTimestamp(
             time(),
-            DateTimeObjectHelper::getDateObject(null)->getTimestamp()
+            DateTimeObjectHelper::getDateObject(null)
+                ->getTimestamp()
         );
         self::assertTimestamp(
             $testTimestamp->getTimestamp(),
-            DateTimeObjectHelper::getDateObject($testTimestamp->getTimestamp())->getTimestamp()
+            DateTimeObjectHelper::getDateObject($testTimestamp->getTimestamp())
+                ->getTimestamp()
         );
         self::assertEquals(
             $testTimestamp->format(DateTimeFormats::TIMESTAMP_WITH_MICROSECONDS),
-            DateTimeObjectHelper::getDateObject((float)$testTimestamp->format(DateTimeFormats::TIMESTAMP_WITH_MICROSECONDS))->format(DateTimeFormats::TIMESTAMP_WITH_MICROSECONDS)
+            DateTimeObjectHelper::getDateObject(
+                    (float)$testTimestamp->format(DateTimeFormats::TIMESTAMP_WITH_MICROSECONDS)
+                )->format(DateTimeFormats::TIMESTAMP_WITH_MICROSECONDS)
         );
         self::assertTimestamp(
             $testTimestamp->getTimestamp(),
-            DateTimeObjectHelper::getDateObject('2018-09-05 1:02:08')->getTimestamp()
+            DateTimeObjectHelper::getDateObject('2018-09-05 1:02:08')
+                ->getTimestamp()
         );
         self::assertTimestamp(
             $testTimestamp->getTimestamp(),
-            DateTimeObjectHelper::getDateObject(['year' => 2018, 'mon' => 9, 'mday' => 5, 'hours' => 1, 'minutes' => 2, 'seconds' => 8])->getTimestamp()
+            DateTimeObjectHelper::getDateObject(
+                    ['year' => 2018, 'mon' => 9, 'mday' => 5, 'hours' => 1, 'minutes' => 2, 'seconds' => 8]
+                )
+                ->getTimestamp()
         );
 
         // * * * Аргумент-объект, который будет возвращен в неизменном виде
@@ -66,13 +74,15 @@ class DateTimeObjectHelperTest extends AbstractProjectTestCase
 
         self::assertTimestamp(
             $testObject->getTimestamp(),
-            DateTimeObjectHelper::getDateObject($testObject)->getTimestamp()
+            DateTimeObjectHelper::getDateObject($testObject)
+                ->getTimestamp()
         );
         self::assertTrue($testObject === DateTimeObjectHelper::getDateObject($testObject));
 
         self::assertTimestamp(
             $testObject->getTimestamp(),
-            DateTimeObjectHelper::getDateObject($testObject, DateTimeExtendedType::class)->getTimestamp()
+            DateTimeObjectHelper::getDateObject($testObject, DateTimeExtendedType::class)
+                ->getTimestamp()
         );
         self::assertTrue($testObject === DateTimeObjectHelper::getDateObject($testObject));
 
@@ -81,12 +91,14 @@ class DateTimeObjectHelperTest extends AbstractProjectTestCase
 
         self::assertTimestamp(
             $testTimestamp->getTimestamp(),
-            DateTimeObjectHelper::getDateObject(new \DateTime('2018-09-05 1:02:08.123456'))->getTimestamp()
+            DateTimeObjectHelper::getDateObject(new \DateTime('2018-09-05 1:02:08.123456'))
+                ->getTimestamp()
         );
 
         self::assertTimestamp(
             $testTimestamp->getTimestamp(),
-            DateTimeObjectHelper::getDateObject(new TimestampType('2018-09-05 1:02:08.123456'))->getTimestamp()
+            DateTimeObjectHelper::getDateObject(new TimestampType('2018-09-05 1:02:08.123456'))
+                ->getTimestamp()
         );
 
         self::assertEquals(
@@ -119,7 +131,8 @@ class DateTimeObjectHelperTest extends AbstractProjectTestCase
 
         self::assertEquals(
             strtotime('2022-06-15 12:30:30'),
-            DateTimeObjectHelper::copyDateTimeObject(new \DateTime('2022-06-15 12:30:30'), TimestampType::class)->getTimestamp()
+            DateTimeObjectHelper::copyDateTimeObject(new \DateTime('2022-06-15 12:30:30'), TimestampType::class)
+                ->getTimestamp()
         );
     }
 

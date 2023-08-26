@@ -211,8 +211,16 @@ class DateTimeValidatorTest extends TestCase
 
         foreach (DateConstants::MON_DAY_COUNT_LIST as $mon => $maxDay)
         {
-            self::assertEquals($maxDay, DateTimeValidator::getValidDayOfMon(2021, $mon, $maxDay), "Error for {$mon} mon (max {$maxDay} days, test " . $maxDay . ')');
-            self::assertEquals($maxDay, DateTimeValidator::getValidDayOfMon(2021, $mon, $maxDay + 1), "Error for {$mon} mon (max {$maxDay} days, test " . ($maxDay+1) . ')');
+            self::assertEquals(
+                $maxDay,
+                DateTimeValidator::getValidDayOfMon(2021, $mon, $maxDay),
+                "Error for {$mon} mon (max {$maxDay} days, test " . $maxDay . ')'
+            );
+            self::assertEquals(
+                $maxDay,
+                DateTimeValidator::getValidDayOfMon(2021, $mon, $maxDay + 1),
+                "Error for {$mon} mon (max {$maxDay} days, test " . ($maxDay+1) . ')'
+            );
         }
 
         // * * * для февраля

@@ -11,14 +11,15 @@
 
 namespace DraculAid\PhpTools\DateTime\Types\Ranges;
 
-use DraculAid\PhpTools\DateTime\TimestampHelper;
+use DraculAid\PhpTools\DateTime\DateTimeObjectHelper;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
+use DraculAid\PhpTools\DateTime\Types\PhpExtended\DateTimeExtendedType;
 
 /**
- * Класс для временных диапазонов, точка "начала" и "конца" - таймштампы в формате секунд
+ * Класс для временных диапазонов, точка "начала" и "конца" - Объекты для работы с расширенным PHP объектом даты-времени ({@see DateTimeExtendedType})
  *
  * @see DateTimeRangeType Диапазон основанный на объектах {@see \DateTime}
- * @see DateTimeExtendedRangeType Диапазон основанный на расширении объекта даты время PHP, см {@see DateTimeExtendedType}
+ * @see TimestampRangeType Временные диапазоны на основе таймштампов (в секундах)
  *
  * Оглавление:
  * <br>{@see self::create()} Создаст заполненный диапазон
@@ -40,24 +41,28 @@ use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
  * <br>{@see self::getSqlDateTime} Сгенерирует строку пригодную для использования в качестве части SQL запроса для проверки поля на диапазон даты-времени
  * <br>{@see self::getLenght()} Вернет длину диапазону в секундах, возможно с микросекундами
  */
-class TimestampRangeType extends AbstractDateTimeRange
+class DateTimeExtendedRangeType extends AbstractDateTimeRange
 {
     /**
      * Начало Диапазона (NULL - диапазон еще не установлен)
      *
+     * @var null|DateTimeExtendedType
+     *
      * @todo PHP8 Типизация
      */
-    public ?int $start = null;
+    public $start = null;
 
     /**
      * Конец Диапазона (NULL - диапазон еще не установлен)
      *
+     * @var null|DateTimeExtendedType
+     *
      * @todo PHP8 Типизация
      */
-    public ?int $finish = null;
+    public $finish = null;
 
     /**
-     * Создает пустой временной диапазон на основе таймштампов
+     * Создает пустой временной диапазон на основе объектов даты-времени
      */
     public function __construct() {}
 
@@ -66,7 +71,7 @@ class TimestampRangeType extends AbstractDateTimeRange
      */
     public function startSet($start): self
     {
-        $this->start = TimestampHelper::getTimestamp($start);
+        $this->start = DateTimeObjectHelper::getDateObject($start, DateTimeExtendedType::class);
 
         return $this;
     }
@@ -76,7 +81,7 @@ class TimestampRangeType extends AbstractDateTimeRange
      */
     public function finishSet($finish): self
     {
-        $this->finish = TimestampHelper::getTimestamp($finish);
+        $this->finish = DateTimeObjectHelper::getDateObject($finish, DateTimeExtendedType::class);
 
         return $this;
     }
@@ -86,11 +91,12 @@ class TimestampRangeType extends AbstractDateTimeRange
      *
      * @todo PHP8 Типизация ответа функции
      */
-    public function startGetTimestamp(bool $withMs = false): ?int
+    public function startGetTimestamp(bool $withMs = false)
     {
         if ($this->start === null) return null;
 
-        return $this->start;
+        if (!$withMs) return $this->start->getTimestamp();
+        else return (float)$this->start->format(DateTimeFormats::TIMESTAMP_WITH_MICROSECONDS);
     }
 
     /**
@@ -98,11 +104,12 @@ class TimestampRangeType extends AbstractDateTimeRange
      *
      * @todo PHP8 Типизация ответа функции
      */
-    public function finishGetTimestamp(bool $withMs = false): ?int
+    public function finishGetTimestamp(bool $withMs = false)
     {
         if ($this->finish === null) return null;
 
-        return $this->finish;
+        if (!$withMs) return $this->finish->getTimestamp();
+        else return (float)$this->finish->format(DateTimeFormats::TIMESTAMP_WITH_MICROSECONDS);
     }
 
     /**
@@ -114,7 +121,7 @@ class TimestampRangeType extends AbstractDateTimeRange
     {
         if ($this->start === null) return null;
 
-        return date($format, $this->start);
+        return $this->start->format($format);
     }
 
     /**
@@ -126,6 +133,6 @@ class TimestampRangeType extends AbstractDateTimeRange
     {
         if ($this->finish === null) return null;
 
-        return date($format, $this->finish);
+        return $this->finish->format($format);
     }
 }

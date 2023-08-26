@@ -18,6 +18,7 @@ use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
  *
  * Основные реализации
  * <br> {@see DateTimeRangeType} Диапазон основанный на объектах {@see \DateTime}
+ * <br> {@see DateTimeExtendedRangeType} Диапазон основанный на расширении объекта даты время PHP, см {@see DateTimeExtendedType}
  * <br> {@see TimestampRangeType} Временные диапазоны на основе таймштампов (в секундах)
  *
  * Оглавление:

@@ -18,6 +18,7 @@ use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
 /**
  * Класс для временных диапазонов, точка "начала" и "конца" - Объекты для работы с датой-временем PHP ({@see \DateTimeInterface})
  *
+ * @see DateTimeExtendedRangeType Диапазон основанный на расширении объекта даты время PHP, см {@see DateTimeExtendedType}
  * @see TimestampRangeType Временные диапазоны на основе таймштампов (в секундах)
  *
  * Оглавление:

@@ -11,6 +11,7 @@
 
 namespace DraculAid\PhpTools\DateTime\Types\PhpExtended;
 
+use DraculAid\PhpTools\DateTime\Dictionary\DateConstants;
 use DraculAid\PhpTools\DateTime\Types\GetTimestampInterface;
 use DraculAid\PhpTools\DateTime\DateTimeHelper;
 use DraculAid\PhpTools\DateTime\DateTimeObjectHelper;
@@ -41,6 +42,7 @@ use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
  * <br> {@see self::set()} Сменит дату-время любым представлением
  * <br> {@see self::setDateValues()} Сменит дату (или часть даты, например день или месяц)
  * <br> {@see self::setWeekDay()} Сменит неделю (и день недели)
+ * <br> {@see self::moveMon()} Переместит на указанное кол-во месяцев (если надо, также сменит день месяца)
  * <br> {@see self::moveWeek()} Переместится на указанное кол-во недель (если надо, также сменит день недели)
  *
  * @todo PHP8 добавить интерфейс {@see \Stringable}
@@ -365,6 +367,41 @@ class DateTimeExtendedType extends \DateTime implements GetTimestampInterface
     }
 
     /**
+     * Переместит на указанное кол-во месяцев (если надо, также сменит день месяца)
+     *
+     * @param   int        $mon       Перемещение месяца
+     * @param   null|int   $day       Номер для месяца (1-31), если в месяце нет указанного дня, будет установлен ближайший
+     *                                день (например 31 февраля будет 28 или 29 февраля). NULL - по возможности оставит
+     *                                текущий день месяца. Что бы гарантированно указывать на "последний" день любого месяца
+     *                                следует установить параметр в 31
+     * @param   mixed      $endDay    Указание времени, см {@see DateTimeHelper::getTimeString}. NULL - время не будет меняться.
+     * @return  $this
+     *
+     * @todo PHP8 типизация аргументов функции (см $endDay)
+     * @todo Отработать "0" значения (т.е. без возможных перемещений)
+     */
+    public function moveMon(int $mon, ?int $day = null, $endDay = null): self
+    {
+        if ($day === null) $day = $this->getMonDay();
+
+        $this->modify("first day of {$mon} month");
+
+        if ($day > 1)
+        {
+            $nowMon = $this->getMon();
+            if ($day > DateConstants::MON_DAY_COUNT_LIST[$nowMon]) $day = DateConstants::MON_DAY_COUNT_LIST[$nowMon];
+            $this->modify($day - 1 . 'day');
+        }
+
+        if ($endDay !== null)
+        {
+            $this->modify(DateTimeHelper::getTimeString($endDay));
+        }
+
+        return $this;
+    }
+
+    /**
      * Переместится на указанное кол-во недель (если надо, также сменит день недели)
      *
      * Номер недели по стандарту ISO 8601, по которому первая неделя года:
@@ -375,11 +412,12 @@ class DateTimeExtendedType extends \DateTime implements GetTimestampInterface
      *
      * @param   int        $week     Смещение в неделях
      * @param   null|int   $day      Номер для недели (NULL - если ненужно менять), 1 понедельник ... 7 воскресенье
-     * @param   mixed      $endDay   Указание времени, см {@see DateTimeHelper::getTimeString}
+     * @param   mixed      $endDay   Указание времени, см {@see DateTimeHelper::getTimeString}. NULL - время не будет меняться.
      *
      * @return  $this
      *
      * @todo PHP8 типизация аргументов функции (см $endDay)
+     * @todo Отработать "0" значения (т.е. без возможных перемещений)
      */
     public function moveWeek(int $week, ?int $day = null, $endDay = null): self
     {

@@ -235,6 +235,48 @@ class DateTimeExtendedTypeTest extends AbstractProjectTestCase
     }
 
     /**
+     * Test for {@see DateTimeExtendedType::moveMon()}
+     */
+    public function testMoveMon(): void
+    {
+        $dateObject = new DateTimeExtendedType('2020-03-30 02:02:08');
+        $dateObject->moveMon(0);
+        self::assertEquals('2020-03-30 02:02:08', $dateObject->format(DateTimeFormats::VIEW_FOR_PEOPLE));
+
+        $dateObject = new DateTimeExtendedType('2020-03-30 02:02:08');
+        $dateObject->moveMon(0, null);
+        self::assertEquals('2020-03-30 02:02:08', $dateObject->format(DateTimeFormats::VIEW_FOR_PEOPLE));
+
+        $dateObject = new DateTimeExtendedType('2020-03-30 02:02:08');
+        $dateObject->moveMon(0, 1);
+        self::assertEquals('2020-03-01 02:02:08', $dateObject->format(DateTimeFormats::VIEW_FOR_PEOPLE));
+
+        $dateObject = new DateTimeExtendedType('2020-03-30 02:02:08');
+        $dateObject->moveMon(0, 32);
+        self::assertEquals('2020-03-31 02:02:08', $dateObject->format(DateTimeFormats::VIEW_FOR_PEOPLE));
+
+        // * * *
+
+        $dateObject = new DateTimeExtendedType('2020-03-30 02:02:08');
+        $dateObject->moveMon(-1);
+        self::assertEquals('2020-02-28 02:02:08', $dateObject->format(DateTimeFormats::VIEW_FOR_PEOPLE));
+
+        $dateObject = new DateTimeExtendedType('2020-01-15 02:02:08');
+        $dateObject->moveMon(1, 32);
+        self::assertEquals('2020-02-28 02:02:08', $dateObject->format(DateTimeFormats::VIEW_FOR_PEOPLE));
+
+        // * * *
+
+        $dateObject = new DateTimeExtendedType('2020-03-30 02:02:08');
+        $dateObject->moveMon(-4);
+        self::assertEquals('2019-11-30 02:02:08', $dateObject->format(DateTimeFormats::VIEW_FOR_PEOPLE));
+
+        $dateObject = new DateTimeExtendedType('2020-11-30 02:02:08');
+        $dateObject->moveMon(3);
+        self::assertEquals('2021-02-28 02:02:08', $dateObject->format(DateTimeFormats::VIEW_FOR_PEOPLE));
+    }
+
+    /**
      * Test for {@see DateTimeExtendedType::moveWeek()}
      */
     public function testMoveWeek(): void
@@ -266,5 +308,16 @@ class DateTimeExtendedTypeTest extends AbstractProjectTestCase
         self::assertEquals('2018-09-04 00:00:00', $dateObject->format(DateTimeFormats::VIEW_FOR_PEOPLE));
         $dateObject->moveWeek(0, 1, true);
         self::assertEquals('2018-09-03 23:59:59', $dateObject->format(DateTimeFormats::VIEW_FOR_PEOPLE));
+
+        // * * * Проверка с переходом в другой год
+
+        $dateObject = new DateTimeExtendedType('2022-12-30 12:20:10');
+        $dateObject->moveWeek(1, 1);
+        self::assertEquals('2023-01-02 12:20:10', $dateObject->format(DateTimeFormats::VIEW_FOR_PEOPLE));
+
+        $dateObject = new DateTimeExtendedType('2022-01-01 12:20:10');
+        $dateObject->moveWeek(-1, 1);
+        // может показаться, что тут должно быть '2021-12-27' - но это не так, так как '2022-01-01' - это 52 неделя 2021 года!
+        self::assertEquals('2021-12-20 12:20:10', $dateObject->format(DateTimeFormats::VIEW_FOR_PEOPLE));
     }
 }

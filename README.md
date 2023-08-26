@@ -40,6 +40,11 @@ composer require draculaid/phptools
 }
 ```
 
+Обновление
+```shell
+composer update draculaid/phptools
+```
+
 Для установки последней нестабильной версии, прописать в `composer.json`
 ```json
 {
@@ -55,4 +60,3 @@ composer require draculaid/phptools
 
 * [src](/src) Каталог с классами
 * [tests](/tests) Юнит-тесты, см [Запуск юнит тестов](/tests/README.md)
-* [LICENSE](LICENSE) Файл с лицензией (Apache License Version 2.0)

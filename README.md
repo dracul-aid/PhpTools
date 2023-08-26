@@ -60,3 +60,4 @@ composer update draculaid/phptools
 
 * [src](/src) Каталог с классами
 * [tests](/tests) Юнит-тесты, см [Запуск юнит тестов](/tests/README.md)
+* [LICENSE](LICENSE) Файл с лицензией (Apache License Version 2.0)

@@ -16,9 +16,7 @@ use DraculAid\PhpTools\DateTime\DateTimeObjectHelper;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
 
 /**
- * Класс для временных диапазонов, точка "начала" и "конца" - Объекты для работы с датой-временем
- *
- * Поддерживает как PHP объекты ({@see \DateTimeInterface}), так и объекты возвращающие таймштампы ({@see GetTimestampInterface})
+ * Класс для временных диапазонов, точка "начала" и "конца" - Объекты для работы с датой-временем PHP ({@see \DateTimeInterface})
  *
  * @see TimestampRangeType Временные диапазоны на основе таймштампов (в секундах)
  *
@@ -47,7 +45,7 @@ class DateTimeRangeType extends AbstractDateTimeRange
     /**
      * Начало Диапазона (NULL - диапазон еще не установлен)
      *
-     * @var null|\DateTimeInterface|GetTimestampInterface
+     * @var null|\DateTimeInterface
      *
      * @todo PHP8 Типизация
      */
@@ -56,7 +54,7 @@ class DateTimeRangeType extends AbstractDateTimeRange
     /**
      * Конец Диапазона (NULL - диапазон еще не установлен)
      *
-     * @var null|\DateTimeInterface|GetTimestampInterface
+     * @var null|\DateTimeInterface
      *
      * @todo PHP8 Типизация
      */
@@ -72,7 +70,7 @@ class DateTimeRangeType extends AbstractDateTimeRange
      */
     public function startSet($start): self
     {
-        $this->start = DateTimeObjectHelper::getDateObject($start);
+        $this->start = DateTimeObjectHelper::getDateObject($start, \DateTime::class);
 
         return $this;
     }
@@ -82,7 +80,7 @@ class DateTimeRangeType extends AbstractDateTimeRange
      */
     public function finishSet($finish): self
     {
-        $this->finish = DateTimeObjectHelper::getDateObject($finish);
+        $this->finish = DateTimeObjectHelper::getDateObject($finish, \DateTime::class);
 
         return $this;
     }

@@ -15,12 +15,13 @@ use DraculAid\PhpTools\DateTime\TimestampHelper;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
 
 /**
- * Класс для временных диапазонов, точка "начала" и "конца" - таймштампы в формате Секунды
+ * Класс для временных диапазонов, точка "начала" и "конца" - таймштампы в формате секунд
  *
- * @see DateTimeRangeType Временные диапазоны на основе объектов даты-времени
+ * @see DateTimeRangeType Диапазон основанный на объектах {@see \DateTime}
  *
  * Оглавление:
- * <br>{@see TimestampRangeType::create()} Создаст заполненный диапазон
+ * <br>{@see self::create()} Создаст заполненный диапазон
+ * <br>{@see self::createAsTmp()} Создает временной диапазон, начало и конец которого указывают на "сейчас"
  * <br>--- Начало диапазона
  * <br>{@see self::$start} Начало диапазона (NULL - не установлен)
  * <br>{@see self::startSet()} Устанавливает стартовую точку диапазона
@@ -58,17 +59,6 @@ class TimestampRangeType extends AbstractDateTimeRange
      * Создает пустой временной диапазон на основе таймштампов
      */
     public function __construct() {}
-
-    /**
-     * Создает заполненный временной диапазон на основе таймштампов
-     *
-     * @param   mixed   $start     Начало Диапазона, см {@see TimestampHelper::getTimestamp()}
-     * @param   mixed   $finish    Конец Диапазона, см {@see TimestampHelper::getTimestamp()}
-     */
-    public static function create($start = null, $finish = null): self
-    {
-        return (new static())->startSet($start)->finishSet($finish);
-    }
 
     /**
      * @inheritdoc

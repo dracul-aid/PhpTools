@@ -13,16 +13,19 @@ namespace DraculAid\PhpTools\DateTime\Types\Ranges;
 
 use DraculAid\PhpTools\DateTime\TimestampHelper;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
+use DraculAid\PhpTools\DateTime\Types\GetTimestampInterface;
+use DraculAid\PhpTools\DateTime\Types\PhpExtended\DateTimeExtendedType;
 
 /**
  * Интерфейс с временным диапазоном
  *
  * Основные реализации:
- * <br> {@see DateTimeRangeType} Диапазон основанный на объектах, поддерживающих возврат таймштампов
+ * <br> {@see DateTimeRangeType} Диапазон основанный на объектах {@see \DateTime}
  * <br> {@see TimestampRangeType} Временные диапазоны на основе таймштампов (в секундах)
  *
  * Оглавление:
  * <br>{@see self::create()} Создаст заполненный диапазон
+ * <br>{@see self::createAsTmp()} Создает временной диапазон, начало и конец которого указывают на "сейчас"
  * <br>--- Начало диапазона
  * <br>{@see self::$start} Начало диапазона (NULL - не установлен)
  * <br>{@see self::startSet()} Устанавливает стартовую точку диапазона
@@ -53,10 +56,22 @@ interface DateTimeRangeInterface
     /**
      * Создает заполненный временной диапазон
      *
-     * @param   mixed   $start     Начало Диапазона
-     * @param   mixed   $finish    Конец Диапазона
+     * @param   mixed   $start     Начало Диапазона, см {@see TimestampHelper::getTimestamp()} и аналоги
+     * @param   mixed   $finish    Конец Диапазона, см {@see TimestampHelper::getTimestamp()} и аналоги
+     *
+     * @return static
      */
     public static function create($start = null, $finish = null): self;
+
+    /**
+     * Создает временной диапазон, начало и конец которого указывают на "сейчас" (см {@see time()})
+     *
+     * (!) Этот метод подходит, для создания диапазона с объектами-заготовкам начала и конца, которым позже указывается
+     * реальное начало и конец (с помощью редактирования этих объектов)
+     *
+     * @return static
+     */
+    public static function createAsTmp(): self;
 
     /**
      * Устанавливает стартовую точку диапазона

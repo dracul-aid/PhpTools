@@ -17,11 +17,12 @@ use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
  * Абстрактный класс для работы с Диапазонами даты-времени
  *
  * Основные реализации
- * <br> {@see DateTimeRangeType} Диапазон основанный на объектах, поддерживающих возврат таймштампов
+ * <br> {@see DateTimeRangeType} Диапазон основанный на объектах {@see \DateTime}
  * <br> {@see TimestampRangeType} Временные диапазоны на основе таймштампов (в секундах)
  *
  * Оглавление:
  * <br>{@see self::create()} Создаст заполненный диапазон
+ * <br>{@see self::createAsTmp()} Создает временной диапазон, начало и конец которого указывают на "сейчас"
  * <br>--- Начало диапазона
  * <br>{@see self::$start} Начало диапазона (NULL - не установлен)
  * <br>{@see self::startSet()} Устанавливает стартовую точку диапазона
@@ -41,6 +42,22 @@ use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
  */
 abstract class AbstractDateTimeRange implements DateTimeRangeInterface
 {
+    /**
+     * @inheritdoc
+     */
+    public static function create($start = null, $finish = null): self
+    {
+        return (new static())->startSet($start)->finishSet($finish);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function createAsTmp(): self
+    {
+        return (new static())->startSet(null)->finishSet(null);
+    }
+
     /**
      * Очистит стартовую точку диапазона
      *

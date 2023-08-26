@@ -23,7 +23,8 @@ use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
  * @see TimestampRangeType Временные диапазоны на основе таймштампов (в секундах)
  *
  * Оглавление:
- * <br>{@see DateTimeRangeType::create()} Создаст заполненный диапазон
+ * <br>{@see self::create()} Создаст заполненный диапазон
+ * <br>{@see self::createAsTmp()} Создает временной диапазон, начало и конец которого указывают на "сейчас"
  * <br>--- Начало диапазона
  * <br>{@see self::$start} Начало диапазона (NULL - не установлен)
  * <br>{@see self::startSet()} Устанавливает стартовую точку диапазона
@@ -65,17 +66,6 @@ class DateTimeRangeType extends AbstractDateTimeRange
      * Создает пустой временной диапазон на основе объектов даты-времени
      */
     public function __construct() {}
-
-    /**
-     * Создает заполненный временной диапазон на объектов даты-времени
-     *
-     * @param   mixed   $start     Начало Диапазона, см {@see DateTimeObjectHelper::getDateObject()}
-     * @param   mixed   $finish    Конец Диапазона, см {@see DateTimeObjectHelper::getDateObject()}
-     */
-    public static function create($start = null, $finish = null): self
-    {
-        return (new static())->startSet($start)->finishSet($finish);
-    }
 
     /**
      * @inheritdoc

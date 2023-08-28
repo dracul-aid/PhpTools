@@ -13,6 +13,7 @@ namespace DraculAid\PhpTools\tests\DateTime\Types\Ranges;
 
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
 use DraculAid\PhpTools\DateTime\Types\Ranges\DateTimeRangeType;
+use DraculAid\PhpTools\DateTime\Types\Ranges\TimestampRangeType;
 use DraculAid\PhpTools\tests\AbstractProjectTestCase;
 
 /**
@@ -40,6 +41,8 @@ class DateTimeRangeTypeTest extends AbstractProjectTestCase
      * Test for {@see DateTimeRangeType::getSqlDateTime}
      * * * *
      * Test for {@see DateTimeRangeType::getLenght()}
+     * * * *
+     * Test for {@see TimestampRangeType::getString()}
      *
      * @return void
      */
@@ -103,5 +106,15 @@ class DateTimeRangeTypeTest extends AbstractProjectTestCase
         self::assertEquals(500, $testRange->getLenght());
         $testRange->finish = null;
         self::assertEquals(0, $testRange->getLenght());
+
+        // * * *
+
+        $testRange = TimestampRangeType::create('2023-06-15 12:30:30.123', '2023-06-16 13:30:30.123');
+
+        self::assertEquals('2023-06-15 12:30:30 - 2023-06-16 13:30:30', $testRange->getString());
+        self::assertEquals('2023-06-15 12:30:30=2023-06-16 13:30:30', $testRange->getString(null, '='));
+        self::assertEquals('12:30:30 - 13:30:30', $testRange->getString(false));
+        self::assertEquals('2023-06-15 - 2023-06-16', $testRange->getString(true));
+        self::assertEquals('2023=06=15---2023=06=16', $testRange->getString('Y=m=d', '---'));
     }
 }

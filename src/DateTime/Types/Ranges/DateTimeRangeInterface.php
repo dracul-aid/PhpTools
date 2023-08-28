@@ -189,4 +189,20 @@ interface DateTimeRangeInterface
      * @todo PHP8 Типизация ответа функции
      */
     public function getLenght(bool $withMs = false);
+
+    /**
+     * Преобразование диапазона в строку (обычно для отображения пользователям)
+     *
+     * @param   null|bool|string   $format      Формат вывода точек начала и конца (аналогично формату {@see date()}
+     *                                          <br> NULL: Дата и время (см {@see DateTimeFormats::VIEW_FOR_PEOPLE})
+     *                                          <br> FALSE: Только время (см {@see DateTimeFormats::VIEW_FOR_PEOPLE_TIME})
+     *                                          <br> TRUE: Только дата (см {@see DateTimeFormats::VIEW_FOR_PEOPLE_DATE})
+     *                                          <br> string: любая строка для форматирования даты-времени
+     * @param   string             $separator   Разделитель точки начала от точки конца
+     *
+     * @return  string
+     *
+     * @todo PHP8 Типизация аргументов
+     */
+    public function getString($format = DateTimeFormats::VIEW_FOR_PEOPLE, string $separator = ' - '): string;
 }

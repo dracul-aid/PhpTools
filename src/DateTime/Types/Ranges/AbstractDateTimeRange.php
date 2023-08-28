@@ -45,6 +45,8 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
 {
     /**
      * @inheritdoc
+     *
+     * @todo Вынести тестирование их конкретных классов в тест абстрактного класса
      */
     public static function create($start = null, $finish = null): self
     {
@@ -53,6 +55,8 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
 
     /**
      * @inheritdoc
+     *
+     * @todo Вынести тестирование их конкретных классов в тест абстрактного класса
      */
     public static function createAsTmp(): self
     {
@@ -63,6 +67,8 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
      * Очистит стартовую точку диапазона
      *
      * @return  $this
+     *
+     * @todo Вынести тестирование их конкретных классов в тест абстрактного класса
      */
     public function startClear(): self
     {
@@ -75,6 +81,8 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
      * Очистит конечную точку диапазона
      *
      * @return  $this
+     *
+     * @todo Вынести тестирование их конкретных классов в тест абстрактного класса
      */
     public function finishClear(): self
     {
@@ -87,6 +95,8 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
      * @inheritdoc
      *
      * @todo PHP8 math()
+     *
+     * @todo Вынести тестирование их конкретных классов в тест абстрактного класса
      */
     public function isSet()
     {
@@ -105,6 +115,8 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
      * @inheritdoc
      *
      * @todo PHP8 math()
+     *
+     * @todo Вынести тестирование их конкретных классов в тест абстрактного класса
      */
     public function getSqlDateTime(string $column, string $format = DateTimeFormats::SQL_DATETIME, string $quote = "'"): string
     {
@@ -120,11 +132,27 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
 
     /**
      * @inheritdoc
+     *
+     * @todo Вынести тестирование их конкретных классов в тест абстрактного класса
      */
     public function getLenght(bool $withMs = false)
     {
         if ($this->isSet() !== true) return 0;
 
         return abs($this->finishGetTimestamp($withMs) - $this->startGetTimestamp($withMs));
+    }
+
+    /**
+     * @inheritdoc
+     *
+     * @todo Вынести тестирование их конкретных классов в тест абстрактного класса
+     */
+    public function getString($format = DateTimeFormats::VIEW_FOR_PEOPLE, string $separator = ' - '): string
+    {
+        if ($format === null) $format = DateTimeFormats::VIEW_FOR_PEOPLE;
+        elseif ($format === false) $format = DateTimeFormats::VIEW_FOR_PEOPLE_TIME;
+        elseif ($format === true) $format = DateTimeFormats::VIEW_FOR_PEOPLE_DATE;
+
+        return "{$this->startGetString($format)}{$separator}{$this->finishGetString($format)}";
     }
 }

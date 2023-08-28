@@ -19,10 +19,13 @@ namespace DraculAid\PhpTools\DateTime\Dictionary;
  * Оглавление:
  * <br>+ {@see DateTimeFormats::FUNCTIONS} - Системный вариант, подходит для работы с функциями даты-времени в PHP (YYYY-MM-DD HH:MI:SS.ms timezone)
  * <br>+ {@see DateTimeFormats::TIMESTAMP_SEC_TO_STRING} - Преобразование таймштампа (сек) в строку (YYYY-MM-DD HH:MI:SS)
- * <br>+ {@see DateTimeFormats::VIEW_FOR_PEOPLE} - Вариант для отображения людям без часового пояса (YYYY-MM-DD HH:MI:SS)
- * <br>+ {@see DateTimeFormats::VIEW_FOR_PEOPLE_WITH_TIMEZONE} - Вариант для отображения людям С часвым пояса (YYYY-MM-DD HH:MI:SS timezone)
  * <br>+ {@see DateTimeFormats::TIMESTAMP_WITH_MILLISECONDS} - Таймштамп с милисекундами (123456789.123)
  * <br>+ {@see DateTimeFormats::TIMESTAMP_WITH_MICROSECONDS} - Таймштамп с милисекундами (123456789.123456)
+ * <br>--- Отображения для людей
+ * <br>+ {@see DateTimeFormats::VIEW_FOR_PEOPLE} - Вариант для отображения людям без часового пояса (YYYY-MM-DD HH:MI:SS)
+ * <br>+ {@see DateTimeFormats::VIEW_FOR_PEOPLE_DATE} - Отображение даты людям (YYYY-MM-DD)
+ * <br>+ {@see DateTimeFormats::VIEW_FOR_PEOPLE_TIME} - Отображение времени людям (HH:MI:SS)
+ * <br>+ {@see DateTimeFormats::VIEW_FOR_PEOPLE_WITH_TIMEZONE} - Вариант для отображения людям С часовым пояса (YYYY-MM-DD HH:MI:SS timezone)
  * <br>--- Типы для SQL (MySQL)
  * <br>+ {@see DateTimeFormats::SQL_YEAR} - Хранение года, тип YEAR (YYYY)
  * <br>+ {@see DateTimeFormats::SQL_DATE} - Хранение даты (без времени), тип DATE (YYYY-MM-DD)
@@ -51,7 +54,23 @@ final class DateTimeFormats
     public const VIEW_FOR_PEOPLE = 'Y-m-d H:i:s';
 
     /**
+     * Отображение даты людям (YYYY-MM-DD)
+     *
+     * (!) Этот формат может быть изменен в любой следующей версии
+     */
+    public const VIEW_FOR_PEOPLE_DATE = 'Y-m-d';
+
+    /**
+     * Отображение времени людям (HH:MI:SS)
+     *
+     * (!) Этот формат может быть изменен в любой следующей версии
+     */
+    public const VIEW_FOR_PEOPLE_TIME = 'H:i:s';
+
+    /**
      * Вариант для отображения людям с часовым поясом (YYYY-MM-DD HH:MI:SS timezone)
+     *
+     * (!) Этот формат может быть изменен в любой следующей версии
      */
     public const VIEW_FOR_PEOPLE_WITH_TIMEZONE = 'Y-m-d H:i:s T';
 

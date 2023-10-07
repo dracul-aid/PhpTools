@@ -1,0 +1,107 @@
+<?php declare(strict_types=1);
+
+/*
+ * This file is part of PhpTools - https://github.com/dracul-aid/PhpTools
+ *
+ * (c) Konstantin Marataev <dracul.aid@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace DraculAid\PhpTools\Strings;
+
+use DraculAid\Php8forPhp7\TypeValidator;
+
+/**
+ * Статический класс для осуществления обрезания строк
+ *
+ * Оглавление:
+ * <br>{@see StringCutTools::firstSubstrBefore()} - Обрежет строку до указанной подстроки (или подстрок)
+ * <br>{@see StringCutTools::firstSubstrAfter()} - Вырежет строку с указанной подстроки (или подстрок) до конца, если такая подстрока есть
+ *
+ * @todo Реализовать StringCut::afterLastSubstr() - Обрежет строку после указанной подстроки (или подстрок)
+ * @todo Реализовать StringCut::fromBetweenSubstr() - Обрежет строку между указанными подстроками
+ */
+final class StringCutTools
+{
+    /**
+     * Вырежет строку с начала до указанной подстроки, если такая подстрока есть (или списка подстрок)
+     *
+     * (!) Поиск ведется до первого нахождения подстроки
+     *
+     * @param   string         $string       Строка для обрезания
+     * @param   string|array   $substr       Строка до которой ведется поиск или массив с подстроками (поиск ведется до нахождения первой из них)
+     * @param   bool           $withSubstr   Нужно ли подстроку оставить в ответе
+     * @param   int            $start        Позиция начала поиска в символах (замедляет поиск)
+     *
+     * @return  string   Вернет изначальную строку или обрезанную строку
+     *
+     * @todo PHP8 Типизация аргументов функции
+     */
+    public static function firstSubstrBefore(string $string, $substr, bool $withSubstr = false, int $start = 0): string
+    {
+        TypeValidator::validateOr($substr, ['string', 'array']);
+
+        if (is_string($substr)) $substr = [$substr];
+
+        $utf8mode = $start !== 0;
+
+        // * * *
+
+        $positionResult = StringSearchTools::position($string, $substr, $start, $utf8mode, true);
+
+        if ($positionResult === null) return $string;
+
+        if ($utf8mode)
+        {
+            if ($withSubstr) return (mb_substr($string, 0, $positionResult[0]) . $positionResult[1]);
+            else return mb_substr($string, 0, $positionResult[0]);
+        }
+        else
+        {
+            if ($withSubstr) return (substr($string, 0, $positionResult[0]) . $positionResult[1]);
+            else return substr($string, 0, $positionResult[0]);
+        }
+    }
+
+    /**
+     * Вырежет строку после указанной подстроки, если такая подстрока есть (или списка подстрок)
+     *
+     * (!) Поиск ведется до первого нахождения подстроки
+     *
+     * @param   string         $string       Строка для обрезания
+     * @param   string|array   $substr       Строка до которой ведется поиск или массив с подстроками (поиск ведется до нахождения первой из них)
+     * @param   bool           $withSubstr   Нужно ли найденную подстроку оставить в ответе
+     * @param   int            $start        Позиция начала поиска в символах (замедляет поиск)
+     *
+     * @return  string   Вернет изначальную строку или обрезанную строку
+     *
+     * @todo PHP8 Типизация аргументов функции
+     */
+    public static function firstSubstrAfter(string $string, $substr, bool $withSubstr = false, int $start = 0): string
+    {
+        TypeValidator::validateOr($substr, ['string', 'array']);
+
+        if (is_string($substr)) $substr = [$substr];
+
+        $utf8mode = $start !== 0;
+
+        // * * *
+
+        $positionResult = StringSearchTools::position($string, $substr, $start, $utf8mode, true);
+
+        if ($positionResult === null) return $string;
+
+        if ($utf8mode)
+        {
+            if ($withSubstr) return $positionResult[1] . mb_substr($string, $positionResult[0] + mb_strlen($positionResult[1]));
+            else return mb_substr($string, $positionResult[0] + mb_strlen($positionResult[1]));
+        }
+        else
+        {
+            if ($withSubstr) return $positionResult[1] . substr($string, $positionResult[0] + strlen($positionResult[1]));
+            else return substr($string, $positionResult[0] + strlen($positionResult[1]));
+        }
+    }
+}

@@ -25,6 +25,8 @@ class StringCutToolsTest extends TestCase
     {
         $this->testFirstSubstrAfter();
         $this->testFirstSubstrBefore();
+        $this->testTrimInString();
+        $this->testQuoteTrim();
     }
 
     /**
@@ -115,5 +117,36 @@ class StringCutToolsTest extends TestCase
             ' раму WWW',
             StringCutTools::firstSubstrAfter('ZZZ Мама мыла и снова мыла раму WWW', 'мыла', false, 12)
         );
+    }
+
+    /**
+     * Test for {@see StringCutTools::trimInString()}
+     *
+     * @return void
+     */
+    private function testTrimInString(): void
+    {
+        self::assertEquals(' домик на дереве ', StringCutTools::trimInString('   домик на дереве   '));
+        self::assertEquals('домик на дереве', StringCutTools::trimInString('домик   на      дереве'));
+        self::assertEquals('домик на дереве', StringCutTools::trimInString('домик  на       дереве'));
+    }
+
+    /**
+     * Test for {@see StringCutTools::quoteTrim()}
+     *
+     * @return void
+     */
+    private function testQuoteTrim(): void
+    {
+        self::assertEquals('домик на дереве', StringCutTools::quoteTrim('"домик на дереве"'));
+        self::assertEquals('домик на дереве', StringCutTools::quoteTrim('\'домик на дереве\''));
+        self::assertEquals('домик на дереве', StringCutTools::quoteTrim('`домик на дереве`'));
+        self::assertEquals('домик на дереве', StringCutTools::quoteTrim('«домик на дереве»'));
+        self::assertEquals('домик на дереве', StringCutTools::quoteTrim('”домик на дереве”'));
+        self::assertEquals('домик на дереве', StringCutTools::quoteTrim('„домик на дереве„'));
+        self::assertEquals('домик на дереве', StringCutTools::quoteTrim('‚домик на дереве‚'));
+        self::assertEquals('домик на дереве', StringCutTools::quoteTrim('’домик на дереве’'));
+
+        self::assertEquals('домик на дереве', StringCutTools::quoteTrim('"\'`домик на дереве"\'`'));
     }
 }

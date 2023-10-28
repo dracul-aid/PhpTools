@@ -19,6 +19,8 @@ use DraculAid\Php8forPhp7\TypeValidator;
  * Оглавление:
  * <br>{@see StringCutTools::firstSubstrBefore()} - Обрежет строку до указанной подстроки (или подстрок)
  * <br>{@see StringCutTools::firstSubstrAfter()} - Вырежет строку с указанной подстроки (или подстрок) до конца, если такая подстрока есть
+ * <br>{@see StringCutTools::trimInString()} - Удалит все повторяющиеся пробелы, в том числе и внутри строки
+ * <br>{@see StringCutTools::quoteTrim()} - Удалит из начала и конца строки все кавычки
  *
  * @todo Реализовать StringCut::afterLastSubstr() - Обрежет строку после указанной подстроки (или подстрок)
  * @todo Реализовать StringCut::fromBetweenSubstr() - Обрежет строку между указанными подстроками
@@ -103,5 +105,33 @@ final class StringCutTools
             if ($withSubstr) return $positionResult[1] . substr($string, $positionResult[0] + strlen($positionResult[1]));
             else return substr($string, $positionResult[0] + strlen($positionResult[1]));
         }
+    }
+
+    /**
+     * Удалит все повторяющиеся пробелы, в том числе и внутри строки
+     *
+     * @param   string   $string    Строка для обработки
+     * @param   string   $replace   На что будут заменены найденные пробелы (по умолчанию на ' ')
+     * @param   string   $maska     Маска поиска для регулярного выражения (по умолчанию "все пробельные символы `/\s+/`")
+     *
+     * @return string
+     */
+    public static function trimInString(string $string, string $replace = ' '): string
+    {
+        return preg_replace("/\s+/", $replace, $string);
+    }
+
+    /**
+     * Удалит из начала и конца строки все кавычки
+     *
+     * (!) Функция является "сахаром" для PHP функции {@see trim()}
+     *
+     * @param   string   $string   Строка для обработки
+     *
+     * @return string
+     */
+    public static function quoteTrim(string $string): string
+    {
+        return trim($string, '\'"«»‘`‚„‘’“”' );
     }
 }

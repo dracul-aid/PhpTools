@@ -49,7 +49,11 @@ final class TimestampConstants
     /** Кол-во секунд в неделе */
     public const WEEK_SEC = 604800;
 
-    /** Кол-во секунд в сутках */
+    /**
+     * Кол-во секунд в сутках
+     *
+     * @see DaysDictionary::SECONDS_IN_DAY Кол-во секунд в сутках (в пакете констант "дней")
+     */
     public const DAY_SEC = 86400;
 
     /** Кол-во секунд в часе */

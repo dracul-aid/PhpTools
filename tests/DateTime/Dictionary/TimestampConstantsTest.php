@@ -14,7 +14,6 @@ namespace DraculAid\PhpTools\tests\DateTime\Dictionary;
 use DraculAid\PhpTools\DateTime\Dictionary\TimestampConstants;
 use PHPUnit\Framework\TestCase;
 
-
 /**
  * Test for {@see TimestampConstants}
  *

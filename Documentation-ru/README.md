@@ -68,3 +68,8 @@
 * [StringTools](/src/Strings/StringTools.php) Полезные функции для работы со строками
 * [TranslitConverter](/src/Strings/TranslitConverter.php) Конвертер в транслит
 * [Utf8Iterator](/src/Strings/Utf8Iterator.php) Итератор и генератор, для перебора UTF8 строк
+
+### [TestTools](/src/TestTools) Инструменты для облегчения юнит-тестов
+
+* [TestTools](/src/TestTools/PhpUnit) Инструменты для облегчения работы с PhpUnit
+    * [TestTools](/src/TestTools/PhpUnit/PhpUnitExtendTestCase.php) Базовый класс для PhpUnit юнит-тестов 

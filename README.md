@@ -7,6 +7,7 @@
 * [ExceptionTools](src/ExceptionTools) Для работы с исключениями
 * [DateTime](src/DateTime) Для работы с датой и временем
 * [Strings](src/Strings) Инструменты для работы со строками и символами
+* [TestTools](src/TestTools) Инструменты для облегчения юнит-тестов
 
 Подробнее [в документации >>>](Documentation-ru/README.md)
 

@@ -61,13 +61,16 @@
 ### [Strings](/src/Strings) Инструменты для работы со строками и символами
 
 * [Components](/src/Strings/Components) Компоненты инструментов
+* [Objects/StringIterator](/src/Strings/Objects/StringIterator) Объекты для перебора строк
+    * [StringIteratorInterface](/src/Strings/Objects/StringIterator/StringIteratorInterface.php) Интерфейс итераторов-строк
+    * [StringIteratorObject](/src/Strings/Objects/StringIterator/StringIteratorObject.php) Итератор для строк с фиксированным размером символа 
+    * [Utf8IteratorObject](/src/Strings/Objects/StringIterator/Utf8IteratorObject.php) Итератор для PHP8 строк
 * [ArrayAndStringTools](/src/Strings/ArrayAndStringTools.php) Преобразование массивов в строки 
 * [CharTools](/src/Strings/CharTools.php) Полезные функции для работы с символами (до 127 кода)
 * [StringCutTools](/src/Strings/StringCutTools.php) Обрезание строк
 * [StringSearchTools](/src/Strings/StringSearchTools.php) Поиск подстрок внутри строки
 * [StringTools](/src/Strings/StringTools.php) Полезные функции для работы со строками
 * [TranslitConverter](/src/Strings/TranslitConverter.php) Конвертер в транслит
-* [Utf8Iterator](/src/Strings/Utf8Iterator.php) Итератор и генератор, для перебора UTF8 строк
 
 ### [TestTools](/src/TestTools) Инструменты для облегчения юнит-тестов
 

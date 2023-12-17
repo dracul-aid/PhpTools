@@ -31,6 +31,8 @@ namespace DraculAid\PhpTools\Strings;
  * <br>{@see self::cursorGet()} - Вернет текущее положение курсора
  * <br>{@see self::cursorSet()} - Установит текущее положение курсора
  * <br>{@see self::cursorTo()} - Сдвинет курсор на указанное кол-во символов вперед
+ *
+ * @deprecated Будет удалено начиная с 0.6 версии. Стоит использовать {@see \DraculAid\PhpTools\Strings\Objects\StringIterator\Utf8IteratorObject}
  */
 class Utf8Iterator implements \Countable, \IteratorAggregate
 {
@@ -163,7 +165,6 @@ class Utf8Iterator implements \Countable, \IteratorAggregate
     /**
      * Установит текущее положение курсора
      *
-     * (!) При попытке установить
      * (!) Для вычисления позиции необходимо прочитать всю строку (в случае смещения "назад", от начала строки, в случае
      *     смещения "вперед" от текущего положения курсора)
      *

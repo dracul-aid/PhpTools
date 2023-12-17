@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace DraculAid\PhpTools\tests\Functions;
+namespace DraculAid\PhpTools\tests\Code;
 
-use DraculAid\PhpTools\Functions\CallFunctionHelper;
+use DraculAid\PhpTools\Code\CallFunctionHelper;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test for {@see CallFunctionHelper}
  *
- * @run php tests/run.php tests/Functions/CallFunctionHelperTest.php
+ * @run php tests/run.php tests/Code/CallFunctionHelperTest.php
  */
 class CallFunctionHelperTest extends TestCase
 {

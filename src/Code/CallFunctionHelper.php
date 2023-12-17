@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace DraculAid\PhpTools\Functions;
+namespace DraculAid\PhpTools\Code;
 
 /**
  * Функционал, облегчающий вызов функций

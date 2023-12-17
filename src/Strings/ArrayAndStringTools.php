@@ -11,7 +11,7 @@
 
 namespace DraculAid\PhpTools\Strings;
 
-use DraculAid\PhpTools\Functions\CallFunctionHelper;
+use DraculAid\PhpTools\Code\CallFunctionHelper;
 
 /**
  * Преобразование массивов в строку и обратно

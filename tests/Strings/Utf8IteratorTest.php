@@ -16,9 +16,11 @@ use DraculAid\PhpTools\Strings\Utf8Iterator;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for @see Utf8Iterator
+ * Test for {@see Utf8Iterator}
  *
  * @run php tests/run.php tests/Strings/Utf8IteratorTest.php
+ *
+ * @deprecated Будет удален, начиная с версии 0.5, так как {@see Utf8Iterator} будет замещен более новой реализацией
  */
 class Utf8IteratorTest extends TestCase
 {
@@ -34,7 +36,7 @@ class Utf8IteratorTest extends TestCase
     }
 
     /**
-     * Test for @see Utf8Iterator::calculationCharLen()
+     * Test for {@see Utf8Iterator::calculationCharLen()}
      */
     private function runTestCalculationCharLen(): void
     {
@@ -47,7 +49,7 @@ class Utf8IteratorTest extends TestCase
     }
 
     /**
-     * Test for @see Utf8Iterator::get()
+     * Test for {@see Utf8Iterator::get()}
      */
     private function runTestGet(): void
     {
@@ -57,9 +59,8 @@ class Utf8IteratorTest extends TestCase
     }
 
     /**
-     * Test for
-     *   @see Utf8Iterator::length()
-     *   @see Utf8Iterator::count()
+     * Test for {@see Utf8Iterator::length()}
+     * Test for {@see Utf8Iterator::count()}
      */
     private function runTestCounter(): void
     {
@@ -73,10 +74,9 @@ class Utf8IteratorTest extends TestCase
     }
 
     /**
-     * Test for
-     *    @see Utf8Iterator::cursorSet()
-     *    @see Utf8Iterator::cursorGet()
-     *    @see Utf8Iterator::readChar()
+     * Test for {@see Utf8Iterator::cursorSet()}
+     * Test for {@see Utf8Iterator::cursorGet()}
+     * Test for {@see Utf8Iterator::readChar()}
      */
     private function runTestCursorSetAndGetAndReadChar(): void
     {
@@ -122,7 +122,7 @@ class Utf8IteratorTest extends TestCase
     }
 
     /**
-     * Test for @see Utf8Iterator::readString()
+     * Test for {@see Utf8Iterator::readString()}
      */
     private function runTestReadString(): void
     {
@@ -141,7 +141,7 @@ class Utf8IteratorTest extends TestCase
     }
 
     /**
-     * Test for @see Utf8Iterator::getIterator()
+     * Test for {@see Utf8Iterator::getIterator()}
      */
     private function runTestGetIterator(): void
     {
@@ -150,7 +150,7 @@ class Utf8IteratorTest extends TestCase
     }
 
     /**
-     * Test for @see Utf8Iterator::utf8Generator()
+     * Test for {@see Utf8Iterator::utf8Generator()}
      */
     private function runTestGenerator(): void
     {

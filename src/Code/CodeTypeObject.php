@@ -62,6 +62,7 @@ class CodeTypeObject implements \IteratorAggregate, \Stringable
      */
     public static function __callStatic(string $name, array $arguments)
     {
+        // получение имени функции, которая будет использована для установки списка типов
         // @todo PHP8 заменить на math
         if ($name === 'createFromPhp') $name = 'set'; /** {@see self::set()} */
         elseif ($name === 'createFromSql') $name = 'setFromSql'; /** {@see self::setFromSql()} */

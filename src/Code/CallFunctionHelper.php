@@ -11,6 +11,9 @@
 
 namespace DraculAid\PhpTools\Code;
 
+use DraculAid\PhpTools\Classes\ClassNotPublicManager;
+use DraculAid\PhpTools\Classes\ClassTools;
+
 /**
  * Функционал, облегчающий вызов функций
  *
@@ -20,6 +23,7 @@ namespace DraculAid\PhpTools\Code;
  * Оглавление
  * <br>{@see CallFunctionHelper::STRUCTURES} Список структур, которые можно вызвать через {@see CallFunctionHelper::exe()}
  * <br>{@see CallFunctionHelper::exe()} Вызовет функцию или языковую конструкцию
+ * <br>{@see CallFunctionHelper::callMethodFromEmptyObject()} Позволяет вызвать метод класса (объект для вызова будет создан без вызова конструктора)
  * <br>{@see CallFunctionHelper::isStructures()} Проверяет переданное значение, является оно языковой конструкцией или нет
  * <br>{@see CallFunctionHelper::isClassCallable()} Проверит, "вызываемое" является вызовом метода или нет
  * <br>{@see CallFunctionHelper::isCallable()} Проверяет, может ли переданная строка (иное `callable`) быть вызвано как "функция"
@@ -72,6 +76,33 @@ final class CallFunctionHelper
         elseif ($function === 'include_once') return include_once($arguments[0]);
         elseif ($function === 'eval') return eval($arguments[0]);
         else throw new \LogicException("{$function} is not callable");
+    }
+
+    /**
+     * Позволяет вызвать метод класса, объект для вызова будет создан без вызова конструктора
+     * (Используется в случаях, когда нужно вызвать метод, но создание объекта сопряжено с высокими накладными расходами)
+     *
+     * (!) Может вызвать и непубличный метод
+     *
+     * @param   string[]               $classAndMethod   Вызываемый метод в формате массива [$class, $method]
+     * @param   array                  $arguments        Аргументы, с которыми будет вызван метод
+     * @param   array<string, mixed>   $properties       Список свойств для установки создаваемому объекту (в том числе и непубличных)
+     *
+     * @return  mixed   Вернет результат работы вызванного метода
+     *
+     * @todo PHP8 ответ функции
+     */
+    public static function callMethodFromEmptyObject(array $classAndMethod, array $arguments = [], array $properties = [])
+    {
+        if (!is_string($classAndMethod[0] ?? null) || !is_string($classAndMethod[1] ?? null))
+        {
+            throw new \TypeError('$classAndMethod can be callable, see format: [$class, $method]');
+        }
+
+        // Создаем объект для вызова метода (без вызова конструктора)
+        $object = ClassTools::createObject($classAndMethod[0], false, $properties);
+
+        return ClassNotPublicManager::callMethod([$object, $classAndMethod[1]], $arguments);
     }
 
     /**

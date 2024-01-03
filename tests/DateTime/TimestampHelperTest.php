@@ -240,8 +240,10 @@ class TimestampHelperTest extends TestCase
             2 => [strtotime('2023-01-02 0:00:00'), [2023, 1, 1, false]],
             3 => [strtotime('2023-01-02 23:59:59'), [2023, 1, 1, true]],
             4 => [strtotime('2023-01-02 02:10:21'), [2023, 1, 1, 2*3600 + 10*60 + 21]],
-            // значения по умолчанию
-            5 => [strtotime($nowDate->format('Y-01-02 0:00:00')), [null, 1, 1]],
+            // Значения по умолчанию
+            // ВНИМАНИЕ: эту строчку надо править, так как в ней берется "год по умолчанию", т.е. каждый год, юнит-тест
+            // будет падать, так как год меняется, а значит меняется и начало первой недели
+            5 => [strtotime($nowDate->format('Y-01-01 0:00:00')), [null, 1, 1]],
         ];
 
         $this->callTestFunctionList([TimestampHelper::class, 'getWeekDay'], $testCases);

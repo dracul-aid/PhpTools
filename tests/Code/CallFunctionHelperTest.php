@@ -72,6 +72,31 @@ class CallFunctionHelperTest extends TestCase
         $t = '123';
         self::assertFalse(CallFunctionHelper::exe('empty', $t, $a));
 
+        // echo()
+        ob_start();
+        self::assertNull(CallFunctionHelper::exe('echo', ''));
+        self::assertEquals('', ob_get_contents());
+        ob_clean();
+        self::assertNull(CallFunctionHelper::exe('echo', 'ABC'));
+        self::assertEquals('ABC', ob_get_contents());
+        ob_clean();
+        self::assertNull(CallFunctionHelper::exe('echo', 'ABC', 278));
+        self::assertEquals('ABC278', ob_get_contents());
+        ob_end_clean();
+
+        // print()
+        ob_start();
+        self::assertEquals(1, CallFunctionHelper::exe('print', ''));
+        self::assertEquals('', ob_get_contents());
+        ob_clean();
+        self::assertEquals(1, CallFunctionHelper::exe('print', 'ABC'));
+        self::assertEquals('ABC', ob_get_contents());
+        ob_clean();
+        self::assertEquals(1, CallFunctionHelper::exe('print', 'ЯФЖ'));
+        self::assertEquals('ЯФЖ', ob_get_contents());
+        ob_end_clean();
+
+
         // * * * Вызов функций
 
         $t = 'XXX';

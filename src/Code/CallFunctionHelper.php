@@ -75,6 +75,12 @@ final class CallFunctionHelper
         elseif ($function === 'include') return include($arguments[0]);
         elseif ($function === 'include_once') return include_once($arguments[0]);
         elseif ($function === 'eval') return eval($arguments[0]);
+        elseif ($function === 'echo')
+        {
+            foreach ($arguments as $value) echo $value;
+            return null;
+        }
+        elseif ($function === 'print') return print($arguments[0]);
         else throw new \LogicException("{$function} is not callable");
     }
 

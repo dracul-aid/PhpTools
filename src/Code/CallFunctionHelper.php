@@ -61,6 +61,7 @@ final class CallFunctionHelper
      *
      * @todo PHP8 аргументы и ответ функции
      * @todo PHP8 Реализовать - Если нужно передать все аргументы, воспользуйтесь 'isset_list'
+     * @todo PHP8 match()
      * @todo Реализовать - больше тестов для различных конструкций языка
      * @todo Реализовать - тесты для вызова методов классов
      */
@@ -81,6 +82,7 @@ final class CallFunctionHelper
             return null;
         }
         elseif ($function === 'print') return print($arguments[0]);
+        elseif ($function === 'array') return array(...$arguments);
         else throw new \LogicException("{$function} is not callable");
     }
 

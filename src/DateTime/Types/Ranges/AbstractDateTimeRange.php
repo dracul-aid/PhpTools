@@ -94,7 +94,7 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
     /**
      * @inheritdoc
      *
-     * @todo PHP8 math()
+     * @todo PHP8 match()
      *
      * @todo Вынести тестирование их конкретных классов в тест абстрактного класса
      */
@@ -114,7 +114,7 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
     /**
      * @inheritdoc
      *
-     * @todo PHP8 math()
+     * @todo PHP8 match()
      *
      * @todo Вынести тестирование их конкретных классов в тест абстрактного класса
      */

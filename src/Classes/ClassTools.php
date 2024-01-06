@@ -78,6 +78,8 @@ final class ClassTools
      * Проверит, реализует ли класс (объект) полный доступ "как к массиву"
      * (т.е. перебор в foreach, получение элементов "как в массивах" и кол-ва элементов через count())
      *
+     * @see \DraculAid\PhpTools\Arrays\Objects\Interfaces\ArrayInterface Интерфейс для объектов, схожих с массивами
+     *
      * @param   string|object   $classOrObject
      * 
      * @return  bool

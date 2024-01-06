@@ -89,7 +89,7 @@ final class ClassTools
         TypeValidator::validateOr($classOrObject, ['string', 'object']);
 
         return is_subclass_of($classOrObject, \Countable::class)
-            && is_subclass_of($classOrObject, \IteratorAggregate::class)
+            && is_subclass_of($classOrObject, \Traversable::class)
             && is_subclass_of($classOrObject, \ArrayAccess::class);
     }
 

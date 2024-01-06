@@ -52,6 +52,8 @@ final class CallFunctionHelper
      * (!) В {@see isset()} передается только 1 аргумент.
      *
      * @param   string|callable       $function     Функция или языковая конструкция
+     *                                              <br>Если передана строка, начинающаяся с new - то будет создан объект
+     *                                              указанного класса. Пример: "new stdClass" создаст объект {@see \stdClass} класса
      * @param   mixed              ...$arguments    Передаваемые аргументы
      *
      * @return  mixed
@@ -69,7 +71,15 @@ final class CallFunctionHelper
     {
         if (is_callable($function)) return self::exeCallable($function, $arguments);
 
-        if ($function === 'isset') return isset($arguments[0]);
+        if (!is_string($function)) throw new \LogicException("{$function} is not callable and not PHP code construction");
+
+        /** Создание нового класса */
+        if ($function[0] === 'n' && $function[1] === 'e' && $function[2] === 'w' && $function[3] === ' ')
+        {
+            $function = substr($function, 4);
+            return new $function(...$arguments);
+        }
+        elseif ($function === 'isset') return isset($arguments[0]);
         elseif ($function === 'empty') return empty($arguments[0]);
         elseif ($function === 'require') return require($arguments[0]);
         elseif ($function === 'require_once') return require_once($arguments[0]);

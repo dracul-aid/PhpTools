@@ -56,6 +56,14 @@ class CallFunctionHelperTest extends TestCase
      */
     public function testExe(): void
     {
+        // создание объекта
+        $t = CallFunctionHelper::exe('new ' . \stdClass::class);
+        self::assertTrue($t instanceof \stdClass);
+        /** @var \ArrayObject $t */
+        $t = CallFunctionHelper::exe('new ' . \ArrayObject::class, [0, 1, 2, 3]);
+        self::assertTrue($t instanceof \ArrayObject);
+        self::assertEquals([0, 1, 2, 3], $t->getArrayCopy());
+
         // isset()
         $t = null;
         self::assertFalse(CallFunctionHelper::exe('isset', $t));

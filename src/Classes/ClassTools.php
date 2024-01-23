@@ -12,6 +12,8 @@
 namespace DraculAid\PhpTools\Classes;
 
 use DraculAid\Php8forPhp7\TypeValidator;
+use DraculAid\PhpTools\Arrays\ArrayHelper;
+use DraculAid\PhpTools\Arrays\Objects\Interfaces\ArrayInterface;
 
 /**
  * Статический класс с функциями, для работы с классами
@@ -78,7 +80,8 @@ final class ClassTools
      * Проверит, реализует ли класс (объект) полный доступ "как к массиву"
      * (т.е. перебор в foreach, получение элементов "как в массивах" и кол-ва элементов через count())
      *
-     * @see \DraculAid\PhpTools\Arrays\Objects\Interfaces\ArrayInterface Интерфейс для объектов, схожих с массивами
+     * @see ArrayHelper::isAsArray() Проверит, является ли объект похожим на массив
+     * @see ArrayInterface Интерфейс для объектов, схожих с массивами
      *
      * @param   string|object   $classOrObject   Класс или объект для проверки
      * @param   bool            $countable       Должно ли переданное значение корректно отрабатываться функцией {@see count()}

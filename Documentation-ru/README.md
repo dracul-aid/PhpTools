@@ -1,4 +1,4 @@
-# Оглавление - PhpTools v 0.3
+# Оглавление - PhpTools v 0.4
 
 * [Установка](install.md)
 * [Лицензия](../LICENSE) (Apache License Version 2.0)

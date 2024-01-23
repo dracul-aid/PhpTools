@@ -122,6 +122,8 @@ final class ClassParents
     /**
      * Получит список интерфейсов класса
      *
+     * @see class_implements() PHP функция, возвращающая список интерфейсов класса
+     *
      * @return void
      */
     private function readInterfaces(): void

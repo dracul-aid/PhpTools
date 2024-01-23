@@ -35,9 +35,9 @@ trait SingletonTrait
      *
      * При каждом вызове будет возвращать один и тот же экземпляр
      *
-     * @return self
+     * @return static
      *
-     * @todo PHP8 Возвращаемое значение должно быть self
+     * @todo PHP8 Возвращаемое значение должно быть static
      */
     final public static function getInstance(): object
     {

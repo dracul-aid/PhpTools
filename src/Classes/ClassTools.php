@@ -80,19 +80,21 @@ final class ClassTools
      *
      * @see \DraculAid\PhpTools\Arrays\Objects\Interfaces\ArrayInterface Интерфейс для объектов, схожих с массивами
      *
-     * @param   string|object   $classOrObject
+     * @param   string|object   $classOrObject   Класс или объект для проверки
+     * @param   bool            $countable       Должно ли переданное значение корректно отрабатываться функцией {@see count()}
      * 
      * @return  bool
      *
      * @todo PHP8 Типизация аргументов
      */
-    public static function isAsArray($classOrObject): bool
+    public static function isAsArray($classOrObject, bool $countable = true): bool
     {
         TypeValidator::validateOr($classOrObject, ['string', 'object']);
 
-        return is_subclass_of($classOrObject, \Countable::class)
-            && is_subclass_of($classOrObject, \Traversable::class)
-            && is_subclass_of($classOrObject, \ArrayAccess::class);
+        if (is_subclass_of($classOrObject, \Traversable::class) === false || is_subclass_of($classOrObject, \ArrayAccess::class) === false) return false;
+
+        if ($countable) return is_subclass_of($classOrObject, \Countable::class);
+        return true;
     }
 
     /**

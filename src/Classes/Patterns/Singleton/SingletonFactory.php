@@ -58,6 +58,10 @@ final class SingletonFactory
      * @return  object  Вернет созданный объект
      *
      * @todo PHP8 Типизация аргументов
+     *
+     * @psalm-template RealInstanceType of object
+     * @psalm-param class-string<RealInstanceType> $class
+     * @psalm-return RealInstanceType
      */
     public static function createObject(string $class, $arguments = false, array $properties = []): object
     {
@@ -88,6 +92,10 @@ final class SingletonFactory
      * @return  object  Вернет созданный объект
      *
      * @todo PHP8 Типизация аргументов
+     *
+     * @psalm-template RealInstanceType of object
+     * @psalm-param class-string<RealInstanceType> $class
+     * @psalm-return RealInstanceType
      */
     public static function createObjectForIndex(string $index, string $class, $arguments = false, array $properties = []): object
     {

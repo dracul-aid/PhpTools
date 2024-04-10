@@ -35,6 +35,9 @@ final class ArrayHelper
     /**
      * Проверит, что переданное значение массив, или объект похожий на массив
      *
+     * (!) Объект считается похожим на массив, если его можно перебирать (реализован {@see \Traversable}) и к элементам
+     *     разрешен доступ, как к элементам массива ({@see \ArrayAccess}). Поддержка функции {@see count()} опциональна
+     *
      * @see ClassTools::isAsArray() Проверит, похож ли класс или объект на массив
      * @see ArrayInterface Интерфейс для объектов, схожих с массивами
      *
@@ -49,11 +52,13 @@ final class ArrayHelper
     {
         if (is_array($asArray)) return true;
 
+        // все случаи дальше имеют смысл только для массивов
         if (!is_object($asArray)) return false;
 
         if ($asArray instanceof \Traversable === false || $asArray instanceof \ArrayAccess === false) return false;
 
         if ($countable) return $asArray instanceof \Countable;
+
         return true;
     }
 

@@ -28,8 +28,8 @@ LoaderPhp8Lib::loadWeakMap();
  * <br>{@see ClassNotPublicManager::getInstanceFor()} - Вернет объект для работы с не публичными элементами
  * <br>--- "Процедурный стиль"
  * <br>{@see ClassNotPublicManager::readConstant()} - Чтение значения константы
- * <br>{@see ClassNotPublicManager::readProperty()} - Чтение занчения свойства
- * <br>{@see ClassNotPublicManager::writeProperty()} - Запись значния свойства (списка свойств)
+ * <br>{@see ClassNotPublicManager::readProperty()} - Чтение значения свойства
+ * <br>{@see ClassNotPublicManager::writeProperty()} - Запись значения свойства (списка свойств)
  * <br>{@see ClassNotPublicManager::callMethod()} - Вызов метода
  * <br>--- Объект для взаимодействия с непубличными элементами
  * <br>{@see self::$toObject} [const] - Для какого объекта создан объект

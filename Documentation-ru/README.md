@@ -26,6 +26,10 @@
 * [DebugVarTools](../src/Code/DebugVarTools.php) Инструменты для отладки значений
 * [DebugVarHtmlTools](../src/Code/DebugVarHtmlTools.php) Инструменты для отладки значений в HTML формате
 * [CallFunctionHelper](../src/Code/CallFunctionHelper.php) Хэлпер для вызова функций и языковых конструкций
+* [FunctionAsPropertyObject](../src/Code/FunctionAsPropertyObject.php) Объект-функция, позволяет использовать функции и
+  конструкции языка в качестве типа свойств классов
+* [ObHelper](../src/Code/ObHelper.php) Позволяет вызывать функции с перехватом потока вывода
+* [ScriptLoader](../src/Code/ScriptLoader.php) Позволяет вызывать скрипты с перехватом потока вывода
 
 ### [ExceptionTools](../src/ExceptionTools) Для работы с исключениями
 
@@ -73,6 +77,13 @@
 * [StringSearchTools](../src/Strings/StringSearchTools.php) Поиск подстрок внутри строки
 * [StringTools](../src/Strings/StringTools.php) Полезные функции для работы со строками
 * [TranslitConverter](../src/Strings/TranslitConverter.php) Конвертер в транслит
+
+### [Arrays](../src/Arrays) Инструменты для работы с массивами и массивоподобными объектами
+
+* [Objects](../src/Arrays/Objects) Объекты для работы с массивами
+    * [ArrayInterface](../src/Arrays/Objects/Interfaces) Интерфейсы
+        * [ArrayInterface](../src/Arrays/Objects/Interfaces/ArrayInterface.php) Интерфейс для типизации объектов, схожих с массивами
+* [ArrayHelper](../src/Arrays/ArrayHelper.php) Хэлпер для работы с массивами
 
 ### [TestTools](../src/TestTools) Инструменты для облегчения юнит-тестов
 

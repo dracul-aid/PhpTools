@@ -23,6 +23,8 @@
 
 ### [Code](../src/Code) Функционал для работы с кодом
 
+* [DebugVarTools](../src/Code/DebugVarTools.php) Инструменты для отладки значений
+* [DebugVarHtmlTools](../src/Code/DebugVarHtmlTools.php) Инструменты для отладки значений в HTML формате
 * [CallFunctionHelper](../src/Code/CallFunctionHelper.php) Хэлпер для вызова функций и языковых конструкций
 
 ### [ExceptionTools](../src/ExceptionTools) Для работы с исключениями

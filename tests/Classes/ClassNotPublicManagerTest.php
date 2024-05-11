@@ -47,6 +47,8 @@ class ClassNotPublicManagerTest extends TestCase
      */
     public function testObject(): void
     {
+        // * * * Чтение из объекта
+
         $testNotPublic = ClassNotPublicManager::getInstanceFor($this->createObject());
 
         self::assertEquals('private_const_value', $testNotPublic->constant('PRIVATE_CONST'));
@@ -68,6 +70,22 @@ class ClassNotPublicManagerTest extends TestCase
         $f_t1 = 'С111';
         self::assertEquals("private_static_function_return_[С111]_D222", $testNotPublic->callStatic('private_static_function', [&$f_t1, 'D222']));
         self::assertEquals('[С111]', $f_t1);
+
+        // * * * Чтение из класса
+
+        $testClass = $this->createStaticClass();
+
+        $testNotPublic = ClassNotPublicManager::getInstanceFor($testClass);
+
+        self::assertEquals('private_const_value', $testNotPublic->constant('PRIVATE_CONST'));
+
+        self::assertEquals('private_static_var_value', $testNotPublic->getStatic('private_static_var'));
+        $testNotPublic->setStatic('private_static_var', '222');
+        self::assertEquals('222', $testNotPublic->getStatic('private_static_var'));
+
+        $f_t1 = 'С111';
+        self::assertEquals("private_static_function_return_[С111]_D222", $testNotPublic->callStatic('private_static_function', [&$f_t1, 'D222']));
+        self::assertEquals('[С111]', $f_t1);
     }
 
     /**
@@ -78,6 +96,8 @@ class ClassNotPublicManagerTest extends TestCase
      */
     public function testEasyObject(): void
     {
+        // * * * Чтение из объекта
+
         $testObject = $this->createObject();
         $testClass = get_class($testObject);
 
@@ -100,6 +120,20 @@ class ClassNotPublicManagerTest extends TestCase
         $f_t1 = 'A111';
         self::assertEquals("private_function_return_[A111]_B222", ClassNotPublicManager::callMethod([$testObject, 'private_function'], [&$f_t1, 'B222']));
         self::assertEquals("[A111]", $f_t1);
+        $f_t1 = 'С111';
+        self::assertEquals("private_static_function_return_[С111]_D222", ClassNotPublicManager::callMethod([$testClass, 'private_static_function'], [&$f_t1, 'D222']));
+        self::assertEquals('[С111]', $f_t1);
+
+        // * * * Чтение из класса
+
+        $testClass = $this->createStaticClass();
+
+        self::assertEquals('private_const_value', ClassNotPublicManager::readConstant($testClass, 'PRIVATE_CONST'));
+
+        self::assertEquals('private_static_var_value', ClassNotPublicManager::readProperty($testClass, 'private_static_var'));
+        ClassNotPublicManager::writeProperty($testClass, 'private_static_var', '222');
+        self::assertEquals('222', ClassNotPublicManager::readProperty($testClass, 'private_static_var'));
+
         $f_t1 = 'С111';
         self::assertEquals("private_static_function_return_[С111]_D222", ClassNotPublicManager::callMethod([$testClass, 'private_static_function'], [&$f_t1, 'D222']));
         self::assertEquals('[С111]', $f_t1);
@@ -145,5 +179,36 @@ class ClassNotPublicManagerTest extends TestCase
         eval("class {$className} {{$classInner}}");
 
         return new $className($set_var);
+    }
+
+    /**
+     * Создаст класс с статическими элементами
+     *
+     * @return string Вернет имя созданного класса
+     */
+    private function createStaticClass(): string
+    {
+        $className = '___Test_Class_Name_' . uniqid() . '___';
+
+        $classInner = <<<'CODE'
+            private const PRIVATE_CONST = 'private_const_value';
+
+            private static string $private_static_var = 'private_static_var_value';
+
+            private static function private_static_function(string &$t1, string $t2): string
+            {
+                $t1 = "[{$t1}]";
+                return "private_static_function_return_{$t1}_{$t2}";
+            }
+            
+            public function __construct()
+            {
+                throw new \RuntimeException('TEST FAIL');            
+            }
+        CODE;
+
+        eval("final class {$className} {{$classInner}}");
+
+        return $className;
     }
 }

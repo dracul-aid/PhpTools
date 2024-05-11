@@ -20,6 +20,7 @@ use DraculAid\PhpTools\DateTime\Dictionary\DateConstants;
  * <br> {@see DateTimeValidator::isValidDateAndTime()} - Проверяет валидность даты и времени (по григорианскому календарю)
  * --- Вернет ближайшие валидные значения
  * <br> {@see DateTimeValidator::validMonAndDay()} Проверит, валиден ли год, месяц и число. Если нет, обновит переданные данные до валидных значений
+ * <br> {@see DateTimeValidator::validTime()} - Проверит, валиден ли час, минута и секунда. Если нет - вернет ближайшие валидные значения
  * <br> {@see DateTimeValidator::getValidDayOfMon()} Проверит, валиден ли число (день месяца), если нет - вернет ближайшей валидный номер дня
  * <br>--- Проверка частей даты
  * <br> {@see DateTimeValidator::year()} - Год

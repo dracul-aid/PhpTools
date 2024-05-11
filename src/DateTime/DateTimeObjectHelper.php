@@ -11,10 +11,10 @@
 
 namespace DraculAid\PhpTools\DateTime;
 
-use DraculAid\PhpTools\DateTime\Types\GetTimestampInterface;
-use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
-use DraculAid\PhpTools\DateTime\Types\PhpExtended\DateTimeExtendedType;
 use DraculAid\Php8forPhp7\TypeValidator;
+use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
+use DraculAid\PhpTools\DateTime\Types\GetTimestampInterface;
+use DraculAid\PhpTools\DateTime\Types\PhpExtended\DateTimeExtendedType;
 
 /**
  * Набор функция для облегчения работы с объектами даты-времени (см {@see \DateTimeInterface})
@@ -22,6 +22,7 @@ use DraculAid\Php8forPhp7\TypeValidator;
  * Оглавление:
  * <br> {@see DateTimeObjectHelper::getDateObject()} - Вернет дата-тайм объект, из разного представления даты-времени
  * <br> {@see DateTimeObjectHelper::copyDateTimeObject()} - Копирует объект даты-времени
+ * <br> {@see DateTimeObjectHelper::isGetTimestamp()} - Проверяет, может ли объект вернуть тайштамп
  *
  * @see DateTimeHelper Набор функий для работы с датой и временем
  * @see TimestampHelper Хэлпер, для работы с таймштампами

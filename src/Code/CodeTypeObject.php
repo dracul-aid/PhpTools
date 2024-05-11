@@ -37,6 +37,9 @@ LoaderPhp8Lib::loadInterfaces();
  * <br>{@see self::isWithNull()} В типе данных, есть NULL или нет
  * <br>{@see self::isWithBool()} В типе данных, есть булевы варианты (bool, true, false)
  * <br>{@see self::isWithNumber()} В типе данных, есть числа
+ * <br>--- Проверка типов
+ * <br>{@see self::getIterator()} Позволит перебрать все типы
+ * <br>{@see self::getType()} Вернет все типы ввиде массива
  *
  * @method static CodeTypeObject createFromPhp(string|string[] $type) Создает с переданными PHP типами
  * @method static CodeTypeObject createFromSql(string $type, bool $isNull) Создает с переданным SQL типом

@@ -84,6 +84,7 @@
     * [ArrayInterface](../src/Arrays/Objects/Interfaces) Интерфейсы
         * [ArrayInterface](../src/Arrays/Objects/Interfaces/ArrayInterface.php) Интерфейс для типизации объектов, схожих с массивами
 * [ArrayHelper](../src/Arrays/ArrayHelper.php) Хэлпер для работы с массивами
+* [ArrayIterator](../src/Arrays/ArrayIterator.php) Итераторы, для облегчения перебора массивов
 
 ### [TestTools](../src/TestTools) Инструменты для облегчения юнит-тестов
 

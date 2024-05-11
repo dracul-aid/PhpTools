@@ -11,8 +11,8 @@
 
 namespace DraculAid\PhpTools\tests\Arrays;
 
-use PHPUnit\Framework\TestCase;
 use DraculAid\PhpTools\Arrays\ArrayHelper;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test for {@coversDefaultClass ArrayHelper}
@@ -153,6 +153,31 @@ class ArrayHelperTest extends TestCase
                 -3,
                 'x', 'y', 'z'
             )
+        );
+    }
+
+    /**
+     * Test for {@covers ArrayHelper::getByIndexes()}
+     *
+     * @return void
+     */
+    public function testGetByIndexes(): void
+    {
+        $array = ['a' => 'AAA', 'b' => 'BBB', 'c' => 'CCC'];
+
+        self::assertEquals(
+            ['a' => 'AAA', 'c' => 'CCC'],
+            ArrayHelper::getByIndexes($array, ['a', 'c'])
+        );
+
+        self::assertEquals(
+            ['a' => 'AAA', 'x' => null],
+            ArrayHelper::getByIndexes($array, ['a', 'x'])
+        );
+
+        self::assertEquals(
+            ['a' => 'AAA', 'x' => 'XXX'],
+            ArrayHelper::getByIndexes($array, ['a', 'x'], 'XXX')
         );
     }
 }

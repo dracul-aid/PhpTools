@@ -29,6 +29,7 @@ use DraculAid\PhpTools\Classes\ClassTools;
  * <br>{@see ArrayHelper::getNewIndex()} Вернет числовой индекс, который будет присвоен новому элементу массива
  * <br>{@see ArrayHelper::countSafe()} Вернет кол-во элементов в массиве, если посчитать невозможно - вернет "значение по умолчанию"
  * <br>{@see ArrayHelper::setInPositionAndMoveOldValues()} Вставит новые значения в массив (начиная с указанной позиции)
+ * <br>{@see ArrayHelper::getByIndexes()} Вернет срез массива, по списку указанных индексов массива
  */
 final class ArrayHelper
 {
@@ -184,5 +185,25 @@ final class ArrayHelper
         }
 
         return $arrayResult;
+    }
+
+    /**
+     * Вернет срез массива, по списку указанных индексов массива
+     *
+     * @param   array|\ArrayAccess   $array      Массив, или объект допускающий доступ к себе, как к массиву
+     * @param   array                $indexes    Список индексов для возврата
+     * @param   mixed                $default    Значение по умолчанию, если элемент не был найден
+     *
+     * @return  array
+     *
+     * @todo PHP8 типизация аргументов
+     */
+    public static function getByIndexes($array, array $indexes, $default = null): array
+    {
+        $_return = [];
+
+        foreach ($indexes as $keyName) $_return[$keyName] = $array[$keyName] ?? $default;
+
+        return $_return;
     }
 }

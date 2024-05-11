@@ -46,12 +46,16 @@ class FunctionAsPropertyObjectTest extends TestCase
         self::assertEquals(7, $functionObject->call([3, 4], 123123));
 
         // вызов без защищенного режима приведет к ошибке, так как array_sum() может принять только 1 аргумент
-        $functionObject = new FunctionAsPropertyObject('array_sum', false);
-        ExceptionTools::wasCalledWithException(
-            [$functionObject, 'call'],
-            [[3, 4], 123123],
-            \ArgumentCountError::class
-        );
+        // @todo PHP8 до 8-ой версии PHP нет смысла в этом тесте, так как будет выброшено "предупреждение", которое будет воспринято PhpUnit как ошибка прохождения теста
+        if (PHP_MAJOR_VERSION > 7)
+        {
+            $functionObject = new FunctionAsPropertyObject('array_sum', false);
+            ExceptionTools::wasCalledWithException(
+                [$functionObject, 'call'],
+                [[3, 4], 123123],
+                \ArgumentCountError::class
+            );
+        }
         // принудительный вызов в защищенном режиме
         self::assertEquals(7, $functionObject->callSafe([3, 4], 123123));
 

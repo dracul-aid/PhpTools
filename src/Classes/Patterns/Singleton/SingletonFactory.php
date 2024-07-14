@@ -52,7 +52,7 @@ final class SingletonFactory
      * @param   string        $class         Полное имя класса
      * @param   false|array   $arguments     Массив аргументов для конструктора:
      *                                       <br>* FALSE: конструктор не будет вызван
-     *                                       <br>* array: список аргументов для конструктора
+     *                                       <br>* array: список аргументов для конструктора ([] - Вызов без аргументов)
      * @param   array         $properties    Массив свойств необходимых для установки в объекте
      *
      * @return  object  Вернет созданный объект
@@ -61,6 +61,7 @@ final class SingletonFactory
      *
      * @psalm-template RealInstanceType of object
      * @psalm-param class-string<RealInstanceType> $class
+     * @psalm-param array<string|mixed> $properties
      * @psalm-return RealInstanceType
      */
     public static function createObject(string $class, $arguments = false, array $properties = []): object
@@ -86,7 +87,7 @@ final class SingletonFactory
      * @param   string        $class         Полное имя класса
      * @param   false|array   $arguments     Массив аргументов для конструктора:
      *                                       <br>* FALSE: конструктор не будет вызван
-     *                                       <br>* array: список аргументов для конструктора
+     *                                       <br>* array: список аргументов для конструктора ([] - Вызов без аргументов)
      * @param   array         $properties    Массив свойств необходимых для установки в объекте
      *
      * @return  object  Вернет созданный объект

@@ -60,6 +60,7 @@ final class ClassNotPublicManager
      * Используется для реализации "синглтона", см  {@see ClassNotPublicManager::getInstanceFor()}
      *
      * @var array<string, ClassNotPublicManager>
+     * @psalm-param array<class-string, ClassNotPublicManager>
      */
     public static array $_notPublicClasses = [];
 
@@ -90,6 +91,8 @@ final class ClassNotPublicManager
      * @return  static
      *
      * @todo PHP8 Типизация аргументов
+     *
+     * @psalm-param class-string|object $objectOrClass
      */
     public static function getInstanceFor($objectOrClass): self
     {
@@ -130,6 +133,8 @@ final class ClassNotPublicManager
      * @return  mixed
      *
      * @todo PHP8 Типизация аргументов и возврата функции
+     *
+     * @psalm-param class-string|object $objectOrClass
      */
     public static function readConstant($objectOrClass, string $name)
     {
@@ -161,6 +166,8 @@ final class ClassNotPublicManager
      * @return  mixed
      *
      * @todo PHP8 Типизация аргументов и возврата функции
+     *
+     * @psalm-param class-string|object $objectOrClass
      */
     public static function readProperty($objectOrClass, string $name)
     {
@@ -208,6 +215,8 @@ final class ClassNotPublicManager
      * @return  mixed
      *
      * @todo PHP8 Типизация аргументов и возврата функции
+     *
+     * @psalm-param class-string|object $objectOrClass
      */
     public static function writeProperty($objectOrClass, $name, $data = null)
     {
@@ -267,6 +276,8 @@ final class ClassNotPublicManager
      * @return  mixed
      *
      * @todo PHP8 Типизация возврата функции
+     *
+     * @psalm-param callable-array $methodAsArray
      */
     public static function callMethod(array $methodAsArray, array $arguments = [])
     {

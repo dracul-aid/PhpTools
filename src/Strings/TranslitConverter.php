@@ -12,6 +12,7 @@
 namespace DraculAid\PhpTools\Strings;
 
 use DraculAid\PhpTools\Strings\Components\TranslitConverter\CharRuToEn;
+use DraculAid\PhpTools\Strings\Components\TranslitConverter\CharRuToEnIcao;
 use DraculAid\PhpTools\tests\Strings\TranslitConverterTest;
 
 /**
@@ -19,10 +20,12 @@ use DraculAid\PhpTools\tests\Strings\TranslitConverterTest;
  *
  * См также
  * <br>{@see CharRuToEn::LIST} Соответствия символов кириллицы и латиницы, для удобной для чтения транслитирации
+ * <br>{@see CharRuToEnIcao::LIST} Соответствия символов кириллицы и латиницы, формат ИКАО (для загран паспортов и банковских карт)
  *
  * Оглавление
  * <br>{@see TranslitConverter::toTranslit()} Преобразует строку в транслит
  * <br>{@see TranslitConverter::toUrl()} Преобразует строку, в строку пригодную для использования в качестве части URL/URI
+ * <br>{@see TranslitConverter::toTranslit()} Преобразует строку в транслит
  *
  * Test cases for class {@see TranslitConverterTest}
  */
@@ -89,5 +92,18 @@ final class TranslitConverter
 
         // удаляем первые и последние символы "-" и "_"
         return trim($_return, '-,_');
+    }
+
+    /**
+     * Преобразует кириллическую строку в транслит в формате ИКАО (в этом формате проводится транслитерация для загран
+     * паспортов и банковских карт России)
+     *
+     * @param   string   $string
+     *
+     * @return string
+     */
+    public static function CyrillicToIcao(string $string): string
+    {
+        return strtr($string, CharRuToEnIcao::LIST);
     }
 }

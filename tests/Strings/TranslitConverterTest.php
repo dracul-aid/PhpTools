@@ -11,6 +11,7 @@
 
 namespace DraculAid\PhpTools\tests\Strings;
 
+use DraculAid\PhpTools\Strings\Components\TranslitConverter\CharRuToEnIcao;
 use DraculAid\PhpTools\Strings\TranslitConverter;
 use PHPUnit\Framework\TestCase;
 
@@ -31,6 +32,20 @@ class TranslitConverterTest extends TestCase
         self::assertEquals('dom-i-more', TranslitConverter::toUrl('дом и море'));
         self::assertEquals('dom-home-dom', TranslitConverter::toUrl('дом, home, дом'));
         self::assertEquals('dom_dom', TranslitConverter::toUrl('дом_дом'));
-        self::assertEquals('dom_dom-123', TranslitConverter::toUrl('дом___дом---123'));
+        self::assertEquals('dom_rom-123', TranslitConverter::toUrl('дом___ром---123'));
+    }
+
+    /**
+     * Test for {@see TranslitConverter::CyrillicToIcao()}
+     *
+     * @return void
+     */
+    public function testCyrillicToIcao(): void
+    {
+        foreach (CharRuToEnIcao::LIST as $ruChar => $enChar)
+        {
+            $testResult = TranslitConverter::CyrillicToIcao($ruChar);
+            self::assertEquals($enChar, $testResult, "CyrillicToIcao('{$ruChar}') return '{$testResult}', but '{$ruChar}' => '{$enChar}'");
+        }
     }
 }

@@ -60,8 +60,8 @@ final class TimestampHelper
 
         if ($timestamp instanceof \DateTimeInterface) $timestamp = (float)$timestamp->format(DateTimeFormats::TIMESTAMP_WITH_MILLISECONDS);
 
-        if (!$asInt64) return (string)($timestamp * 1000);
-        else return $timestamp * 1000;
+        if (!$asInt64) return (string)($timestamp * TimestampConstants::MILLISECOND_MODIFICATION);
+        else return $timestamp * TimestampConstants::MILLISECOND_MODIFICATION;
     }
 
     /**

@@ -36,5 +36,6 @@ class TimestampConstantsTest extends TestCase
         self::assertEquals(31 * 24 * 60 * 60, TimestampConstants::MON_31_SEC);
         self::assertEquals(365 * 24 * 60 * 60, TimestampConstants::YEAR_SEC);
         self::assertEquals(366 * 24 * 60 * 60, TimestampConstants::YEAR_LEAP_SEC);
+        self::assertEquals(1000, TimestampConstants::MILLISECOND_MODIFICATION);
     }
 }

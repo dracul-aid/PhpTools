@@ -27,6 +27,8 @@ use DraculAid\PhpTools\tests\DateTime\Dictionary\TimestampConstantsTest;
  * <br>{@see TimestampConstants::DAY_SEC} - Кол-во секунд в сутках
  * <br>{@see TimestampConstants::HOUR_SEC} - Кол-во секунд в часе
  * <br>{@see TimestampConstants::MINUTE_SEC} - Кол-во секунд в минуте
+ * <br>* * *
+ * <br>{@see TimestampConstants::MILLISECOND_MODIFICATION} - Поправка для приведения таймштампа в JS формат (1 сек = 1000 миллисекунд)
  *
  * Test cases for class {@see TimestampConstantsTest}
  */
@@ -65,4 +67,7 @@ final class TimestampConstants
 
     /** Кол-во секунд в минуте */
     public const MINUTE_SEC = 60;
+
+    /** Поправка для приведения таймштампа в JS формат (1 сек = 1000 миллисекунд) */
+    public const MILLISECOND_MODIFICATION = 1000;
 }

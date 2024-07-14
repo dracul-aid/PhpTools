@@ -13,6 +13,7 @@ namespace DraculAid\PhpTools\Classes\Patterns\Singleton;
 
 use DraculAid\Php8forPhp7\TypeValidator;
 use DraculAid\PhpTools\Classes\ClassTools;
+use DraculAid\PhpTools\tests\Classes\Patterns\Singleton\SingletonFactoryTest;
 
 /**
  * Позволяет работать с любым классом, как с классом-одиночкой
@@ -23,6 +24,8 @@ use DraculAid\PhpTools\Classes\ClassTools;
  * <br>* * *
  * <br>{@see SingletonFactory::$singletonObjects} - Созданные синглтон-объекты
  * <br>{@see SingletonFactory::$uniqKeyObjects} - Созданные синглтон-объекты
+ *
+ * Test cases for class {@see SingletonFactoryTest}
  */
 final class SingletonFactory
 {

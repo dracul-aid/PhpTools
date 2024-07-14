@@ -11,11 +11,15 @@
 
 namespace DraculAid\PhpTools\Arrays;
 
+use DraculAid\PhpTools\tests\Arrays\ArrayIteratorTest;
+
 /**
  * Набор итераторов массивов
  *
  * - Оглавление:
  * <br>{@see ArrayIterator::map()} Позволяет перебрать массив, указав что будет "индексом" и "значениями" массива
+ *
+ * Test cases for class {@see ArrayIteratorTest}
  */
 final class ArrayIterator
 {

@@ -11,6 +11,8 @@
 
 namespace DraculAid\PhpTools\Strings;
 
+use DraculAid\PhpTools\tests\Strings\StringToolsTest;
+
 /**
  * Различные функции для облегчения работы со строками
  *
@@ -18,6 +20,8 @@ namespace DraculAid\PhpTools\Strings;
  * <br>{@see StringTools::lengthTrim()} Вернет длину строки без учета пробельных символов в начале и конце строки
  * <br>{@see StringTools::ipFilenameDecode()} Преобразует IP адрес в строку, пригодную для использования в качестве имен файлов
  * <br>{@see StringTools::ipFilenameEncode()} Преобразует IP адрес из формата имени файла, в IP адрес
+ *
+ * Test cases for class {@see StringToolsTest}
  */
 final class StringTools
 {

@@ -13,6 +13,7 @@ namespace DraculAid\PhpTools\Code;
 
 use DraculAid\PhpTools\Classes\ClassNotPublicManager;
 use DraculAid\PhpTools\Classes\ClassTools;
+use DraculAid\PhpTools\tests\Code\CallFunctionHelperTest;
 
 /**
  * Функционал, облегчающий вызов функций
@@ -28,6 +29,8 @@ use DraculAid\PhpTools\Classes\ClassTools;
  * <br>{@see CallFunctionHelper::isClassCallable()} Проверит, "вызываемое" является вызовом метода или нет
  * <br>{@see CallFunctionHelper::isCallable()} Проверяет, может ли переданная строка (иное `callable`) быть вызвано как "функция"
  * <br>{@see CallFunctionHelper::getReflectionForCallable()} Вернет рефлексию для "Вызываемого", определив чем оно является, методом или функцией
+ *
+ * Test cases for class {@see CallFunctionHelperTest}
  */
 final class CallFunctionHelper
 {

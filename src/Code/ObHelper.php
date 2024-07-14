@@ -12,6 +12,7 @@
 namespace DraculAid\PhpTools\Code;
 
 use DraculAid\PhpTools\Classes\ClassNotPublicManager;
+use DraculAid\PhpTools\tests\Code\ObHelperTest;
 
 /**
  * Позволяет вызвать функцию (или языковую конструкцию) с перехватом потока вывода
@@ -25,6 +26,8 @@ use DraculAid\PhpTools\Classes\ClassNotPublicManager;
  * <br>{@see ObHelper::callWithFunctionHelper()} Функцию и языковую конструкцию
  * <br>{@see ObHelper::callNotPublicMethod()} Непубличный метод класса (в том числе и статический)
  * <br>{@see ObHelper::callMethodFromEmptyObject()} Позволяет вызвать метод "пустого объекта"
+ *
+ * Test cases for class {@see ObHelperTest}
  */
 final class ObHelper
 {

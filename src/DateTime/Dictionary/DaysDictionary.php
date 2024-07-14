@@ -11,6 +11,8 @@
 
 namespace DraculAid\PhpTools\DateTime\Dictionary;
 
+use DraculAid\PhpTools\tests\DateTime\Dictionary\DaysDictionaryTest;
+
 /**
  * Различные константы связанные с днями (сутками)
  *
@@ -31,6 +33,8 @@ namespace DraculAid\PhpTools\DateTime\Dictionary;
  * <br>{@see DaysDictionary::getDayLabelOrException()} Вернет буквенный код дня или выбросит исключение}
  * <br>{@see DaysDictionary::CHAR2_LIST} Список 2 буквенных кодов дней недели
  * <br>{@see DaysDictionary::CHAR3_LIST} Список 3 буквенных кодов дней недели
+ *
+ * Test cases for class {@see DaysDictionaryTest}
  */
 final class DaysDictionary
 {

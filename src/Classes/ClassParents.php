@@ -11,6 +11,8 @@
 
 namespace DraculAid\PhpTools\Classes;
 
+use DraculAid\PhpTools\tests\Classes\ClassParentsTest;
+
 /**
  * Класс, с инструментами для получения всех родителей класса (включая трейтов)
  *
@@ -18,6 +20,8 @@ namespace DraculAid\PhpTools\Classes;
  * <br>{@see ClassParents::getAllParents()} - Вернет всех "родителей" класса (классы, интерфейсы и трейты, включая трейты классов-родителей)
  * <br>{@see ClassParents::getWithoutInterfaces()} - Вернет для класса все классы-родители и родительские трейты
  * <br>{@see ClassParents::getTraits()} - Вернет все трейты класса, и классов-родителей
+ *
+ * Test cases for class {@see ClassParentsTest}
  */
 final class ClassParents
 {

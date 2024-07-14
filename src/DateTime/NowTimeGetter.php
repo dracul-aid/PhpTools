@@ -12,6 +12,7 @@
 namespace DraculAid\PhpTools\DateTime;
 
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
+use DraculAid\PhpTools\tests\DateTime\NowTimeGetterTest;
 
 /**
  * Статический класс, с набором функций, для получения частей текущей даты-времени
@@ -42,6 +43,8 @@ use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
  * <br> {@see NowTimeGetter::getMinute2()} - Минута с ведущим 0-ом (00 - 59)
  * <br> {@see NowTimeGetter::getSecond()} - Секунда (0 - 59)
  * <br> {@see NowTimeGetter::getSecond2()} - Секунда с ведущим 0-ом (00 - 59)
+ *
+ * Test cases for class {@see NowTimeGetterTest}
  */
 final class NowTimeGetter
 {

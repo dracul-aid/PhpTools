@@ -11,6 +11,8 @@
 
 namespace DraculAid\PhpTools\Code;
 
+use DraculAid\PhpTools\tests\Code\FunctionAsPropertyObjectTest;
+
 /**
  * Позволяет использовать функцию в качестве свойства классов
  *
@@ -23,6 +25,8 @@ namespace DraculAid\PhpTools\Code;
  * <br>{@see self::call()} Произведет вызов
  * <br>{@see self::callSafe()} Произведет защищенный вызов
  * <br>{@see self::getFunction()} Вернет установленную функцию
+ *
+ * Test cases for class {@see FunctionAsPropertyObjectTest}
  */
 class FunctionAsPropertyObject
 {

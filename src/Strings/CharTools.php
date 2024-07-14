@@ -12,6 +12,7 @@
 namespace DraculAid\PhpTools\Strings;
 
 use DraculAid\PhpTools\Strings\Components\CharTypes;
+use DraculAid\PhpTools\tests\Strings\CharToolsTest;
 
 /**
  * Статический класс для работы с символами (строкой в 1-цу размера). Корректно работает с символами до 127 позиции
@@ -31,6 +32,8 @@ use DraculAid\PhpTools\Strings\Components\CharTypes;
  * --- Функции проверки символов
  * @see CharTools::isStartNameOfVar() - Проверяет, удовлетворяет ли переданный символ правилу начала имен переменных
  * @see CharTools::isInsideNameOfVar() - Проверяет, символ является символом, допустимым внутри имени переменной (т.е. кроме первого символа)
+ *
+ * Test cases for class {@see CharToolsTest}
  */
 final class CharTools
 {

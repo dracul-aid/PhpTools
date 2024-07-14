@@ -15,6 +15,7 @@ use DraculAid\Php8forPhp7\TypeValidator;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
 use DraculAid\PhpTools\DateTime\Types\GetTimestampInterface;
 use DraculAid\PhpTools\DateTime\Types\PhpExtended\DateTimeExtendedType;
+use DraculAid\PhpTools\tests\DateTime\DateTimeObjectHelperTest;
 
 /**
  * Набор функция для облегчения работы с объектами даты-времени (см {@see \DateTimeInterface})
@@ -26,6 +27,8 @@ use DraculAid\PhpTools\DateTime\Types\PhpExtended\DateTimeExtendedType;
  *
  * @see DateTimeHelper Набор функий для работы с датой и временем
  * @see TimestampHelper Хэлпер, для работы с таймштампами
+ *
+ * Test cases for class {@see DateTimeObjectHelperTest}
  */
 final class DateTimeObjectHelper
 {

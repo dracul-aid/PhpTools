@@ -12,6 +12,7 @@
 namespace DraculAid\PhpTools\DateTime;
 
 use DraculAid\PhpTools\DateTime\Dictionary\DateConstants;
+use DraculAid\PhpTools\tests\DateTime\DateTimeValidatorTest;
 
 /**
  * Набор функций для валидации частей даты-времени
@@ -35,6 +36,8 @@ use DraculAid\PhpTools\DateTime\Dictionary\DateConstants;
  * <br> {@see DateTimeValidator::second()} - Секунды
  *
  * @see DateTimeHelper::isValidDateArray() Проверяет валидность массива {@see getdate()}
+ *
+ * Test cases for class {@see DateTimeValidatorTest}
  */
 final class DateTimeValidator
 {

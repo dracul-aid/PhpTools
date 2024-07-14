@@ -11,9 +11,10 @@
 
 namespace DraculAid\PhpTools\DateTime;
 
-use DraculAid\PhpTools\DateTime\Types\GetTimestampInterface;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
 use DraculAid\PhpTools\DateTime\Dictionary\TimestampConstants;
+use DraculAid\PhpTools\DateTime\Types\GetTimestampInterface;
+use DraculAid\PhpTools\tests\DateTime\TimestampHelperTest;
 
 /**
  * Набор функция для облегчения работы с PHP таймштампами (кол-во секунд с 1 января 1970-го года)
@@ -31,6 +32,8 @@ use DraculAid\PhpTools\DateTime\Dictionary\TimestampConstants;
  *
  * @see DateTimeHelper Набор функий для работы с датой и временем
  * @see DateTimeObjectHelper Набор функий для работы с объектами даты и времени
+ *
+ * Test cases for class {@see TimestampHelperTest}
  */
 final class TimestampHelper
 {

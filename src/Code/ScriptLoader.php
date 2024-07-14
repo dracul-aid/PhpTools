@@ -11,6 +11,8 @@
 
 namespace DraculAid\PhpTools\Code;
 
+use DraculAid\PhpTools\tests\Code\ScriptLoaderTest;
+
 /**
  * Функции загрузки кода (`include()` и `require()`) с изоляцией переменных и перехватом потока вывода
  *
@@ -30,6 +32,8 @@ namespace DraculAid\PhpTools\Code;
  * <br>{@see ScriptLoader::obInclude()} с помощью `include()`
  * <br>{@see ScriptLoader::obIncludeOnce()} с помощью `include_once()`
  * <br>{@see ScriptLoader::obEval()} с помощью `eval()`
+ *
+ * Test cases for class {@see ScriptLoaderTest}
  */
 final class ScriptLoader
 {

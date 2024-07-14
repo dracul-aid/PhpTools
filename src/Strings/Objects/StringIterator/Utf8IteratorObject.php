@@ -11,6 +11,8 @@
 
 namespace DraculAid\PhpTools\Strings\Objects\StringIterator;
 
+use DraculAid\PhpTools\tests\Strings\Objects\StringIterator\Utf8IteratorObjectTest;
+
 /**
  * Класс для итерирования строк UTF8 (посимвольного обхода строк с помощью `foreach`)
  *
@@ -32,6 +34,8 @@ namespace DraculAid\PhpTools\Strings\Objects\StringIterator;
  * <br>{@see self::next()} Переместит к следующему символу
  * <br>{@see self::valid()} Проверит текущий элемент на валидность
  * <br>{@see self::rewind()} Осуществит перемещение в начало итерируемой строки
+ *
+ * Test cases for class {@see Utf8IteratorObjectTest}
  */
 class Utf8IteratorObject extends AbstractStringIterator
 {

@@ -11,6 +11,8 @@
 
 namespace DraculAid\PhpTools\DateTime\Dictionary;
 
+use DraculAid\PhpTools\tests\DateTime\Dictionary\DateConstantsTest;
+
 /**
  * Различные константы связанные с датой и временем
  *
@@ -28,6 +30,8 @@ namespace DraculAid\PhpTools\DateTime\Dictionary;
  * <br>{@see DateConstants::MON_31_DAY_LIST} Список месяцев в которых 31 День (Январь, Март, Май, Июль, Август, Октябрь, Декабрь)
  * <br>{@see DateConstants::MON_30_DAY_LIST} Список месяцев в которых 30 Дней (Апрель, Июнь, Сентябрь, Ноябрь)
  * <br>{@see DateConstants::MON_SHORT_LIST} Список коротких месяцев, т.е. 28 - 30 дней (Февраль, Апрель, Июнь, Сентябрь, Ноябрь)
+ *
+ * Test cases for class {@see DateConstantsTest}
  */
 final class DateConstants
 {

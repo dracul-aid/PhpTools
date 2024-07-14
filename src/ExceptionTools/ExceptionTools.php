@@ -12,6 +12,7 @@
 namespace DraculAid\PhpTools\ExceptionTools;
 
 use DraculAid\PhpTools\Classes\ClassNotPublicManager;
+use DraculAid\PhpTools\tests\ExceptionTools\ExceptionToolsTest;
 
 /**
  * Инструменты, для облегчения работы с исключениями
@@ -22,6 +23,8 @@ use DraculAid\PhpTools\Classes\ClassNotPublicManager;
  * <br>{@see ExceptionTools::safeCallFunctions()} - Вызовет список функций. Результаты выполнения функций - игнорируются
  * <br>{@see ExceptionTools::callAndReturnException()} - Перехватит и вернет пойманное исключение (или NULL)
  * <br>{@see ExceptionTools::wasCalledWithException()} - Выполнит функцию, и проверит, не вернула ли она необходимое исключение
+ *
+ * Test cases for class {@see ExceptionToolsTest}
  */
 final class ExceptionTools
 {

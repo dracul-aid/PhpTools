@@ -12,6 +12,7 @@
 namespace DraculAid\PhpTools\Strings;
 
 use DraculAid\PhpTools\Strings\Components\TranslitConverter\CharRuToEn;
+use DraculAid\PhpTools\tests\Strings\TranslitConverterTest;
 
 /**
  * Функции транслитерации
@@ -22,6 +23,8 @@ use DraculAid\PhpTools\Strings\Components\TranslitConverter\CharRuToEn;
  * Оглавление
  * <br>{@see TranslitConverter::toTranslit()} Преобразует строку в транслит
  * <br>{@see TranslitConverter::toUrl()} Преобразует строку, в строку пригодную для использования в качестве части URL/URI
+ *
+ * Test cases for class {@see TranslitConverterTest}
  */
 final class TranslitConverter
 {

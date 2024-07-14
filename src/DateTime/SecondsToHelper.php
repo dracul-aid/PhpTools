@@ -13,6 +13,7 @@ namespace DraculAid\PhpTools\DateTime;
 
 use DraculAid\PhpTools\DateTime\Dictionary\DaysDictionary;
 use DraculAid\PhpTools\DateTime\Dictionary\TimestampConstants;
+use DraculAid\PhpTools\tests\DateTime\SecondsToHelperTest;
 
 /**
  * Класс, для преобразования секунд в удобно читаемое время
@@ -23,6 +24,8 @@ use DraculAid\PhpTools\DateTime\Dictionary\TimestampConstants;
  * <br>{@see SecondsToHelper::minutesAndSeconds()} Получит секунды и вернет кол-во целых минут и секунд
  * <br>{@see SecondsToHelper::time()} Получит секунды и вернет кол-во целых часов, минут и секунд
  * <br>{@see SecondsToHelper::timeAndDays()} Получит секунды и вернет кол-во целых дней, часов, минут и секунд
+ *
+ * Test cases for class {@see SecondsToHelperTest}
  */
 final class SecondsToHelper
 {

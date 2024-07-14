@@ -13,6 +13,7 @@ namespace DraculAid\PhpTools\Code;
 
 use DraculAid\Php8forPhp7\LoaderPhp8Lib;
 use DraculAid\Php8forPhp7\TypeValidator;
+use DraculAid\PhpTools\tests\Code\CodeTypeObjectTest;
 
 // @todo PHP8 удалить
 LoaderPhp8Lib::loadInterfaces();
@@ -44,6 +45,8 @@ LoaderPhp8Lib::loadInterfaces();
  * @method static CodeTypeObject createFromPhp(string|string[] $type) Создает с переданными PHP типами
  * @method static CodeTypeObject createFromSql(string $type, bool $isNull) Создает с переданным SQL типом
  * @method static CodeTypeObject createFromDocBlock(string|string[] $type) Создает с переданными DocBlock типами
+ *
+ * Test cases for class {@see CodeTypeObjectTest}
  */
 class CodeTypeObject implements \IteratorAggregate, \Stringable
 {

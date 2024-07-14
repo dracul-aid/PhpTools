@@ -11,6 +11,8 @@
 
 namespace DraculAid\PhpTools\ExceptionTools;
 
+use DraculAid\PhpTools\tests\ExceptionTools\ResultExceptionTest;
+
 /**
  * Исключение, для организации "Всплытия" результатов работы
  *
@@ -22,6 +24,8 @@ namespace DraculAid\PhpTools\ExceptionTools;
  * <br>{@see self::$result}        Хранит результат работы
  * <br>{@see self::__invoke()}     Вернет результат работы (в том числе и по ссылке)
  * <br>{@see self::__construct()}  Создаст исключение и запишет результат работы
+ *
+ * Test cases for class {@see ResultExceptionTest}
  */
 final class ResultException extends \Exception
 {

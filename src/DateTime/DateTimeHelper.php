@@ -13,6 +13,7 @@ namespace DraculAid\PhpTools\DateTime;
 
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
 use DraculAid\PhpTools\DateTime\Dictionary\TimestampConstants;
+use DraculAid\PhpTools\tests\DateTime\Dictionary\DateConstantsTest;
 
 /**
  * Полезные функции для работы с датой-временем
@@ -27,6 +28,8 @@ use DraculAid\PhpTools\DateTime\Dictionary\TimestampConstants;
  *
  * @see DateTimeObjectHelper Хэлпер, для работы с датой-времени, как с объектами
  * @see TimestampHelper Хэлпер, для работы с таймштампами
+ *
+ * Test cases for class {@see DateConstantsTest}
  */
 final class DateTimeHelper
 {

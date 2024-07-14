@@ -14,6 +14,7 @@ namespace DraculAid\PhpTools\Classes;
 use DraculAid\Php8forPhp7\TypeValidator;
 use DraculAid\PhpTools\Arrays\ArrayHelper;
 use DraculAid\PhpTools\Arrays\Objects\Interfaces\ArrayInterface;
+use DraculAid\PhpTools\tests\Classes\ClassToolsTest;
 
 /**
  * Статический класс с функциями, для работы с классами
@@ -27,6 +28,8 @@ use DraculAid\PhpTools\Arrays\Objects\Interfaces\ArrayInterface;
  * <br>{@see ClassTools::getNamespace()} - Вернет пространство имен класса
  * <br>{@see ClassTools::getNameWithoutNamespace()} - Вернет имя класса, без пространства имен
  * <br>{@see ClassTools::getNameAndNamespace()} - Вернет имя класса и его пространство имен
+ *
+ * Test cases for class {@see ClassToolsTest}
  */
 final class ClassTools
 {

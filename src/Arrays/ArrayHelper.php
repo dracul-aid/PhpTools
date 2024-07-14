@@ -13,6 +13,7 @@ namespace DraculAid\PhpTools\Arrays;
 
 use DraculAid\PhpTools\Arrays\Objects\Interfaces\ArrayInterface;
 use DraculAid\PhpTools\Classes\ClassTools;
+use DraculAid\PhpTools\tests\Arrays\ArrayHelperTest;
 
 /**
  * Набор функций для работы с массива
@@ -30,6 +31,8 @@ use DraculAid\PhpTools\Classes\ClassTools;
  * <br>{@see ArrayHelper::countSafe()} Вернет кол-во элементов в массиве, если посчитать невозможно - вернет "значение по умолчанию"
  * <br>{@see ArrayHelper::setInPositionAndMoveOldValues()} Вставит новые значения в массив (начиная с указанной позиции)
  * <br>{@see ArrayHelper::getByIndexes()} Вернет срез массива, по списку указанных индексов массива
+ *
+ * Test cases for class {@see ArrayHelperTest}
  */
 final class ArrayHelper
 {

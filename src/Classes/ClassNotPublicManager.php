@@ -13,6 +13,7 @@ namespace DraculAid\PhpTools\Classes;
 
 use DraculAid\Php8forPhp7\LoaderPhp8Lib;
 use DraculAid\Php8forPhp7\TypeValidator;
+use DraculAid\PhpTools\tests\Classes\ClassNotPublicManagerTest;
 
 /**
  * Подключение имитации {@see \WeakMap}
@@ -40,6 +41,8 @@ LoaderPhp8Lib::loadWeakMap();
  * <br>{@see self::setStatic()} - Установка статического свойства (или списка свойств)
  * <br>{@see self::call()} - Вызов метода
  * <br>{@see self::callStatic()} - Вызов статического метода
+ *
+ * Test cases for class {@see ClassNotPublicManagerTest}
  */
 final class ClassNotPublicManager
 {

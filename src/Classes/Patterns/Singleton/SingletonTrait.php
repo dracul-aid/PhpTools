@@ -11,11 +11,15 @@
 
 namespace DraculAid\PhpTools\Classes\Patterns\Singleton;
 
+use DraculAid\PhpTools\tests\Classes\Patterns\Singleton\SingletonTraitTest;
+
 /**
  * Трейт с функционалом для создания Синглтонов (Классов-одиночек)
  *
  * Оглавление:
  * <br>{@see SingletonTrait::getInstance()} Вернет экземпляр класса
+ *
+ * Test cases for class {@see SingletonTraitTest}
  */
 trait SingletonTrait
 {

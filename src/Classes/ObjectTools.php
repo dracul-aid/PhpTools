@@ -11,12 +11,16 @@
 
 namespace DraculAid\PhpTools\Classes;
 
+use DraculAid\PhpTools\tests\Classes\ObjectToolsTest;
+
 /**
  * Статический класс для работы с объектами
  *
  * Оглавление:
  * <br>{@see ObjectTools::propertiesFor()} Генератор для перебора свойств объекта (именно свойства, даже если реализован {@see \Traversable})
  * <br>{@see ObjectTools::toArray()} Вернет массив свойств объекта (именно свойства, даже если реализован {@see \Traversable})
+ *
+ * Test cases for class {@see ObjectToolsTest}
  */
 final class ObjectTools
 {

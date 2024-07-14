@@ -12,6 +12,7 @@
 namespace DraculAid\PhpTools\Strings;
 
 use DraculAid\Php8forPhp7\TypeValidator;
+use DraculAid\PhpTools\tests\Strings\StringCutToolsTest;
 
 /**
  * Статический класс для осуществления обрезания строк
@@ -24,6 +25,8 @@ use DraculAid\Php8forPhp7\TypeValidator;
  *
  * @todo Реализовать StringCut::afterLastSubstr() - Обрежет строку после указанной подстроки (или подстрок)
  * @todo Реализовать StringCut::fromBetweenSubstr() - Обрежет строку между указанными подстроками
+ *
+ * Test cases for class {@see StringCutToolsTest}
  */
 final class StringCutTools
 {

@@ -11,6 +11,8 @@
 
 namespace DraculAid\PhpTools\Strings\Objects\StringIterator;
 
+use DraculAid\PhpTools\tests\Strings\Objects\StringIterator\StringIteratorObjectTest;
+
 /**
  * Итератор для перебора строки с явно указанным размером символа в байтах (посимвольного обхода строк с помощью `foreach`)
  *
@@ -29,6 +31,8 @@ namespace DraculAid\PhpTools\Strings\Objects\StringIterator;
  * <br>{@see self::next()} Переместит к следующему символу
  * <br>{@see self::valid()} Проверит текущий элемент на валидность
  * <br>{@see self::rewind()} Осуществит перемещение в начало итерируемой строки
+ *
+ * Test cases for class {@see StringIteratorObjectTest}
  */
 class StringIteratorObject extends AbstractStringIterator
 {

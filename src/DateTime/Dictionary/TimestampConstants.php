@@ -11,6 +11,8 @@
 
 namespace DraculAid\PhpTools\DateTime\Dictionary;
 
+use DraculAid\PhpTools\tests\DateTime\Dictionary\TimestampConstantsTest;
+
 /**
  * Константы связанные с таймштампами
  *
@@ -25,6 +27,8 @@ namespace DraculAid\PhpTools\DateTime\Dictionary;
  * <br>{@see TimestampConstants::DAY_SEC} - Кол-во секунд в сутках
  * <br>{@see TimestampConstants::HOUR_SEC} - Кол-во секунд в часе
  * <br>{@see TimestampConstants::MINUTE_SEC} - Кол-во секунд в минуте
+ *
+ * Test cases for class {@see TimestampConstantsTest}
  */
 final class TimestampConstants
 {

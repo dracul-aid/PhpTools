@@ -25,7 +25,8 @@ use DraculAid\PhpTools\tests\Strings\TranslitConverterTest;
  * Оглавление
  * <br>{@see TranslitConverter::toTranslit()} Преобразует строку в транслит
  * <br>{@see TranslitConverter::toUrl()} Преобразует строку, в строку пригодную для использования в качестве части URL/URI
- * <br>{@see TranslitConverter::toTranslit()} Преобразует строку в транслит
+ * <br>{@see TranslitConverter::CyrillicToIcao()} Преобразует строку в транслит формата ИКАО (в этом формате проводится транслитерация для загран
+ * паспортов и банковских карт России)
  *
  * Test cases for class {@see TranslitConverterTest}
  */

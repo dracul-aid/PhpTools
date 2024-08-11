@@ -1,10 +1,10 @@
-# PhpTools v0.4.0 | PHP 7.4+ | 11 Мая 2024
+# PhpTools v0.5.0 | PHP 7.4+ | 12 Июля 2024
 
 Библиотека с набором полезных инструментов для PHP
 
 * [Classes](src/Classes) Для работы с классами и объектами
 * [Code](src/Code) Функционал для работы с кодом
-* [ExceptionTools](src/ExceptionTools) Для работы с исключениями
+* [ExceptionTools](src/ExceptionTools) Для работы с исключениями и ошибками
 * [DateTime](src/DateTime) Для работы с датой и временем
 * [Arrays](src/Arrays) Инструменты для работы с массивами и массивоподобными объектами
 * [Strings](src/Strings) Инструменты для работы со строками и символами

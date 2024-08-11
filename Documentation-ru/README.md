@@ -34,10 +34,12 @@
 ### [ExceptionTools](../src/ExceptionTools) Для работы с исключениями
 
 * [PhpErrorCode](../src/ExceptionTools/PhpErrorCode) Полезные функции для работы с кодами PHP ошибок
+  * [Errors](../src/ExceptionTools/PhpErrorCode/Errors) Классы ошибок (для кодов ошибок)
   * [Descriptions](../src/ExceptionTools/PhpErrorCode/Descriptions) Описания кодов ошибок
     * [PhpErrorCodeRuDescriptionsConstants](../src/ExceptionTools/PhpErrorCode/Descriptions/PhpErrorCodeRuDescriptionsConstants.php) Описание на Русском
     * [PhpErrorCodeEnDescriptionsConstants](../src/ExceptionTools/PhpErrorCode/Descriptions/PhpErrorCodeEnDescriptionsConstants.php) Описание на Английском
   * [PhpErrorCodeConstants](../src/ExceptionTools/PhpErrorCode/PhpErrorCodeConstants.php) Константы с кодами ошибок, разбивка ошибок по типам
+  * [PhpErrorCodeThrowableTools](../src/ExceptionTools/PhpErrorCode/PhpErrorCodeThrowableTools.php) Получение объектов ошибок по коду ошибки
 * [ExceptionTools](../src/ExceptionTools/ExceptionTools.php) Набор функций облегчающий перехват исключений
 * [ResultException](../src/ExceptionTools/ResultException.php) Всплывающий результат работы
 

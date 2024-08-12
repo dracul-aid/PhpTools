@@ -90,7 +90,6 @@ final class PhpErrorCodeConstants
         E_PARSE,
         E_CORE_ERROR,
         E_COMPILE_ERROR,
-        E_COMPILE_ERROR,
         E_USER_ERROR,
         E_RECOVERABLE_ERROR,
     ];

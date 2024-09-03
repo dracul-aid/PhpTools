@@ -95,6 +95,7 @@
 * [Objects](../src/Arrays/Objects) Объекты для работы с массивами
     * [ArrayInterface](../src/Arrays/Objects/Interfaces) Интерфейсы
         * [ArrayInterface](../src/Arrays/Objects/Interfaces/ArrayInterface.php) Интерфейс для типизации объектов, схожих с массивами
+    * [ListObject](../src/Arrays/Objects/ListObject.php) Списки (массив, с последовательными числовыми ключами)
 * [ArrayHelper](../src/Arrays/ArrayHelper.php) Хэлпер для работы с массивами
 * [ArrayIterator](../src/Arrays/ArrayIterator.php) Итераторы, для облегчения перебора массивов
 

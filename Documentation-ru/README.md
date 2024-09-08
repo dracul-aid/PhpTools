@@ -10,11 +10,12 @@
 ### [Classes](../src/Classes) Для работы с классами и объектами
 
 * [Patterns](../src/Classes/Patterns) Заготовки для реализации паттернов
-    * [Singleton\SingletonFactory](../src/Classes/Patterns/Singleton/SingletonFactory.php) Фабрика, для получения синглтон
-      объектов, для любых классов
-    * [Singleton\SingletonInterface](../src/Classes/Patterns/Singleton/SingletonInterface.php) Интерфейс, для типизации
-      синглтон классов
-    * [Singleton\SingletonTrait](../src/Classes/Patterns/Singleton/SingletonTrait.php) Трейт, для реализации синглтон классов
+  * [Singleton](../src/Classes/Patterns/Singleton) Для работы с Singleton-ами
+      * [SingletonFactory](../src/Classes/Patterns/Singleton/SingletonFactory.php) Фабрика, для получения синглтон
+        объектов, для любых классов
+      * [SingletonInterface](../src/Classes/Patterns/Singleton/SingletonInterface.php) Интерфейс, для типизации
+        синглтон классов
+      * [SingletonTrait](../src/Classes/Patterns/Singleton/SingletonTrait.php) Трейт, для реализации синглтон классов
 * [ClassNotPublicManager](../src/Classes/ClassNotPublicManager.php) Набор функций для взаимодействия с непубличными
   элементами классов (методами, свойствами и константами), в том числе и со статическими
 * [ClassParents](../src/Classes/ClassParents.php) Позволяет получить информацию о родителях класса (включая информацию по трейтам)

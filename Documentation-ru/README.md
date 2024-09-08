@@ -103,6 +103,11 @@
 * [ArrayHelper](../src/Arrays/ArrayHelper.php) Хэлпер для работы с массивами
 * [ArrayIterator](../src/Arrays/ArrayIterator.php) Итераторы, для облегчения перебора массивов
 
+### [Console](../src/Console) Для работы с консолью
+
+* [ConsoleArgumentsObject](../src/Console/ConsoleArgumentsObject.php) Объекты для работы с аргументами консольных команд
+* [ConsoleArgumentsFromPhpArgvCreator](../src/Console/ConsoleArgumentsFromPhpArgvCreator.php) Получение объекта с аргументами консольных команд из `$_SERVER['argv']` 
+
 ### [TestTools](../src/TestTools) Инструменты для облегчения юнит-тестов
 
 * [PhpUnit](../src/TestTools/PhpUnit) Инструменты для облегчения работы с PhpUnit

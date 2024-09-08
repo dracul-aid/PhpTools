@@ -38,7 +38,7 @@ final class ObjectTools
      *
      * @return  \Generator
      *
-     * @toto PHP8 типизация аргументов
+     * @todo PHP8 типизация аргументов
      */
     public static function propertiesFor(object $object, bool $intKey = false, ?int $filter = \ReflectionProperty::IS_PUBLIC): \Generator
     {
@@ -67,7 +67,7 @@ final class ObjectTools
      *
      * @return  \Generator
      *
-     * @toto PHP8 типизация аргументов
+     * @todo PHP8 типизация аргументов
      */
     public static function toArray(object $object, bool $intKey = false, ?int $filter = \ReflectionProperty::IS_PUBLIC): array
     {

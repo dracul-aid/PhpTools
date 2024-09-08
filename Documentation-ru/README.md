@@ -16,6 +16,10 @@
       * [SingletonInterface](../src/Classes/Patterns/Singleton/SingletonInterface.php) Интерфейс, для типизации
         синглтон классов
       * [SingletonTrait](../src/Classes/Patterns/Singleton/SingletonTrait.php) Трейт, для реализации синглтон классов
+  * [Iterator](../src/Classes/Patterns/Iterator) Классы-итераторы
+      * [IteratorInterface](../src/Classes/Patterns/Iterator/IteratorInterface.php) Интерфейс для итераторов
+      * [AbstractIterator](../src/Classes/Patterns/Iterator/AbstractIterator.php) Абстрактный класс для итераторов
+      * [IteratorTrait](../src/Classes/Patterns/Iterator/IteratorTrait.php) Трейт для реализации "сахара" для итераторов
 * [ClassNotPublicManager](../src/Classes/ClassNotPublicManager.php) Набор функций для взаимодействия с непубличными
   элементами классов (методами, свойствами и константами), в том числе и со статическими
 * [ClassParents](../src/Classes/ClassParents.php) Позволяет получить информацию о родителях класса (включая информацию по трейтам)

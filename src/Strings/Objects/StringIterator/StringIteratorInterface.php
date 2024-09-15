@@ -35,11 +35,11 @@ interface StringIteratorInterface extends \Iterator
     /**
      * Вернет номер текущего читаемого символа (отсчет от 0)
      *
-     * @param   bool   $bites   TRUE если нужно вернуть текущую позицию в байтах. FALSE в символах (По умолчанию).
+     * @param   bool   $bytes   TRUE если нужно вернуть текущую позицию в байтах. FALSE в символах (По умолчанию).
      *
      * @return  int
      */
-    public function key(bool $bites = false): int;
+    public function key(bool $bytes = false): int;
 
     /**
      * Вернет "Текущий символ"

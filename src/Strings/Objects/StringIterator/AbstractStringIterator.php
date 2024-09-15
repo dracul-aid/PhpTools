@@ -98,9 +98,9 @@ abstract class AbstractStringIterator implements StringIteratorInterface, \Strin
     }
 
     /** @inheritdoc */
-    public function key(bool $bites = false): int
+    public function key(bool $bytes = false): int
     {
-        if ($bites) return $this->cursorByte;
+        if ($bytes) return $this->cursorByte;
 
         return $this->cursorChar;
     }

@@ -33,6 +33,15 @@ namespace DraculAid\PhpTools\Strings\Objects\StringIterator;
 interface StringIteratorInterface extends \Iterator
 {
     /**
+     * Вернет номер текущего читаемого символа (отсчет от 0)
+     *
+     * @param   bool   $bites   TRUE если нужно вернуть текущую позицию в байтах. FALSE в символах (По умолчанию).
+     *
+     * @return  int
+     */
+    public function key(bool $bites = false): int;
+
+    /**
      * Вернет "Текущий символ"
      *
      * (!) Если "курсор" чтения строки находится за пределами конца строки - вернет пустую строку
@@ -47,15 +56,6 @@ interface StringIteratorInterface extends \Iterator
      * @return void
      */
     public function next(): void;
-
-    /**
-     * Вернет номер текущего читаемого символа (отсчет от 0)
-     *
-     * @param   bool   $bites   TRUE если нужно вернуть текущую позицию в байтах. FALSE в символах (По умолчанию).
-     *
-     * @return  int
-     */
-    public function key(bool $bites = false): int;
 
     /**
      * Проверит текущий элемент на валидность

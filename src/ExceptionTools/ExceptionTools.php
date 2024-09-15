@@ -152,7 +152,7 @@ final class ExceptionTools
      *
      * @todo PHP8 типизация аргументов
      */
-    public static function wasCalledWithException($function, array $arguments, string $throwableClass, ?string $throwableMessage = null, $throwableCode = null, &$_return = null): bool
+    public static function wasCalledWithException($function, array $arguments = [], string $throwableClass = \Throwable::class, ?string $throwableMessage = null, $throwableCode = null, &$_return = null): bool
     {
         try
         {

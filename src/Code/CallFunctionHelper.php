@@ -13,6 +13,7 @@ namespace DraculAid\PhpTools\Code;
 
 use DraculAid\PhpTools\Classes\ClassNotPublicManager;
 use DraculAid\PhpTools\Classes\ClassTools;
+use DraculAid\PhpTools\Classes\Patterns\Runner\StaticRunnerInterface;
 use DraculAid\PhpTools\tests\Code\CallFunctionHelperTest;
 
 /**
@@ -32,7 +33,7 @@ use DraculAid\PhpTools\tests\Code\CallFunctionHelperTest;
  *
  * Test cases for class {@see CallFunctionHelperTest}
  */
-final class CallFunctionHelper
+final class CallFunctionHelper implements StaticRunnerInterface
 {
     /**
      * Список структур, которые можно вызвать через {@see CallFunctionHelper::exe()}

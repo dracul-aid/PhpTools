@@ -16,6 +16,8 @@
       * [SingletonInterface](../src/Classes/Patterns/Singleton/SingletonInterface.php) Интерфейс, для типизации
         синглтон классов
       * [SingletonTrait](../src/Classes/Patterns/Singleton/SingletonTrait.php) Трейт, для реализации синглтон классов
+  * [Runner](../src/Classes/Patterns/Runner) Классы-раннеры (т.е. классы "функции", выполняют одно конкретное действие)
+    * [StaticRunnerInterface](../src/Classes/Patterns/Runner/StaticRunnerInterface.php) Статический раннер, метод `exe()`
   * [Iterator](../src/Classes/Patterns/Iterator) Классы-итераторы
       * [IteratorInterface](../src/Classes/Patterns/Iterator/IteratorInterface.php) Интерфейс для итераторов
       * [AbstractIterator](../src/Classes/Patterns/Iterator/AbstractIterator.php) Абстрактный класс для итераторов

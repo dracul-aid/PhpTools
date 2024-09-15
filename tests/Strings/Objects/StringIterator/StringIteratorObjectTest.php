@@ -37,7 +37,6 @@ class StringIteratorObjectTest extends PhpUnitExtendTestCase
     }
 
     /**
-     * Test for {@see StringIteratorObject::move()}
      * Test for {@see StringIteratorObject::toPosition()}
      * Test for {@see StringIteratorObject::toStart()}
      * Test for {@see StringIteratorObject::current()}
@@ -68,14 +67,14 @@ class StringIteratorObjectTest extends PhpUnitExtendTestCase
         self::assertEquals($testObject->key(true), 0);
 
         // смещаем курсор на 1 шаг (вариант смещения "по умолчанию") и читаем текущий символ
-        $testObject->move();
+        $testObject->next();
         self::assertEquals($testObject->current(), '34');
         self::assertEquals($testObject->key(), 1);
         self::assertEquals($testObject->key(false), 1);
         self::assertEquals($testObject->key(true), 2);
 
         // смещаем курсор на 1 шаг и читаем текущий символ
-        $testObject->move(1);
+        $testObject->next(1);
         self::assertEquals($testObject->current(), '56');
         self::assertEquals($testObject->key(), 2);
         self::assertEquals($testObject->key(false), 2);
@@ -87,7 +86,7 @@ class StringIteratorObjectTest extends PhpUnitExtendTestCase
         self::assertEquals($testObject->key(), 0);
 
         // смещаем курсор на 3 шага и читаем текущий символ
-        $testObject->move(3);
+        $testObject->next(3);
         self::assertEquals($testObject->current(), '78');
         self::assertEquals($testObject->key(), 3);
         self::assertEquals($testObject->key(false), 3);
@@ -95,7 +94,7 @@ class StringIteratorObjectTest extends PhpUnitExtendTestCase
 
         // смещаем за пределы строки
         self::assertTrue($testObject->valid());
-        $testObject->move(2);
+        $testObject->next(2);
         self::assertFalse($testObject->valid());
         self::assertEquals($testObject->current(), '');
         self::assertEquals($testObject->key(), 5);

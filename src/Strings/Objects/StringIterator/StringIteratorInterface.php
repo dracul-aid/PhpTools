@@ -25,8 +25,6 @@ use DraculAid\PhpTools\Classes\Patterns\Iterator\IteratorInterface;
  * <br>--- Функции перебора
  * <br>{@see self::current()} Вернет "Текущий символ"
  * <br>{@see self::key()} Вернет номер текущего читаемого символа или положение курсора чтения в байтах
- * <br>{@see self::move()} Переместит к следующему символу (возможно на указанное кол-во шагов, в том числе и назад)
- * <br>{@see self::toStart()} Перемотает в начало строки
  * <br>{@see self::toPosition()} Переместит к указанному символу (возможно на указанное кол-во шагов, в том числе и назад)
  * <br>--- Функции перебора (для поддержки итератора)
  * <br>{@see self::next()} Переместит к следующему символу
@@ -67,6 +65,11 @@ interface StringIteratorInterface extends IteratorInterface
      *
      * (!) В ходе перемотки может выйти "за границу списка" (следствие максимальной "схожести" с {@see \Iterator})
      *
+     * - Особенности работы:
+     * <br>(!) В случае итерирования строк, с переменным размером символа (например UFT8) перемещение назад может быть "дорогой операцией"
+     * (так как потребует перемотать строку с самого начала)
+     * <br>(!) В результате перемещения "курсор" может оказаться за строкой, функция никак не проверяет корректность перемещения
+     *
      * @param    int   $position   Сдвиг на какую позицию (можно сдвигать, в том числе и "назад")
      *
      * @return  $this
@@ -102,6 +105,8 @@ interface StringIteratorInterface extends IteratorInterface
      * @param   int   $moveStep   Шаг перемещения
      *
      * @return  $this
+     *
+     * @deprecated Будет удален начиная с 0.7, используйте {@see self::next()}
      */
     public function move(int $moveStep = 1): self;
 
@@ -110,7 +115,7 @@ interface StringIteratorInterface extends IteratorInterface
      *
      * @return $this
      *
-     * @deprecated Будет удален начиная с 0.7
+     * @deprecated Будет удален начиная с 0.7, используйте {@see self::rewind()}
      */
     public function toStart(): self;
 
@@ -127,8 +132,6 @@ interface StringIteratorInterface extends IteratorInterface
      * @param   int   $positionNumber
      *
      * @return  $this
-     *
-     * @deprecated Будет удален начиная с 0.7
      */
     public function toPosition(int $positionNumber): self;
 }

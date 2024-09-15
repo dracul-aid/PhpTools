@@ -33,8 +33,6 @@ LoaderPhp8Lib::loadInterfaces();
  * <br>--- Функции перебора
  * <br>{@see self::current()} Вернет "Текущий символ"
  * <br>{@see self::key()} Вернет номер текущего читаемого символа или положение курсора чтения в байтах
- * <br>{@see self::move()} Переместит к следующему символу (возможно на указанное кол-во шагов, в том числе и назад)
- * <br>{@see self::toStart()} Перемотает в начало строки
  * <br>{@see self::toPosition()} Переместит к указанному символу (возможно на указанное кол-во шагов, в том числе и назад)
  * <br>--- Функции перебора (для поддержки итератора)
  * <br>{@see self::next()} Переместит к следующему символу
@@ -108,14 +106,6 @@ abstract class AbstractStringIterator implements StringIteratorInterface, \Strin
     }
 
     /** @inheritdoc */
-    public function next(int $position = 1)
-    {
-        $this->move($position);
-
-        return $this;
-    }
-
-    /** @inheritdoc */
     public function key(bool $bytes = false): int
     {
         if ($bytes) return $this->cursorByte;
@@ -145,9 +135,9 @@ abstract class AbstractStringIterator implements StringIteratorInterface, \Strin
         if ($positionNumber === $this->cursorChar) return $this;
 
         // если смещение "вперед"
-        if ($positionNumber > $this->cursorChar) return $this->move($this->cursorChar - $positionNumber);
+        if ($positionNumber > $this->cursorChar) return $this->next($this->cursorChar - $positionNumber);
         // если смещение "назад"
-        else return $this->move($positionNumber - $this->cursorChar);
+        else return $this->next($positionNumber - $this->cursorChar);
     }
 
     /**
@@ -160,6 +150,16 @@ abstract class AbstractStringIterator implements StringIteratorInterface, \Strin
         $this->rewind();
 
         return $this;
+    }
+
+    /**
+     * @inheritdoc
+     *
+     * @deprecated Будет удален начиная с 0.7
+     */
+    public function move(int $moveStep = 1): self
+    {
+        return $this->next($moveStep);
     }
 
     /**

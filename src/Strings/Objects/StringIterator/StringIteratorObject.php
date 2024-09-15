@@ -24,8 +24,6 @@ use DraculAid\PhpTools\tests\Strings\Objects\StringIterator\StringIteratorObject
  * <br>--- Функции перебора
  * <br>{@see self::current()} Вернет "Текущий символ"
  * <br>{@see self::key()} Вернет номер текущего читаемого символа или положение курсора чтения в байтах
- * <br>{@see self::move()} Переместит к следующему символу (возможно на указанное кол-во шагов, в том числе и назад)
- * <br>{@see self::toStart()} Перемотает в начало строки
  * <br>{@see self::toPosition()} Переместит к указанному символу (возможно на указанное кол-во шагов, в том числе и назад)
  * <br>--- Функции перебора (для поддержки итератора)
  * <br>{@see self::next()} Переместит к следующему символу
@@ -65,10 +63,10 @@ class StringIteratorObject extends AbstractStringIterator
     }
 
     /** @inheritdoc */
-    public function move(int $moveStep = 1): self
+    public function next(int $position = 1)
     {
-        $this->cursorChar += $moveStep;
-        $this->cursorByte += $this->charLen * $moveStep;
+        $this->cursorChar += $position;
+        $this->cursorByte += $this->charLen * $position;
 
         return $this;
     }

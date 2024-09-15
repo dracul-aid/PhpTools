@@ -36,7 +36,6 @@ class Utf8IteratorObjectTest extends PhpUnitExtendTestCase
 
     /**
      * Test for {@see Utf8IteratorObject::__construct()}
-     * Test for {@see Utf8IteratorObject::move()}
      * Test for {@see Utf8IteratorObject::toPosition()}
      * Test for {@see Utf8IteratorObject::toStart()}
      * Test for {@see Utf8IteratorObject::current()}
@@ -66,7 +65,7 @@ class Utf8IteratorObjectTest extends PhpUnitExtendTestCase
         self::assertEquals($testObject->key(true), 0);
 
         // смещаем курсор на 1 шаг после латинского символа (вариант смещения "по умолчанию") и читаем текущий символ (кириллица)
-        $testObject->move();
+        $testObject->next();
         self::assertEquals($testObject->current(), 'f');
         self::assertEquals($testObject->getCharLen(), 1);
         self::assertEquals($testObject->key(), 1);
@@ -74,7 +73,7 @@ class Utf8IteratorObjectTest extends PhpUnitExtendTestCase
         self::assertEquals($testObject->key(true), 1);
 
         // смещаем курсор на 1 шаг после латинского символа и читаем текущий символ (кириллица)
-        $testObject->move(1);
+        $testObject->next(1);
         self::assertEquals($testObject->current(), 'x');
         self::assertEquals($testObject->getCharLen(), 1);
         self::assertEquals($testObject->key(), 2);
@@ -82,7 +81,7 @@ class Utf8IteratorObjectTest extends PhpUnitExtendTestCase
         self::assertEquals($testObject->key(true), 2);
 
         // смещаем курсор на 2 шага после латинского символа и читаем текущий символ (кириллица)
-        $testObject->move(2);
+        $testObject->next(2);
         self::assertEquals($testObject->current(), 'w');
         self::assertEquals($testObject->getCharLen(), 1);
         self::assertEquals($testObject->key(), 4);
@@ -90,7 +89,7 @@ class Utf8IteratorObjectTest extends PhpUnitExtendTestCase
         self::assertEquals($testObject->key(true), 4);
 
         // смещаем курсор на 1 шаг после латинского символа (вариант смещения "по умолчанию") и читаем текущий символ (кириллица)
-        $testObject->move();
+        $testObject->next();
         self::assertEquals($testObject->current(), 'Я');
         self::assertEquals($testObject->getCharLen(), 2);
         self::assertEquals($testObject->key(), 5);
@@ -98,7 +97,7 @@ class Utf8IteratorObjectTest extends PhpUnitExtendTestCase
         self::assertEquals($testObject->key(true), 5);
 
         // смещаем курсор на 1 шаг после кириллического символа и читаем текущий символ (латиница)
-        $testObject->move(1);
+        $testObject->next(1);
         self::assertEquals($testObject->current(), 'q');
         self::assertEquals($testObject->getCharLen(), 1);
         self::assertEquals($testObject->key(), 6);
@@ -107,7 +106,7 @@ class Utf8IteratorObjectTest extends PhpUnitExtendTestCase
 
         // смещаем курсор на 2 шага после латинского символа и читаем текущий символ (кириллица)
         // смещение идет по 2 кириллическим символам
-        $testObject->move(2);
+        $testObject->next(2);
         self::assertEquals($testObject->current(), 'Ф');
         self::assertEquals($testObject->getCharLen(), 2);
         self::assertEquals($testObject->key(), 8);
@@ -116,7 +115,7 @@ class Utf8IteratorObjectTest extends PhpUnitExtendTestCase
 
         // смещаем курсор на 2 шага после кириллического символа и читаем текущий символ (кириллица)
         // смещение идет по 1 латинскому и 1 кириллическому символу
-        $testObject->move(2);
+        $testObject->next(2);
         self::assertEquals($testObject->current(), 'П');
         self::assertEquals($testObject->getCharLen(), 2);
         self::assertEquals($testObject->key(), 10);

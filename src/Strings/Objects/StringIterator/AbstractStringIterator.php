@@ -119,14 +119,6 @@ abstract class AbstractStringIterator implements StringIteratorInterface, \Strin
     }
 
     /** @inheritdoc */
-    public function toStart(): self
-    {
-        $this->rewind();
-
-        return $this;
-    }
-
-    /** @inheritdoc */
     public function toPosition(int $positionNumber): self
     {
         // если нет смещения
@@ -136,5 +128,17 @@ abstract class AbstractStringIterator implements StringIteratorInterface, \Strin
         if ($positionNumber > $this->cursorChar) return $this->move($this->cursorChar - $positionNumber);
         // если смещение "назад"
         else return $this->move($positionNumber - $this->cursorChar);
+    }
+
+    /**
+     * @inheritdoc
+     *
+     * @deprecated Будет удален начиная с 0.7
+     */
+    public function toStart(): self
+    {
+        $this->rewind();
+
+        return $this;
     }
 }

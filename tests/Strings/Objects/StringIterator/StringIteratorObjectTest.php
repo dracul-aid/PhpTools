@@ -82,7 +82,7 @@ class StringIteratorObjectTest extends PhpUnitExtendTestCase
         self::assertEquals($testObject->key(true), 4);
 
         // перемещаемся в начало
-        $testObject->toStart();
+        $testObject->rewind();
         self::assertEquals($testObject->current(), '12');
         self::assertEquals($testObject->key(), 0);
 
@@ -105,9 +105,5 @@ class StringIteratorObjectTest extends PhpUnitExtendTestCase
         self::assertTrue($testObject->valid());
         self::assertEquals($testObject->current(), '78');
         self::assertEquals($testObject->key(), 3);
-
-        // смещение "до начала строки"
-
-
     }
 }

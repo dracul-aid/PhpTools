@@ -91,6 +91,8 @@ interface StringIteratorInterface extends \Iterator
      * Осуществит перемещение в начало итерируемой строки
      *
      * @return $this
+     *
+     * @deprecated Будет удален начиная с 0.7
      */
     public function toStart(): self;
 
@@ -106,7 +108,9 @@ interface StringIteratorInterface extends \Iterator
      *
      * @param   int   $positionNumber
      *
-     * @return $this
+     * @return  $this
+     *
+     * @deprecated Будет удален начиная с 0.7
      */
     public function toPosition(int $positionNumber): self;
 }

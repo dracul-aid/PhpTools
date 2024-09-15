@@ -22,8 +22,8 @@ LoaderPhp8Lib::loadInterfaces();
  * (!) Поддерживает преобразование в строку, возвращая разом всю перебираемую строку
  *
  * Основные реализации:
- * <br>{@see StringIteratorObject}
- * <br>{@see Utf8IteratorObject}
+ * <br>{@see StringIteratorObject} Для перебора строк с явно указанным размером символа (1, 2.. байтовые кодировки)
+ * <br>{@see Utf8IteratorObject} Для перебора UTF-8 строк
  *
  * Оглавление:
  * <br>{@see self::setString()} Установит новую строку для перебора (сбросив курсор)

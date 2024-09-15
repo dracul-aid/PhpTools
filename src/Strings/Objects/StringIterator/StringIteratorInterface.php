@@ -15,8 +15,8 @@ namespace DraculAid\PhpTools\Strings\Objects\StringIterator;
  * Интерфейс для итераторов строк (объектов позволяющих посимвольно обойти строку с помощью `foreach`)
  *
  * Основные реализации:
- * <br>{@see StringIteratorObject}
- * <br>{@see Utf8IteratorObject}
+ * <br>{@see StringIteratorObject} Для перебора строк с явно указанным размером символа (1, 2.. байтовые кодировки)
+ * <br>{@see Utf8IteratorObject} Для перебора UTF-8 строк
  *
  * Оглавление:
  * <br>--- Функции перебора

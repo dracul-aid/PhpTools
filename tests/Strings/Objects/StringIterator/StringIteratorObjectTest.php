@@ -17,7 +17,7 @@ use DraculAid\PhpTools\TestTools\PhpUnit\PhpUnitExtendTestCase;
 /**
  * Test for {@see StringIteratorObject}
  *
- * @run php tests/run.php tests/Objects/StringIterator/StringIteratorObjectTest.php
+ * @run php tests/run.php tests/Strings/Objects/StringIterator/StringIteratorObjectTest.php
  */
 class StringIteratorObjectTest extends PhpUnitExtendTestCase
 {

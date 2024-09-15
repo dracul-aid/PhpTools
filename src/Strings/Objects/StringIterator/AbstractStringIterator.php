@@ -12,6 +12,7 @@
 namespace DraculAid\PhpTools\Strings\Objects\StringIterator;
 
 use DraculAid\Php8forPhp7\LoaderPhp8Lib;
+use DraculAid\PhpTools\Classes\Patterns\Iterator\IteratorTrait;
 
 // @todo PHP8 удалить
 LoaderPhp8Lib::loadInterfaces();
@@ -24,10 +25,11 @@ LoaderPhp8Lib::loadInterfaces();
  * Основные реализации:
  * <br>{@see StringIteratorObject} Для перебора строк с явно указанным размером символа (1, 2.. байтовые кодировки)
  * <br>{@see Utf8IteratorObject} Для перебора UTF-8 строк
- *
+
  * Оглавление:
  * <br>{@see self::setString()} Установит новую строку для перебора (сбросив курсор)
  * <br>{@see self::getString()} Вернет всю перебираемую строку
+ * <br>{@see self::getIterator()} Переберет посимвольно строку, без изменения позиции "курсора"
  * <br>--- Функции перебора
  * <br>{@see self::current()} Вернет "Текущий символ"
  * <br>{@see self::key()} Вернет номер текущего читаемого символа или положение курсора чтения в байтах
@@ -41,6 +43,8 @@ LoaderPhp8Lib::loadInterfaces();
  */
 abstract class AbstractStringIterator implements StringIteratorInterface, \Stringable
 {
+    use IteratorTrait;
+
     /** Строка для перебора */
     protected string $stringForIterator = '';
 
@@ -92,9 +96,23 @@ abstract class AbstractStringIterator implements StringIteratorInterface, \Strin
     }
 
     /** @inheritdoc */
-    public function next(): void
+    public function getIterator(bool $bytes = false): \Generator
     {
-        $this->move();
+        $startByte = $this->cursorByte;
+        $startChar = $this->cursorChar;
+
+        yield from $this->getIteratorRun();
+
+        $this->cursorByte = $startByte;
+        $this->cursorChar = $startChar;
+    }
+
+    /** @inheritdoc */
+    public function next(int $position = 1)
+    {
+        $this->move($position);
+
+        return $this;
     }
 
     /** @inheritdoc */
@@ -112,10 +130,12 @@ abstract class AbstractStringIterator implements StringIteratorInterface, \Strin
     }
 
     /** @inheritdoc */
-    public function rewind(): void
+    public function rewind()
     {
         $this->cursorChar = 0;
         $this->cursorByte = 0;
+
+        return $this;
     }
 
     /** @inheritdoc */
@@ -140,5 +160,24 @@ abstract class AbstractStringIterator implements StringIteratorInterface, \Strin
         $this->rewind();
 
         return $this;
+    }
+
+    /**
+     * Перебирает строку для {@see static::getIterator()}
+     *
+     * @param   bool   $bytes
+     *
+     * @return \Generator
+     */
+    protected function getIteratorRun(bool $bytes = false): \Generator
+    {
+        $this->rewind();
+
+        if (!$this->valid()) return;
+
+        do {
+            yield $this->key($bytes) => $this->current();
+            $this->next();
+        } while ($this->valid());
     }
 }

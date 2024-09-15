@@ -11,6 +11,8 @@
 
 namespace DraculAid\PhpTools\Strings\Objects\StringIterator;
 
+use DraculAid\PhpTools\Classes\Patterns\Iterator\IteratorInterface;
+
 /**
  * Интерфейс для итераторов строк (объектов позволяющих посимвольно обойти строку с помощью `foreach`)
  *
@@ -19,6 +21,7 @@ namespace DraculAid\PhpTools\Strings\Objects\StringIterator;
  * <br>{@see Utf8IteratorObject} Для перебора UTF-8 строк
  *
  * Оглавление:
+ * <br>{@see self::getIterator()} Переберет посимвольно строку, без изменения позиции "курсора"
  * <br>--- Функции перебора
  * <br>{@see self::current()} Вернет "Текущий символ"
  * <br>{@see self::key()} Вернет номер текущего читаемого символа или положение курсора чтения в байтах
@@ -30,8 +33,17 @@ namespace DraculAid\PhpTools\Strings\Objects\StringIterator;
  * <br>{@see self::valid()} Проверит текущий элемент на валидность
  * <br>{@see self::rewind()} Осуществит перемещение в начало итерируемой строки
  */
-interface StringIteratorInterface extends \Iterator
+interface StringIteratorInterface extends IteratorInterface
 {
+    /**
+     * Итератор, для перебора всех символов (не изменить текущее положение "курсора")
+     *
+     * @param   bool   $bytes   TRUE если нужно вернуть текущую позицию в байтах. FALSE в символах (По умолчанию).
+     *
+     * @return \Traversable<int, string>
+     */
+    public function getIterator(bool $bytes = false): \Generator;
+
     /**
      * Вернет номер текущего читаемого символа (отсчет от 0)
      *
@@ -53,9 +65,14 @@ interface StringIteratorInterface extends \Iterator
     /**
      * Переместит к следующему символу
      *
-     * @return void
+     * (!) В ходе перемотки может выйти "за границу списка" (следствие максимальной "схожести" с {@see \Iterator})
+     *
+     * @param    int   $position   Сдвиг на какую позицию (можно сдвигать, в том числе и "назад")
+     *
+     * @return  $this
+     * @todo PHP8 добавить типизации ответа функции
      */
-    public function next(): void;
+    public function next(int $position = 1);
 
     /**
      * Проверит текущий элемент на валидность
@@ -67,9 +84,10 @@ interface StringIteratorInterface extends \Iterator
     /**
      * Осуществит перемещение в начало итерируемой строки
      *
-     * @return void
+     * @return $this
+     * @todo PHP8 добавить типизации ответа функции
      */
-    public function rewind(): void;
+    public function rewind();
 
     /**
      * Смещение на указанное кол-во позиций (в символах), может перемещать как вперед, так и назад

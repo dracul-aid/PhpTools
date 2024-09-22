@@ -41,6 +41,8 @@ final class TranslitConverter
      * @return  string
      *
      * @todo Требует теста
+     *
+     * @psalm-suppress UndefinedDocblockClass Псалм не знает, что класс \Transliterator существует, а он существует (в расширении `Intl`)
      */
     public static function toTranslit(string $string): string
     {
@@ -54,12 +56,8 @@ final class TranslitConverter
         // Если транслитиратор еще не создан - создадим его
         if ($transliterator === true && extension_loaded('Intl'))
         {
-            // ID транслитиратора
-            // получить список существующих в системе ID транслитираторов можно с помощью Transliterator::listIDs()
-            $transliteratorId = "Any-Latin";
-
-            // создание транслитиратора
-            $transliterator = \Transliterator::create($transliteratorId);
+            // При создании передаем "ID транслитиратора" (получить список существующих в системе ID транслитираторов можно с помощью Transliterator::listIDs())
+            $transliterator = \Transliterator::create('Any-Latin');
 
             // При провале создания транслитератора. Получить описание ошибки можно с помощью $transliterator->getErrorMessage()
             if ($transliterator->getErrorMessage() !== 'U_ZERO_ERROR')

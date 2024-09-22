@@ -25,12 +25,13 @@ final class ArrayAndStringTools
     /**
      * Преобразует массив в строку, аналогично PHP функции {@see implode()} но с игнорированием пустых значений
      *
-     * @param   string          $separator          Строка разделитель
-     * @param   iterable        $array              Массив или перечисляемое для преобразования
-     * @param   bool|callable   $ignoreFunction     Функция, проверяющая на "пустоту"
-     *                                              <br>FALSE: empty()
-     *                                              <br>TRUE: empty(), но число 0 не считается пустотой
-     *                                              <br>callable: любая функция: $ignoreFunction($value, $index)
+     * @param   string                 $separator          Строка разделитель
+     * @param   iterable               $array              Массив или перечисляемое для преобразования
+     * @param   bool|string|callable   $ignoreFunction     Функция, проверяющая на "пустоту"
+     *                                                     <br>FALSE: empty()
+     *                                                     <br>TRUE: empty(), но число 0 не считается пустотой
+     *                                                     <br>callable: любая функция: $ignoreFunction($value, $index)
+     *                                                         или конструкция вызываемая как функция (типа isset())
      *
      * @return string
      *

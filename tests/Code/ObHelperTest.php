@@ -152,6 +152,8 @@ class ObHelperTest extends TestCase
      * @return void
      *
      * @todo PHP8 Типизация аргументов функции
+     *
+     * @psalm-suppress UnusedVariable Псалм не может узнать, что $testFunction принимает переменные по ссылки, и считает, что переменные никогда не меняют значения
      */
     private function standardFunctionTests($testFunction, string $label): void
     {

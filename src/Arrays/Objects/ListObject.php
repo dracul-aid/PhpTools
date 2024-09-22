@@ -171,7 +171,7 @@ class ListObject extends AbstractIterator implements ArrayInterface
     /**
      * Вернет указанный элемент, или выбросит исключение, если элемент не существует
      *
-     * @param   int<0, max>   $offset   Номер элемента, отсчет от 0-ля (отрицательное число - позиция с конца списка)
+     * @param   int   $offset   Номер элемента, отсчет от 0-ля (отрицательное число - позиция с конца списка)
      *
      * @return  mixed
      *

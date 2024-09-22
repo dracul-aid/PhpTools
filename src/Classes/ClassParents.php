@@ -43,7 +43,7 @@ final class ClassParents
     /**
      * Вернет всех "родителей" класса (классы, интерфейсы и трейты, включая трейты классов-родителей)
      *
-     * @param   string   $class   Имя класса
+     * @param   class-string   $class   Имя класса
      *
      * @return  string[]  Массив с всеми родительскими классами, интерфейсами и трейтами
      *
@@ -51,8 +51,7 @@ final class ClassParents
      */
     public static function getAllParents(string $class): array
     {
-        $reader = new self();
-        $reader->className = $class;
+        $reader = new self($class);
 
         $reader->readParents(true, true);
         $reader->readInterfaces();
@@ -64,7 +63,7 @@ final class ClassParents
     /**
      * Вернет для класса все классы-родители и родительские трейты
      *
-     * @param   string   $class   Имя класса
+     * @param   class-string   $class   Имя класса
      *
      * @return  string[]  Массив с всеми родительскими классами, интерфейсами и трейтами
      *
@@ -72,8 +71,7 @@ final class ClassParents
      */
     public static function getWithoutInterfaces(string $class): array
     {
-        $reader = new self();
-        $reader->className = $class;
+        $reader = new self($class);
 
         $reader->readParents(true, true);
         $reader->readTraitsForClass($reader->className);
@@ -84,7 +82,7 @@ final class ClassParents
     /**
      * Вернет все трейты класса, и классов-родителей
      *
-     * @param   string   $class   Имя класса
+     * @param   class-string   $class   Имя класса
      *
      * @return  string[]  Массив с именами трейтов
      *
@@ -92,8 +90,7 @@ final class ClassParents
      */
     public static function getTraits(string $class): array
     {
-        $reader = new self();
-        $reader->className = $class;
+        $reader = new self($class);
 
         $reader->readParents(false, true);
         $reader->readTraitsForClass($reader->className);
@@ -101,7 +98,15 @@ final class ClassParents
         return $reader->result;
     }
 
-    private function __construct() {}
+    /**
+     * Создаст объект, для поиска "родителей" класса
+     *
+     * @param   class-string   $class    Имя класса
+     */
+    private function __construct(string $class)
+    {
+        $this->className = $class;
+    }
 
     /**
      * Получит список классов-родителей, а также найдет все используемые в родителях трейты

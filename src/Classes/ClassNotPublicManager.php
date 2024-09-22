@@ -83,8 +83,15 @@ final class ClassNotPublicManager
      */
     private array $closureForObjects = [];
 
-    /** Создание объектов должно проводиться с помощью {@see ClassNotPublicManager::getInstanceFor()} */
-    private function __construct() {}
+    /**
+     *  Создание объектов должно проводиться с помощью {@see ClassNotPublicManager::getInstanceFor()}
+     *
+     * @param   object   $toObject   Для какого объекта создан "объект для взаимодействия с непубличными элементами"
+     */
+    private function __construct(object $toObject)
+    {
+        $this->toObject = $toObject;
+    }
 
     /**
      * Вернет объект для взаимодействия с непубличными элементами класса и объекта
@@ -109,8 +116,7 @@ final class ClassNotPublicManager
         {
             if (empty(self::$_notPublicObjects[$objectOrClass]))
             {
-                self::$_notPublicObjects[$objectOrClass] = new self();
-                self::$_notPublicObjects[$objectOrClass]->toObject = $objectOrClass;
+                self::$_notPublicObjects[$objectOrClass] = new self($objectOrClass);
             }
 
             return self::$_notPublicObjects[$objectOrClass];
@@ -119,8 +125,7 @@ final class ClassNotPublicManager
         {
             if (empty(self::$_notPublicClasses[$objectOrClass]))
             {
-                self::$_notPublicClasses[$objectOrClass] = new self();
-                self::$_notPublicClasses[$objectOrClass]->toObject = ClassTools::createObject($objectOrClass, false);
+                self::$_notPublicClasses[$objectOrClass] = new self(ClassTools::createObject($objectOrClass, false));
             }
 
             return self::$_notPublicClasses[$objectOrClass];

@@ -50,6 +50,8 @@ class ExceptionToolsTest extends TestCase
 
     /**
      * Test for {@see ExceptionTools::safeCallWithCallable()}
+     *
+     * @psalm-suppress UndefinedVariable Пслам имеет проблемы с переменными-ссылками
      */
     public function testSafeCallWithCallable(): void
     {
@@ -72,6 +74,8 @@ class ExceptionToolsTest extends TestCase
 
     /**
      * Test for {@see ExceptionTools::safeCallFunctions()}
+     *
+     * @psalm-suppress UndefinedVariable Пслам имеет проблемы с переменными-ссылками
      */
     public function testSafeCallFunctions(): void
     {

@@ -86,7 +86,6 @@ class ArrayHelperTest extends TestCase
     public function testGetNewIndex(): void
     {
         self::assertTrue(true);
-        return;
 
         $arr = [];
         self::assertEquals(0, ArrayHelper::getNewIndex($arr));

@@ -146,6 +146,14 @@ CODE;
         self::assertEquals('test-return', $functionReturn);
     }
 
+    /**
+     * @param   callable   $testFunction
+     * @param   bool       $withOb
+     *
+     * @return void
+     *
+     * @psalm-suppress UnusedVariable Псалм не может узнать, что $testFunction принимает переменные по ссылки, и считает, что переменные никогда не меняют значения
+     */
     private function forOnceScript(callable $testFunction, bool $withOb): void
     {
         if (!$withOb) ob_start();

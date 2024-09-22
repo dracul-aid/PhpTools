@@ -11,12 +11,16 @@
 
 namespace DraculAid\PhpTools\Classes\Patterns\Iterator;
 
+use DraculAid\PhpTools\tests\Classes\Patterns\Iterator\IteratorTraitTest;
+
 /**
  * Трейт с реализацией некоторых "сахарных" методов интерфейса {@see IteratorInterface}
  *
  * Вы также можете использовать {@see AbstractIterator} абстрактный класс реализующий {@see IteratorInterface}
  *
- * Test cases for class {@see }
+ * Test cases for class {@see IteratorTraitTest}
+ *
+ * @psalm-require-implements IteratorInterface
  */
 trait IteratorTrait
 {

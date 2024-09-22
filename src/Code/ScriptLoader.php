@@ -135,6 +135,8 @@ final class ScriptLoader
      * @return  mixed   Вернет результат выполнения `eval()`
      *
      * @todo PHP8 Типизация ответа функции
+     *
+     * @psalm-suppress UnusedParam Аргументы функции используются, просто псалм вообще не понимает, что тут происходит
      */
     public static function exeEval(string $phpCode, array $arguments = [], array $use = [])
     {

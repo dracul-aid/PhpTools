@@ -69,7 +69,6 @@ final class IteratorSafeRunner implements StaticRunnerInterface, \IteratorAggreg
      * Ссылка на курсор
      *
      * @var mixed
-     * @readonly
      * @todo PHP8 сделать "риад онли"
      * @todo PHP8 добавить типизацию
      */
@@ -99,6 +98,7 @@ final class IteratorSafeRunner implements StaticRunnerInterface, \IteratorAggreg
      * @psalm-param int-mask-of<IteratorSafeRunner::EXCEPTION_RULES_*> $errorRule
      *
      * @todo PHP8 добавить типизацию аргументам функции
+     * @psalm-suppress UnusedParam Псалм не понимает, что мы прокидываем ссылку куда-то дальше
      */
     public function __construct(object $iterator, &$cursor, int $errorRule = self::EXCEPTION_RULES_NO_SAFE)
     {

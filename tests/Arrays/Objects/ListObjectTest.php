@@ -33,6 +33,8 @@ class ListObjectTest extends TestCase
      * Test for {@covers ListObject::addEnd()}
      *
      * @return void
+     *
+     * @psalm-suppress UnusedVariable Псалм не умеет нормально работать с переменными-ссылками
      */
     public function testSetters(): void
     {
@@ -120,6 +122,8 @@ class ListObjectTest extends TestCase
      * Test for {@covers ListObject::insert()}
      *
      * @return void
+     *
+     * @psalm-suppress UnusedVariable Псалм не умеет нормально работать с переменными-ссылками
      */
     public function testInsert(): void
     {
@@ -182,6 +186,8 @@ class ListObjectTest extends TestCase
      * Test for {@covers ListObject::offsetGet()}
      *
      * @return void
+     *
+     * @psalm-suppress UnusedVariable Псалм не умеет нормально работать с переменными-ссылками
      */
     public function testGetter(): void
     {
@@ -244,6 +250,8 @@ class ListObjectTest extends TestCase
      * Test for {@covers ListObject::keyExists()}
      *
      * @return void
+     *
+     * @psalm-suppress UnusedVariable Псалм не умеет нормально работать с переменными-ссылками
      */
     public function testIsset(): void
     {
@@ -295,6 +303,8 @@ class ListObjectTest extends TestCase
      * Test for {@covers ListObject::offsetUnset()}
      *
      * @return void
+     *
+     * @psalm-suppress UnusedVariable Псалм не умеет нормально работать с переменными-ссылками
      */
     public function testUnset(): void
     {
@@ -333,6 +343,8 @@ class ListObjectTest extends TestCase
      * Test for {@covers ListObject::getIterator()}
      *
      * @return void
+     *
+     * @psalm-suppress UnusedVariable Псалм не умеет нормально работать с переменными-ссылками
      */
     public function testIteratorAggregate(): void
     {

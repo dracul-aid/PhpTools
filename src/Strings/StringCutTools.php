@@ -115,7 +115,6 @@ final class StringCutTools
      *
      * @param   string   $string    Строка для обработки
      * @param   string   $replace   На что будут заменены найденные пробелы (по умолчанию на ' ')
-     * @param   string   $maska     Маска поиска для регулярного выражения (по умолчанию "все пробельные символы `/\s+/`")
      *
      * @return string
      */

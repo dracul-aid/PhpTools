@@ -96,7 +96,7 @@ final class CallFunctionHelper implements StaticRunnerInterface
             return null;
         }
         elseif ($function === 'print') return print($arguments[0]);
-        elseif ($function === 'array') return array(...$arguments);
+        elseif ($function === 'array') return array(...array_values($arguments)); // TODO PHP8 array_values() станет не нужным, добавлен для ПСАЛМ-а
         else throw new \LogicException("{$function} is not callable");
     }
 

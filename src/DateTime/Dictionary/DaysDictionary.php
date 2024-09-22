@@ -218,6 +218,8 @@ final class DaysDictionary
      *
      * @return  string
      *
+     * @psalm-param class-string<\Throwable> $classException
+     *
      * @throws  \RuntimeException Номер для недели должен быть от 0 до 7
      * @throws  \LogicException Формат должен быть равен 2 или 3
      */

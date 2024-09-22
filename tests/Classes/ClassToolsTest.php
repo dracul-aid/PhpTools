@@ -43,6 +43,7 @@ class ClassToolsTest extends TestCase
         // TODO PHP81 актуально начиная c 8.1
         //self::assertTrue(ClassTools::isLoad($enumName));
 
+        /** @psalm-suppress UndefinedClass Мы знаем что такой класс не существует, проверяем, как функция отреагирует на такой кейс */
         self::assertFalse(ClassTools::isInternal(_______NoClassName_______::class));
     }
 

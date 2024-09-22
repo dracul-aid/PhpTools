@@ -136,7 +136,7 @@ final class ArrayHelper
         $resultIndex = count($asArray);
         if (self::keyExist($asArray, $resultIndex))
         {
-            while (self::keyExist($asArray, $resultIndex));
+            while (self::keyExist($asArray, ++$resultIndex));
         }
 
         return $resultIndex;

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <psalm
-    errorLevel="8"
+    errorLevel="7"
     resolveFromConfigFile="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
@@ -15,6 +15,7 @@
     </projectFiles>
 
     <issueHandlers>
+        <!-- LEVEL 8 -->
         <UnusedClass errorLevel="suppress" /> <!-- Это пакет-библиотека, все классы могут не использоваться -->
         <PossiblyUnusedProperty errorLevel="suppress" /> <!-- Это пакет-библиотека, свойства могут не читаться -->
         <PossiblyUnusedMethod errorLevel="suppress" /> <!-- Это пакет-библиотека, методы могут нигде не вызываться -->
@@ -23,5 +24,6 @@
         <DocblockTypeContradiction errorLevel="suppress" /> <!-- TODO PHP8 скорее всего можно будет убрать. Во многих местах в функцию входит mixed, а нам нужны строго определенные значения -->
         <UnusedForeachValue errorLevel="suppress" /> <!-- При переборе действительно не всегда нужно значение, иногда нужен только ключ -->
         <MissingTemplateParam errorLevel="suppress" /> <!-- Базовые интерфейсы реально иногда нужно имплементировать, с нарушением правил наследования типизации -->
+        <!-- LEVEL 7 -->
     </issueHandlers>
 </psalm>

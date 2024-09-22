@@ -65,9 +65,10 @@ final class TranslitConverter
                 $transliterator = false;
             }
         }
+        elseif ($transliterator === true) $transliterator = false;
 
         // если транслитиратор есть - будем использовать его
-        if (empty($transliterator)) return $transliterator->transliterate($string);
+        if (!empty($transliterator)) return $transliterator->transliterate($string);
         else return strtr($string, CharRuToEn::LIST);
     }
 

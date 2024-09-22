@@ -84,9 +84,9 @@ final class ExceptionTools
      *
      * (!) $functions также может быть массивом, указывающим на непубличный метод класса
      *
-     * @param   callable[]|array[]   $functions              Список функций для вызова (Функции должны быть без аргументов)
-     * @param   null|callable        $callableForException   Функция, будет вызвано, в случае перехвата исключения.
-     *                                                       <br>Вызов: <code>f(\Throwable $exception, callable $function): mixed</code>
+     * @param   iterable<callable|array>   $functions              Список функций для вызова (Функции должны быть без аргументов)
+     * @param   null|callable              $callableForException   Функция, будет вызвано, в случае перехвата исключения.
+     *                                                             <br>Вызов: <code>f(\Throwable $exception, callable $function): mixed</code>
      *
      * @return  void
      *

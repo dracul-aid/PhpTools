@@ -20,8 +20,13 @@ $vendorPath = dirname(__DIR__) . '/vendor';
 
 require_once("{$vendorPath}/autoload.php");
 
+/**
+ * Каталог, в котором размещен PhpUnit
+ * @var string $phpUnitPath
+ */
 $phpUnitPath = dirname(__DIR__) . '/vendor/phpunit/phpunit/phpunit';
-if ($phpUnitPath)
+
+if ($phpUnitPath !== '')
 {
     // получаем PHP код "консольного приложения PhpUnit" и выбрасываем из него declare(strict_types=1);
     $phpUnitCodeExecutor = explode("\n", file_get_contents($phpUnitPath));

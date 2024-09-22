@@ -53,6 +53,8 @@ final class ClassTools
      * @psalm-template RealInstanceType of object
      * @psalm-param class-string<RealInstanceType> $class
      * @psalm-return RealInstanceType
+     * @psalm-suppress InvalidReturnType Псалм запутывается в ожидаемом типе возвращаемого значения (а вот Шторм - нет)
+     * @psalm-suppress InvalidReturnStatement Псалм запутывается в ожидаемом типе возвращаемого значения (а вот Шторм - нет)
      */
     public static function createObject(string $class, $arguments = false, array $properties = []): object
     {

@@ -231,6 +231,8 @@ class ConsoleArgumentsObjectTest extends TestCase
 
         $testObject->setArgument(0, 'abc');
         $testObject->setArgument(1, true);
+
+        /** @psalm-suppress NullArgument В реальном использовании класса такого быть не должно, но мы проверим устойчивость функций к NULL */
         $testObject->setArgument(2, null);
 
         // Ищем существующие элементы
@@ -272,6 +274,8 @@ class ConsoleArgumentsObjectTest extends TestCase
 
         $testObject->setArgument(0, 'abc');
         $testObject->setArgument(1, true);
+
+        /** @psalm-suppress NullArgument В реальном использовании класса такого быть не должно, но мы проверим устойчивость функций к NULL */
         $testObject->setArgument(2, null);
 
         $testObject->setName(0, 'string');

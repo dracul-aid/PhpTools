@@ -86,9 +86,9 @@ final class ObHelper
     /**
      * Перехватит вывод в поток для вызова непубличного метода класса (в том числе и статический)
      *
-     * @param   string[]     $method      Вызываемый метод в формате массива [$objectOrClass, $method]
-     * @param   array        $arguments   Массив аргументов для метода
-     * @param   mixed        $_return     Ответ вызванного метода
+     * @param   array{0: class-string|object, 1: string}     $method      Вызываемый метод в формате массива [$objectOrClass, $method]
+     * @param   array                                        $arguments   Массив аргументов для метода
+     * @param   mixed                                        $_return     Ответ вызванного метода
      *
      * @return  string   Вернет выведенные в поток вывода функцией данные
      *
@@ -111,10 +111,10 @@ final class ObHelper
     /**
      * Перехватит вывод в поток для вызова метода пустого объекта (объекта, созданного без вызова конструктора)
      *
-     * @param   string[]               $method       Вызываемый метод в формате массива [$class, $method]
-     * @param   array                  $arguments    Массив аргументов для метода
-     * @param   array<string, mixed>   $properties   Список свойств для установки создаваемому объекту (в том числе и непубличных)
-     * @param   mixed                  $_return      Ответ вызванного метода
+     * @param   array{0: class-string|object, 1: string}     $method      Вызываемый метод в формате массива [$objectOrClass, $method]
+     * @param   array                                        $arguments   Массив аргументов для метода
+     * @param   array<string, mixed>                         $properties   Список свойств для установки создаваемому объекту (в том числе и непубличных)
+     * @param   mixed                                        $_return      Ответ вызванного метода
      *
      * @return  string   Вернет выведенные в поток вывода функцией данные
      *

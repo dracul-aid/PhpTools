@@ -61,7 +61,7 @@ final class TimestampHelper
         if ($timestamp instanceof \DateTimeInterface) $timestamp = (float)$timestamp->format(DateTimeFormats::TIMESTAMP_WITH_MILLISECONDS);
 
         if (!$asInt64) return (string)($timestamp * TimestampConstants::MILLISECOND_MODIFICATION);
-        else return $timestamp * TimestampConstants::MILLISECOND_MODIFICATION;
+        else return (int)($timestamp * TimestampConstants::MILLISECOND_MODIFICATION);
     }
 
     /**
@@ -282,6 +282,6 @@ final class TimestampHelper
         // * * *
 
         if ($weekDay < 5) return $timestampStartYear->getTimestamp();
-        else return $timestampStartYear->getTimestamp() + (8 - $weekDay) * TimestampConstants::DAY_SEC;
+        else return (int)($timestampStartYear->getTimestamp() + (8 - $weekDay) * TimestampConstants::DAY_SEC);
     }
 }

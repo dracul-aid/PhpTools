@@ -65,7 +65,7 @@ final class ObjectTools
      *                                * {@see \ReflectionProperty::IS_PROTECTED}: Только protected свойства
      *                                * {@see \ReflectionProperty::IS_PRIVATE}: Только private свойства
      *
-     * @return  \Generator
+     * @return  array
      *
      * @todo PHP8 типизация аргументов
      */

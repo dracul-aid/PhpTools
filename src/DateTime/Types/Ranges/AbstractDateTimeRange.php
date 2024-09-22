@@ -96,17 +96,19 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
      *
      * @todo PHP8 match()
      *
-     * @todo Вынести тестирование их конкретных классов в тест абстрактного класса
+     * @todo Вынести юнит-тесты из тестов конкретных классов в тест абстрактного класса
      */
     public function isSet()
     {
-        if ($this->start === null && $this->finish === null) return false;
+        // (!) В функции специально используется isset(), так как Psalm не умеет нормально работать с докблоками интерфейсов
 
-        if ($this->start !== null && $this->finish !== null) return true;
+        if (!isset($this->start) && !isset($this->finish)) return false;
 
-        if ($this->start === null && $this->finish !== null) return -1;
+        if (isset($this->start) && isset($this->finish)) return true;
 
-        if ($this->start !== null && $this->finish === null) return 1;
+        if (!isset($this->start) && isset($this->finish)) return -1;
+
+        if (isset($this->start) && !isset($this->finish)) return 1;
 
         return false;
     }

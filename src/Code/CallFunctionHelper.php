@@ -75,7 +75,7 @@ final class CallFunctionHelper implements StaticRunnerInterface
     {
         if (is_callable($function)) return self::exeCallable($function, $arguments);
 
-        if (!is_string($function)) throw new \LogicException("{$function} is not callable and not PHP code construction");
+        if (!is_string($function)) throw new \LogicException('$function is not callable and not PHP code construction. It is a ' .gettype($function));
 
         /** Создание нового класса */
         if ($function[0] === 'n' && $function[1] === 'e' && $function[2] === 'w' && $function[3] === ' ')
@@ -106,9 +106,9 @@ final class CallFunctionHelper implements StaticRunnerInterface
      *
      * (!) Может вызвать и непубличный метод
      *
-     * @param   string[]               $classAndMethod   Вызываемый метод в формате массива [$class, $method]
-     * @param   array                  $arguments        Аргументы, с которыми будет вызван метод
-     * @param   array<string, mixed>   $properties       Список свойств для установки создаваемому объекту (в том числе и непубличных)
+     * @param   array{0: class-string|object, 1: string}  $classAndMethod   Вызываемый метод в формате массива [$class, $method]
+     * @param   array                                     $arguments        Аргументы, с которыми будет вызван метод
+     * @param   array<string, mixed>                      $properties       Список свойств для установки создаваемому объекту (в том числе и непубличных)
      *
      * @return  mixed   Вернет результат работы вызванного метода
      *

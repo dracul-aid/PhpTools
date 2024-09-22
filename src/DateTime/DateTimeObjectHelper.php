@@ -35,7 +35,7 @@ final class DateTimeObjectHelper
     /**
      * Примет дату-время в различных форматах и всегда вернет объект для работы с датой-временем
      *
-     * @param mixed $dateTime        Дата-время в одном из представлений:
+     * @param   mixed    $dateTime        Дата-время в одном из представлений:
      *                                    <br>+ {@see \DateTimeInterface}: Объект даты-времени
      *                                    <br>+ {@see GetTimestampInterface}: Объект, поддерживающий ответ ввиде таймштампа
      *                                    <br>+ string: Строковое представление даты, см {@see date_parse()}
@@ -48,6 +48,7 @@ final class DateTimeObjectHelper
      * @return  \DateTimeInterface
      *
      * @throws  \TypeError Если был передан неподходящий тип данных (в случае массива, массив не имел всех необходимых полей для построения даты)
+     * @psalm-param class-string<\DateTimeInterface> $dateTimeClass
      *
      * @see TimestampHelper::getTimestamp() Позволяяет из любого формата даты-времени получить таймштамп
      * @see DateTimeHelper::getDateArray() Позволяяет из любого формата даты-времени получить массив с описанием даты ({@see getdate()})
@@ -87,6 +88,7 @@ final class DateTimeObjectHelper
 
         if (self::isGetTimestamp($dateTime))
         {
+            /** @psalm-suppress InvalidReturnStatement Псалм просто не выполняет код, а делает предположения... */
             return self::copyDateTimeObject($dateTime, $dateTimeClass);
         }
 
@@ -96,8 +98,8 @@ final class DateTimeObjectHelper
     /**
      * Копирует объект даты-времени
      *
-     * @param   \DateTimeInterface|GetTimestampInterface   $dateTime         Объект даты-времени, на основе которого будет создан новый объект
-     * @param   null|string                                $dateTimeClass    Класс, для создания нового объекта, NULL - тот же класс, что и $dateTime
+     * @param   \DateTimeInterface|GetTimestampInterface                      $dateTime        Объект даты-времени, на основе которого будет создан новый объект
+     * @param   null|class-string<\DateTimeInterface|GetTimestampInterface>   $dateTimeClass   Класс, для создания нового объекта, NULL - тот же класс, что и $dateTime
      *
      * @return  \DateTimeInterface|GetTimestampInterface
      *

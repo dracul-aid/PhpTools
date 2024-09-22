@@ -30,13 +30,13 @@ final class StringSearchTools
     /**
      * Вернет первое вхождение любой подстроки в строке
      *
-     * @param   string      $string         Строка в которой будет вестись поиск
-     * @param   string[]    $searchList     Любое перебираемое подстрок для поиска
-     * @param   int         $start          Позиция начала поиска
-     * @param   bool        $utf8           Поиск позиции, считая строку UTF8 строкой
-     * @param   bool        $returnArray    TRUE если нужно вернуть массив:
-     *                                      <br>* 0: найденная позиция
-     *                                      <br>* 1: найденная подстрока
+     * @param   string                         $string         Строка в которой будет вестись поиск
+     * @param   iterable<string|\Stringable>   $searchList     Любое перебираемое подстрок для поиска
+     * @param   int                            $start          Позиция начала поиска
+     * @param   bool                           $utf8           Поиск позиции, считая строку UTF8 строкой
+     * @param   bool                           $returnArray    TRUE если нужно вернуть массив:
+     *                                                         <br>* 0: найденная позиция
+     *                                                         <br>* 1: найденная подстрока
      *
      * @return  null|int|array   Вернет позицию первой найденной подстроки или NULL, если ни одна подстрока не найдена
      *                           Также может вернуть массив, с номером позиции и найденной подстрокой, см параметр $return_array
@@ -55,7 +55,7 @@ final class StringSearchTools
 
         foreach ($searchList as $searchString)
         {
-            if (!is_string($searchString)) $searchString = (string) $searchString;
+            if (!is_string($searchString)) $searchString = (string)$searchString;
 
             if ($searchString === '')
             {

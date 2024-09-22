@@ -28,7 +28,7 @@ class PhpErrorCodeThrowableTools
     /**
      * Соответствие типов ошибок и классов встроенных в PHP ошибок (ключи - типы ошибок, значения - полные имена классов ошибок)
      *
-     * @var class-string<\Error>
+     * @var array<int, class-string<\Error>>
      */
     public const TYPE_AND_BASIC_ERROR_CLASSES = [
         E_ERROR => \Error::class,
@@ -39,7 +39,7 @@ class PhpErrorCodeThrowableTools
     /**
      * Соответствие типов ошибок и классов встроенных в PHP ошибок (ключи - типы ошибок, значения - полные имена классов ошибок)
      *
-     * @var class-string<\Error&PhpCodeErrorBasicInterface>
+     * @var array<int, class-string<\Error&PhpCodeErrorBasicInterface>
      */
     public const TYPE_AND_ERROR_CLASSES = [
         E_ERROR => Errors\Error::class,
@@ -97,7 +97,7 @@ class PhpErrorCodeThrowableTools
     {
         if (!isset(self::TYPE_AND_ERROR_CLASSES[$errorType])) throw new \RuntimeException("Not found class for error code #{$errorType}");
 
-        /** @var class-string<\Error> $classError Класс для создания ошибки (TODO PHP8 - эта промежуточная переменная нужна только в PHP7) */
+        /** @var class-string<\Error&PhpCodeErrorBasicInterface> $classError Класс для создания ошибки (TODO PHP8 - эта промежуточная переменная нужна только в PHP7) */
         $classError = self::TYPE_AND_ERROR_CLASSES[$errorType];
 
         return new $classError($message, $code, $previous);

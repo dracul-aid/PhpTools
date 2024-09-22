@@ -11,10 +11,10 @@
 
 namespace DraculAid\PhpTools\DateTime\Types;
 
+use DraculAid\Php8forPhp7\LoaderPhp8Lib;
 use DraculAid\PhpTools\DateTime\DateTimeHelper;
 use DraculAid\PhpTools\DateTime\DateTimeValidator;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
-use DraculAid\Php8forPhp7\LoaderPhp8Lib;
 
 /** @todo PHP8 убрать загрузку функции */
 LoaderPhp8Lib::loadFunction('str_starts_with');
@@ -156,7 +156,7 @@ class DateTimeLightType implements GetTimestampInterface
             throw new \TypeError(
                 '$dateTime is not correct date time values: '
                     . "({$dateArray['year']}-{$dateArray['mon']}-{$dateArray['mday']}"
-                    . "{$dateArray['hour']}:{$dateArray['minutes']}:{$dateArray['seconds']})"
+                    . "{$dateArray['hours']}:{$dateArray['minutes']}:{$dateArray['seconds']})"
             );
         }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <psalm
-    errorLevel="7"
+    errorLevel="6"
     resolveFromConfigFile="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
@@ -25,5 +25,6 @@
         <UnusedForeachValue errorLevel="suppress" /> <!-- При переборе действительно не всегда нужно значение, иногда нужен только ключ -->
         <MissingTemplateParam errorLevel="suppress" /> <!-- Базовые интерфейсы реально иногда нужно имплементировать, с нарушением правил наследования типизации -->
         <!-- LEVEL 7 -->
+        <!-- LEVEL 6 -->
     </issueHandlers>
 </psalm>

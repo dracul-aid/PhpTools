@@ -11,9 +11,8 @@
 
 namespace DraculAid\PhpTools\DateTime\Types\Ranges;
 
-use DraculAid\PhpTools\DateTime\TimestampHelper;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
-use DraculAid\PhpTools\DateTime\Types\GetTimestampInterface;
+use DraculAid\PhpTools\DateTime\TimestampHelper;
 use DraculAid\PhpTools\DateTime\Types\PhpExtended\DateTimeExtendedType;
 
 /**
@@ -107,7 +106,7 @@ interface DateTimeRangeInterface
     public function startClear(): self;
 
     /**
-     * Вернет указание, установлен диапазон, его часть или нет
+     * Вернет указание, установлен диапазон, часть диапазона, или вообще ничего
      *
      * @return   bool|int    Вернет один из вариантов:
      *                       <br> FALSE: Диапазон не установлен

@@ -191,9 +191,10 @@ class ListObject extends AbstractIterator implements ArrayInterface
 
         // * * *
 
+        // Отрицательное число - позиция с конца списка
         if ($offset < 0) $offset = $this->count() + $offset;
 
-        // Отрицательное число - позиция с конца списка
+        /** @psalm-suppress InvalidArgument К этому моменту $offset станет "положительным" */
         return $this->offsetGet($offset);
     }
 
@@ -307,7 +308,8 @@ class ListObject extends AbstractIterator implements ArrayInterface
         }
         elseif ($offset < 0)
         {
-            $warning = "$offset must be greater than 0, but is {$offset}" . gettype($offset);
+            /** @psalm-suppress InvalidCast Псалм истерит на ровном месте, тут всегда будет число, и оно без проблем преобразуется в строку */
+            $warning = "{$offset} must be greater than 0, but is {$offset}" . gettype($offset);
             $this->list[] = $value;
         }
         elseif ($offset > count($this->list))
@@ -392,6 +394,7 @@ class ListObject extends AbstractIterator implements ArrayInterface
      */
     public function next(int $position = 1)
     {
+        /** @psalm-suppress InvalidPropertyAssignmentValue Да, тут случайно можно оказаться да диапазоном списка, т.е. в отрицательной позиции */
         $this->cursor += $position;
 
         return $this;

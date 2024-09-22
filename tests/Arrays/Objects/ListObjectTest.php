@@ -35,6 +35,7 @@ class ListObjectTest extends TestCase
      * @return void
      *
      * @psalm-suppress UnusedVariable Псалм не умеет нормально работать с переменными-ссылками
+     * @psalm-suppress InvalidArgument Проверяем, что не падает, при "неправильном ключе"
      */
     public function testSetters(): void
     {
@@ -124,6 +125,7 @@ class ListObjectTest extends TestCase
      * @return void
      *
      * @psalm-suppress UnusedVariable Псалм не умеет нормально работать с переменными-ссылками
+     * @psalm-suppress InvalidArgument Проверяем, что не падает, при "неправильном ключе"
      */
     public function testInsert(): void
     {
@@ -188,6 +190,7 @@ class ListObjectTest extends TestCase
      * @return void
      *
      * @psalm-suppress UnusedVariable Псалм не умеет нормально работать с переменными-ссылками
+     * @psalm-suppress InvalidArgument Проверяем, что не падает, при "неправильном ключе"
      */
     public function testGetter(): void
     {
@@ -269,8 +272,10 @@ class ListObjectTest extends TestCase
         self::assertTrue(isset($testObject[5]));
         self::assertTrue(isset($testObject[6]));
 
+        /** @psalm-suppress InvalidArgument Проверяем, что не падает, при "неправильном ключе" */
         self::assertFalse(isset($testObject[-1]));
         self::assertFalse(isset($testObject[3]));
+        /** @psalm-suppress InvalidArgument Проверяем, что не падает, при "неправильном ключе" */
         self::assertFalse(isset($testObject['x']));
 
         self::assertEquals(1, $testObject->getCursor());
@@ -312,6 +317,7 @@ class ListObjectTest extends TestCase
         $testObject = $this->getTestListObject();
         $testObject->offsetUnset(0);
         // попытка удаления неверного ключа
+        /** @psalm-suppress InvalidArgument Проверяем, что не падает, при "неправильном ключе" */
         $testObject->offsetUnset('x');
 
         // удаление единственного элемента
@@ -335,6 +341,7 @@ class ListObjectTest extends TestCase
 
         // * * * проверяем, что попытка удаления "за пределами" списка не приведет к падению
         $testObject = $this->getTestListObject([0, 1, 2, 3]);
+        /** @psalm-suppress InvalidArgument Проверяем, что не падает, при "неправильном ключе" */
         unset($testObject[-10]);
         unset($testObject[10]);
     }
@@ -391,6 +398,7 @@ class ListObjectTest extends TestCase
         $testObject->rewind();
         self::assertEquals(0, $testObject->getCursor());
 
+        /** @psalm-suppress InvalidArgument устанавливаем невозможное значение, что бы проверить, что будет если "курсор" за пределами списка */
         $testObject->setCursor(-10);
         self::assertEquals(-10, $testObject->getCursor());
         self::assertFalse($testObject->valid());

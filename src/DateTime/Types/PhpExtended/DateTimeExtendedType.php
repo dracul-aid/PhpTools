@@ -11,13 +11,13 @@
 
 namespace DraculAid\PhpTools\DateTime\Types\PhpExtended;
 
-use DraculAid\PhpTools\DateTime\Dictionary\DateConstants;
-use DraculAid\PhpTools\DateTime\Types\GetTimestampInterface;
 use DraculAid\PhpTools\DateTime\DateTimeHelper;
 use DraculAid\PhpTools\DateTime\DateTimeObjectHelper;
-use DraculAid\PhpTools\DateTime\TimestampHelper;
 use DraculAid\PhpTools\DateTime\DateTimeValidator;
+use DraculAid\PhpTools\DateTime\Dictionary\DateConstants;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
+use DraculAid\PhpTools\DateTime\TimestampHelper;
+use DraculAid\PhpTools\DateTime\Types\GetTimestampInterface;
 
 /**
  * Расширение для стандартного PHP класса для работы с датой-временем {@see \DateTime}
@@ -344,7 +344,7 @@ class DateTimeExtendedType extends \DateTime implements GetTimestampInterface
      * @param   null|int   $day            Номер для дня недели (NULL - не меняется), 1 понедельник ... 7 воскресенье
      * @param   mixed      $endDayOrTime   Указание времени, см {@see DateTimeHelper::getTimeString}, за исключением NULL - не меняется
      *
-     * @return  int
+     * @return  $this
      *
      * @see TimestampHelper::getWeekDay() Вернет таймштамп для указанной недели
      *

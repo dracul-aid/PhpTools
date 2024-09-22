@@ -54,6 +54,10 @@ trait IteratorTrait
      * </code>
      *
      * Описание см в @see IteratorInterface::currentElementAndNext()
+     *
+     * @param   int   $position    Сдвиг на какую позицию (можно сдвигать, в том числе и "назад")
+     *
+     * @return  array{0: mixed, 1: mixed, 2: bool}  Вернет массив вида [ключ, значение, чтение удалось или нет]
      */
     public function currentElementAndNext(int $position = 1): array
     {

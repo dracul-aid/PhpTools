@@ -72,6 +72,7 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
      */
     public function startClear(): self
     {
+        /** @psalm-suppress UndefinedThisPropertyAssignment Псалм не умеет корректно читать докблоки интерфейсов */
         $this->start = null;
 
         return $this;
@@ -86,6 +87,7 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
      */
     public function finishClear(): self
     {
+        /** @psalm-suppress UndefinedThisPropertyAssignment Псалм не умеет корректно читать докблоки интерфейсов */
         $this->finish = null;
 
         return $this;

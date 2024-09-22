@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <psalm
-    errorLevel="6"
+    errorLevel="5"
     resolveFromConfigFile="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
@@ -26,5 +26,6 @@
         <MissingTemplateParam errorLevel="suppress" /> <!-- Базовые интерфейсы реально иногда нужно имплементировать, с нарушением правил наследования типизации -->
         <!-- LEVEL 7 -->
         <!-- LEVEL 6 -->
+        <!-- LEVEL 5 -->
     </issueHandlers>
 </psalm>

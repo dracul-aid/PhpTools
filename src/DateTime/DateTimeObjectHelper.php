@@ -57,7 +57,7 @@ final class DateTimeObjectHelper
      */
     public static function getDateObject($dateTime = null, string $dateTimeClass = DateTimeExtendedType::class): \DateTimeInterface
     {
-        if (is_a($dateTime, $dateTimeClass)) return $dateTime;
+        if (is_object($dateTime) && is_a($dateTime, $dateTimeClass)) return $dateTime;
 
         // * * *
 

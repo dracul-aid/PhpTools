@@ -227,6 +227,7 @@ final class DaysDictionary
     {
         if ($numberDay < 0 || $numberDay > 7) throw new $classException("\$numberDay format can be 0 - 7, but function call with {$numberDay}");
 
+        /** @psalm-suppress FalsableReturnStatement Всегда вернет строку, варианты для возвращения FALSE отброшены выше */
         return self::getDayLabel($numberDay, $format);
     }
 }

@@ -225,7 +225,7 @@ final class IteratorSafeRunner implements StaticRunnerInterface, \IteratorAggreg
         $error = ExceptionTools::callAndReturnException([$this->iterator, 'valid'], [], $isValid);
 
         // нет ошибок - значит перемотка удалась
-        if ($error === null) return $isValid;
+        if ($error === null) return (bool)$isValid;
 
         if ($this->errorRule !== self::EXCEPTION_RULES_SAFE_WITH_ERRORS_SAVE) return false;
 

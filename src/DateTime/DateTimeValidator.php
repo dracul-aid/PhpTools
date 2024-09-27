@@ -73,6 +73,8 @@ final class DateTimeValidator
      * @param   int  &$_day    Номер для в месяце (1-31)
      *
      * @return  bool   Вернет TRUE если все данные были валидны, или FALSE если были не валидны и была проведена коррекция
+     *
+     * @psalm-suppress RedundantCondition Псалм ругается на конструкции вида `$_hour = 0 or $_return = false` но они нужны для более читаемого кода
      */
     public static function validMonAndDay(int &$_year, int &$_mon, int &$_day): bool
     {
@@ -137,6 +139,8 @@ final class DateTimeValidator
      * @param   int   &$_second    Секунда (0-59)
      *
      * @return  bool   Вернет TRUE если все данные были валидны, или FALSE если были не валидны и была проведена коррекция
+     *
+     * @psalm-suppress RedundantCondition Псалм ругается на конструкции вида `$_hour = 0 or $_return = false` но они нужны для более читаемого кода
      */
     public static function validTime(int &$_hour, int &$_minute, int &$_second): bool
     {

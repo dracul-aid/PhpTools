@@ -86,7 +86,7 @@ class CodeTypeObject implements \IteratorAggregate, \Stringable
     /**
      * Используется для перебора всех типов данных
      *
-     * @return \Generator|string[]
+     * @return \Generator<string>
      */
     public function getIterator(): \Generator
     {

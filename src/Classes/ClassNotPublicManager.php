@@ -52,7 +52,7 @@ final class ClassNotPublicManager
      *
      * Используется для реализации "синглтона", см  {@see ClassNotPublicManager::getInstanceFor()}
      *
-     * @var array<object,ClassNotPublicManager>|\WeakMap
+     * @var \WeakMap<object,ClassNotPublicManager>
      */
     public static \WeakMap $_notPublicObjects;
 
@@ -108,6 +108,7 @@ final class ClassNotPublicManager
     {
         TypeValidator::validateOr($objectOrClass, ['string', 'object']);
 
+        /** @psalm-suppress RedundantPropertyInitializationCheck Псалм реально не знает, что это рабочая схема (она не требует расширения типов для свойства) */
         if (!isset(self::$_notPublicObjects)) self::$_notPublicObjects = new \WeakMap();
 
         // * * *

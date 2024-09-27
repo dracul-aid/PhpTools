@@ -91,7 +91,7 @@ final class NowTimeGetter
     /**
      * Вернет текущий номер месяца (1 - 12)
      *
-     * @return int
+     * @return int<1, 12>
      */
     public static function getMon(): int
     {
@@ -117,7 +117,7 @@ final class NowTimeGetter
      * <br>+ Неделя, которая содержит как минимум четыре дня нового года
      * <br>Т.е. 52 неделя года может оказаться уже в "новом году" (например 1 января суббота, это будет 52 неделя и она будет относиться к предыдущему году)
      *
-     * @return int
+     * @return int<1, 52>
      */
     public static function getWeek(): int
     {
@@ -146,7 +146,7 @@ final class NowTimeGetter
     /**
      * Вернет текущий день месяца (1 - 31)
      *
-     * @return int
+     * @return int<1, 31>
      */
     public static function getMonDay(): int
     {
@@ -166,7 +166,7 @@ final class NowTimeGetter
     /**
      * Вернет текущий день недели (1 - понедельник ... 7 - воскресенье)
      *
-     * @return int
+     * @return int<1, 7>
      */
     public static function getWeekDay(): int
     {
@@ -176,21 +176,21 @@ final class NowTimeGetter
     /**
      * Вернет текущий день недели для США (0 - воскресенье, 1 - понедельник ... 6 - суббота)
      *
-     * @return int
+     * @return int<0, 6>
      */
     public static function getWeekDayUSA(): int
     {
-        return (int)getdate()['wday'];
+        return getdate()['wday'];
     }
 
     /**
      * Вернет текущий день года (1 - 366)
      *
-     * @return int
+     * @return int<0, 366>
      */
     public static function getYearDay(): int
     {
-        return (int)getdate()['yday'] + 1;
+        return getdate()['yday'] + 1;
     }
 
     /**
@@ -210,7 +210,7 @@ final class NowTimeGetter
     /**
      * Вернет текущий час (0 - 23)
      *
-     * @return int
+     * @return int<0, 23>
      */
     public static function getHour(): int
     {
@@ -230,7 +230,7 @@ final class NowTimeGetter
     /**
      * Вернет текущую минуту (0 - 59)
      *
-     * @return int
+     * @return int<0, 59>
      *
      * @todo TEST тебует покрытия теста
      */
@@ -257,7 +257,7 @@ final class NowTimeGetter
     /**
      * Вернет текущую секунду (0 - 59)
      *
-     * @return int
+     * @return int<0, 59>
      *
      * @todo TEST тебует покрытия теста
      */

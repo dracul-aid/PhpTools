@@ -250,6 +250,7 @@ class ListObject extends AbstractIterator implements ArrayInterface
      * @return  mixed
      *
      * @todo PHP8 атрибут `#[\ReturnTypeWillChange]` нужен для совместимости с PHP7
+     * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
      */
     #[\ReturnTypeWillChange]
     public function offsetGet($offset)
@@ -293,6 +294,7 @@ class ListObject extends AbstractIterator implements ArrayInterface
      *
      * @todo PHP8 атрибут `#[\ReturnTypeWillChange]` нужен для совместимости с PHP7
      * @todo PHP8 типизация ответа и аргументов функции
+     * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
      */
     #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
@@ -337,6 +339,7 @@ class ListObject extends AbstractIterator implements ArrayInterface
      *
      * @todo PHP8 атрибут `#[\ReturnTypeWillChange]` нужен для совместимости с PHP7
      * @todo PHP8 типизация ответа и аргументов функции
+     * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
      */
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
@@ -380,6 +383,7 @@ class ListObject extends AbstractIterator implements ArrayInterface
      *
      * @todo PHP8 атрибут `#[\ReturnTypeWillChange]` нужен для совместимости с PHP7
      * @todo PHP8 добавить типизации ответа функции
+     * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
      */
     #[\ReturnTypeWillChange]
     public function current()
@@ -406,6 +410,7 @@ class ListObject extends AbstractIterator implements ArrayInterface
      * @return int<0, max>
      *
      * @todo PHP8 добавить типизации ответа функции
+     * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
      */
     #[\ReturnTypeWillChange]
     public function key(): int
@@ -447,11 +452,7 @@ class ListObject extends AbstractIterator implements ArrayInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @return array{0: int<0, max>, 1: mixed, 2: bool>
-     */
+    /** {@inheritdoc} */
     public function currentElementAndNext(int $position = 1): array
     {
         return parent::currentElementAndNext($position);

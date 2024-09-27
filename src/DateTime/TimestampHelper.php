@@ -277,7 +277,7 @@ final class TimestampHelper
         if ($year === null) $year = NowTimeGetter::getYear();
 
         $timestampStartYear = new \DateTime("{$year}-01-01");
-        $weekDay = $timestampStartYear->format('N');
+        $weekDay = (int)$timestampStartYear->format('N');
 
         // * * *
 

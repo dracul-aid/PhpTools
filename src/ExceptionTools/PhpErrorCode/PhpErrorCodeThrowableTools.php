@@ -39,7 +39,7 @@ class PhpErrorCodeThrowableTools
     /**
      * Соответствие типов ошибок и классов встроенных в PHP ошибок (ключи - типы ошибок, значения - полные имена классов ошибок)
      *
-     * @var array<int, class-string<\Error&PhpCodeErrorBasicInterface>
+     * @var array<int, class-string<\Error&PhpCodeErrorBasicInterface>>
      */
     public const TYPE_AND_ERROR_CLASSES = [
         E_ERROR => Errors\Error::class,

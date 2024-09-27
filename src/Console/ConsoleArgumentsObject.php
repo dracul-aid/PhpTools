@@ -288,6 +288,8 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
      *
      * @todo PHP8 атрибут `#[\ReturnTypeWillChange]` нужен для совместимости с PHP7
      * @todo PHP8 типизация аргументов и ответа функции
+     *
+     * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
      */
     #[\ReturnTypeWillChange]
     public function offsetGet($offset)
@@ -317,6 +319,7 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
      *
      * @todo PHP8 атрибут `#[\ReturnTypeWillChange]` нужен для совместимости с PHP7
      * @todo PHP8 типизация аргументов и ответа функции
+     * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
      */
     #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
@@ -361,6 +364,8 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
      *
      * @todo PHP8 атрибут `#[\ReturnTypeWillChange]` нужен для совместимости с PHP7
      * @todo PHP8 типизация аргументов и ответа функции
+     *
+     * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
      */
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)

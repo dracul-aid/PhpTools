@@ -64,11 +64,13 @@ abstract class AbstractIteratorTestFunctions extends TestCase
         self::assertEquals(-96, $testObject->key());
         self::assertEquals(null, $testObject->currentValueAndNext());
 
+        /** @psalm-suppress NoInterfaceProperties В докблоках нельзя типизировать определенную переменную, как объект определенного анонимного класса */
         $testObject->__test__position = 0;
         self::assertEquals('0abc', $testObject->currentValueAndNext(200));
         self::assertEquals(200, $testObject->key());
         self::assertEquals(null, $testObject->currentValueAndNext());
 
+        /** @psalm-suppress NoInterfaceProperties В докблоках нельзя типизировать определенную переменную, как объект определенного анонимного класса */
         $testObject->__test__position = 9;
         self::assertEquals('9abc', $testObject->currentValueAndNext());
         self::assertNull($testObject->currentValueAndNext());
@@ -108,11 +110,13 @@ abstract class AbstractIteratorTestFunctions extends TestCase
         self::assertEquals(-96, $testObject->key());
         self::assertEquals([null, null, false], $testObject->currentElementAndNext());
 
+        /** @psalm-suppress NoInterfaceProperties В докблоках нельзя типизировать определенную переменную, как объект определенного анонимного класса */
         $testObject->__test__position = 0;
         self::assertEquals([0, '0abc', true], $testObject->currentElementAndNext(200));
         self::assertEquals(200, $testObject->key());
         self::assertEquals([null, null, false], $testObject->currentElementAndNext());
 
+        /** @psalm-suppress NoInterfaceProperties В докблоках нельзя типизировать определенную переменную, как объект определенного анонимного класса */
         $testObject->__test__position = 9;
         self::assertEquals([9, '9abc', true], $testObject->currentElementAndNext());
         self::assertEquals([null, null, false], $testObject->currentElementAndNext());

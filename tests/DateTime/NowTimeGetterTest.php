@@ -11,8 +11,8 @@
 
 namespace DraculAid\PhpTools\tests\DateTime;
 
-use DraculAid\PhpTools\DateTime\NowTimeGetter;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
+use DraculAid\PhpTools\DateTime\NowTimeGetter;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -47,7 +47,7 @@ class NowTimeGetterTest extends TestCase
         self::assertEquals(date(DateTimeFormats::SQL_TIME, $nowTime), NowTimeGetter::sqlTime());
         self::assertEquals(date(DateTimeFormats::SQL_DATETIME, $nowTime), NowTimeGetter::sqlDateTime());
 
-        $yearDayInt = (int)getdate($nowTime)['yday'] + 1;
+        $yearDayInt = getdate($nowTime)['yday'] + 1;
         $yearDayString = str_repeat('0', 3 - strlen((string)$yearDayInt)) . $yearDayInt;
         self::assertEquals(date('Y', $nowTime), NowTimeGetter::getYear());
         self::assertEquals($yearDayInt, NowTimeGetter::getYearDay());
@@ -59,11 +59,11 @@ class NowTimeGetterTest extends TestCase
         self::assertEquals(date('d', $nowTime), NowTimeGetter::getMonDay2());
 
         $weekInt = date('W', $nowTime);
-        $weekString = str_repeat('0', 2 - strlen((string)$weekInt)) . $weekInt;
+        $weekString = str_repeat('0', 2 - strlen($weekInt)) . $weekInt;
         self::assertEquals($weekInt, NowTimeGetter::getWeek());
         self::assertEquals($weekString, NowTimeGetter::getWeek2());
         self::assertEquals(date('N', $nowTime), NowTimeGetter::getWeekDay());
-        self::assertEquals((int)getdate($nowTime)['wday'], NowTimeGetter::getWeekDayUSA());
+        self::assertEquals(getdate($nowTime)['wday'], NowTimeGetter::getWeekDayUSA());
 
         self::assertEquals((int)date('G', $nowTime), NowTimeGetter::getHour());
         self::assertEquals(date('H', $nowTime), NowTimeGetter::getHour2());

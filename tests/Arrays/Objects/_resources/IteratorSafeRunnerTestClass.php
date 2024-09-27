@@ -21,30 +21,50 @@ class IteratorSafeRunnerTestClass implements \Iterator
     /** @var list */
     public array $array = [];
 
+    /**
+     * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
+     * @return mixed
+     */
     #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->array[$this->cursor];
     }
 
+    /**
+     * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
+     * @return void
+     */
     #[\ReturnTypeWillChange]
     public function next()
     {
         $this->cursor++;
     }
 
+    /**
+     * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
+     * @return mixed
+     */
     #[\ReturnTypeWillChange]
     public function key()
     {
         return $this->cursor;
     }
 
+    /**
+     * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
+     * @return bool
+     */
     #[\ReturnTypeWillChange]
     public function valid()
     {
         return $this->cursor >= 0 && $this->cursor < count($this->array);
     }
 
+    /**
+     * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
+     * @return void
+     */
     #[\ReturnTypeWillChange]
     public function rewind()
     {

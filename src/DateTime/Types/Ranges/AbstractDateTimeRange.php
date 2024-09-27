@@ -110,6 +110,7 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
 
         if (!isset($this->start) && isset($this->finish)) return -1;
 
+        /** @psalm-suppress RedundantCondition isset($this->start) всегда будет TRUE, оставлено для облегчения чтения кода */
         if (isset($this->start) && !isset($this->finish)) return 1;
 
         return false;

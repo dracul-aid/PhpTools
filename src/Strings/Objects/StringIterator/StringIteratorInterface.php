@@ -41,7 +41,7 @@ interface StringIteratorInterface extends IteratorInterface
      *
      * @return \Traversable<int, string>
      */
-    public function getIterator(bool $bytes = false): \Generator;
+    public function getIterator(bool $bytes = false): \Traversable;
 
     /**
      * Вернет номер текущего читаемого символа (отсчет от 0)

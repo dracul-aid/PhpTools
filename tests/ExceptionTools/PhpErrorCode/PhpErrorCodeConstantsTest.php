@@ -31,6 +31,7 @@ class PhpErrorCodeConstantsTest extends TestCase
     {
         // * * * Имена констант есть в списке всех констант ошибок
 
+        /** @psalm-suppress RedundantFunctionCall Нам нужно гарантировать что мы берем значения из {@see PhpErrorCodeConstants::ALL} */
         self::assertEquals(array_values(PhpErrorCodeConstants::ALL), array_keys(PhpErrorCodeConstants::NAMES));
         foreach (PhpErrorCodeConstants::NAMES as $contValue => $constName)
         {

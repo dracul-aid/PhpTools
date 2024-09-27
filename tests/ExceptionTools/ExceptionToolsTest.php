@@ -62,6 +62,7 @@ class ExceptionToolsTest extends TestCase
             3,
             ExceptionTools::safeCallWithCallable(function (int $a, int $b){return $a + $b;}, [1, 2], $callableFunction)
         );
+        /** @psalm-suppress  RedundantCondition Псалм просто не понимает, что переменная передается в функцию по ссылке и может измениться */
         self::assertFalse($callableCall);
 
         $callableCall = false;

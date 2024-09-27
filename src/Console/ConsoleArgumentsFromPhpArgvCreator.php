@@ -32,6 +32,7 @@ final class ConsoleArgumentsFromPhpArgvCreator
     public static function exe(): ConsoleArgumentsObject
     {
         if (empty($_SERVER['argv'])) throw new \LogicException("`\$_SERVER['argv']` not found");
+        /** @psalm-suppress TypeDoesNotContainType да, мы реально хотим оставить `!is_array($_SERVER['argv'])` это защита "от дурака" */
         if (!is_array($_SERVER['argv'])) throw new \LogicException("`\$_SERVER['argv']` is not a array, it is a " . gettype($_SERVER['argv']));
 
         // * * *

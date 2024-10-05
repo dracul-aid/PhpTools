@@ -62,11 +62,6 @@ class DateTimeExtendedRangeType extends AbstractDateTimeRange
     public $finish = null;
 
     /**
-     * Создает пустой временной диапазон на основе объектов даты-времени
-     */
-    public function __construct() {}
-
-    /**
      * @inheritdoc
      */
     public function startSet($start): self

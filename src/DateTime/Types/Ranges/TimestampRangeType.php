@@ -11,8 +11,8 @@
 
 namespace DraculAid\PhpTools\DateTime\Types\Ranges;
 
-use DraculAid\PhpTools\DateTime\TimestampHelper;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
+use DraculAid\PhpTools\DateTime\TimestampHelper;
 
 /**
  * Класс для временных диапазонов, точка "начала" и "конца" - таймштампы в формате секунд
@@ -55,11 +55,6 @@ class TimestampRangeType extends AbstractDateTimeRange
      * @todo PHP8 Типизация
      */
     public ?int $finish = null;
-
-    /**
-     * Создает пустой временной диапазон на основе таймштампов
-     */
-    public function __construct() {}
 
     /**
      * @inheritdoc

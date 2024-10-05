@@ -85,7 +85,7 @@ interface DateTimeRangeInterface
     /**
      * Устанавливает конечную точку диапазона
      *
-     * @param   mixed   $start   Любой формат представления даты-времени, см {@see TimestampHelper::getTimestamp()} и аналоги
+     * @param   mixed   $finish   Любой формат представления даты-времени, см {@see TimestampHelper::getTimestamp()} и аналоги
      *
      * @return  $this
      */

@@ -81,6 +81,7 @@ final class CallFunctionHelper implements StaticRunnerInterface
         if ($function[0] === 'n' && $function[1] === 'e' && $function[2] === 'w' && $function[3] === ' ')
         {
             $function = substr($function, 4);
+            /** @psalm-suppress InvalidStringClass в данном случае тут всегда будет класс */
             return new $function(...$arguments);
         }
         elseif ($function === 'isset') return isset($arguments[0]);

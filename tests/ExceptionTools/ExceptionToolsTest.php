@@ -29,22 +29,22 @@ class ExceptionToolsTest extends TestCase
     {
         self::assertEquals(
             'ABC',
-            ExceptionTools::safeCallWithResult(function () {return 'ABC';})
+            ExceptionTools::safeCallWithResult(function (): string {return 'ABC';})
         );
 
         self::assertEquals(
             3,
-            ExceptionTools::safeCallWithResult(function (int $a, int $b){return $a + $b;}, [1, 2])
+            ExceptionTools::safeCallWithResult(function (int $a, int $b): int {return $a + $b;}, [1, 2])
         );
 
         self::assertEquals(
             null,
-            ExceptionTools::safeCallWithResult(function (){throw new \Exception();}, [])
+            ExceptionTools::safeCallWithResult(function (): void {throw new \Exception();}, []) // @todo PHP8 поменять возвращаемое значение на `never`
         );
 
         self::assertEquals(
             100,
-            ExceptionTools::safeCallWithResult(function (){throw new \Exception();}, [], 100)
+            ExceptionTools::safeCallWithResult(function (): void {throw new \Exception();}, [], 100) // @todo PHP8 поменять возвращаемое значение на `never`
         );
     }
 
@@ -55,12 +55,12 @@ class ExceptionToolsTest extends TestCase
      */
     public function testSafeCallWithCallable(): void
     {
-        $callableFunction = function () use (&$callableCall) {$callableCall = true; return 777;};
+        $callableFunction = function () use (&$callableCall): int {$callableCall = true; return 777;};
 
         $callableCall = false;
         self::assertEquals(
             3,
-            ExceptionTools::safeCallWithCallable(function (int $a, int $b){return $a + $b;}, [1, 2], $callableFunction)
+            ExceptionTools::safeCallWithCallable(function (int $a, int $b): int {return $a + $b;}, [1, 2], $callableFunction)
         );
         /** @psalm-suppress  RedundantCondition Псалм просто не понимает, что переменная передается в функцию по ссылке и может измениться */
         self::assertFalse($callableCall);
@@ -68,7 +68,7 @@ class ExceptionToolsTest extends TestCase
         $callableCall = false;
         self::assertEquals(
             777,
-            ExceptionTools::safeCallWithCallable(function (){throw new \Exception();}, [], $callableFunction)
+            ExceptionTools::safeCallWithCallable(function (): void {throw new \Exception();}, [], $callableFunction) // @todo PHP8 поменять возвращаемое значение на `never`
         );
         self::assertTrue($callableCall);
     }
@@ -81,9 +81,9 @@ class ExceptionToolsTest extends TestCase
     public function testSafeCallFunctions(): void
     {
         $functionList = [
-            function () {return 123;},
-            function () {throw new \Exception();},
-            function () use (&$callableCall) {$callableCall = true; return 777;},
+            function (): int {return 123;},
+            function (): void {throw new \Exception();}, // @todo PHP8 поменять возвращаемое значение на `never`
+            function () use (&$callableCall): int {$callableCall = true; return 777;},
         ];
 
         // * * *
@@ -240,10 +240,10 @@ class ExceptionToolsTest extends TestCase
     private function createTestObjectForTestFunctionCall(): object
     {
         return new class() {
-            public function f_public(string $a) {
+            public function f_public(string $a): string {
                 return "public-{$a}";
             }
-            public function f_private(string $a) {
+            public function f_private(string $a): string {
                 return "private-{$a}";
             }
         };

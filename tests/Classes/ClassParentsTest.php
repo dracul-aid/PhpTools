@@ -55,7 +55,7 @@ class ClassParentsTest extends TestCase
         $traits = [];
         foreach ($this->classParentNames as $varName => $className)
         {
-            if (!strpos($varName,'Interface')) $traits[$varName] = $className;
+            if (!(bool)strpos($varName,'Interface')) $traits[$varName] = $className;
         }
 
         self::assertCount(count($traits), $testParents);
@@ -78,7 +78,7 @@ class ClassParentsTest extends TestCase
         $traits = [];
         foreach ($this->classParentNames as $varName => $className)
         {
-            if (strpos($varName,'Trait')) $traits[$varName] = $className;
+            if (strpos($varName,'Trait') > 0) $traits[$varName] = $className;
         }
 
         self::assertCount(count($traits), $testParents);

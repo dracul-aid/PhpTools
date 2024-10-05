@@ -338,7 +338,7 @@ final class ClassNotPublicManager
     {
         if (empty($this->closureForObjects[__FUNCTION__]))
         {
-            $this->closureForObjects[__FUNCTION__] = function($name) {
+            $this->closureForObjects[__FUNCTION__] = function(string $name) {
                 return constant(get_class($this) . "::{$name}");
             };
             $this->closureForObjects[__FUNCTION__] = $this->closureForObjects[__FUNCTION__]->bindTo($this->toObject, $this->toObject);
@@ -356,7 +356,7 @@ final class ClassNotPublicManager
     {
         if (empty($this->closureForObjects[__FUNCTION__]))
         {
-            $this->closureForObjects[__FUNCTION__] = function($name) {
+            $this->closureForObjects[__FUNCTION__] = function(string $name) {
                 return $this->{$name};
             };
             $this->closureForObjects[__FUNCTION__] = $this->closureForObjects[__FUNCTION__]->bindTo($this->toObject, $this->toObject);
@@ -374,7 +374,7 @@ final class ClassNotPublicManager
     {
         if (empty($this->closureForObjects[__FUNCTION__]))
         {
-            $this->closureForObjects[__FUNCTION__] = function($name) {
+            $this->closureForObjects[__FUNCTION__] = function(string $name) {
                 return (get_class($this))::$$name;
             };
             $this->closureForObjects[__FUNCTION__] = $this->closureForObjects[__FUNCTION__]->bindTo($this->toObject, $this->toObject);
@@ -392,7 +392,7 @@ final class ClassNotPublicManager
     {
         if (empty($this->closureForObjects[__FUNCTION__]))
         {
-            $this->closureForObjects[__FUNCTION__] = function($name, $data) {
+            $this->closureForObjects[__FUNCTION__] = function(string $name, $data) {
                 $this->{$name} = $data;
             };
             $this->closureForObjects[__FUNCTION__] = $this->closureForObjects[__FUNCTION__]->bindTo($this->toObject, $this->toObject);
@@ -410,7 +410,7 @@ final class ClassNotPublicManager
     {
         if (empty($this->closureForObjects[__FUNCTION__]))
         {
-            $this->closureForObjects[__FUNCTION__] = function($name, $data) {
+            $this->closureForObjects[__FUNCTION__] = function(string $name, $data) {
                 get_class($this)::$$name = $data;
             };
             $this->closureForObjects[__FUNCTION__] = $this->closureForObjects[__FUNCTION__]->bindTo($this->toObject, $this->toObject);
@@ -428,7 +428,7 @@ final class ClassNotPublicManager
     {
         if (empty($this->closureForObjects[__FUNCTION__]))
         {
-            $this->closureForObjects[__FUNCTION__] = function($name, $arguments) {
+            $this->closureForObjects[__FUNCTION__] = function(string $name, array $arguments) {
                 return $this->{$name}(...$arguments);
             };
             $this->closureForObjects[__FUNCTION__] = $this->closureForObjects[__FUNCTION__]->bindTo($this->toObject, $this->toObject);
@@ -446,7 +446,7 @@ final class ClassNotPublicManager
     {
         if (empty($this->closureForObjects[__FUNCTION__]))
         {
-            $this->closureForObjects[__FUNCTION__] = function($name, $arguments) {
+            $this->closureForObjects[__FUNCTION__] = function(string $name, array $arguments) {
                 return [get_class($this), $name](...$arguments);
             };
             $this->closureForObjects[__FUNCTION__] = $this->closureForObjects[__FUNCTION__]->bindTo($this->toObject, $this->toObject);

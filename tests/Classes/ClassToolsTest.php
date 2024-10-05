@@ -177,6 +177,7 @@ class ClassToolsTest extends TestCase
 
         eval("class {$className} {{$classInner}}");
 
+        /** @psalm-suppress InvalidStringClass Тут и правда имя класса */
         return new $className($set_var);
     }
 }

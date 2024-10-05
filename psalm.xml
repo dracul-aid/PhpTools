@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <psalm
-    errorLevel="3"
+    errorLevel="2"
     resolveFromConfigFile="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
@@ -29,5 +29,15 @@
         <!-- LEVEL 5 -->
         <!-- LEVEL 4 -->
         <!-- LEVEL 3 -->
+        <!-- LEVEL 2 -->
+        <UnsupportedReferenceUsage errorLevel="suppress" /> <!-- Работа с ссылками на таком уровне нужно при проведении тестов (вне тестов, это использовать как-то странно))) -->
+        <PropertyNotSetInConstructor errorLevel="suppress" /> <!-- Инициализация свойств по мере надобности - это очень удобно (не нужно создавать nullable переменные) -->
+        <RiskyTruthyFalsyComparison errorLevel="suppress" /> <!-- Создает больше проблем, чем пользы, так как зачастую вместо `empty()` нужно городить трехэтажные проверки -->
+        <MissingParamType errorLevel="suppress" /> <!-- Когда у аргументов функции нет явно указанных типов - Мы вынуждены на это пойти в PHP7, TODO PHP8 избавиться от этой заглушки -->
+        <MissingClosureReturnType errorLevel="suppress" /> <!-- Когда у анонимной функции нет установленного типа ответа - Мы вынуждены на это пойти в PHP7, TODO PHP8 избавиться от этой заглушки -->
+        <MissingClosureParamType errorLevel="suppress" /> <!-- Когда у анонимной функции нет установленных типов у аргументов - Мы вынуждены на это пойти в PHP7, TODO PHP8 избавиться от этой заглушки -->
+        <UnresolvableInclude errorLevel="suppress" /> <!-- Передача имени файла для загрузки ввиде переменной, это не баг, а фича) -->
+        <UnsafeInstantiation errorLevel="suppress" /> <!-- Тут кто догадывается полностью менять аргументы конструктора, сам дурак) -->
+        <RedundantConditionGivenDocblockType errorLevel="suppress" /> <!-- Проверки на входящие типы реально иногда нужны, в PHP7 нет гарантий, что придет что надо, TODO PHP8 избавиться от этой заглушки -->
     </issueHandlers>
 </psalm>

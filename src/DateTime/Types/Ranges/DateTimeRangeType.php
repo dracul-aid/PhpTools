@@ -11,7 +11,6 @@
 
 namespace DraculAid\PhpTools\DateTime\Types\Ranges;
 
-use DraculAid\PhpTools\DateTime\Types\GetTimestampInterface;
 use DraculAid\PhpTools\DateTime\DateTimeObjectHelper;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
 
@@ -60,11 +59,6 @@ class DateTimeRangeType extends AbstractDateTimeRange
      * @todo PHP8 Типизация
      */
     public $finish = null;
-
-    /**
-     * Создает пустой временной диапазон на основе объектов даты-времени
-     */
-    public function __construct() {}
 
     /**
      * @inheritdoc

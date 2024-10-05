@@ -21,7 +21,7 @@ use PHPUnit\Framework\TestCase;
  */
 class ObjectToolsTest extends TestCase
 {
-    public function testRun()
+    public function testRun(): void
     {
         $this->runTestToArray();
     }

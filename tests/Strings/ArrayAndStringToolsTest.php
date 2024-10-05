@@ -50,7 +50,7 @@ class ArrayAndStringToolsTest extends TestCase
             ArrayAndStringTools::arrayToStringWithoutEmpty(
                 '-',
                 [0, 1, 2],
-                function ($value, $index) {
+                function (int $value, int $index) {
                     return $index === 0 || $value === 2;
                 }
             )

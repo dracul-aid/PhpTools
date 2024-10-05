@@ -151,7 +151,7 @@ class DateTimeObjectHelperTest extends AbstractProjectTestCase
 
         // * * * Проверка функции, возвращающей таймштамп
 
-        $objectWithFunction = new class(){public function getTimestamp(){return 123123;}};
+        $objectWithFunction = new class(){public function getTimestamp(): int {return 123123;}};
         $objectWithoutFunction = new class(){};
 
         self::assertFalse(DateTimeObjectHelper::isGetTimestamp($objectWithFunction));

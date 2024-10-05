@@ -31,6 +31,12 @@ class SingletonTraitTest extends TestCase
         self::assertFALSE($singletonClass1::getInstance() === $singletonClass2::getInstance());
     }
 
+    /**
+     * @return class-string
+     *
+     * @psalm-suppress MoreSpecificReturnType Псалм не верит, что тут вернется имя класса, но оно так)
+     * @psalm-suppress LessSpecificReturnStatement Псалм не верит, что тут вернется имя класса, но оно так)
+     */
     private function createClassWithSingletonTrait(): string
     {
         $testClassName = '___createClassWithSingletoneTrait_' . uniqid() . '___';

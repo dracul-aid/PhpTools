@@ -35,6 +35,8 @@ final class ArrayAndStringTools
      *
      * @return string
      *
+     * @psalm-param bool|string|callable(mixed, mixed=): bool $ignoreFunction
+     *
      * @todo PHP8 аргументы функции
      */
     public static function arrayToStringWithoutEmpty(string $separator, iterable $array, $ignoreFunction = false): string

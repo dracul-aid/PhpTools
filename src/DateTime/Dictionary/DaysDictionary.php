@@ -210,8 +210,8 @@ final class DaysDictionary
      * @see DaysDictionary::CHAR2_LIST Список 2 буквенных кодов дней недели
      * @see DaysDictionary::CHAR3_LIST Список 3 буквенных кодов дней недели
      *
-     * @param   int      $numberDay        Номер дня недели (от 0 до 7, включительно), если передан день вне диапазона - будет выброшено исключение
-     * @param   int      $format           Символов в строковом представлении дня недели (2 или 3)
+     * @param   int<0, 7>      $numberDay        Номер дня недели (от 0 до 7, включительно), если передан день вне диапазона - будет выброшено исключение
+     * @param   int<2, 3>      $format           Символов в строковом представлении дня недели (2 или 3)
      *                                     <br>Если 2, будет использованы {@see DaysDictionary::CHAR2_1} - {@see DaysDictionary::CHAR2_7}
      *                                     <br>Если 3, будет использованы {@see DaysDictionary::CHAR3_1} - {@see DaysDictionary::CHAR3_7}
      * @param   string   $classException   Класс для создания исключения (по умолчанию {@see \RuntimeException})
@@ -222,9 +222,12 @@ final class DaysDictionary
      *
      * @throws  \RuntimeException Номер для недели должен быть от 0 до 7
      * @throws  \LogicException Формат должен быть равен 2 или 3
+     *
+     * @psalm-suppress InvalidFalsableReturnType Всегда вернет строку, варианты для возвращения FALSE отброшены выше
      */
     public static function getDayLabelOrException(int $numberDay, int $format = 2, string $classException = \RuntimeException::class): string
     {
+        /** @psalm-suppress InvalidCast $numberDay еще как может быть преобразована в строку, так как в функцию пользователь может передать что хочет (псалм не боженька) */
         if ($numberDay < 0 || $numberDay > 7) throw new $classException("\$numberDay format can be 0 - 7, but function call with {$numberDay}");
 
         /** @psalm-suppress FalsableReturnStatement Всегда вернет строку, варианты для возвращения FALSE отброшены выше */

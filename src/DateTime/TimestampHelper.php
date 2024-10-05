@@ -174,9 +174,9 @@ final class TimestampHelper
      *
      * (!) Не проверяет корректность дня, это значит, что указав, к примеру 400 дней, при установке даты, вы получите +1 год
      *
-     * @param   null|int   $year           Номер года (NULL - текущий год)
-     * @param   null|int   $day            Номер дня года, отсчет от 1-цы (NULL - текущий год)
-     * @param   mixed      $endDayOrTime   Указание времени, см {@see DateTimeHelper::getTimeString}
+     * @param   null|int   $year     Номер года (NULL - текущий год)
+     * @param   null|int   $day      Номер дня года, отсчет от 1-цы (NULL - текущий год)
+     * @param   mixed      $endDay   Указание времени, см {@see DateTimeHelper::getTimeString}
      *
      * @return int
      *
@@ -197,10 +197,10 @@ final class TimestampHelper
     /**
      * Создаст таймштамп определенного дня месяца
      *
-     * @param   null|int   $year           Номер года (NULL - текущий год)
-     * @param   null|int   $mon            Номер месяца (NULL - текущий месяц)
-     * @param   null|int   $day            Номер для месяца (NULL - текущий день месяца)
-     * @param   mixed      $endDayOrTime   Указание времени, см {@see DateTimeHelper::getTimeString}
+     * @param   null|int   $year     Номер года (NULL - текущий год)
+     * @param   null|int   $mon      Номер месяца (NULL - текущий месяц)
+     * @param   null|int   $day      Номер для месяца (NULL - текущий день месяца)
+     * @param   mixed      $endDay   Указание времени, см {@see DateTimeHelper::getTimeString}
      *
      * @return  int
      *
@@ -235,7 +235,7 @@ final class TimestampHelper
      * @param   null|int   $year           Номер года (NULL - текущий год)
      * @param   null|int   $week           Номер недели (NULL - текущий номер недели), Отсчет от 1
      * @param   null|int   $day            Номер для дня недели (NULL - текущий день недели), 1 понедельник ... 7 воскресенье
-     * @param   mixed      $endDayOrTime   Указание времени, см {@see DateTimeHelper::getTimeString}
+     * @param   mixed      $endDay         Указание времени, см {@see DateTimeHelper::getTimeString}
      *
      * @return  int
      *

@@ -69,7 +69,7 @@ class ObHelperTest extends TestCase
             {
                 echo '===111===';
             }
-            protected function notPublicPrintAndReturn($a = 'abc'): string
+            protected function notPublicPrintAndReturn(string $a = 'abc'): string
             {
                 echo "==={$a}===";
                 return '===333===';
@@ -113,7 +113,7 @@ class ObHelperTest extends TestCase
             {
                 echo "{$this->str}111{$this->str}";
             }
-            protected function notPublicPrintAndReturn($a = 'abc'): string
+            protected function notPublicPrintAndReturn(string $a = 'abc'): string
             {
                 echo "{$this->str}{$a}{$this->str}";
                 return "{$this->str}333{$this->str}";
@@ -160,7 +160,7 @@ class ObHelperTest extends TestCase
         self::assertEquals(
             '==123==',
             $testFunction(
-                function () {echo '==123==';},
+                function (): void {echo '==123==';},
             ),
             "Error for {$label}"
         );
@@ -168,7 +168,7 @@ class ObHelperTest extends TestCase
         self::assertEquals(
             '==123==',
             $testFunction(
-                function ($a = '123') {echo "=={$a}==";},
+                function (string $a = '123'): void {echo "=={$a}==";},
             ),
             "Error for {$label}"
         );
@@ -176,7 +176,7 @@ class ObHelperTest extends TestCase
         self::assertEquals(
             '==aaabbbccc==',
             $testFunction(
-                function ($a, $b, $c = 'ccc') {echo "=={$a}{$b}{$c}==";},
+                function (string $a, string $b, string $c = 'ccc'): void {echo "=={$a}{$b}{$c}==";},
                 ['aaa', 'bbb']
             ),
             "Error for {$label}"
@@ -186,7 +186,7 @@ class ObHelperTest extends TestCase
         self::assertEquals(
             '==123==',
             $testFunction(
-                function () {echo '==123=='; return 'XXX';},
+                function (): string {echo '==123=='; return 'XXX';},
                 [],
                 $testResult
             ),

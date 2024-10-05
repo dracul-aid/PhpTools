@@ -75,6 +75,8 @@ class FunctionAsPropertyObjectTest extends TestCase
      * Test for {@covers FunctionAsPropertyObject::getOrCreate()}
      *
      * @return void
+     *
+     * @psalm-suppress RedundantConditionGivenDocblockType да, мы в курсе, что ожидаемый тип и возвращается, но это тест
      */
     public function testGetOrCreate(): void
     {

@@ -44,7 +44,14 @@ use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
 abstract class AbstractDateTimeRange implements DateTimeRangeInterface
 {
     /**
+     * Создает пустой временной диапазон на основе объектов даты-времени
+     */
+    final public function __construct() {}
+
+    /**
      * @inheritdoc
+     *
+     * @psalm-suppress UnsafeInstantiation вызов конструктора тут безопасен, так как конструктор определен в абстрактном классе и он финальный
      *
      * @todo Вынести тестирование их конкретных классов в тест абстрактного класса
      */
@@ -55,6 +62,8 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
 
     /**
      * @inheritdoc
+     *
+     * @psalm-suppress UnsafeInstantiation вызов конструктора тут безопасен, так как конструктор определен в абстрактном классе и он финальный
      *
      * @todo Вынести тестирование их конкретных классов в тест абстрактного класса
      */

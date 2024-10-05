@@ -84,7 +84,7 @@ class FunctionAsPropertyObject
     {
         if ($functionOrObject instanceof static) return $functionOrObject;
 
-        // @todo PHP8 проверка теряет смысл
+        /** @psalm-suppress RedundantConditionGivenDocblockType Стоит только изза -> @todo PHP8 проверка теряет смысл */
         if (is_callable($functionOrObject) || is_string($functionOrObject)) return new static($functionOrObject);
 
         // @todo PHP8 удаляем, так как никогда не будет выполняться

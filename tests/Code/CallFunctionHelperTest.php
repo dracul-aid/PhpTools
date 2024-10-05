@@ -53,6 +53,8 @@ class CallFunctionHelperTest extends TestCase
      * Test for {@see CallFunctionHelper::getReflectionForCallable()} in {@see CallFunctionHelper::exeCallable()}
      *
      * @return void
+     *
+     * @psalm-suppress RedundantConditionGivenDocblockType да, мы в курсе, что ожидаемый тип и возвращается, но это тест
      */
     public function testExe(): void
     {

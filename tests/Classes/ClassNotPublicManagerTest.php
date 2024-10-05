@@ -181,6 +181,7 @@ class ClassNotPublicManagerTest extends TestCase
 
         eval("class {$className} {{$classInner}}");
 
+        /** @psalm-suppress InvalidStringClass тут строка и правда является именем класса */
         return new $className($set_var);
     }
 

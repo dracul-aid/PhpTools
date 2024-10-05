@@ -24,6 +24,11 @@ use PHPUnit\Framework\TestCase;
  */
 class Utf8IteratorTest extends TestCase
 {
+    /**
+     * @return void
+     *
+     * @psalm-suppress DeprecatedClass пока не удалили устаревший класс, нужна и проверка
+     */
     public function testRun(): void
     {
         $this->runTestCalculationCharLen();
@@ -37,6 +42,8 @@ class Utf8IteratorTest extends TestCase
 
     /**
      * Test for {@see Utf8Iterator::calculationCharLen()}
+     *
+     * @psalm-suppress DeprecatedClass пока не удалили устаревший класс, нужна и проверка
      */
     private function runTestCalculationCharLen(): void
     {
@@ -50,6 +57,8 @@ class Utf8IteratorTest extends TestCase
 
     /**
      * Test for {@see Utf8Iterator::get()}
+     *
+     * @psalm-suppress DeprecatedClass пока не удалили устаревший класс, нужна и проверка
      */
     private function runTestGet(): void
     {
@@ -61,6 +70,8 @@ class Utf8IteratorTest extends TestCase
     /**
      * Test for {@see Utf8Iterator::length()}
      * Test for {@see Utf8Iterator::count()}
+     *
+     * @psalm-suppress DeprecatedClass пока не удалили устаревший класс, нужна и проверка
      */
     private function runTestCounter(): void
     {
@@ -77,6 +88,8 @@ class Utf8IteratorTest extends TestCase
      * Test for {@see Utf8Iterator::cursorSet()}
      * Test for {@see Utf8Iterator::cursorGet()}
      * Test for {@see Utf8Iterator::readChar()}
+     *
+     * @psalm-suppress DeprecatedClass пока не удалили устаревший класс, нужна и проверка
      */
     private function runTestCursorSetAndGetAndReadChar(): void
     {
@@ -123,6 +136,8 @@ class Utf8IteratorTest extends TestCase
 
     /**
      * Test for {@see Utf8Iterator::readString()}
+     *
+     * @psalm-suppress DeprecatedClass пока не удалили устаревший класс, нужна и проверка
      */
     private function runTestReadString(): void
     {
@@ -142,6 +157,8 @@ class Utf8IteratorTest extends TestCase
 
     /**
      * Test for {@see Utf8Iterator::getIterator()}
+     *
+     * @psalm-suppress DeprecatedClass пока не удалили устаревший класс, нужна и проверка
      */
     private function runTestGetIterator(): void
     {
@@ -151,6 +168,8 @@ class Utf8IteratorTest extends TestCase
 
     /**
      * Test for {@see Utf8Iterator::utf8Generator()}
+     *
+     * @psalm-suppress DeprecatedClass пока не удалили устаревший класс, нужна и проверка
      */
     private function runTestGenerator(): void
     {
@@ -158,6 +177,17 @@ class Utf8IteratorTest extends TestCase
         self::assertEquals(['A', 'B', 'C', 'Я', 'В', 'Г', '1', '2', '3', 'Ͻ', 'Ⱦ'], iterator_to_array($testString));
     }
 
+    /**
+     * @param   Utf8Iterator   $testString
+     * @param   int            $char
+     * @param   int            $byte
+     * @param   int            $len
+     * @param   string         $readChar
+     *
+     * @return void
+     *
+     * @psalm-suppress DeprecatedClass пока не удалили устаревший класс, нужна и проверка
+     */
     private function cursorEquals(Utf8Iterator $testString, int $char, int $byte, int $len, string $readChar): void
     {
         self::assertEquals($char, $testString->cursorGet());

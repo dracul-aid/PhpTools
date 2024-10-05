@@ -70,6 +70,8 @@ class PhpErrorCodeThrowableTools
      * @return  \Error
      *
      * @todo PHP8 типизация аргументов
+     *
+     * @psalm-suppress UnsafeInstantiation Псалм ошибается, \Error не является финальным классом, его можно наследовать
      */
     public static function getBasicErrorObject(int $errorType, string $message = '', int $code = 0, ?\Throwable $previous = null): \Error
     {
@@ -92,6 +94,8 @@ class PhpErrorCodeThrowableTools
      * @throws \RuntimeException Если был передан код несуществующей ошибки
      *
      * @todo PHP8 типизация аргументов и ответа функции
+     *
+     * @psalm-suppress UnsafeInstantiation Псалм ошибается, \Error не является финальным классом, его можно наследовать
      */
     public static function getErrorObject(int $errorType, string $message = '', int $code = 0, ?\Throwable $previous = null): \Error
     {

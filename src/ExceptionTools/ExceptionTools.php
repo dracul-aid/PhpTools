@@ -182,6 +182,9 @@ final class ExceptionTools
      * @throws  \TypeError  Если функцию невозможно вызвать
      *
      * @todo PHP8 типизация аргументов и результата работы функции
+     *
+     * @psalm-suppress RedundantConditionGivenDocblockType Мы вынуждены указать в докблоке для $function массив, иначе
+     *                 нельзя будет вызывать непубличные методы (PHP не будет массив с непубличным методом считать callable-array)
      */
     private static function functionCall($function, array $arguments)
     {

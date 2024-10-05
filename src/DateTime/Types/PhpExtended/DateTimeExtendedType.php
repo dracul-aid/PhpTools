@@ -342,7 +342,7 @@ class DateTimeExtendedType extends \DateTime implements GetTimestampInterface
      * @param   null|int   $year           Номер года (NULL - не меняется)
      * @param   null|int   $week           Номер недели (NULL - не меняется), Отсчет от 1
      * @param   null|int   $day            Номер для дня недели (NULL - не меняется), 1 понедельник ... 7 воскресенье
-     * @param   mixed      $endDayOrTime   Указание времени, см {@see DateTimeHelper::getTimeString}, за исключением NULL - не меняется
+     * @param   mixed      $endDay         Указание времени, см {@see DateTimeHelper::getTimeString}, за исключением NULL - не меняется
      *
      * @return  $this
      *

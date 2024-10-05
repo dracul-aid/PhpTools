@@ -243,6 +243,7 @@ class ConsoleArgumentsObjectTest extends TestCase
 
         // Ищем несуществующие элементы
 
+        /** @psalm-suppress InvalidArgument специально передаем некорректное значение, для проверки работы функции */
         self::assertEquals(null, $testObject->getByPosition(-1, false));
         self::assertEquals(null, $testObject->getByPosition(4, false));
 
@@ -403,6 +404,7 @@ class ConsoleArgumentsObjectTest extends TestCase
 
         // Ищем несуществующие элементы
 
+        /** @psalm-suppress InvalidArgument Специально передаем некорректное значение, для проверки работы функции */
         self::assertFalse(isset($testObject[-1]));
         self::assertFalse(isset($testObject[2]));
         self::assertFalse(isset($testObject['xxx']));
@@ -433,6 +435,7 @@ class ConsoleArgumentsObjectTest extends TestCase
 
         // Ищем несуществующие элементы
 
+        /** @psalm-suppress InvalidArgument Специально передаем некорректное значение, для проверки работы функции */
         self::assertNull($testObject[-1]);
         self::assertNull($testObject[2]);
         self::assertNull($testObject['xxxx']);

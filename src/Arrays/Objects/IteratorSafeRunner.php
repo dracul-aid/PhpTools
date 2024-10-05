@@ -300,15 +300,15 @@ final class IteratorSafeRunner implements StaticRunnerInterface, \IteratorAggreg
     /**
      * Проведет безопасную перемотку "к следующему элементу"
      *
-     * @param   null|int   $step    Номер позиции, если передан NULL - будет использована {@see IteratorSafeRunThrowableStructure::POSITION_UNDEFINED}
-     * @param   mixed      $key     Последний полученный "ключ"
-     * @param   mixed      $value   Последнее полученное "значение"
+     * @param   int<0, max>   $step    Номер позиции
+     * @param   mixed         $key     Последний полученный "ключ"
+     * @param   mixed         $value   Последнее полученное "значение"
      *
      * @return  void
      *
      * @todo PHP8 добавить типизацию аргументам функции
      */
-    private function runSafeNext(?int $step, $key, $value): void
+    private function runSafeNext(int $step, $key, $value): void
     {
         $error = ExceptionTools::callAndReturnException([$this->iterator, 'next']);
 

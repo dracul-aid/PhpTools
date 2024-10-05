@@ -33,6 +33,8 @@ class PhpUnitExtendTestCase extends TestCase
      *
      * @return void
      *
+     * @psalm-param class-string|object $classOrObject
+     *
      * @todo PHP8 Типизация аргументов
      */
     public static function assertPropertyEquals($classOrObject, string $property, $equalValue, string $message = ''): void
@@ -53,6 +55,8 @@ class PhpUnitExtendTestCase extends TestCase
      * @param   string   $message         Дополнительное сообщение, будет сгенерировано в случае возникновения ошибки
      *
      * @return void
+     *
+     * @psalm-param array{class-string|object, string} $methodAsArray
      *
      * @todo PHP8 Типизация аргументов
      */

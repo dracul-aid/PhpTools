@@ -45,7 +45,13 @@ final class ObjectTools
         $objectReader = ClassNotPublicManager::getInstanceFor($object);
 
         $reflectionClass = new \ReflectionObject($object);
-        foreach ($reflectionClass->getProperties($filter) as $position => $property)
+
+        /**
+         * @todo PHP8 При переходе на 8-ку от $propertyList можно будет избавиться, так как `getProperties()` сможет принимать NULL
+         * @psalm-suppress ArgumentTypeCoercion Мы специально намутили проверку, что бы $filter не был NULL, псалм просто тупой(
+         */
+        $propertyList = $filter === null ? $reflectionClass->getProperties() : $reflectionClass->getProperties($filter);
+        foreach ($propertyList as $position => $property)
         {
             if ($property->isStatic()) continue;
 

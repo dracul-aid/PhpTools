@@ -35,6 +35,9 @@ final class DateTimeObjectHelper
     /**
      * Примет дату-время в различных форматах и всегда вернет объект для работы с датой-временем
      *
+     * @see TimestampHelper::getTimestamp() Позволяяет из любого формата даты-времени получить таймштамп
+     * @see DateTimeHelper::getDateArray() Позволяяет из любого формата даты-времени получить массив с описанием даты ({@see getdate()})
+     *
      * @param   mixed    $dateTime        Дата-время в одном из представлений:
      *                                    <br>+ {@see \DateTimeInterface}: Объект даты-времени
      *                                    <br>+ {@see GetTimestampInterface}: Объект, поддерживающий ответ ввиде таймштампа
@@ -48,16 +51,27 @@ final class DateTimeObjectHelper
      * @return  \DateTimeInterface
      *
      * @throws  \TypeError Если был передан неподходящий тип данных (в случае массива, массив не имел всех необходимых полей для построения даты)
+     *
+     * @psalm-param null|int|float|string|array|\DateTimeInterface|GetTimestampInterface $dateTime
      * @psalm-param class-string<\DateTimeInterface> $dateTimeClass
      *
-     * @see TimestampHelper::getTimestamp() Позволяяет из любого формата даты-времени получить таймштамп
-     * @see DateTimeHelper::getDateArray() Позволяяет из любого формата даты-времени получить массив с описанием даты ({@see getdate()})
+     * @psalm-suppress InvalidReturnType В ходе проверок не удалось добиться ошибки на которую указывает псалм, похоже он не учитывает проверки типизации в коде
      *
      * @todo PHP8 типизация аргументов (int|float|string|array|\DateTimeInterface)
      */
     public static function getDateObject($dateTime = null, string $dateTimeClass = DateTimeExtendedType::class): \DateTimeInterface
     {
-        if (is_object($dateTime) && is_a($dateTime, $dateTimeClass)) return $dateTime;
+        if (is_object($dateTime) && is_a($dateTime, $dateTimeClass) && is_subclass_of($dateTime, \DateTimeInterface::class))
+        {
+            return $dateTime;
+        }
+
+        // * * *
+
+        if (!is_subclass_of($dateTimeClass, \DateTimeInterface::class))
+        {
+            throw new \TypeError("Class {$dateTimeClass} can be a \DateTimeInterface");
+        }
 
         // * * *
 
@@ -65,7 +79,16 @@ final class DateTimeObjectHelper
 
         if (is_string($dateTime)) return new $dateTimeClass($dateTime);
 
-        if (is_int($dateTime)) return date_timestamp_set(new $dateTimeClass(), $dateTime);
+        if (is_int($dateTime))
+        {
+            /**
+             * @todo PHP8 код можно упросить до такого - но это не точно, может такой вариант и не нужен
+             * $dateTimeObject = new $dateTimeClass();
+             * $dateTimeObject->setTimestamp($dateTime);
+             * return $dateTimeObject;
+             */
+            return new $dateTimeClass(date('r', $dateTime));
+        }
 
         if (is_float($dateTime))
         {
@@ -98,14 +121,16 @@ final class DateTimeObjectHelper
     /**
      * Копирует объект даты-времени
      *
-     * @param   \DateTimeInterface|GetTimestampInterface                      $dateTime        Объект даты-времени, на основе которого будет создан новый объект
-     * @param   null|class-string<\DateTimeInterface|GetTimestampInterface>   $dateTimeClass   Класс, для создания нового объекта, NULL - тот же класс, что и $dateTime
+     * @param   \DateTimeInterface|GetTimestampInterface  $dateTime        Объект даты-времени, на основе которого будет создан новый объект
+     * @param   null|class-string                         $dateTimeClass   Класс, для создания нового объекта, NULL - тот же класс, что и $dateTime
+     *
+     * @psalm-param null|class-string<\DateTimeInterface|GetTimestampInterface>   $dateTimeClass
      *
      * @return  \DateTimeInterface|GetTimestampInterface
      *
      * @todo PHP8 типизация аргументов и ответа функции
      */
-    public static function copyDateTimeObject($dateTime, ?string $dateTimeClass = null)
+    public static function copyDateTimeObject($dateTime, ?string $dateTimeClass = null): object
     {
         TypeValidator::validateOr($dateTime, [\DateTimeInterface::class, GetTimestampInterface::class]);
 
@@ -113,7 +138,8 @@ final class DateTimeObjectHelper
         {
             $dateTimeClass = get_class($dateTime);
         }
-        elseif (!is_subclass_of($dateTimeClass, \DateTimeInterface::class) && !is_subclass_of($dateTimeClass, GetTimestampInterface::class))
+
+        if (!is_subclass_of($dateTimeClass, \DateTimeInterface::class) && !is_subclass_of($dateTimeClass, GetTimestampInterface::class))
         {
             throw new \TypeError("Class {$dateTimeClass} can be a \DateTimeInterface or a GetTimestampInterface");
         }

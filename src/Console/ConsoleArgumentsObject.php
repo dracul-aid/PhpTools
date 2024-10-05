@@ -160,7 +160,7 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
      * @param   string   $name          Имя
      * @param   bool     $orException   Нужно ли выбрасывать исключение, если не было найдено имя
      *
-     * @return  null|int
+     * @return  null|int<0, max>
      * @throws  \RangeException   Может быть выброшен, если имя не существует (см аргумент $orException)
      *
      * @todo PHP8 типизация ответа функции
@@ -175,8 +175,8 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
     /**
      * Вернет значение по указанной позиции, если позиция не существует - выбросит исключение (отключаемая опция)
      *
-     * @param   int    $position      Позиция
-     * @param   bool   $orException   Нужно ли выбрасывать исключение, если не было найдено имя
+     * @param   int<0, max>   $position      Позиция
+     * @param   bool          $orException   Нужно ли выбрасывать исключение, если не было найдено имя
      *
      * @return  null|true|string  TRUE аргумент был без значения (например ключ `-h`), NULL - аргумент не существует
      * @throws  \RangeException   Может быть выброшен, если имя не существует (см аргумент $orException)
@@ -207,6 +207,7 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
      */
     public function getByName(string $name, bool $orException = true)
     {
+        /** @psalm-suppress InvalidArgument Специально тут можем передать невалидное значение, что бы было падение (что бы не будлировать проверки) */
         return $this->getByPosition(
             $this->getPositionByName($name, $orException) ?? -1, // если не нашли позицию для имени, передадим "-1", так как это невалидный номер позиции
             $orException
@@ -266,7 +267,7 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
     /**
      * Проверит, существует ли аргумент, по его имени или позиции
      *
-     * @param   int|string   $offset   Позиция или имя аргумента
+     * @param   int<0, max>|string   $offset   Позиция или имя аргумента
      *
      * @return  bool
      *
@@ -282,7 +283,7 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
     /**
      * Вернет значение аргумента, по его номеру или имен
      *
-     * @param   int|string   $offset   Позиция или имя аргумента
+     * @param   int<0, max>|string   $offset   Позиция или имя аргумента
      *
      * @return  null|true|string   TRUE аргумент был без значения (например ключ `-h`), NULL - аргумент не существует
      *
@@ -309,7 +310,7 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
     /**
      * Добавление нового аргумента
      *
-     * @param   null|int|string   $offset   Позиция или имя аргумента
+     * @param   null|int<0, max>|string   $offset   Позиция или имя аргумента
      *                                      <br>- NULL: будет добавлено без имени, в конец списка
      *                                      <br>- int: позиция элемента (некорректное значение - будет добавлено в конец списка)
      *                                      <br>- string: имя элемента (если такого элемента нет, будет добавлен в конец списка)

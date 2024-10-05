@@ -71,6 +71,7 @@ class DateTimeExtendedRangeType extends AbstractDateTimeRange
      */
     public function startSet($start): self
     {
+        /** @psalm-suppress PropertyTypeCoercion мы тут явно указываем, какой класс вернет функция, так что пласм зря переживает */
         $this->start = DateTimeObjectHelper::getDateObject($start, DateTimeExtendedType::class);
 
         return $this;
@@ -81,6 +82,7 @@ class DateTimeExtendedRangeType extends AbstractDateTimeRange
      */
     public function finishSet($finish): self
     {
+        /** @psalm-suppress PropertyTypeCoercion мы тут явно указываем, какой класс вернет функция, так что пласм зря переживает */
         $this->finish = DateTimeObjectHelper::getDateObject($finish, DateTimeExtendedType::class);
 
         return $this;

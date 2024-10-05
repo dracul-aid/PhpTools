@@ -229,6 +229,7 @@ class ExceptionToolsTest extends TestCase
 
         foreach ($callWithError as $testName => $notCallable)
         {
+            /** @psalm-suppress PossiblyInvalidArgument Специально можем передать невалидно значения, так как тестируем работу функции */
             if (ExceptionTools::callAndReturnException($notCallable) === null)
             {
                 $this->fail("Fail test call not callable: {$testName}");

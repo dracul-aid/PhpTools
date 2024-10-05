@@ -55,7 +55,7 @@ final class ConsoleArgumentsFromPhpArgvCreator
     /**
      * Парсит строку значения аргумента, создает аргумент, и сохраняет его в объекте списка аргументов
      *
-     * @param   int                      $position        Порядковый номер аргумента
+     * @param   int<0, max>              $position        Порядковый номер аргумента
      * @param   string                   $paramRowValue   Строка с значением аргумента
      * @param   ConsoleArgumentsObject   $consoleParam    Объект "список аргументов"
      *

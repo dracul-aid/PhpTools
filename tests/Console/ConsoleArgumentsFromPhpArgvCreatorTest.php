@@ -93,7 +93,7 @@ class ConsoleArgumentsFromPhpArgvCreatorTest extends TestCase
      */
     private function testExe(): void
     {
-        $SERVER_ARGV = $_SERVER['argv'];
+        $SERVER_ARGV = $_SERVER['argv'] ?? [];
 
         $_SERVER['argv'] = [
             'script.php',

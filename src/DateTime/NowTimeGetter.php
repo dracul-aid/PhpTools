@@ -92,6 +92,9 @@ final class NowTimeGetter
      * Вернет текущий номер месяца (1 - 12)
      *
      * @return int<1, 12>
+     *
+     * @psalm-suppress LessSpecificReturnStatement Тут точно вернется нужный диапазон чисел
+     * @psalm-suppress MoreSpecificReturnType Тут точно вернется нужный диапазон чисел
      */
     public static function getMon(): int
     {
@@ -118,6 +121,9 @@ final class NowTimeGetter
      * <br>Т.е. 52 неделя года может оказаться уже в "новом году" (например 1 января суббота, это будет 52 неделя и она будет относиться к предыдущему году)
      *
      * @return int<1, 52>
+     *
+     * @psalm-suppress LessSpecificReturnStatement Тут точно вернется нужный диапазон чисел
+     * @psalm-suppress MoreSpecificReturnType Тут точно вернется нужный диапазон чисел
      */
     public static function getWeek(): int
     {
@@ -147,6 +153,9 @@ final class NowTimeGetter
      * Вернет текущий день месяца (1 - 31)
      *
      * @return int<1, 31>
+     *
+     * @psalm-suppress LessSpecificReturnStatement Тут точно вернется нужный диапазон чисел
+     * @psalm-suppress MoreSpecificReturnType Тут точно вернется нужный диапазон чисел
      */
     public static function getMonDay(): int
     {
@@ -167,6 +176,9 @@ final class NowTimeGetter
      * Вернет текущий день недели (1 - понедельник ... 7 - воскресенье)
      *
      * @return int<1, 7>
+     *
+     * @psalm-suppress LessSpecificReturnStatement Тут точно вернется нужный диапазон чисел
+     * @psalm-suppress MoreSpecificReturnType Тут точно вернется нужный диапазон чисел
      */
     public static function getWeekDay(): int
     {
@@ -177,6 +189,9 @@ final class NowTimeGetter
      * Вернет текущий день недели для США (0 - воскресенье, 1 - понедельник ... 6 - суббота)
      *
      * @return int<0, 6>
+     *
+     * @psalm-suppress LessSpecificReturnStatement Тут точно вернется нужный диапазон чисел
+     * @psalm-suppress MoreSpecificReturnType Тут точно вернется нужный диапазон чисел
      */
     public static function getWeekDayUSA(): int
     {
@@ -187,6 +202,9 @@ final class NowTimeGetter
      * Вернет текущий день года (1 - 366)
      *
      * @return int<0, 366>
+     *
+     * @psalm-suppress LessSpecificReturnStatement Тут точно вернется нужный диапазон чисел
+     * @psalm-suppress MoreSpecificReturnType Тут точно вернется нужный диапазон чисел
      */
     public static function getYearDay(): int
     {
@@ -211,6 +229,9 @@ final class NowTimeGetter
      * Вернет текущий час (0 - 23)
      *
      * @return int<0, 23>
+     *
+     * @psalm-suppress LessSpecificReturnStatement Тут точно вернется нужный диапазон чисел
+     * @psalm-suppress MoreSpecificReturnType Тут точно вернется нужный диапазон чисел
      */
     public static function getHour(): int
     {
@@ -233,6 +254,9 @@ final class NowTimeGetter
      * @return int<0, 59>
      *
      * @todo TEST тебует покрытия теста
+     *
+     * @psalm-suppress LessSpecificReturnStatement Тут точно вернется нужный диапазон чисел
+     * @psalm-suppress MoreSpecificReturnType Тут точно вернется нужный диапазон чисел
      */
     public static function getMinute(): int
     {
@@ -260,11 +284,14 @@ final class NowTimeGetter
      * @return int<0, 59>
      *
      * @todo TEST тебует покрытия теста
+     *
+     * @psalm-suppress LessSpecificReturnStatement Тут точно вернется нужный диапазон чисел
+     * @psalm-suppress MoreSpecificReturnType Тут точно вернется нужный диапазон чисел
      */
     public static function getSecond(): int
     {
         $second = date('s');
-        if ($second[0] === '0') $second = $second[1];
+        if ($second[0] === '0') $second = (int)$second[1];
 
         // * * *
 

@@ -77,11 +77,12 @@ class FunctionAsPropertyObject
      *
      * @return  static
      *
+     * @todo PHP8 типизация ответа функции
      * @todo PHP8 типизация аргументов функции, также часть проверок в коде станет ненужной
      */
-    public static function getOrCreate($functionOrObject): self
+    public static function getOrCreate($functionOrObject): object
     {
-        if ($functionOrObject instanceof self) return $functionOrObject;
+        if ($functionOrObject instanceof static) return $functionOrObject;
 
         // @todo PHP8 проверка теряет смысл
         if (is_callable($functionOrObject) || is_string($functionOrObject)) return new static($functionOrObject);

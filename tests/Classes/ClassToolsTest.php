@@ -38,6 +38,11 @@ class ClassToolsTest extends TestCase
         self::assertTrue(ClassTools::isLoad(\Throwable::class));
         self::assertTrue(ClassTools::isLoad(Test::class));
 
+        /**
+         * @psalm-suppress PossiblyNullArgument Пслам не умеет нормально работать с "ссылками" (а эта переменная получает значение ппо ссылке выше
+         * @psalm-suppress ArgumentTypeCoercion Пслам не умеет нормально работать с "ссылками" (а эта переменная получает значение ппо ссылке выше
+         * @todo           PHP8 можно будет избавиться, переделва на `[$traitName, $enumName] =  $this->createTestTraitAndEnum()`
+         */
         self::assertTrue(ClassTools::isLoad($traitName));
 
         // TODO PHP81 актуально начиная c 8.1

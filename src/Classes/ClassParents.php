@@ -28,6 +28,7 @@ final class ClassParents
     /**
      * Имя читаемого класса
      *
+     * @var class-string $className
      * @todo PHP8 readonly
      * @readonly
      */
@@ -144,7 +145,7 @@ final class ClassParents
     /**
      * Получит для класса список трейтов (рекурсивно)
      *
-     * @param   string   $className  Класс, для которого ведется поиск трейтов
+     * @param   class-string   $className  Класс, для которого ведется поиск трейтов
      *
      * @return  void
      *

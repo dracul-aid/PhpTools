@@ -21,7 +21,9 @@ use PHPUnit\Framework\TestCase;
  */
 class ClassParentsTest extends TestCase
 {
+    /** @var class-string */
     private string $className;
+    /** @var class-string[] */
     private array $classParentNames;
 
     /**
@@ -116,6 +118,7 @@ class ClassParentsTest extends TestCase
 
         foreach ($this->classParentNames as $name => $value)
         {
+            /** @psalm-suppress PropertyTypeCoercion мы на самом деле составляем тут список имен классов */
             $this->classParentNames[$name] = $value . $name;
         }
 
@@ -167,8 +170,14 @@ class ClassParentsTest extends TestCase
         );
     }
 
+    /**
+     * @return class-string
+     *
+     * @psalm-suppress MoreSpecificReturnType Псалм считает что мы возвращаем не имя класса, но мы будем использовать эту строку как имя класса
+     */
     private function getClassName(): string
     {
+        /** @psalm-suppress LessSpecificReturnStatement Псалм считает что это не имя класса, но мы будем использовать эту строку как имя класса */
         return '___test_class_name_' . uniqid() . '___';
     }
 }

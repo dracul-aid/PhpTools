@@ -59,7 +59,7 @@ class ListObject extends AbstractIterator implements ArrayInterface
     /** @var int<0, max> Курсор списка (Хранит позицию текущего элемента списка) */
     protected int $cursor = 0;
 
-    /** @var list<mixed> Массив-список хранимых значений */
+    /** @var array<int<0, max>, mixed> Массив-список хранимых значений */
     protected array $list = [];
 
     /** TRUE если разрешено выбрасывать "предупреждения" */
@@ -96,7 +96,7 @@ class ListObject extends AbstractIterator implements ArrayInterface
     /**
      * Вернет "Список" ввиде массива
      *
-     * @return list<mixed>
+     * @return array<int<0, max>, mixed>
      */
     public function getArrayCopy(): array
     {

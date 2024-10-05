@@ -139,12 +139,12 @@ final class ExceptionTools
      *
      * (!) $function также может быть массивом, указывающим на непубличный метод класса
      *
-     * @param   callable|array  $function            Функция
-     * @param   array           $arguments           Аргументы функции
-     * @param   string          $throwableClass      Класс исключения (или интерфейс)
-     * @param   null|string     $throwableMessage    Если не NULL - также проверит тест сообщения исключения
-     * @param   mixed           $throwableCode       Если не NULL - также проверит код исключения
-     * @param   mixed          &$_return             Результат работы функции
+     * @param   callable|array             $function            Функция
+     * @param   array                      $arguments           Аргументы функции
+     * @param   class-string<\Throwable>   $throwableClass      Класс исключения (или интерфейс)
+     * @param   null|string                $throwableMessage    Если не NULL - также проверит тест сообщения исключения
+     * @param   mixed                      $throwableCode       Если не NULL - также проверит код исключения
+     * @param   mixed                     &$_return             Результат работы функции
      *
      * @return  bool   Вернет TRUE, если в ходе работы функции было выброшено нужно исключение
      *

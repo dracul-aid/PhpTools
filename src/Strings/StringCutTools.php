@@ -42,7 +42,12 @@ final class StringCutTools
      *
      * @return  string   Вернет изначальную строку или обрезанную строку
      *
+     *
+     * @psalm-param string|iterable<string|\Stringable> $substr
+     *
      * @todo PHP8 Типизация аргументов функции
+     *
+     * @psalm-suppress PossiblyInvalidArrayAccess Мы точно знаем, что запрошенный элемент массива будет
      */
     public static function firstSubstrBefore(string $string, $substr, bool $withSubstr = false, int $start = 0): string
     {
@@ -75,14 +80,18 @@ final class StringCutTools
      *
      * (!) Поиск ведется до первого нахождения подстроки
      *
-     * @param   string         $string       Строка для обрезания
-     * @param   string|array   $substr       Строка до которой ведется поиск или массив с подстроками (поиск ведется до нахождения первой из них)
-     * @param   bool           $withSubstr   Нужно ли найденную подстроку оставить в ответе
-     * @param   int            $start        Позиция начала поиска в символах (замедляет поиск)
+     * @param   string            $string       Строка для обрезания
+     * @param   string|iterable   $substr       Строка до которой ведется поиск или массив с подстроками (поиск ведется до нахождения первой из них)
+     * @param   bool              $withSubstr   Нужно ли найденную подстроку оставить в ответе
+     * @param   int               $start        Позиция начала поиска в символах (замедляет поиск)
      *
      * @return  string   Вернет изначальную строку или обрезанную строку
      *
      * @todo PHP8 Типизация аргументов функции
+     *
+     * @psalm-param string|iterable<string|\Stringable> $substr
+     *
+     * @psalm-suppress PossiblyInvalidArrayAccess Мы точно знаем, что запрошенный элемент массива будет
      */
     public static function firstSubstrAfter(string $string, $substr, bool $withSubstr = false, int $start = 0): string
     {

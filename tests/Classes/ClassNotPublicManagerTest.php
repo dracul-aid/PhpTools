@@ -143,6 +143,9 @@ class ClassNotPublicManagerTest extends TestCase
      * Создает объект для тестирования взаимодействия с непубличными элементами
      *
      * @return object
+     *
+     * @psalm-suppress MoreSpecificReturnType Псалм не понимает, что мы возвращаем имя класса, так как мы класс создаем динамически
+     * @psalm-suppress LessSpecificReturnStatement Псалм не понимает, что мы возвращаем имя класса, так как мы класс создаем динамически
      */
     private function createObject(string $set_var = 'null'): object
     {
@@ -184,7 +187,10 @@ class ClassNotPublicManagerTest extends TestCase
     /**
      * Создаст класс с статическими элементами
      *
-     * @return string Вернет имя созданного класса
+     * @return class-string Вернет имя созданного класса
+     *
+     * @psalm-suppress MoreSpecificReturnType Псалм не понимает, что мы возвращаем имя класса, так как мы класс создаем динамически
+     * @psalm-suppress LessSpecificReturnStatement Псалм не понимает, что мы возвращаем имя класса, так как мы класс создаем динамически
      */
     private function createStaticClass(): string
     {

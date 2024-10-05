@@ -40,11 +40,11 @@ final class ClassTools
      * <br>+ Может выполнить конструктор, даже если он private или protected
      * <br>+ Установит свойства, даже если они private или protected
      *
-     * @param   string        $class         Полное имя класса
-     * @param   false|array   $arguments     Массив аргументов для конструктора:
-     *                                       <br>* FALSE: конструктор не будет вызван
-     *                                       <br>* array: список аргументов для конструктора
-     * @param   array         $properties    Массив свойств необходимых для установки в объекте
+     * @param   class-string   $class         Полное имя класса
+     * @param   false|array    $arguments     Массив аргументов для конструктора:
+     *                                        <br>* FALSE: конструктор не будет вызван
+     *                                        <br>* array: список аргументов для конструктора
+     * @param   array          $properties    Массив свойств необходимых для установки в объекте
      *
      * @return  object  Вернет созданный объект
      *
@@ -74,7 +74,7 @@ final class ClassTools
      * Проверит, данное имя является загруженным классом, трейтом, перечислением или интерфейсом
      * (т.е. загружен класс или нет)
      *
-     * @param   string   $className   Имя класса любого типа
+     * @param   class-string   $className   Имя класса любого типа
      *
      * @return  bool
      */
@@ -93,8 +93,8 @@ final class ClassTools
      * @see ArrayHelper::isAsArray() Проверит, является ли объект похожим на массив
      * @see ArrayInterface Интерфейс для объектов, схожих с массивами
      *
-     * @param   string|object   $classOrObject   Класс или объект для проверки
-     * @param   bool            $countable       Должно ли переданное значение корректно отрабатываться функцией {@see count()}
+     * @param   class-string|object   $classOrObject   Класс или объект для проверки
+     * @param   bool                  $countable       Должно ли переданное значение корректно отрабатываться функцией {@see count()}
      * 
      * @return  bool
      *
@@ -118,6 +118,8 @@ final class ClassTools
      * @return  bool
      *
      * @throws  \ReflectionException   Если не удалось получить рефлексию для класса
+     *
+     * @psalm-param class-string|trait-string $className
      */
     public static function isInternal(string $className): bool
     {

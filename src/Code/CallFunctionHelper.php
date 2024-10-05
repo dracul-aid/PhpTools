@@ -106,9 +106,9 @@ final class CallFunctionHelper implements StaticRunnerInterface
      *
      * (!) Может вызвать и непубличный метод
      *
-     * @param   array{0: class-string|object, 1: string}  $classAndMethod   Вызываемый метод в формате массива [$class, $method]
-     * @param   array                                     $arguments        Аргументы, с которыми будет вызван метод
-     * @param   array<string, mixed>                      $properties       Список свойств для установки создаваемому объекту (в том числе и непубличных)
+     * @param   array{class-string, string}   $classAndMethod   Вызываемый метод в формате массива [$class, $method]
+     * @param   array                         $arguments        Аргументы, с которыми будет вызван метод
+     * @param   array<string, mixed>          $properties       Список свойств для установки создаваемому объекту (в том числе и непубличных)
      *
      * @return  mixed   Вернет результат работы вызванного метода
      *
@@ -173,7 +173,8 @@ final class CallFunctionHelper implements StaticRunnerInterface
      */
     public static function isClassCallable(callable $function): bool
     {
-        return is_array($function) || (is_string($function) && strpos($function, '::') > 1);
+        return is_array($function)
+            || (is_string($function) && strpos($function, '::') > 1);
     }
 
     /**
@@ -191,10 +192,15 @@ final class CallFunctionHelper implements StaticRunnerInterface
     {
         if (self::isClassCallable($function))
         {
+            /**
+             * @psalm-suppress PossiblyInvalidArgument в ELSE строка всегда будет сингатрутой метода (т.е. строка)
+             * @psalm-suppress PossiblyInvalidCast в ELSE строка всегда будет сингатрутой метода (т.е. строка)
+             */
             if (is_array($function)) return new \ReflectionMethod($function[0], $function[1]);
             else return new \ReflectionMethod($function);
         }
 
+        /** @psalm-suppress ArgumentTypeCoercion $function тут уже не может быть массивом */
         return new \ReflectionFunction($function);
     }
 

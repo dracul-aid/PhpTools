@@ -27,6 +27,7 @@ class StringCutToolsTest extends TestCase
         $this->testFirstSubstrBefore();
         $this->testTrimInString();
         $this->testQuoteTrim();
+        $this->testClearMultiSpaces();
     }
 
     /**
@@ -148,5 +149,27 @@ class StringCutToolsTest extends TestCase
         self::assertEquals('домик на дереве', StringCutTools::quoteTrim('’домик на дереве’'));
 
         self::assertEquals('домик на дереве', StringCutTools::quoteTrim('"\'`домик на дереве"\'`'));
+    }
+
+    /**
+     * Test for {@see StringCutTools::clearMultiSpaces()}
+     *
+     * @return void
+     */
+    private function testClearMultiSpaces(): void
+    {
+        self::assertEquals('', StringCutTools::clearMultiSpaces(''));
+        self::assertEquals(' ', StringCutTools::clearMultiSpaces(' '));
+        self::assertEquals(' ', StringCutTools::clearMultiSpaces('   '));
+        self::assertEquals(' ', StringCutTools::clearMultiSpaces("\n\t      "));
+
+        self::assertEquals('', StringCutTools::clearMultiSpaces('', '!'));
+        self::assertEquals('!', StringCutTools::clearMultiSpaces(' ', '!'));
+        self::assertEquals('!', StringCutTools::clearMultiSpaces("\n\t      ", '!'));
+        self::assertEquals('123', StringCutTools::clearMultiSpaces("\n\t      ", '123'));
+
+        self::assertEquals('abc', StringCutTools::clearMultiSpaces('abc'));
+        self::assertEquals(' abc ', StringCutTools::clearMultiSpaces(' abc '));
+        self::assertEquals(' abc ', StringCutTools::clearMultiSpaces("\n\tabc      "));
     }
 }

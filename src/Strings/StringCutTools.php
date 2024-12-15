@@ -22,6 +22,7 @@ use DraculAid\PhpTools\tests\Strings\StringCutToolsTest;
  * <br>{@see StringCutTools::firstSubstrAfter()} - Вырежет строку с указанной подстроки (или подстрок) до конца, если такая подстрока есть
  * <br>{@see StringCutTools::trimInString()} - Удалит все повторяющиеся пробелы, в том числе и внутри строки
  * <br>{@see StringCutTools::quoteTrim()} - Удалит из начала и конца строки все кавычки
+ * <br>{@see StringCutTools::clearMultiSpaces()} - Удалит повторяющиеся пробельные символы
  *
  * @todo Реализовать StringCut::afterLastSubstr() - Обрежет строку после указанной подстроки (или подстрок)
  * @todo Реализовать StringCut::fromBetweenSubstr() - Обрежет строку между указанными подстроками
@@ -144,5 +145,20 @@ final class StringCutTools
     public static function quoteTrim(string $string): string
     {
         return trim($string, '\'"«»‘`‚„‘’“”' );
+    }
+
+    /**
+     * Удалит из строки последовательные пробельные символы, заменив их на пробел (или иной символ)
+     *
+     * @param   string   $string    Строка для обработки
+     * @param   string   $replace   Строка для замены (по умолчанию пробел: `' '`)
+     *
+     * @return  string
+     */
+    public static function clearMultiSpaces(string $string, string $replace = ' '): string
+    {
+        if ($string === '' || $replace === '') return $string;
+
+        return preg_replace('/\s+/', $replace, $string);
     }
 }

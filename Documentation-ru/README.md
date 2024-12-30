@@ -88,6 +88,7 @@
     * [Utf8IteratorObject](../src/Strings/Objects/StringIterator/Utf8IteratorObject.php) Итератор для PHP8 строк
 * [ArrayAndStringTools](../src/Strings/ArrayAndStringTools.php) Преобразование массивов в строки 
 * [CharTools](../src/Strings/CharTools.php) Полезные функции для работы с символами (до 127 кода)
+* [Utf8Tools](../src/Strings/Utf8Tools.php) Полезные функции для работы с UTF-8
 * [StringCutTools](../src/Strings/StringCutTools.php) Обрезание строк
 * [StringSearchTools](../src/Strings/StringSearchTools.php) Поиск подстрок внутри строки
 * [StringTools](../src/Strings/StringTools.php) Полезные функции для работы со строками

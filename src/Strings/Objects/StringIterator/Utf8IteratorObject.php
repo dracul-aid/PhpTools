@@ -54,6 +54,8 @@ class Utf8IteratorObject extends AbstractStringIterator
      * @param   string   $firstByte   Первый байт потенциального символа
      *
      * @return  int  Для пустой строки длина всегда будет 0
+     *
+     * @see \DraculAid\PhpTools\Strings\Utf8Tools::calculationCharLen() Аналогичная функция (функция существует в 2 экзеплярах по "историческим причинам")
      */
     public static function calculationCharLen(string $firstByte): int
     {

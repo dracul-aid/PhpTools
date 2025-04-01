@@ -14,6 +14,9 @@ namespace DraculAid\PhpTools\Strings;
 use DraculAid\Php8forPhp7\LoaderPhp8Lib;
 use DraculAid\PhpTools\tests\Strings\StringSearchToolsTest;
 
+// @todo PHP8 удалить
+LoaderPhp8Lib::loadInterfaces();
+
 /**
  * Статический класс для осуществления различных действий связанных с поиском внутри строк, если в описании функции не
  * указано иначе то - работает с UTF8
@@ -45,6 +48,7 @@ final class StringSearchTools
      * @todo PHP8 Разблокировать match()
      *
      * @psalm-suppress UnusedParam Псалм считает, что большая часть аргументов функции не используется внутри функции, но это не так
+     * @psalm-suppress UndefinedDocblockClass В PHP 7.4 Псалм ругается на \Stringable, так как не может его найти @todo PHP8 удалить
      */
     public static function position(string $string, iterable $searchList, int $start = 0, bool $utf8 = true, bool $returnArray = false)
     {

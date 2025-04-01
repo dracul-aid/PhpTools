@@ -11,8 +11,12 @@
 
 namespace DraculAid\PhpTools\Strings;
 
+use DraculAid\Php8forPhp7\LoaderPhp8Lib;
 use DraculAid\Php8forPhp7\TypeValidator;
 use DraculAid\PhpTools\tests\Strings\StringCutToolsTest;
+
+// @todo PHP8 удалить
+LoaderPhp8Lib::loadInterfaces();
 
 /**
  * Статический класс для осуществления обрезания строк
@@ -50,6 +54,7 @@ final class StringCutTools
      *
      * @psalm-suppress PossiblyInvalidArrayAccess Мы точно знаем, что запрошенный элемент массива будет
      * @psalm-suppress UnusedParam Псалм считает, что большая часть аргументов функции не используется внутри функции, но это не так
+     * @psalm-suppress UndefinedDocblockClass В PHP 7.4 Псалм ругается на \Stringable, так как не может его найти @todo PHP8 удалить
      */
     public static function firstSubstrBefore(string $string, $substr, bool $withSubstr = false, int $start = 0): string
     {
@@ -95,6 +100,7 @@ final class StringCutTools
      *
      * @psalm-suppress PossiblyInvalidArrayAccess Мы точно знаем, что запрошенный элемент массива будет
      * @psalm-suppress UnusedParam Псалм считает, что большая часть аргументов функции не используется внутри функции, но это не так
+     * @psalm-suppress UndefinedDocblockClass В PHP 7.4 Псалм ругается на \Stringable, так как не может его найти @todo PHP8 удалить
      */
     public static function firstSubstrAfter(string $string, $substr, bool $withSubstr = false, int $start = 0): string
     {

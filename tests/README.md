@@ -27,8 +27,13 @@ clear && php tests/run.php tests
 
 `docker-compose.yml` содержит все необходимое для проведения тестирования (PHP 7.4.x)
 
-```
+```shell
 cd PhpTools/tests
 docker-compose build
 docker-compose up
+```
+
+Для входа в консоль запущенного контейнера
+```shell
+docker-compose exec php74 bash
 ```

@@ -37,3 +37,10 @@ docker-compose up
 ```shell
 docker-compose exec php74 bash
 ```
+
+## Запуск PSALM проверок
+
+Для запуска PSALM проверок необходимо запустить
+```shell
+./vendor/bin/psalm
+```

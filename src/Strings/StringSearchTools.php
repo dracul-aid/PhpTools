@@ -43,6 +43,8 @@ final class StringSearchTools
      *
      * @todo PHP8 Типизация результата работы функции
      * @todo PHP8 Разблокировать match()
+     *
+     * @psalm-suppress UnusedParam Псалм считает, что большая часть аргументов функции не используется внутри функции, но это не так
      */
     public static function position(string $string, iterable $searchList, int $start = 0, bool $utf8 = true, bool $returnArray = false)
     {

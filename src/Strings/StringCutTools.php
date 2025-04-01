@@ -49,6 +49,7 @@ final class StringCutTools
      * @todo PHP8 Типизация аргументов функции
      *
      * @psalm-suppress PossiblyInvalidArrayAccess Мы точно знаем, что запрошенный элемент массива будет
+     * @psalm-suppress UnusedParam Псалм считает, что большая часть аргументов функции не используется внутри функции, но это не так
      */
     public static function firstSubstrBefore(string $string, $substr, bool $withSubstr = false, int $start = 0): string
     {
@@ -93,6 +94,7 @@ final class StringCutTools
      * @psalm-param string|iterable<string|\Stringable> $substr
      *
      * @psalm-suppress PossiblyInvalidArrayAccess Мы точно знаем, что запрошенный элемент массива будет
+     * @psalm-suppress UnusedParam Псалм считает, что большая часть аргументов функции не используется внутри функции, но это не так
      */
     public static function firstSubstrAfter(string $string, $substr, bool $withSubstr = false, int $start = 0): string
     {

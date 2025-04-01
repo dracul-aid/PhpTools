@@ -25,6 +25,7 @@
         <UnusedForeachValue errorLevel="suppress" /> <!-- При переборе действительно не всегда нужно значение, иногда нужен только ключ -->
         <MissingTemplateParam errorLevel="suppress" /> <!-- Базовые интерфейсы реально иногда нужно имплементировать, с нарушением правил наследования типизации -->
         <MissingDependency errorLevel="suppress" /> <!-- PSALM тупит и не видит загружаемые LoaderPhp8Lib::loadInterfaces() интерфейсы "под PHP8", @todo PHP8 удалить -->
+        <UndefinedClass errorLevel="suppress" /> <!-- PSALM тупит и не видит загружаемые LoaderPhp8Lib::loadInterfaces() интерфейсы "под PHP8", @todo PHP8 удалить -->
         <PossiblyUnusedParam errorLevel="suppress" /> <!-- PSALM тупит и постоянно ложно срабатывает на PHP7.4, @todo PHP8 удалить -->
         <!-- LEVEL 7 -->
         <!-- LEVEL 6 -->

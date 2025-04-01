@@ -24,6 +24,7 @@
         <DocblockTypeContradiction errorLevel="suppress" /> <!-- TODO PHP8 скорее всего можно будет убрать. Во многих местах в функцию входит mixed, а нам нужны строго определенные значения -->
         <UnusedForeachValue errorLevel="suppress" /> <!-- При переборе действительно не всегда нужно значение, иногда нужен только ключ -->
         <MissingTemplateParam errorLevel="suppress" /> <!-- Базовые интерфейсы реально иногда нужно имплементировать, с нарушением правил наследования типизации -->
+        <MissingDependency errorLevel="suppress" /> <!-- PSALM тупит и не видит загружаемые LoaderPhp8Lib::loadInterfaces() интерфейсы "под PHP8", @todo PHP8 удалить -->
         <!-- LEVEL 7 -->
         <!-- LEVEL 6 -->
         <!-- LEVEL 5 -->

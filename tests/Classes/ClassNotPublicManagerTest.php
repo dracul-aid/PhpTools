@@ -46,6 +46,9 @@ class ClassNotPublicManagerTest extends TestCase
      * Test for {@see ClassNotPublicManager::setStatic()}
      * Test for {@see ClassNotPublicManager::call()}
      * Test for {@see ClassNotPublicManager::callStatic()}
+     *
+     * @psalm-suppress UndefinedThisPropertyFetch
+     * @psalm-suppress PossiblyNullFunctionCall
      */
     public function testObject(): void
     {
@@ -54,6 +57,12 @@ class ClassNotPublicManagerTest extends TestCase
         [$testObject, $testClass, $testParent] = $this->createObject();
 
         $testNotPublic = ClassNotPublicManager::getInstanceFor($testObject);
+
+        // выполнение произвольного кода
+        // (ниже по коду свойства меняют значения, поэтому эту проверку лучше всего оставлять в начале)
+        self::assertEquals('private_var_value---double_private_var_value', $testNotPublic->run(function () {return "{$this->private_var}---{$this->parent_private_var}";}));
+        self::assertEquals('only_parent_var_value---parent_private_var_value', $testNotPublic->run(function () {return "{$this->only_parent_var}---{$this->parent_private_var}";}, $testParent));
+        self::assertEquals('private_var_value---double_private_var_value', $testNotPublic->run(function () {return "{$this->private_var}---{$this->parent_private_var}";}, $testClass));
 
         // чтение константы
         self::assertEquals('private_const_value', $testNotPublic->constant('PRIVATE_CONST'));
@@ -120,6 +129,12 @@ class ClassNotPublicManagerTest extends TestCase
 
         $testNotPublic = ClassNotPublicManager::getInstanceFor($testClass);
 
+        // выполнение произвольного кода
+        // (ниже по коду свойства меняют значения, поэтому эту проверку лучше всего оставлять в начале)
+        self::assertEquals('private_static_var_value---double_private_static_var_value', $testNotPublic->run(function () {return self::$private_static_var . '---' . self::$parent_private_static_var;}));
+        self::assertEquals('only_parent_static_var_value---parent_private_static_var_value', $testNotPublic->run(function () {return self::$only_parent_static_var . '---' . self::$parent_private_static_var;}, $testParent));
+        self::assertEquals('private_static_var_value---double_private_static_var_value', $testNotPublic->run(function () {return self::$private_static_var . '---' . self::$parent_private_static_var;}, $testClass));
+
         // чтение константы
         self::assertEquals('private_const_value', $testNotPublic->constant('PRIVATE_CONST'));
         self::assertEquals('parent_private_const_value', $testNotPublic->constant('PARENT_PRIVATE_CONST', $testParent));
@@ -160,6 +175,9 @@ class ClassNotPublicManagerTest extends TestCase
      * Test for {@see ClassNotPublicManager::readProperty()}
      * Test for {@see ClassNotPublicManager::writeProperty()}
      * Test for {@see ClassNotPublicManager::callMethod()}
+     *
+     * @psalm-suppress UndefinedThisPropertyFetch
+     * @psalm-suppress PossiblyNullFunctionCall
      */
     public function testEasyObject(): void
     {
@@ -167,8 +185,14 @@ class ClassNotPublicManagerTest extends TestCase
 
         [$testObject, $testClass, $testParent] = $this->createObject();
 
+        // выполнение произвольного кода
+        // (ниже по коду свойства меняют значения, поэтому эту проверку лучше всего оставлять в начале)
+        self::assertEquals('private_var_value---double_private_var_value', ClassNotPublicManager::execute($testObject, function () {return "{$this->private_var}---{$this->parent_private_var}";}));
+        self::assertEquals('only_parent_var_value---parent_private_var_value', ClassNotPublicManager::execute($testObject, function () {return "{$this->only_parent_var}---{$this->parent_private_var}";}, $testParent));
+        self::assertEquals('private_var_value---double_private_var_value', ClassNotPublicManager::execute($testObject, function () {return "{$this->private_var}---{$this->parent_private_var}";}, $testClass));
+
         // чтение констант класса
-        self::assertEquals('private_const_value', ClassNotPublicManager::readConstant($testClass, 'PRIVATE_CONST'));
+        self::assertEquals('private_const_value', ClassNotPublicManager::readConstant($testObject, 'PRIVATE_CONST'));
 
         // чтение констант объекта
         self::assertEquals('private_const_value', ClassNotPublicManager::readConstant($testObject, 'PRIVATE_CONST'));
@@ -236,6 +260,12 @@ class ClassNotPublicManagerTest extends TestCase
 
         [$testClass, $testParent] = $this->createStaticClass();
 
+        // выполнение произвольного кода
+        // (ниже по коду свойства меняют значения, поэтому эту проверку лучше всего оставлять в начале)
+        self::assertEquals('private_static_var_value---double_private_static_var_value', ClassNotPublicManager::execute($testClass, function () {return self::$private_static_var . '---' . self::$parent_private_static_var;}));
+        self::assertEquals('only_parent_static_var_value---parent_private_static_var_value', ClassNotPublicManager::execute($testClass, function () {return self::$only_parent_static_var . '---' . self::$parent_private_static_var;}, $testParent));
+        self::assertEquals('private_static_var_value---double_private_static_var_value', ClassNotPublicManager::execute($testClass, function () {return self::$private_static_var . '---' . self::$parent_private_static_var;}, $testClass));
+
         // чтение констант
         self::assertEquals('private_const_value', ClassNotPublicManager::readConstant($testClass, 'PRIVATE_CONST'));
         self::assertEquals('parent_private_const_value', ClassNotPublicManager::readConstant($testClass, 'PARENT_PRIVATE_CONST', $testParent));
@@ -287,7 +317,11 @@ class ClassNotPublicManagerTest extends TestCase
 
         /** Код тестового класса-родителя */
         $parentInner = <<<'CODE'
+        
             private const PARENT_PRIVATE_CONST = 'parent_private_const_value';
+        
+            private static string $only_parent_static_var = 'only_parent_var_static_value';
+            private string $only_parent_var = 'only_parent_var_value';
             
             private string $parent_private_var = 'parent_private_var_value';
             private static string $parent_private_static_var = 'parent_private_static_var_value';
@@ -373,6 +407,9 @@ class ClassNotPublicManagerTest extends TestCase
         /** Код тестового класса-родителя */
         $parentInner = <<<'CODE'
             private const PARENT_PRIVATE_CONST = 'parent_private_const_value';
+        
+            private static string $only_parent_static_var = 'only_parent_static_var_value';
+            private string $only_parent_var = 'only_parent_var_value';
             
             private static string $parent_private_static_var = 'parent_private_static_var_value';
             

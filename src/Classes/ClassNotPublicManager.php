@@ -32,6 +32,7 @@ LoaderPhp8Lib::loadWeakMap();
  * <br>{@see ClassNotPublicManager::readProperty()} - Чтение значения свойства
  * <br>{@see ClassNotPublicManager::writeProperty()} - Запись значения свойства (списка свойств)
  * <br>{@see ClassNotPublicManager::callMethod()} - Вызов метода
+ * <br>{@see ClassNotPublicManager::execute()} - Позволяет выполнить произвольную функцию внутри указанной области видимости
  * <br>--- Объект для взаимодействия с непубличными элементами
  * <br>{@see self::$toObject} [const] - Для какого объекта создан объект
  * <br>{@see self::constant()} - Вернет значение указанной константы
@@ -41,6 +42,7 @@ LoaderPhp8Lib::loadWeakMap();
  * <br>{@see self::setStatic()} - Установка статического свойства (или списка свойств)
  * <br>{@see self::call()} - Вызов метода
  * <br>{@see self::callStatic()} - Вызов статического метода
+ * <br>{@see self::run()} - Позволяет выполнить произвольную функцию внутри указанной области видимости
  *
  * Test cases for class {@see ClassNotPublicManagerTest}
  *
@@ -415,6 +417,49 @@ final class ClassNotPublicManager
 
         /** @psalm-suppress PossiblyNullFunctionCall Если не удастся сменить область видимости то пусть падает TypeError, так и должно быть */
         return $callFunction($name, $arguments, $classContext);
+    }
+
+    /**
+     * Позволяет выполнить произвольную функцию в указанной области видимости
+     *
+     * @param   string|object   $objectOrClass   Строка с именем класса (для чтения статических свойств) или объект (для чтения свойств объекта)
+     * @param   \Closure        $function        Функция, которая будет вызвана в указанном контексте
+     * @param   string          $classContext    Если чтение нужно произвести из конкретной области видимости (т.е. из родителя)
+     * @param   array           $arguments       Аргументы для функции
+     *
+     * @return  mixed
+     *
+     * @todo PHP8 Типизация возврата функции и аргументов функции
+     *
+     * @psalm-param class-string|object $objectOrClass
+     * @psalm-param string|empty $classContext
+     */
+    public static function execute($objectOrClass, \Closure $function, string $classContext = '', array $arguments = [])
+    {
+        TypeValidator::validateOr($objectOrClass, ['string', 'object']);
+
+        return self::getInstanceFor($objectOrClass)->run($function, $classContext, $arguments);
+    }
+
+    /**
+     * Позволяет выполнить произвольную функцию в указанной области видимости
+     *
+     * @param   \Closure       $function          Функция, которая будет вызвана в указанном контексте
+     * @param   class-string   $classContext      Если чтение нужно произвести из конкретной области видимости (т.е. из родителя)
+     * @param   array          $argumentsСписок   Аргументы для функции
+     *
+     * @return  mixed
+     *
+     * @todo PHP8 Типизация возврата функции
+     *
+     * @psalm-param string|empty $classContext
+     */
+    public function run(\Closure $function, string $classContext = '', array $arguments = [])
+    {
+        $function = $function->bindTo($this->toObject, $classContext === '' ? get_class($this->toObject) : $classContext);
+
+        /** @psalm-suppress PossiblyNullFunctionCall Если привязка к определенной области видимости провалится, мы и должны упасть */
+        return $function(... $arguments);
     }
 
     /**

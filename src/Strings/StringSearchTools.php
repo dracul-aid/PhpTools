@@ -61,6 +61,7 @@ final class StringSearchTools
 
         foreach ($searchList as $searchString)
         {
+            /** @psalm-suppress InvalidCast Преобразование в строку возможно, PSALM просто не знает про \Stringable в PHP 7.4 @todo PHP8 удалить */
             if (!is_string($searchString)) $searchString = (string)$searchString;
 
             if ($searchString === '')

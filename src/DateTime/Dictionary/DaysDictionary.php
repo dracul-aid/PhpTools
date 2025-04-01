@@ -51,6 +51,27 @@ final class DaysDictionary
      */
     public const SECONDS_IN_DAY = 86400;
 
+    /** Секунда начала суток */
+    public const START_DAY_SECOND = 0;
+
+    /** Минута начала суток */
+    public const START_DAY_MINUTE = 0;
+
+    /** Последняя секунда суток */
+    public const END_DAY_SECOND = 86400;
+
+    /** Последняя минута суток */
+    public const END_DAY_MINUTE = 1440;
+
+    /** Час начала суток */
+    public const START_DAY_HOUR = 0;
+
+    /** Час конца суток (в 12-ти часовом формате) */
+    public const END_DAY_HOUR_12 = 12;
+
+    /** Час конца суток (в 24-ти часовом формате) */
+    public const END_DAY_HOUR_24 = 24;
+
     /** Понедельник, в формате {@see getdate()} (Номер дня, с 0 до 6) */
     public const GETDATE_DAY_1 = 1;
     /** Вторник, в формате {@see getdate()} (Номер дня, с 0 до 6) */

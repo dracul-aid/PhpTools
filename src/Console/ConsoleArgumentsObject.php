@@ -11,8 +11,12 @@
 
 namespace DraculAid\PhpTools\Console;
 
+use DraculAid\Php8forPhp7\LoaderPhp8Lib;
 use DraculAid\PhpTools\Arrays\Objects\Interfaces\ArrayInterface;
 use DraculAid\PhpTools\Arrays\Objects\ListObject;
+
+// @todo PHP8 удалить
+LoaderPhp8Lib::loadInterfaces();
 
 /**
  * Объект для работы с аргументами консольных команд.

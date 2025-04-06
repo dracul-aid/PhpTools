@@ -25,17 +25,17 @@ clear && php tests/run.php tests
 
 ## Docker для тестов
 
-`docker-compose.yml` содержит все необходимое для проведения тестирования (PHP 7.4.x)
+`docker-compose.yml` содержит все необходимое для проведения тестирования (PHP 8.1.x)
 
 ```shell
 cd PhpTools/tests
 docker-compose build
-docker-compose up
+docker-compose up -d
 ```
 
 Для входа в консоль запущенного контейнера
 ```shell
-docker-compose exec php74 bash
+docker-compose exec php81 bash
 ```
 
 ## Запуск PSALM проверок

@@ -11,7 +11,6 @@
 
 namespace DraculAid\PhpTools\Classes;
 
-use DraculAid\Php8forPhp7\TypeValidator;
 use DraculAid\PhpTools\Arrays\ArrayHelper;
 use DraculAid\PhpTools\Arrays\Objects\Interfaces\ArrayInterface;
 use DraculAid\PhpTools\tests\Classes\ClassToolsTest;
@@ -48,18 +47,14 @@ final class ClassTools
      *
      * @return  object  Вернет созданный объект
      *
-     * @todo PHP8 Типизация аргументов
-     *
      * @psalm-template RealInstanceType of object
      * @psalm-param class-string<RealInstanceType> $class
      * @psalm-return RealInstanceType
      * @psalm-suppress InvalidReturnType Псалм запутывается в ожидаемом типе возвращаемого значения (а вот Шторм - нет)
      * @psalm-suppress InvalidReturnStatement Псалм запутывается в ожидаемом типе возвращаемого значения (а вот Шторм - нет)
      */
-    public static function createObject(string $class, $arguments = false, array $properties = []): object
+    public static function createObject(string $class, false|array $arguments = false, array $properties = []): object
     {
-        TypeValidator::validateOr($arguments, ['bool', 'array']);
-
         $reflectionClass = new \ReflectionClass($class);
         $object = $reflectionClass->newInstanceWithoutConstructor();
         $objectNotPublicManager = ClassNotPublicManager::getInstanceFor($object);
@@ -97,13 +92,9 @@ final class ClassTools
      * @param   bool                  $countable       Должно ли переданное значение корректно отрабатываться функцией {@see count()}
      * 
      * @return  bool
-     *
-     * @todo PHP8 Типизация аргументов
      */
-    public static function isAsArray($classOrObject, bool $countable = true): bool
+    public static function isAsArray(string|object $classOrObject, bool $countable = true): bool
     {
-        TypeValidator::validateOr($classOrObject, ['string', 'object']);
-
         if (is_subclass_of($classOrObject, \Traversable::class) === false || is_subclass_of($classOrObject, \ArrayAccess::class) === false) return false;
 
         if ($countable) return is_subclass_of($classOrObject, \Countable::class);
@@ -164,8 +155,6 @@ final class ClassTools
      * @param   string        $class       Полное имя класса
      *
      * @return  string[] Вернет массив, 0-ой элемент "пространство имен", 1-ый "Имя класса"
-     *
-     * @todo PHP8 Типизация аргументов (?string)
      */
     public static function getNameAndNamespace(string $class): array
     {

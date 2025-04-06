@@ -11,7 +11,6 @@
 
 namespace DraculAid\PhpTools\DateTime;
 
-use DraculAid\Php8forPhp7\TypeValidator;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
 use DraculAid\PhpTools\DateTime\Types\GetTimestampInterface;
 use DraculAid\PhpTools\DateTime\Types\PhpExtended\DateTimeExtendedType;
@@ -56,10 +55,8 @@ final class DateTimeObjectHelper
      * @psalm-param class-string<\DateTimeInterface> $dateTimeClass
      *
      * @psalm-suppress InvalidReturnType В ходе проверок не удалось добиться ошибки на которую указывает псалм, похоже он не учитывает проверки типизации в коде
-     *
-     * @todo PHP8 типизация аргументов (int|float|string|array|\DateTimeInterface)
      */
-    public static function getDateObject($dateTime = null, string $dateTimeClass = DateTimeExtendedType::class): \DateTimeInterface
+    public static function getDateObject(null|int|float|string|array|\DateTimeInterface|GetTimestampInterface $dateTime = null, string $dateTimeClass = DateTimeExtendedType::class): \DateTimeInterface
     {
         if (is_object($dateTime) && is_a($dateTime, $dateTimeClass) && is_subclass_of($dateTime, \DateTimeInterface::class))
         {
@@ -127,13 +124,9 @@ final class DateTimeObjectHelper
      * @psalm-param null|class-string<\DateTimeInterface|GetTimestampInterface>   $dateTimeClass
      *
      * @return  \DateTimeInterface|GetTimestampInterface
-     *
-     * @todo PHP8 типизация аргументов и ответа функции
      */
-    public static function copyDateTimeObject($dateTime, ?string $dateTimeClass = null): object
+    public static function copyDateTimeObject(\DateTimeInterface|GetTimestampInterface $dateTime, null|string $dateTimeClass = null): object
     {
-        TypeValidator::validateOr($dateTime, [\DateTimeInterface::class, GetTimestampInterface::class]);
-
         if ($dateTimeClass === null)
         {
             $dateTimeClass = get_class($dateTime);
@@ -155,14 +148,12 @@ final class DateTimeObjectHelper
      * Проверяет, может ли объект вернуть тайштамп (см {@see \DateTimeInterface::getTimestamp()} или {@see GetTimestampInterface::getTimestamp()})
      *
      * @param   mixed   $testObject      Значение для проверки
-     * @param   bool    $withCallable    Если объект не реализует  {@see \DateTimeInterface} или {@see GetTimestampInterface}
+     * @param   bool    $withCallable    Если объект не реализует {@see \DateTimeInterface} или {@see GetTimestampInterface}
      *                                   также проверит, может быть в нем есть функция getTimestamp()
      *
      * @return  bool
-     *
-     * @todo PHP8 типизация аргументов
      */
-    public static function isGetTimestamp($testObject, bool $withCallable = false): bool
+    public static function isGetTimestamp(mixed $testObject, bool $withCallable = false): bool
     {
         if (!is_object($testObject)) return false;
 

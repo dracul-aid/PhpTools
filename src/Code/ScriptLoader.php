@@ -45,10 +45,8 @@ final class ScriptLoader
      * @param   array    $use         Переменные для передачи в скрипт по ссылке (ключи массива - имена переменных)
      *
      * @return  mixed   Вернет результат выполнения `require()`
-     *
-     * @todo PHP8 Типизация ответа функции
      */
-    public static function exeRequire(string $path, array $arguments = [], array $use = [])
+    public static function exeRequire(string $path, array $arguments = [], array $use = []): mixed
     {
         $___dracul_aid_php_tools___script_loader___arguments__path___ = $path;
         unset($path);
@@ -67,10 +65,8 @@ final class ScriptLoader
      * @param   array    $use         Переменные для передачи в скрипт по ссылке (ключи массива - имена переменных)
      *
      * @return  mixed   Вернет результат выполнения `require_once()`
-     *
-     * @todo PHP8 Типизация ответа функции
      */
-    public static function exeRequireOnce(string $path, array $arguments = [], array $use = [])
+    public static function exeRequireOnce(string $path, array $arguments = [], array $use = []): mixed
     {
         $___dracul_aid_php_tools___script_loader___arguments__path___ = $path;
         unset($path);
@@ -89,10 +85,8 @@ final class ScriptLoader
      * @param   array    $use         Переменные для передачи в скрипт по ссылке (ключи массива - имена переменных)
      *
      * @return  mixed   Вернет результат выполнения `include()`
-     *
-     * @todo PHP8 Типизация ответа функции
      */
-    public static function exeInclude(string $path, array $arguments = [], array $use = [])
+    public static function exeInclude(string $path, array $arguments = [], array $use = []): mixed
     {
         $___dracul_aid_php_tools___script_loader___arguments__path___ = $path;
         unset($path);
@@ -111,10 +105,8 @@ final class ScriptLoader
      * @param   array    $use         Переменные для передачи в скрипт по ссылке (ключи массива - имена переменных)
      *
      * @return  mixed   Вернет результат выполнения `include_once()`
-     *
-     * @todo PHP8 Типизация ответа функции
      */
-    public static function exeIncludeOnce(string $path, array $arguments = [], array $use = [])
+    public static function exeIncludeOnce(string $path, array $arguments = [], array $use = []): mixed
     {
         $___dracul_aid_php_tools___script_loader___arguments__path___ = $path;
         unset($path);
@@ -134,11 +126,9 @@ final class ScriptLoader
      *
      * @return  mixed   Вернет результат выполнения `eval()`
      *
-     * @todo PHP8 Типизация ответа функции
-     *
      * @psalm-suppress UnusedParam Аргументы функции используются, просто псалм вообще не понимает, что тут происходит
      */
-    public static function exeEval(string $phpCode, array $arguments = [], array $use = [])
+    public static function exeEval(string $phpCode, array $arguments = [], array $use = []): mixed
     {
         $___dracul_aid_php_tools___script_loader___arguments__php_code___ = $phpCode;
         unset($phpCode);

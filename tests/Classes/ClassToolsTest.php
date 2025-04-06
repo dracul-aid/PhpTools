@@ -137,10 +137,8 @@ class ClassToolsTest extends TestCase
      * @param string|null $traitName
      * @param string|null $enumName
      * @return void
-     *
-     * @todo PHP8 Типизация аргументов
      */
-    private function createTestTraitAndEnum(?string &$traitName, ?string &$enumName): void
+    private function createTestTraitAndEnum(null|string &$traitName, null|string &$enumName): void
     {
         $traitName = '___test_trait_name_' . uniqid() . '___';
         $enumName = '___test_enum_name_' . uniqid() . '___';

@@ -67,7 +67,7 @@ class StringIteratorObject extends AbstractStringIterator
     }
 
     /** @inheritdoc */
-    public function next(int $position = 1)
+    public function next(int $position = 1): static
     {
         $this->cursorChar += $position;
         $this->cursorByte += $this->charLen * $position;

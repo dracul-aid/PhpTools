@@ -48,19 +48,15 @@ interface IteratorInterface extends \IteratorAggregate
      * (!) Если курсор находится "за пределами списка" - вернет NULL (следствие максимальной "схожести" с {@see \Iterator})
      *
      * @return mixed
-     *
-     * @todo PHP8 добавить типизации ответа функции
      */
-    public function current();
+    public function current(): mixed;
 
     /**
      * Вернет текущий ключ (т.е. текущую позицию курсора)
      *
      * @return mixed
-     *
-     * @todo PHP8 добавить типизации ответа функции
      */
-    public function key();
+    public function key(): mixed;
 
     /**
      * Сдвигает "курсор", на указанную позицию, обычно это значит "Переход к следующему ключу"
@@ -70,9 +66,8 @@ interface IteratorInterface extends \IteratorAggregate
      * @param    int   $position   Сдвиг на какую позицию (можно сдвигать, в том числе и "назад")
      *
      * @return  $this
-     * @todo PHP8 добавить типизации ответа функции
-     */
-    public function next(int $position = 1);
+ */
+    public function next(int $position = 1): self;
 
     /**
      * Проверит, вышел ли курсор за пределы содержимого
@@ -85,10 +80,8 @@ interface IteratorInterface extends \IteratorAggregate
      * Перемотает в начало, т.е. установит "курсор" на стартовую позицию
      *
      * @return $this
-     *
-     * @todo PHP8 добавить типизации ответа функции
      */
-    public function rewind();
+    public function rewind(): self;
 
     /**
      * Вернет текущее значение и сдвинет "курсор", в случае достижения "конца", вернет NULL

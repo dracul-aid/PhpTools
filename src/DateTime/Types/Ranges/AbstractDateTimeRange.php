@@ -109,7 +109,7 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
      *
      * @todo Вынести юнит-тесты из тестов конкретных классов в тест абстрактного класса
      */
-    public function isSet()
+    public function isSet(): bool|int
     {
         // (!) В функции специально используется isset(), так как Psalm не умеет нормально работать с докблоками интерфейсов
 
@@ -149,7 +149,7 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
      *
      * @todo Вынести тестирование их конкретных классов в тест абстрактного класса
      */
-    public function getLenght(bool $withMs = false)
+    public function getLenght(bool $withMs = false): int|float
     {
         if ($this->isSet() !== true) return 0;
 

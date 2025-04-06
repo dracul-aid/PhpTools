@@ -121,7 +121,7 @@ abstract class AbstractStringIterator implements StringIteratorInterface, \Strin
     }
 
     /** @inheritdoc */
-    public function rewind()
+    public function rewind(): static
     {
         $this->cursorChar = 0;
         $this->cursorByte = 0;

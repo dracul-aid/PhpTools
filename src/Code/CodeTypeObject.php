@@ -12,11 +12,7 @@
 namespace DraculAid\PhpTools\Code;
 
 use DraculAid\Php8forPhp7\LoaderPhp8Lib;
-use DraculAid\Php8forPhp7\TypeValidator;
 use DraculAid\PhpTools\tests\Code\CodeTypeObjectTest;
-
-// @todo PHP8 удалить
-LoaderPhp8Lib::loadInterfaces();
 
 /**
  * Класс, для хранения типов данных (совместим с DocBlock/PhpBlock)
@@ -62,11 +58,9 @@ class CodeTypeObject implements \IteratorAggregate, \Stringable
      * @param   string   $name
      * @param   array    $arguments
      *
-     * @return mixed
-     *
-     * @todo PHP8 типизация ответа функции
+     * @return  mixed
      */
-    public static function __callStatic(string $name, array $arguments)
+    public static function __callStatic(string $name, array $arguments): mixed
     {
         // получение имени функции, которая будет использована для установки списка типов
         // @todo PHP8 заменить на math
@@ -114,14 +108,9 @@ class CodeTypeObject implements \IteratorAggregate, \Stringable
      * @param   string|string[]   $type    Строка с типом данных (разделитель |) или массив с типами данных
      *
      * @return  $this
-     *
-     * @todo PHP8 типизация аргументов функции
      */
-    public function set($type): self
+    public function set(string|array $type): self
     {
-        // @todo PHP8 удалить
-        TypeValidator::validateOr($type, ['string', 'array']);
-
         if (is_string($type))
         {
             $type = explode('|', $type);
@@ -181,14 +170,9 @@ class CodeTypeObject implements \IteratorAggregate, \Stringable
      * @param   string|string[]   $type    Строка с типом данных (разделитель |) или массив с типами данных
      *
      * @return  $this
-     *
-     * @todo PHP8 типизация аргументов функции
      */
-    public function setFromDocBlock($type): self
+    public function setFromDocBlock(string|array $type): self
     {
-        // @todo PHP8 удалить
-        TypeValidator::validateOr($type, ['string', 'array']);
-
         if (is_string($type))
         {
             $type = explode('|', $type);

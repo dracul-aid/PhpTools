@@ -11,12 +11,8 @@
 
 namespace DraculAid\PhpTools\Console;
 
-use DraculAid\Php8forPhp7\LoaderPhp8Lib;
 use DraculAid\PhpTools\Arrays\Objects\Interfaces\ArrayInterface;
 use DraculAid\PhpTools\Arrays\Objects\ListObject;
-
-// @todo PHP8 удалить
-LoaderPhp8Lib::loadInterfaces();
 
 /**
  * Объект для работы с аргументами консольных команд.
@@ -81,14 +77,15 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
      * Добавляет / изменяем аргумент
      *
      * @param   int<0, max>   $position   Позиция аргумента
-     * @param   true|string   $value      Значение аргумента
+     * @param   true|string   $value      Значение аргумента (TRUE аргумент передан, но без значения)
      *
      * @return  $this
      * @throws  \RangeException   Если указана "позиция" нарушающая принцип массива-списка
      *
-     * @todo PHP8 типизация ответа и аргументов функции
+     * @todo PHP8 убрать возможность передачи в $value NULL - такая возможность была для создания аргумента без значения
+     *       (исключительно для проверки работы "объекта как массива" в юнит-тестах)
      */
-    public function setArgument(int $position, $value)
+    public function setArgument(int $position, null|bool|string $value): static
     {
         if ($position < 0 || $position > $this->arguments->count()) throw new \RangeException("\$position must be into the list, but \$position = {$position}");
 
@@ -105,10 +102,8 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
      *
      * @return  $this
      * @throws  \RangeException   Если нет элемента с такой позицией
-     *
-     * @todo PHP8 типизация ответа функции
      */
-    public function setName(int $position, string $name)
+    public function setName(int $position, string $name): static
     {
         if ($position < 0 || !$this->arguments->keyExists($position)) throw new \RangeException("Element with number {$position} not found");
 
@@ -148,10 +143,8 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
      *
      * @return  null|string
      * @throws  \RangeException   Может быть выброшен, если не было найдено имя (см аргумент $orException)
-     *
-     * @todo PHP8 типизация ответа функции
      */
-    public function getNameByPosition(int $position, bool $orException = true): ?string
+    public function getNameByPosition(int $position, bool $orException = true): null|string
     {
         if ($orException && !isset($this->positionAndName[$position])) throw new \RangeException("Name for position #{$position} not found");
 
@@ -166,10 +159,8 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
      *
      * @return  null|int<0, max>
      * @throws  \RangeException   Может быть выброшен, если имя не существует (см аргумент $orException)
-     *
-     * @todo PHP8 типизация ответа функции
      */
-    public function getPositionByName(string $name, bool $orException = true): ?int
+    public function getPositionByName(string $name, bool $orException = true): null|int
     {
         if ($orException && !isset($this->nameAndPosition[$name])) throw new \RangeException("Name >{$name}< not found");
 
@@ -185,9 +176,9 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
      * @return  null|true|string  TRUE аргумент был без значения (например ключ `-h`), NULL - аргумент не существует
      * @throws  \RangeException   Может быть выброшен, если имя не существует (см аргумент $orException)
      *
-     * @todo PHP8 типизация ответа функции
+     * @todo PHP8.2 типизация ответа функции
      */
-    public function getByPosition(int $position, bool $orException = true)
+    public function getByPosition(int $position, bool $orException = true): null|bool|string
     {
         if ($position < 0 || $position >= $this->arguments->count())
         {
@@ -207,9 +198,9 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
      * @return  null|true|string  TRUE аргумент был без значения (например ключ `-h`), NULL - аргумент не существует
      * @throws  \RangeException   Может быть выброшен, если имя не существует (см аргумент $orException)
      *
-     * @todo PHP8 типизация ответа функции
+     * @todo PHP8.2 типизация ответа функции
      */
-    public function getByName(string $name, bool $orException = true)
+    public function getByName(string $name, bool $orException = true): null|bool|string
     {
         /** @psalm-suppress InvalidArgument Специально тут можем передать невалидное значение, что бы было падение (что бы не будлировать проверки) */
         return $this->getByPosition(
@@ -274,10 +265,8 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
      * @param   int<0, max>|string   $offset   Позиция или имя аргумента
      *
      * @return  bool
-     *
-     * @todo PHP8 типизация аргументов функции
      */
-    public function offsetExists($offset): bool
+    public function offsetExists(mixed $offset): bool
     {
         if (is_string($offset)) return isset($this->nameAndPosition[$offset]);
 
@@ -291,13 +280,10 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
      *
      * @return  null|true|string   TRUE аргумент был без значения (например ключ `-h`), NULL - аргумент не существует
      *
-     * @todo PHP8 атрибут `#[\ReturnTypeWillChange]` нужен для совместимости с PHP7
-     * @todo PHP8 типизация аргументов и ответа функции
-     *
      * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
      */
     #[\ReturnTypeWillChange]
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
         if (is_string($offset))
         {
@@ -315,19 +301,17 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
      * Добавление нового аргумента
      *
      * @param   null|int<0, max>|string   $offset   Позиция или имя аргумента
-     *                                      <br>- NULL: будет добавлено без имени, в конец списка
-     *                                      <br>- int: позиция элемента (некорректное значение - будет добавлено в конец списка)
-     *                                      <br>- string: имя элемента (если такого элемента нет, будет добавлен в конец списка)
-     * @param                     $value
+     *                                              <br>- NULL: будет добавлено без имени, в конец списка
+     *                                              <br>- int: позиция элемента (некорректное значение - будет добавлено в конец списка)
+     *                                              <br>- string: имя элемента (если такого элемента нет, будет добавлен в конец списка)
+     * @param   true|string               $value    Значение аргумента (TRUE аргумент передан, но без значения)
      *
-     * @return $this|void
+     * @return $this
      *
-     * @todo PHP8 атрибут `#[\ReturnTypeWillChange]` нужен для совместимости с PHP7
-     * @todo PHP8 типизация аргументов и ответа функции
      * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
      */
     #[\ReturnTypeWillChange]
-    public function offsetSet($offset, $value)
+    public function offsetSet(mixed $offset, mixed $value): static
     {
         $name = null;
 
@@ -367,13 +351,10 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
      *
      * @return  $this
      *
-     * @todo PHP8 атрибут `#[\ReturnTypeWillChange]` нужен для совместимости с PHP7
-     * @todo PHP8 типизация аргументов и ответа функции
-     *
      * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
      */
     #[\ReturnTypeWillChange]
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): static
     {
         return $this;
     }
@@ -385,10 +366,6 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
         foreach ($this->arguments as $position => $value)
         {
             $name = $this->positionAndName[$position] ?? '';
-
-
-
-
             $_return[] = $name;
         }
 

@@ -12,15 +12,7 @@
 namespace DraculAid\PhpTools\Classes;
 
 use DraculAid\Php8forPhp7\LoaderPhp8Lib;
-use DraculAid\Php8forPhp7\TypeValidator;
 use DraculAid\PhpTools\tests\Classes\ClassNotPublicManagerTest;
-
-/**
- * Подключение имитации {@see \WeakMap}
- *
- * @todo PHP8 убрать имитацию
- */
-LoaderPhp8Lib::loadWeakMap();
 
 /**
  * Класс для работы с непубличными элементами классов и объектов
@@ -104,14 +96,10 @@ final class ClassNotPublicManager
      *
      * @return  static
      *
-     * @todo PHP8 Типизация аргументов
-     *
      * @psalm-param class-string|object $objectOrClass
      */
-    public static function getInstanceFor($objectOrClass): self
+    public static function getInstanceFor(string|object $objectOrClass): self
     {
-        TypeValidator::validateOr($objectOrClass, ['string', 'object']);
-
         /** @psalm-suppress RedundantPropertyInitializationCheck Псалм реально не знает, что это рабочая схема (она не требует расширения типов для свойства) */
         if (!isset(self::$_notPublicObjects)) self::$_notPublicObjects = new \WeakMap();
 
@@ -142,21 +130,14 @@ final class ClassNotPublicManager
     /**
      * Вернет значение константы
      *
-     * @param   string|object   $objectOrClass   Класс или объект, из которого будет проводиться чтение
-     * @param   string          $name            Имя константы
-     * @param   class-string    $classContext    Если чтение нужно произвести из конкретной области видимости (т.е. из родителя)
+     * @param   class-string|object   $objectOrClass   Класс или объект, из которого будет проводиться чтение
+     * @param   string                $name            Имя константы
+     * @param   class-string          $classContext    Если чтение нужно произвести из конкретной области видимости (т.е. из родителя)
      *
      * @return  mixed
-     *
-     * @todo PHP8 Типизация аргументов и возврата функции
-     *
-     * @psalm-param class-string|object $objectOrClass
-     * @psalm-param string|empty  $classContext
      */
-    public static function readConstant($objectOrClass, string $name, string $classContext = '')
+    public static function readConstant(string|object $objectOrClass, string $name, string $classContext = ''): mixed
     {
-        TypeValidator::validateOr($objectOrClass, ['string', 'object']);
-
         return self::getInstanceFor($objectOrClass)->constant($name, $classContext);
     }
 
@@ -168,11 +149,9 @@ final class ClassNotPublicManager
      *
      * @return  mixed
      *
-     * @todo PHP8 Типизация возврата функции
-     *
      * @psalm-param string|empty $classContext
      */
-    public function constant(string $name, string $classContext = '')
+    public function constant(string $name, string $classContext = ''): mixed
     {
         $readFunction = $this->getOrCreateFunctionForConstants();
 
@@ -185,21 +164,14 @@ final class ClassNotPublicManager
     /**
      * Прочитает значение свойства объекта или статического свойства класса
      *
-     * @param   string|object   $objectOrClass    Строка с именем класса (для чтения статических свойств) или объект (для чтения свойств объекта)
-     * @param   string          $name             Имя свойства
-     * @param   class-string    $classContext     Если чтение нужно произвести из конкретной области видимости (т.е. из родителя)
+     * @param   class-string|object   $objectOrClass    Строка с именем класса (для чтения статических свойств) или объект (для чтения свойств объекта)
+     * @param   string                $name             Имя свойства
+     * @param   class-string          $classContext     Если чтение нужно произвести из конкретной области видимости (т.е. из родителя)
      *
      * @return  mixed
-     *
-     * @todo PHP8 Типизация аргументов и возврата функции
-     *
-     * @psalm-param class-string|object $objectOrClass
-     * @psalm-param string|empty  $classContext
      */
-    public static function readProperty($objectOrClass, string $name, string $classContext = '')
+    public static function readProperty(string|object $objectOrClass, string $name, string $classContext = ''): mixed
     {
-        TypeValidator::validateOr($objectOrClass, ['string', 'object']);
-
         if (is_object($objectOrClass)) return self::getInstanceFor($objectOrClass)->get($name, $classContext);
         else return self::getInstanceFor($objectOrClass)->getStatic($name, $classContext);
     }
@@ -212,11 +184,9 @@ final class ClassNotPublicManager
      *
      * @return  mixed
      *
-     * @todo PHP8 Типизация возврата функции
-     *
      * @psalm-param string|empty $classContext
      */
-    public function get(string $name, string $classContext = '')
+    public function get(string $name, string $classContext = ''): mixed
     {
         $readFunction = $this->getOrCreateFunctionForGetProperties();
 
@@ -233,12 +203,8 @@ final class ClassNotPublicManager
      * @param   class-string   $classContext   Если чтение нужно произвести из конкретной области видимости (т.е. из родителя)
      *
      * @return  mixed
-     *
-     * @todo PHP8 Типизация возврата функции
-     *
-     * @psalm-param string|empty $classContext
      */
-    public function getStatic(string $name, string $classContext = '')
+    public function getStatic(string $name, string $classContext = ''): mixed
     {
         $readFunction = $this->getOrCreateFunctionForGetStaticProperties();
 
@@ -253,25 +219,17 @@ final class ClassNotPublicManager
      *
      * Если $name передан как массив и указана конкретная область видимости - будет выброшена ошибка
      *
-     * @param   string|object   $objectOrClass    Строка с именем класса (для чтения статических свойств) или объект (для чтения свойств объекта)
-     * @param   string|array    $name             Имя свойства или массив со списком свойств (имя свойства => значение)
-     * @param   mixed           $data             Значение для установки
-     * @param   class-string    $classContext     Если чтение нужно произвести из конкретной области видимости (т.е. из родителя)
+     * @param   class-string|object   $objectOrClass    Строка с именем класса (для чтения статических свойств) или объект (для чтения свойств объекта)
+     * @param   string|array          $name             Имя свойства или массив со списком свойств (имя свойства => значение)
+     * @param   mixed                 $data             Значение для установки
+     * @param   class-string          $classContext     Если чтение нужно произвести из конкретной области видимости (т.е. из родителя)
      *
      * @return  $this
      *
      * @throws  \LogicException Если $var передан как массив и указана конкретная область видимости
-     *
-     * @todo PHP8 Типизация аргументов и возврата функции
-     *
-     * @psalm-param class-string|object $objectOrClass
-     * @psalm-param string|empty  $classContext
      */
-    public static function writeProperty($objectOrClass, $name, $data = null, string $classContext = '')
+    public static function writeProperty($objectOrClass, string|array $name, mixed $data = null, string $classContext = ''): self
     {
-        TypeValidator::validateOr($objectOrClass, ['string', 'object']);
-        TypeValidator::validateOr($name, ['string', 'array']);
-
         if (is_array($name) && $classContext !== '') throw new \LogicException('Cannot pass $classContext if $var is an array');
 
         if (is_object($objectOrClass)) return self::getInstanceFor($objectOrClass)->set($name, $data, $classContext);
@@ -291,16 +249,10 @@ final class ClassNotPublicManager
      *
      * @throws  \LogicException Если $var передан как массив и указана конкретная область видимости
      *
-     * @todo PHP8 Типизация аргументов функции
-     *
-     * @psalm-param string|empty $classContext
-     *
      * @psalm-suppress PossiblyNullFunctionCall Если не удастся сменить область видимости то пусть падает TypeError, так и должно быть
      */
-    public function set($var, $data = null, string $classContext = ''): self
+    public function set(string|array $var, mixed $data = null, string $classContext = ''): self
     {
-        TypeValidator::validateOr($var, ['string', 'array']);
-
         if (is_array($var) && $classContext !== '') throw new \LogicException('Cannot pass $classContext if $var is an array');
 
         $readFunction = $this->getOrCreateFunctionForSetProperties();
@@ -325,16 +277,10 @@ final class ClassNotPublicManager
      *
      * @throws  \LogicException Если $var передан как массив и указана конкретная область видимости
      *
-     * @todo PHP8 Типизация аргументов функции
-     *
-     * @psalm-param string|empty $classContext
-     *
      * @psalm-suppress PossiblyNullFunctionCall Если не удастся сменить область видимости то пусть падает TypeError, так и должно быть
      */
-    public function setStatic($var, $data = null, string $classContext = ''): self
+    public function setStatic(string|array $var, mixed $data = null, string $classContext = ''): self
     {
-        TypeValidator::validateOr($var, ['string', 'array']);
-
         if (is_array($var) && $classContext !== '') throw new \LogicException('Cannot pass $classContext if $var is an array');
 
         $readFunction = $this->getOrCreateFunctionForSetStaticProperties();
@@ -349,20 +295,15 @@ final class ClassNotPublicManager
     /**
      * Вызов метода
      *
-     * @param   array          $methodAsArray   Вызываемый метод в формате массива [$objectOrClass, $method]
-     * @param   array          $arguments       Список аргументов
-     * @param   class-string   $classContext    Если чтение нужно произвести из конкретной области видимости (т.е. из родителя)
+     * @param   callable-array   $methodAsArray   Вызываемый метод в формате массива [$objectOrClass, $method]
+     * @param   array            $arguments       Список аргументов
+     * @param   class-string     $classContext    Если чтение нужно произвести из конкретной области видимости (т.е. из родителя)
      *
      * @return  mixed
      *
-     * @todo PHP8 Типизация возврата функции
-     *
-     * @psalm-param callable-array $methodAsArray
-     * @psalm-param string|empty $classContext
-     *
      * @psalm-suppress PossiblyNullFunctionCall Если не удастся сменить область видимости то пусть падает TypeError, так и должно быть
      */
-    public static function callMethod(array $methodAsArray, array $arguments = [], string $classContext = '')
+    public static function callMethod(array $methodAsArray, array $arguments = [], string $classContext = ''): mixed
     {
         if (!self::isCallable($methodAsArray))
         {
@@ -381,12 +322,8 @@ final class ClassNotPublicManager
      * @param   class-string   $classContext   Если чтение нужно произвести из конкретной области видимости (т.е. из родителя)
      *
      * @return  mixed
-     *
-     * @todo PHP8 Типизация возврата функции
-     *
-     * @psalm-param string|empty $classContext
      */
-    public function call(string $name, array $arguments = [], string $classContext = '')
+    public function call(string $name, array $arguments = [], string $classContext = ''): mixed
     {
         $callFunction = $this->getOrCreateFunctionForCall();
 
@@ -404,12 +341,8 @@ final class ClassNotPublicManager
      * @param   class-string   $classContext   Если чтение нужно произвести из конкретной области видимости (т.е. из родителя)
      *
      * @return  mixed
-     *
-     * @todo PHP8 Типизация возврата функции
-     *
-     * @psalm-param string|empty $classContext
      */
-    public function callStatic(string $name, array $arguments = [], string $classContext = '')
+    public function callStatic(string $name, array $arguments = [], string $classContext = ''): mixed
     {
         $callFunction = $this->getOrCreateFunctionForCallStatic();
 
@@ -422,22 +355,15 @@ final class ClassNotPublicManager
     /**
      * Позволяет выполнить произвольную функцию в указанной области видимости
      *
-     * @param   string|object   $objectOrClass   Строка с именем класса (для чтения статических свойств) или объект (для чтения свойств объекта)
-     * @param   \Closure        $function        Функция, которая будет вызвана в указанном контексте
-     * @param   string          $classContext    Если чтение нужно произвести из конкретной области видимости (т.е. из родителя)
-     * @param   array           $arguments       Аргументы для функции
+     * @param   class-string|object   $objectOrClass   Строка с именем класса (для чтения статических свойств) или объект (для чтения свойств объекта)
+     * @param   \Closure              $function        Функция, которая будет вызвана в указанном контексте
+     * @param   class-string          $classContext    Если чтение нужно произвести из конкретной области видимости (т.е. из родителя)
+     * @param   array                 $arguments       Аргументы для функции
      *
      * @return  mixed
-     *
-     * @todo PHP8 Типизация возврата функции и аргументов функции
-     *
-     * @psalm-param class-string|object $objectOrClass
-     * @psalm-param string|empty $classContext
      */
-    public static function execute($objectOrClass, \Closure $function, string $classContext = '', array $arguments = [])
+    public static function execute($objectOrClass, \Closure $function, string $classContext = '', array $arguments = []): mixed
     {
-        TypeValidator::validateOr($objectOrClass, ['string', 'object']);
-
         return self::getInstanceFor($objectOrClass)->run($function, $classContext, $arguments);
     }
 
@@ -449,12 +375,8 @@ final class ClassNotPublicManager
      * @param   array          $argumentsСписок   Аргументы для функции
      *
      * @return  mixed
-     *
-     * @todo PHP8 Типизация возврата функции
-     *
-     * @psalm-param string|empty $classContext
      */
-    public function run(\Closure $function, string $classContext = '', array $arguments = [])
+    public function run(\Closure $function, string $classContext = '', array $arguments = []): mixed
     {
         $function = $function->bindTo($this->toObject, $classContext === '' ? get_class($this->toObject) : $classContext);
 
@@ -525,8 +447,7 @@ final class ClassNotPublicManager
     {
         if (empty($this->closureForObjects[__FUNCTION__]))
         {
-            // @todo PHP8 типизация аргументов анонимной функции
-            $this->closureForObjects[__FUNCTION__] = function(string $name, $data) {
+            $this->closureForObjects[__FUNCTION__] = function(string $name, mixed $data) {
                 $this->{$name} = $data;
             };
             $this->closureForObjects[__FUNCTION__] = $this->closureForObjects[__FUNCTION__]->bindTo($this->toObject, $this->toObject);
@@ -546,8 +467,7 @@ final class ClassNotPublicManager
     {
         if (empty($this->closureForObjects[__FUNCTION__]))
         {
-            // @todo PHP8 типизация аргументов анонимной функции
-            $this->closureForObjects[__FUNCTION__] = function(string $name, $data, string $classContext) {
+            $this->closureForObjects[__FUNCTION__] = function(string $name, mixed $data, string $classContext) {
                 ($classContext ? $classContext : get_class($this))::$$name = $data;
             };
             $this->closureForObjects[__FUNCTION__] = $this->closureForObjects[__FUNCTION__]->bindTo($this->toObject, $this->toObject);

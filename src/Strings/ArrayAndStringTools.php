@@ -25,21 +25,20 @@ final class ArrayAndStringTools
     /**
      * Преобразует массив в строку, аналогично PHP функции {@see implode()} но с игнорированием пустых значений
      *
-     * @param   string                 $separator          Строка разделитель
-     * @param   iterable               $array              Массив или перечисляемое для преобразования
-     * @param   bool|string|callable   $ignoreFunction     Функция, проверяющая на "пустоту"
-     *                                                     <br>FALSE: empty()
-     *                                                     <br>TRUE: empty(), но число 0 не считается пустотой
-     *                                                     <br>callable: любая функция: $ignoreFunction($value, $index)
-     *                                                         или конструкция вызываемая как функция (типа isset())
+     * @param   string                                        $separator        Строка разделитель
+     * @param   iterable                                      $array            Массив или перечисляемое для преобразования
+     * @param   bool|string|callable                          $ignoreFunction   Функция, проверяющая на "пустоту"
+     *                                                                          <br>FALSE: empty()
+     *                                                                          <br>TRUE: empty(), но число 0 не считается пустотой
+     *                                                                          <br>callable: любая функция: $ignoreFunction($value, $index)
+     *                                                                          или конструкция вызываемая как функция (типа isset())
      *
-     * @return string
+     * @return  string
+     * @throws  \ReflectionException  Если не получилось получить объект-рефлексии для переданной функции
      *
      * @psalm-param bool|string|callable(mixed, mixed=): bool $ignoreFunction
-     *
-     * @todo PHP8 аргументы функции
      */
-    public static function arrayToStringWithoutEmpty(string $separator, iterable $array, $ignoreFunction = false): string
+    public static function arrayToStringWithoutEmpty(string $separator, iterable $array, bool|string|callable $ignoreFunction = false): string
     {
         $_return = '';
 
@@ -76,7 +75,7 @@ final class ArrayAndStringTools
      * @param   bool     $right    Направление обрезания. Если ЛОЖ (по умолчанию), то слева на право, если ИСТИНА, то с права на лево (т.е. в обратном порядке)
      * @param   bool     $utf8     TRUE если нужно применять `mb_` функции или FALSE если нет (если длина указана в байтах)
      *
-     * @return string[]
+     * @return  string[]
      */
     public static function subStringToArray(string $string, int $len, bool $right = false, bool $utf8 = true): array
     {

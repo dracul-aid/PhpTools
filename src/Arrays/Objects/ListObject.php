@@ -81,10 +81,8 @@ class ListObject extends AbstractIterator implements ArrayInterface
      * @param   array   $newList
      *
      * @return  $this
-     *
-     * @todo PHP8 добавить типизации ответа функции
      */
-    public function exchangeArray(array $newList)
+    public function exchangeArray(array $newList): static
     {
         //  TODO PHP8 array_values станет отчасти ненужной, так как во многих случаях уже передан список (см array_is_list())
         $this->list = array_values($newList);
@@ -111,10 +109,8 @@ class ListObject extends AbstractIterator implements ArrayInterface
      * @param   mixed ...$values
      *
      * @return  $this
-     *
-     * @todo PHP8 добавить типизацию ответа функции
      */
-    public function addEnd(...$values)
+    public function addEnd(...$values): static
     {
         array_push($this->list, ...$values);
 
@@ -134,10 +130,8 @@ class ListObject extends AbstractIterator implements ArrayInterface
      * @param  mixed   ...$values   Список значений для установки
      *
      * @return $this
-     *
-     * @todo PHP8 добавить ответ функции
      */
-    public function insert(int $offset, ...$values)
+    public function insert(int $offset, ...$values): static
     {
         if (count($this->list) === 0)
         {
@@ -177,14 +171,9 @@ class ListObject extends AbstractIterator implements ArrayInterface
      *
      * @throws  \TypeError          Если ключ был передан не целым числом
      * @throws  \RangeException   Если был запрошен элемент вне диапазона значений списка
-     *
-     * @todo PHP8 добавить типизацию для ответа и аргументов функции
      */
-    public function get($offset)
+    public function get(int $offset): mixed
     {
-        if (!is_int($offset)) throw new \TypeError('$offset must be INT, but called as ' . gettype($offset));
-
-
         if ($this->count() === 0) throw new \RangeException("List is empty");
         elseif ($offset >= 0 && $this->count() < $offset) throw new \RangeException("Element #{$offset} not found, List size: {$this->count()}");
         elseif ($offset < 0 && $this->count() <= abs($offset)) throw new \RangeException("Element #{$offset} not found, List size: {$this->count()}");
@@ -249,7 +238,6 @@ class ListObject extends AbstractIterator implements ArrayInterface
      *
      * @return  mixed
      *
-     * @todo PHP8 атрибут `#[\ReturnTypeWillChange]` нужен для совместимости с PHP7
      * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
      */
     #[\ReturnTypeWillChange]
@@ -292,12 +280,10 @@ class ListObject extends AbstractIterator implements ArrayInterface
      *
      * @return $this
      *
-     * @todo PHP8 атрибут `#[\ReturnTypeWillChange]` нужен для совместимости с PHP7
-     * @todo PHP8 типизация ответа и аргументов функции
      * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
      */
     #[\ReturnTypeWillChange]
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): static
     {
         if ($offset === null)
         {
@@ -337,12 +323,10 @@ class ListObject extends AbstractIterator implements ArrayInterface
      *
      * @return  $this
      *
-     * @todo PHP8 атрибут `#[\ReturnTypeWillChange]` нужен для совместимости с PHP7
-     * @todo PHP8 типизация ответа и аргументов функции
      * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
      */
     #[\ReturnTypeWillChange]
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): static
     {
         if (!is_int($offset) || count($this->list) === 0) return $this;
 
@@ -381,22 +365,16 @@ class ListObject extends AbstractIterator implements ArrayInterface
     /**
      * {@inheritdoc}
      *
-     * @todo PHP8 атрибут `#[\ReturnTypeWillChange]` нужен для совместимости с PHP7
-     * @todo PHP8 добавить типизации ответа функции
      * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
      */
     #[\ReturnTypeWillChange]
-    public function current()
+    public function current(): mixed
     {
         return $this->list[$this->cursor] ?? null;
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @todo PHP8 добавить типизации ответа функции
-     */
-    public function next(int $position = 1)
+    /** {@inheritdoc} */
+    public function next(int $position = 1): static
     {
         /** @psalm-suppress InvalidPropertyAssignmentValue Да, тут случайно можно оказаться да диапазоном списка, т.е. в отрицательной позиции */
         $this->cursor += $position;
@@ -408,8 +386,6 @@ class ListObject extends AbstractIterator implements ArrayInterface
      * {@inheritdoc}
      *
      * @return int<0, max>
-     *
-     * @todo PHP8 добавить типизации ответа функции
      * @psalm-suppress ImplementedReturnTypeMismatch Псалм ругается, что функция возвращает значение (о чем не говорит базовый интерфейс функции) и мы действительно так хотим
      */
     #[\ReturnTypeWillChange]
@@ -424,12 +400,8 @@ class ListObject extends AbstractIterator implements ArrayInterface
         return $this->count() > $this->cursor && $this->cursor >= 0;
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @todo PHP8 добавить типизации ответа функции
-     */
-    public function rewind()
+    /** {@inheritdoc} */
+    public function rewind(): static
     {
         $this->cursor = 0;
 
@@ -442,10 +414,8 @@ class ListObject extends AbstractIterator implements ArrayInterface
      * @param   int<0, max>   $position
      *
      * @return  $this
-     *
-     * @todo PHP8 добавить типизации ответа функции
      */
-    public function setCursor(int $position)
+    public function setCursor(int $position): static
     {
         $this->cursor = $position;
 

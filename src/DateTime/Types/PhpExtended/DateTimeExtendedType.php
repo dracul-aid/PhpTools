@@ -57,9 +57,9 @@ class DateTimeExtendedType extends \DateTime implements GetTimestampInterface
      *
      * @throws  \Exception   В случае провала создания даны в {@see \DateTime::__construct()}
      *
-     * @todo PHP8 типизация аргументов (int|float|string|array|\DateTimeInterface)
+     * @todo PHP8 добавить возможность создания объекта через передачу {@see GetTimestampInterface} {@see DateTimeObjectHelper::getDateObject} уже поддерживает это (т.е. дело только в юнит-тестах)
      */
-    public function __construct($datetime = null, \DateTimeZone $timezone = null)
+    public function __construct(null|int|float|string|array|\DateTimeInterface $datetime = null, \DateTimeZone $timezone = null)
     {
         parent::__construct(
             DateTimeObjectHelper::getDateObject($datetime, \DateTime::class)->format(DateTimeFormats::FUNCTIONS),
@@ -74,9 +74,9 @@ class DateTimeExtendedType extends \DateTime implements GetTimestampInterface
      *
      * @return  $this
      *
-     * @todo PHP8 типизация аргументов (int|float|string|array|\DateTimeInterface)
+     * @throws \DateMalformedStringException Если невозможно распарсить строку даты-времени
      */
-    public function set($datetime): self
+    public function set(null|int|float|string|array|\DateTimeInterface|GetTimestampInterface $datetime): self
     {
         $this->modify(
             DateTimeObjectHelper::getDateObject($datetime, \DateTime::class)->format(DateTimeFormats::FUNCTIONS)
@@ -235,17 +235,15 @@ class DateTimeExtendedType extends \DateTime implements GetTimestampInterface
     /**
      * Вернет дробную часть секунды (милисекунды, микросекнуды)
      *
-     * @param bool|int   $size           Что нужно вернуть:
-     *                                   <br> TRUE: микросекунды (т.е. 0.123456)
-     *                                   <br> FALSE: милисекунды (т.е. 0.123)
-     *                                   <br> int: кол-во знаков
-     * @param bool       $returnFloat    Нужно ли вернуть в FLOAT
+     * @param   bool|int   $size           Что нужно вернуть:
+     *                                     <br> TRUE: микросекунды (т.е. 0.123456)
+     *                                     <br> FALSE: милисекунды (т.е. 0.123)
+     *                                     <br> int: кол-во знаков
+     * @param   bool       $returnFloat    Нужно ли вернуть в FLOAT
      *
-     * @return int|float
-     *
-     * @todo PHP8 Типизация аргументов и ответа функции
+     * @return  int|float
      */
-    public function getMS($size = true, bool $returnFloat = false)
+    public function getMS(bool|int $size = true, bool $returnFloat = false): int|float
     {
         // получение микросекунд (вернет ввиде строки)
         $ms = $this->format('u');
@@ -286,10 +284,8 @@ class DateTimeExtendedType extends \DateTime implements GetTimestampInterface
      *                                   <br> string: Строка с форматом ({@see Date()})
      *
      * @return  string
-     *
-     * @todo PHP8 Типизация аргументов
      */
-    public function getSqlString($format = DateTimeFormats::SQL_DATETIME): string
+    public function getSqlString(bool|string $format = DateTimeFormats::SQL_DATETIME): string
     {
         if ($format === true) $format = DateTimeFormats::SQL_DATE;
         elseif ($format === false) $format = DateTimeFormats::SQL_TIME;
@@ -310,10 +306,8 @@ class DateTimeExtendedType extends \DateTime implements GetTimestampInterface
      *                                     при попытке установить 13 месяц, установит +1 год и январь)
      *
      * @return  $this
-     *
-     * @todo PHP8 Типизация аргументов функции
      */
-    public function setDateValues(?int $mday = null, ?int $mon = null, ?int $year = null, bool $withOutRange = false): self
+    public function setDateValues(null|int $mday = null, null|int $mon = null, null|int $year = null, bool $withOutRange = false): self
     {
         // если для каких-то параметров нужно взять текущие значения
         if ($year === null) $year = $this->getYear();
@@ -339,20 +333,22 @@ class DateTimeExtendedType extends \DateTime implements GetTimestampInterface
      * <br> Неделя, которая содержит как минимум четыре дня нового года
      * <br>Т.е. 52 неделя года может оказаться уже в "новом году" (например 1 января суббота, это будет 52 неделя и она будет относиться к предыдущему году)
      *
-     * @param   null|int   $year           Номер года (NULL - не меняется)
-     * @param   null|int   $week           Номер недели (NULL - не меняется), Отсчет от 1
-     * @param   null|int   $day            Номер для дня недели (NULL - не меняется), 1 понедельник ... 7 воскресенье
-     * @param   mixed      $endDay         Указание времени, см {@see DateTimeHelper::getTimeString}, за исключением NULL - не меняется
+     * @see  TimestampHelper::getWeekDay() Вернет таймштамп для указанной недели
+     *
+     * @see  DateTime::setISODate() Аналогичная встроенная функция. Требует указывать год, неделю и день недели
+     *
+     * @param   null|int   $year     Номер года (NULL - не меняется)
+     * @param   null|int   $week     Номер недели (NULL - не меняется), Отсчет от 1
+     * @param   null|int   $day      Номер для дня недели (NULL - не меняется), 1 понедельник ... 7 воскресенье
+     * @param   mixed      $endDay   Указание времени, см {@see DateTimeHelper::getTimeString}, за исключением NULL - не меняется
      *
      * @return  $this
      *
-     * @see TimestampHelper::getWeekDay() Вернет таймштамп для указанной недели
+     * @throws  \DateMalformedStringException  Если была передана строка, которую невозможно конвертировать в дату-время
      *
-     * @see DateTime::setISODate() Аналогичная встроенная функция. Требует указывать год, неделю и день недели
-     * @todo PHP8 типизация аргументов функции
      * @todo Если время не меняется, не должны сбрасываться микросекнуды
      */
-    public function setWeekDay(?int $year, ?int $week, ?int $day, $endDay = null): self
+    public function setWeekDay(null|int $year, null|int $week, null|int $day, mixed $endDay = null): self
     {
         if ($year === null) $year = $this->getYear();
         if ($week === null) $week = $this->getWeek();
@@ -375,12 +371,14 @@ class DateTimeExtendedType extends \DateTime implements GetTimestampInterface
      *                                текущий день месяца. Что бы гарантированно указывать на "последний" день любого месяца
      *                                следует установить параметр в 31
      * @param   mixed      $endDay    Указание времени, см {@see DateTimeHelper::getTimeString}. NULL - время не будет меняться.
+     *
      * @return  $this
      *
-     * @todo PHP8 типизация аргументов функции (см $endDay)
+     * @throws  \DateMalformedStringException  Если была передана строка, которую невозможно конвертировать в дату-время
+     *
      * @todo Отработать "0" значения (т.е. без возможных перемещений)
      */
-    public function moveMon(int $mon, ?int $day = null, $endDay = null): self
+    public function moveMon(int $mon, null|int $day = null, mixed $endDay = null): self
     {
         if ($day === null) $day = $this->getMonDay();
 
@@ -416,10 +414,11 @@ class DateTimeExtendedType extends \DateTime implements GetTimestampInterface
      *
      * @return  $this
      *
-     * @todo PHP8 типизация аргументов функции (см $endDay)
+     * @throws  \DateMalformedStringException  Если была передана строка, которую невозможно конвертировать в дату-время
+     *
      * @todo Отработать "0" значения (т.е. без возможных перемещений)
      */
-    public function moveWeek(int $week, ?int $day = null, $endDay = null): self
+    public function moveWeek(int $week, null|int $day = null, mixed $endDay = null): self
     {
         if ($day === null) $diffDay = 0;
         else $diffDay = $this->getWeekDay() - $day;

@@ -69,11 +69,9 @@ class PhpErrorCodeThrowableTools
      *
      * @return  \Error
      *
-     * @todo PHP8 типизация аргументов
-     *
      * @psalm-suppress UnsafeInstantiation Псалм ошибается, \Error не является финальным классом, его можно наследовать
      */
-    public static function getBasicErrorObject(int $errorType, string $message = '', int $code = 0, ?\Throwable $previous = null): \Error
+    public static function getBasicErrorObject(int $errorType, string $message = '', int $code = 0, null|\Throwable $previous = null): \Error
     {
         /** @var class-string<\Error> $classError Класс для создания ошибки */
         $classError = self::TYPE_AND_BASIC_ERROR_CLASSES[$errorType] ?? \Error::class;
@@ -93,11 +91,9 @@ class PhpErrorCodeThrowableTools
      *
      * @throws \RuntimeException Если был передан код несуществующей ошибки
      *
-     * @todo PHP8 типизация аргументов и ответа функции
-     *
      * @psalm-suppress UnsafeInstantiation Псалм ошибается, \Error не является финальным классом, его можно наследовать
      */
-    public static function getErrorObject(int $errorType, string $message = '', int $code = 0, ?\Throwable $previous = null): \Error
+    public static function getErrorObject(int $errorType, string $message = '', int $code = 0, null|\Throwable $previous = null): \Error
     {
         if (!isset(self::TYPE_AND_ERROR_CLASSES[$errorType])) throw new \RuntimeException("Not found class for error code #{$errorType}");
 

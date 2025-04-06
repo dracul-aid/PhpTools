@@ -56,17 +56,13 @@ class TimestampType implements GetTimestampInterface
         return $this;
     }
 
-    /**
-     * @inheritdoc
-     */
+    /** @inheritdoc */
     public function getTimestamp(): int
     {
         return $this->timestamp;
     }
 
-    /**
-     * @inheritdoc
-     */
+    /** @inheritdoc */
     public function format(string $format): string
     {
         return date($format, $this->timestamp);

@@ -70,9 +70,9 @@ class DateTimeLightType implements GetTimestampInterface
      *
      * @throws  \TypeError  Если переданная дата-временя не прошел валидацию
      *
-     * @todo PHP8 типизация аргументов (null|int|float|string|array|\DateTimeInterface)
+     * @todo PHP8 добавить возможность создания объекта через передачу {@see GetTimestampInterface}
      */
-    public function __construct($dateTime = null)
+    public function __construct(null|int|float|string|array|\DateTimeInterface $dateTime = null)
     {
         $this->dateTimeDto = new DateTimeLightDto;
 
@@ -145,9 +145,9 @@ class DateTimeLightType implements GetTimestampInterface
      *
      * @throws  \TypeError  Если переданная дата-временя не прошел валидацию
      *
-     * @todo PHP8 типизация аргументов (null|int|float|string|array|\DateTimeInterface)
+     * @todo PHP8 добавить возможность создания объекта через передачу {@see GetTimestampInterface}
      */
-    public function setDate($dateTime): self
+    public function setDate(null|int|float|string|array|\DateTimeInterface $dateTime): self
     {
         $dateArray = DateTimeHelper::getDateArray($dateTime);
 
@@ -170,9 +170,7 @@ class DateTimeLightType implements GetTimestampInterface
         return $this;
     }
 
-    /**
-     * @inheritdoc
-     */
+    /** @inheritdoc */
     public function getTimestamp(): int
     {
         return mktime(
@@ -185,9 +183,7 @@ class DateTimeLightType implements GetTimestampInterface
         );
     }
 
-    /**
-     * @inheritdoc
-     */
+    /** @inheritdoc */
     public function format(string $format): string
     {
         return date($format, $this->getTimestamp());

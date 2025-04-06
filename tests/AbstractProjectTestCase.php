@@ -26,10 +26,8 @@ class AbstractProjectTestCase extends TestCase
      * @param   mixed    $actual      Проверяемое значение (что получилось в результате тестового вызова)
      * @param   string   $message     Сообщение, выводится при провале теста (Дополняет сообщение генерируемое функцией)
      * @return  void
-     *
-     * @todo PHP8 типизация аргументов функции
      */
-    public static function assertTimestamp($expected, $actual, string $message = ''): void
+    public static function assertTimestamp(mixed $expected, mixed $actual, string $message = ''): void
     {
         if (!is_int($expected)) $message = ($message ? "{$message} " : '') . '$expected can be int, but it is a ' . gettype($expected);
         if (!is_int($expected)) $message = ($message ? "{$message} " : '') . '$actual can be int, but it is a ' . gettype($expected);

@@ -11,7 +11,6 @@
 
 namespace DraculAid\PhpTools\Classes\Patterns\Singleton;
 
-use DraculAid\Php8forPhp7\TypeValidator;
 use DraculAid\PhpTools\Classes\ClassTools;
 use DraculAid\PhpTools\tests\Classes\Patterns\Singleton\SingletonFactoryTest;
 
@@ -60,8 +59,6 @@ final class SingletonFactory
      *
      * @return  object  Вернет созданный объект
      *
-     * @todo PHP8 Типизация аргументов
-     *
      * @psalm-template RealInstanceType of object
      * @psalm-param class-string<RealInstanceType> $class
      * @psalm-param array<string|mixed> $properties
@@ -69,10 +66,8 @@ final class SingletonFactory
      * @psalm-suppress InvalidReturnType Псалм запутывается в ожидаемом типе возвращаемого значения (а вот Шторм - нет)
      * @psalm-suppress InvalidReturnStatement Псалм запутывается в ожидаемом типе возвращаемого значения (а вот Шторм - нет)
      */
-    public static function createObject(string $class, $arguments = false, array $properties = []): object
+    public static function createObject(string $class, false|array $arguments = false, array $properties = []): object
     {
-        TypeValidator::validateOr($arguments, ['false', 'array']);
-
         if (empty(self::$singletonObjects[$class]))
         {
             self::$singletonObjects[$class] = ClassTools::createObject($class, $arguments, $properties);
@@ -97,18 +92,14 @@ final class SingletonFactory
      *
      * @return  object  Вернет созданный объект
      *
-     * @todo PHP8 Типизация аргументов
-     *
      * @psalm-template RealInstanceType of object
      * @psalm-param class-string<RealInstanceType> $class
      * @psalm-return RealInstanceType
      * @psalm-suppress InvalidReturnType Псалм запутывается в ожидаемом типе возвращаемого значения (а вот Шторм - нет)
      * @psalm-suppress InvalidReturnStatement Псалм запутывается в ожидаемом типе возвращаемого значения (а вот Шторм - нет)
      */
-    public static function createObjectForIndex(string $index, string $class, $arguments = false, array $properties = []): object
+    public static function createObjectForIndex(string $index, string $class, false|array $arguments = false, array $properties = []): object
     {
-        TypeValidator::validateOr($arguments, ['false', 'array']);
-
         if (empty(self::$uniqKeyObjects[$index]))
         {
             self::$uniqKeyObjects[$index] = ClassTools::createObject($class, $arguments, $properties);

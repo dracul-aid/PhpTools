@@ -26,10 +26,8 @@ final class DebugVarTools
      * @param   mixed   $value
      *
      * @return  string
-     *
-     * @todo PHP8 Типизация аргументов
      */
-    public static function varDump($value): string
+    public static function varDump(mixed $value): string
     {
         return ObHelper::callFunction('var_dump', [$value]);
     }
@@ -40,10 +38,8 @@ final class DebugVarTools
      * @param   mixed   $value
      *
      * @return  string
-     *
-     * @todo PHP8 Типизация аргументов
      */
-    public static function json($value): string
+    public static function json(mixed $value): string
     {
         return json_encode($value, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }

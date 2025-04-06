@@ -34,10 +34,8 @@ class PhpUnitExtendTestCase extends TestCase
      * @return void
      *
      * @psalm-param class-string|object $classOrObject
-     *
-     * @todo PHP8 Типизация аргументов
      */
-    public static function assertPropertyEquals($classOrObject, string $property, $equalValue, string $message = ''): void
+    public static function assertPropertyEquals($classOrObject, string $property, mixed $equalValue, string $message = ''): void
     {
         self::assertEquals(
             ClassNotPublicManager::readProperty($classOrObject, $property),
@@ -57,10 +55,8 @@ class PhpUnitExtendTestCase extends TestCase
      * @return void
      *
      * @psalm-param array{class-string|object, string} $methodAsArray
-     *
-     * @todo PHP8 Типизация аргументов
      */
-    public static function assertMethodEquals(array $methodAsArray, array $arguments, $equalValue, string $message = ''): void
+    public static function assertMethodEquals(array $methodAsArray, array $arguments, mixed $equalValue, string $message = ''): void
     {
         self::assertEquals(
             ClassNotPublicManager::callMethod($methodAsArray, $arguments),

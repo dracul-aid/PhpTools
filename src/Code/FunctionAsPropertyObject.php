@@ -50,9 +50,9 @@ class FunctionAsPropertyObject
      *
      * @var string|callable
      *
-     * @todo PHP8 типизация
+     * (!) В PHP8 нельзя указать тип callable для свойств класса
      */
-    protected $function;
+    protected mixed $function;
 
     /**
      * Создаст объект, хранящий функцию
@@ -60,10 +60,8 @@ class FunctionAsPropertyObject
      * @param   string|callable   $function   Функция или языковая конструкция
      * @param   bool              $safeCall   Будет произведен "защищенный вызов" (если при вызове передано больше аргументов,
      *                                        чем может принять функция, лишние аргументы будут отброшены)
-     *
-     * @todo PHP8 типизация аргументов функции
      */
-    public function __construct($function, bool $safeCall = true)
+    public function __construct(string|callable $function, bool $safeCall = true)
     {
         $this->setFunction($function, $safeCall);
     }
@@ -76,19 +74,12 @@ class FunctionAsPropertyObject
      * @param   string|callable|FunctionAsPropertyObject   $functionOrObject
      *
      * @return  static
-     *
-     * @todo PHP8 типизация ответа функции
-     * @todo PHP8 типизация аргументов функции, также часть проверок в коде станет ненужной
      */
-    public static function getOrCreate($functionOrObject): object
+    public static function getOrCreate(string|callable|FunctionAsPropertyObject $functionOrObject): object
     {
         if ($functionOrObject instanceof static) return $functionOrObject;
 
-        /** @psalm-suppress RedundantConditionGivenDocblockType Стоит только изза -> @todo PHP8 проверка теряет смысл */
-        if (is_callable($functionOrObject) || is_string($functionOrObject)) return new static($functionOrObject);
-
-        // @todo PHP8 удаляем, так как никогда не будет выполняться
-        throw new \TypeError('$functionOrObject can be string|callable|FunctionAsPropertyObject');
+        return new static($functionOrObject);
     }
 
     /**
@@ -97,10 +88,8 @@ class FunctionAsPropertyObject
      * @param   string|callable   $function   Функция или языковая конструкция
      * @param   bool              $safeCall   Будет произведен "защищенный вызов" (если при вызове передано больше аргументов,
      *                                        чем может принять функция, лишние аргументы будут отброшены)
-     *
-     * @todo PHP8 типизация аргументов функции
      */
-    public function setFunction($function, bool $safeCall = true): self
+    public function setFunction(string|callable $function, bool $safeCall = true): self
     {
         $this->is_callable = is_callable($function);
         $this->safeCall = $safeCall;
@@ -115,10 +104,9 @@ class FunctionAsPropertyObject
      * @param   mixed   ...$arguments   Список аргументов
      *
      * @return  mixed
-     *
-     * @todo PHP8 типизация аргументов и ответа функции
+     * @throws  \ReflectionException   Если не удалось получить объект-рефлексию для установленной функции
      */
-    public function call(...$arguments)
+    public function call(mixed ...$arguments): mixed
     {
         if ($this->safeCall || !$this->is_callable) return CallFunctionHelper::exe($this->function, ... $arguments);
         else return call_user_func_array($this->function, $arguments);
@@ -132,9 +120,9 @@ class FunctionAsPropertyObject
      *
      * @return  mixed
      *
-     * @todo PHP8 типизация аргументов и ответа функции
+     * @throws  \ReflectionException   Если не удалось получить объект-рефлексию для установленной функции
      */
-    public function callSafe(...$arguments)
+    public function callSafe(mixed ...$arguments): mixed
     {
         return CallFunctionHelper::exe($this->function, ... $arguments);
     }
@@ -143,10 +131,8 @@ class FunctionAsPropertyObject
      * Вернет установленную функцию
      *
      * @return string|callable
-     *
-     * @todo PHP8 типизация ответа функции
      */
-    public function getFunction()
+    public function getFunction(): string|callable
     {
         return $this->function;
     }
@@ -157,10 +143,8 @@ class FunctionAsPropertyObject
      * @param   mixed   ...$arguments   Список аргументов
      *
      * @return  mixed
-     *
-     * @todo PHP8 типизация аргументов и ответа функции
      */
-    public function __invoke(...$arguments)
+    public function __invoke(mixed ...$arguments): mixed
     {
         return $this->call(...$arguments);
     }

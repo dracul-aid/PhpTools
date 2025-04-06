@@ -11,7 +11,6 @@
 
 namespace DraculAid\PhpTools\Arrays\Objects;
 
-use DraculAid\Php8forPhp7\TypeValidator;
 use DraculAid\PhpTools\Arrays\Objects\Components\ArrayObjectTools\IteratorSafeRunThrowableStructure;
 use DraculAid\PhpTools\Classes\Patterns\Iterator\IteratorInterface;
 use DraculAid\PhpTools\Classes\Patterns\Runner\StaticRunnerInterface;
@@ -58,21 +57,19 @@ final class IteratorSafeRunner implements StaticRunnerInterface, \IteratorAggreg
 
     /**
      * Итератор для перебора
-     * @var \Iterator|IteratorInterface
+     *
      * @readonly
      * @todo PHP8 сделать "риад онли"
-     * @todo PHP8 добавить типизацию
      */
-    public $iterator;
+    public \Iterator|IteratorInterface $iterator;
 
     /**
      * Ссылка на курсор
      *
      * @var mixed
      * @todo PHP8 сделать "риад онли"
-     * @todo PHP8 добавить типизацию
      */
-    public $cursor;
+    public mixed $cursor;
 
     /**
      * Правила работы с исключениями, см {@see self::EXCEPTION_RULES_NO_SAFE}, {@see self::EXCEPTION_RULES_SAFE} {@see self::EXCEPTION_RULES_SAFE_WITH_ERRORS_SAVE}
@@ -97,13 +94,10 @@ final class IteratorSafeRunner implements StaticRunnerInterface, \IteratorAggreg
      *
      * @psalm-param int-mask-of<IteratorSafeRunner::EXCEPTION_RULES_*> $errorRule
      *
-     * @todo PHP8 добавить типизацию аргументам функции
      * @psalm-suppress UnusedParam Псалм не понимает, что мы прокидываем ссылку куда-то дальше
      */
-    public function __construct(object $iterator, &$cursor, int $errorRule = self::EXCEPTION_RULES_NO_SAFE)
+    public function __construct(\Iterator|IteratorInterface $iterator, mixed &$cursor, int $errorRule = self::EXCEPTION_RULES_NO_SAFE)
     {
-        TypeValidator::validateOr($iterator, [\Iterator::class, IteratorInterface::class]);
-
         $this->iterator = $iterator;
         $this->cursor = &$cursor;
         $this->errorRule = $errorRule;
@@ -217,10 +211,8 @@ final class IteratorSafeRunner implements StaticRunnerInterface, \IteratorAggreg
      * @param   mixed      $value   Последнее полученное "значение"
      *
      * @return  bool Вернет TRUE если перемотка удалась, или FALSE если провалилась
-     *
-     * @todo PHP8 добавить типизацию аргументам функции
      */
-    private function runSafeValid(?int $step, $key, $value): bool
+    private function runSafeValid(?int $step, mixed $key,mixed $value): bool
     {
         $error = ExceptionTools::callAndReturnException([$this->iterator, 'valid'], [], $isValid);
 
@@ -246,10 +238,8 @@ final class IteratorSafeRunner implements StaticRunnerInterface, \IteratorAggreg
      * @param   int  $step   Позиция элемента
      *
      * @return  mixed
-     *
-     * @todo PHP8 добавить типизацию ответа функции
      */
-    private function runSafeKey(int $step)
+    private function runSafeKey(int $step): mixed
     {
         $error = ExceptionTools::callAndReturnException([$this->iterator, 'key'], [], $key);
 
@@ -275,10 +265,8 @@ final class IteratorSafeRunner implements StaticRunnerInterface, \IteratorAggreg
      * @param   mixed   $key    Ключ элемента
      *
      * @return  mixed
-     *
-     * @todo PHP8 добавить типизацию ответа функции
      */
-    private function runSafeCurrent(int $step, $key)
+    private function runSafeCurrent(int $step, mixed $key): mixed
     {
         $error = ExceptionTools::callAndReturnException([$this->iterator, 'current'], [], $value);
 
@@ -305,10 +293,8 @@ final class IteratorSafeRunner implements StaticRunnerInterface, \IteratorAggreg
      * @param   mixed         $value   Последнее полученное "значение"
      *
      * @return  void
-     *
-     * @todo PHP8 добавить типизацию аргументам функции
      */
-    private function runSafeNext(int $step, $key, $value): void
+    private function runSafeNext(int $step, mixed $key, mixed $value): void
     {
         $error = ExceptionTools::callAndReturnException([$this->iterator, 'next']);
 
@@ -336,10 +322,8 @@ final class IteratorSafeRunner implements StaticRunnerInterface, \IteratorAggreg
      * @param   mixed        $value
      *
      * @return  IteratorSafeRunThrowableStructure
-     *
-     * @todo PHP8 добавить типизацию аргументам функции
      */
-    private function iteratorSafeRunGetErrorStructure(\Throwable $error, string $function, int $position, $key, $value): IteratorSafeRunThrowableStructure
+    private function iteratorSafeRunGetErrorStructure(\Throwable $error, string $function, int $position, mixed $key, mixed $value): IteratorSafeRunThrowableStructure
     {
         $throwableElement = new IteratorSafeRunThrowableStructure();
 

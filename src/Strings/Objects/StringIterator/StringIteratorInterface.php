@@ -74,9 +74,11 @@ interface StringIteratorInterface extends IteratorInterface
      * @param    int   $position   Сдвиг на какую позицию (можно сдвигать, в том числе и "назад")
      *
      * @return  $this
-     * @todo PHP8 добавить типизации ответа функции
-     */
-    public function next(int $position = 1);
+     *
+     * (!) Добавить типизацию в сам PHP не позволяют ограничения самого PHP (так как интерфейс наследует от \IteratorAggregate),
+     *     во всяком случае в PHP8.2 это не-преодолимая проблема
+ */
+    public function next(int $position = 1): static;
 
     /**
      * Проверит текущий элемент на валидность
@@ -89,9 +91,11 @@ interface StringIteratorInterface extends IteratorInterface
      * Осуществит перемещение в начало итерируемой строки
      *
      * @return $this
-     * @todo PHP8 добавить типизации ответа функции
+     *
+     *  (!) Добавить типизацию в сам PHP не позволяют ограничения самого PHP (так как интерфейс наследует от \IteratorAggregate),
+     *      во всяком случае в PHP8.2 это не-преодолимая проблема
      */
-    public function rewind();
+    public function rewind(): static;
 
     /**
      * Смещение на указанное кол-во позиций (в символах), может перемещать как вперед, так и назад

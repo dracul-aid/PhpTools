@@ -29,23 +29,15 @@ use DraculAid\PhpTools\tests\ExceptionTools\ResultExceptionTest;
  */
 final class ResultException extends \Exception
 {
-    /**
-     * Хранит результат работы
-     *
-     * @var mixed
-     *
-     * @todo PHP8 Типизация свойства
-     */
-    public $result;
+    /** Хранит результат работы */
+    public mixed $result;
 
     /**
      * Создаст исключение и запишет результат работы
      *
      * @param   mixed   $result   Результат работы
-     *
-     * @todo PHP8 Типизация аргументов
      */
-    public function __construct($result)
+    public function __construct(mixed $result)
     {
         $this->result = $result;
     }
@@ -61,7 +53,7 @@ final class ResultException extends \Exception
      *
      * @return  mixed
      */
-    public static function call(callable $function, array $arguments = [], ?bool &$withException = null)
+    public static function call(callable $function, array $arguments = [], ?bool &$withException = null): mixed
     {
         try
         {
@@ -79,10 +71,8 @@ final class ResultException extends \Exception
      * Вернет результат работы (в том числе и по ссылке)
      *
      * @return  mixed
-     *
-     * @todo PHP8 Типизация аргументов
      */
-    public function __invoke()
+    public function __invoke(): mixed
     {
         return $this->result;
     }

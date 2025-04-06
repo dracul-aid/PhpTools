@@ -14,6 +14,7 @@ namespace DraculAid\PhpTools\tests\DateTime;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
 use DraculAid\PhpTools\DateTime\NowTimeGetter;
 use DraculAid\PhpTools\DateTime\TimestampHelper;
+use DraculAid\PhpTools\DateTime\Types\GetTimestampInterface;
 use DraculAid\PhpTools\DateTime\Types\TimestampType;
 use DraculAid\PhpTools\ExceptionTools\ExceptionTools;
 use PHPUnit\Framework\TestCase;
@@ -91,7 +92,13 @@ class TimestampHelperTest extends TestCase
             5 => [$testTimestamp, [new \DateTime('2018-09-05 1:02:08.123456')]],
             6 => [$testTimestamp, [new \DateTimeImmutable('2018-09-05 1:02:08.123456')]],
             7 => [$testTimestamp, [new TimestampType('2018-09-05 1:02:08.123456')]],
-            8 => [123123, [new class(){public function getTimestamp(): int {return 123123;}}]],
+            8 => [
+                123123,
+                [new class() implements GetTimestampInterface {
+                    public function getTimestamp(): int {return 123123;}
+                    public function format(string $format): string {return "Не реализован, так как не требуется для теста";}
+                }],
+            ],
         ];
 
         $this->callTestFunctionList([TimestampHelper::class, 'getTimestamp'], $testCases);

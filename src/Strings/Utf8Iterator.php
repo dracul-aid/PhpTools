@@ -56,12 +56,8 @@ class Utf8Iterator implements \Countable, \IteratorAggregate
      */
     protected int $cursorLen = 0;
 
-    /**
-     * Кеш для хранения кол-ва символов в строке (NULL - кеш не установлен, подсчет кол-ва символов еще не проводился)
-     *
-     * @todo PHP8 типизация свойства
-     */
-    protected ?int $countCache = null;
+    /** Кеш для хранения кол-ва символов в строке (NULL - кеш не установлен, подсчет кол-ва символов еще не проводился) */
+    protected null|int $countCache = null;
 
     /**
      * @param   string   $utf8String   UTF-8 строка для перебора

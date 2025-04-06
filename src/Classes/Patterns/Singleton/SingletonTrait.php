@@ -40,10 +40,8 @@ trait SingletonTrait
      * При каждом вызове будет возвращать один и тот же экземпляр
      *
      * @return static
-     *
-     * @todo PHP8 Возвращаемое значение должно быть static
      */
-    final public static function getInstance(): object
+    final public static function getInstance(): static
     {
         if (!array_key_exists(static::class, static::$___dracul_aid_singletone_objects___))
         {

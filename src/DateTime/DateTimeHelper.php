@@ -13,6 +13,7 @@ namespace DraculAid\PhpTools\DateTime;
 
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
 use DraculAid\PhpTools\DateTime\Dictionary\TimestampConstants;
+use DraculAid\PhpTools\DateTime\Types\GetTimestampInterface;
 use DraculAid\PhpTools\tests\DateTime\Dictionary\DateConstantsTest;
 
 /**
@@ -49,10 +50,8 @@ final class DateTimeHelper
      *                               <br>+ {@see GetTimestampInterface}: Объект, поддерживающий ответ ввиде таймштампа
      *
      * @return array{year: int, mon: int, yday: int, mday: int, wday: int, hours: int, minutes: int, seconds: int, month: string, weekday: string, 0: int}
-     *
-     * @todo PHP8 типизация аргументов (null|int|float|string|array|\DateTimeInterface)
      */
-    public static function getDateArray($dateTime = null): array
+    public static function getDateArray(null|int|float|string|array|\DateTimeInterface|GetTimestampInterface $dateTime = null): array
     {
         if (is_array($dateTime) && self::isValidDateArray($dateTime)) return $dateTime;
 
@@ -67,10 +66,8 @@ final class DateTimeHelper
      * @param   null|string   $timeZone   Имя часового пояса (например, MSK), если NULL - текущий часовой пояс PHP
      *
      * @return  int
-     *
-     * @todo PHP8 типизация аргументов функции
      */
-    public static function getTimezoneOffsetSec(?string $timeZone = null): int
+    public static function getTimezoneOffsetSec(null|string $timeZone = null): int
     {
         if ($timeZone === null) return (int)Date('Z');
         else return strtotime('NOW UTC') - strtotime("NOW {$timeZone}");
@@ -93,9 +90,9 @@ final class DateTimeHelper
      *
      * @return  string
      *
-     * @todo PHP8 типизация аргументов функции (null|bool|int|float|string|\DateTimeInterface)
+     * @todo Юнит-тест для проверки {@see GetTimestampInterface}
      */
-    public static function getTimeString($time = null): string
+    public static function getTimeString(null|bool|int|float|string|array|\DateTimeInterface|GetTimestampInterface $time = null): string
     {
         if (is_string($time)) return $time;
 
@@ -128,9 +125,9 @@ final class DateTimeHelper
      *
      * @return  int
      *
-     * @todo PHP8 типизация аргументов функции (null|bool|int|float|string|\DateTimeInterface)
+     * @todo Юнит-тест для проверки {@see GetTimestampInterface}
      */
-    public static function getTimeInt($time = null): int
+    public static function getTimeInt(null|bool|int|float|string|array|\DateTimeInterface|GetTimestampInterface $time = null): int
     {
         if (is_int($time)) return $time;
 
@@ -156,9 +153,9 @@ final class DateTimeHelper
      *
      * @return  int
      *
-     * @todo PHP8 типизация аргументов (null|int|float|string|array|\DateTimeInterface)
+     * @todo Юнит-тест для проверки {@see GetTimestampInterface}
      */
-    public static function getDaySecFromDateTime($dateTime = null): int
+    public static function getDaySecFromDateTime(null|int|float|string|array|\DateTimeInterface|GetTimestampInterface $dateTime = null): int
     {
         $dateArray = self::getDateArray($dateTime);
 

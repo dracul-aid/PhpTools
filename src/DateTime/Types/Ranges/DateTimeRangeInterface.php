@@ -113,10 +113,8 @@ interface DateTimeRangeInterface
      *                       <br> -1: Установлено только начало, см {@see self::$start}
      *                       <br>  1: Установлен только конец, см {@see self::$finish}
      *                       <br> TRUE: Диапазон полностью установлен (и начало, и конец)
-     *
-     * @todo PHP8 Типизация ответа функции
      */
-    public function isSet();
+    public function isSet(): bool|int;
 
     /**
      * Вернет начало диапазона ({@see self::$start}) ввиде таймштампа, возможно с микросекундами. Вернет NULL - если "начало" не установлено
@@ -124,10 +122,8 @@ interface DateTimeRangeInterface
      * @param   bool   $withMs   Нужно ли вернуть с микросекундами
      *
      * @return  null|int|float  Вернет целое число или FLOAT, если возвращает кол-во секунд.микросекунд
-     *
-     * @todo PHP8 Типизация ответа функции
      */
-    public function startGetTimestamp(bool $withMs = false);
+    public function startGetTimestamp(bool $withMs = false): null|int|float;
 
     /**
      * Вернет конец диапазона ({@see self::$finish}) ввиде таймштампа, возможно с микросекундами. Вернет NULL - если "конец" не установлен
@@ -135,32 +131,26 @@ interface DateTimeRangeInterface
      * @param   bool   $withMs   Нужно ли вернуть с микросекундами
      *
      * @return  null|int|float  Вернет целое число или FLOAT, если возвращает кол-во секунд.микросекунд
-     *
-     * @todo PHP8 Типизация ответа функции
      */
-    public function finishGetTimestamp(bool $withMs = false);
+    public function finishGetTimestamp(bool $withMs = false): null|int|float;
 
     /**
      * Вернет начало диапазона ({@see self::$start}) ввиде строки, если начало не установлено - вернет NULL
      *
      * @param   string   $format
      *
-     * @return  string
-     *
-     * @todo PHP8 Типизация ответа функции
+     * @return  null|string
      */
-    public function startGetString(string $format = DateTimeFormats::FUNCTIONS): ?string;
+    public function startGetString(string $format = DateTimeFormats::FUNCTIONS): null|string;
 
     /**
      * Вернет конец диапазона ({@see self::$finish}) ввиде строки, если начало не установлено - вернет NULL
      *
      * @param   string   $format
      *
-     * @return  string
-     *
-     * @todo PHP8 Типизация ответа функции
+     * @return  null|string
      */
-    public function finishGetString(string $format = DateTimeFormats::FUNCTIONS): ?string;
+    public function finishGetString(string $format = DateTimeFormats::FUNCTIONS): null|string;
 
     /**
      * Сгенерирует строку пригодную для использования в качестве части SQL запроса для проверки поля на диапазон даты-времени
@@ -185,9 +175,9 @@ interface DateTimeRangeInterface
      *
      * @return  int|float   Вернет целое число или FLOAT, если возвращает кол-во секунд.микросекунд
      *
-     * @todo PHP8 Типизация ответа функции
+     * @todo исправить опечатку имени функции
      */
-    public function getLenght(bool $withMs = false);
+    public function getLenght(bool $withMs = false): int|float;
 
     /**
      * Преобразование диапазона в строку (обычно для отображения пользователям)
@@ -200,8 +190,6 @@ interface DateTimeRangeInterface
      * @param   string             $separator   Разделитель точки начала от точки конца
      *
      * @return  string
-     *
-     * @todo PHP8 Типизация аргументов
      */
-    public function getString($format = DateTimeFormats::VIEW_FOR_PEOPLE, string $separator = ' - '): string;
+    public function getString(null|bool|string $format = DateTimeFormats::VIEW_FOR_PEOPLE, string $separator = ' - '): string;
 }

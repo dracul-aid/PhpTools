@@ -39,12 +39,12 @@ class ExceptionToolsTest extends TestCase
 
         self::assertEquals(
             null,
-            ExceptionTools::safeCallWithResult(function (): void {throw new \Exception();}, []) // @todo PHP8 поменять возвращаемое значение на `never`
+            ExceptionTools::safeCallWithResult(function (): never {throw new \Exception();}, [])
         );
 
         self::assertEquals(
             100,
-            ExceptionTools::safeCallWithResult(function (): void {throw new \Exception();}, [], 100) // @todo PHP8 поменять возвращаемое значение на `never`
+            ExceptionTools::safeCallWithResult(function (): never {throw new \Exception();}, [], 100)
         );
     }
 
@@ -68,7 +68,7 @@ class ExceptionToolsTest extends TestCase
         $callableCall = false;
         self::assertEquals(
             777,
-            ExceptionTools::safeCallWithCallable(function (): void {throw new \Exception();}, [], $callableFunction) // @todo PHP8 поменять возвращаемое значение на `never`
+            ExceptionTools::safeCallWithCallable(function (): never {throw new \Exception();}, [], $callableFunction)
         );
         self::assertTrue($callableCall);
     }
@@ -82,7 +82,7 @@ class ExceptionToolsTest extends TestCase
     {
         $functionList = [
             function (): int {return 123;},
-            function (): void {throw new \Exception();}, // @todo PHP8 поменять возвращаемое значение на `never`
+            function (): never {throw new \Exception();},
             function () use (&$callableCall): int {$callableCall = true; return 777;},
         ];
 
@@ -224,12 +224,10 @@ class ExceptionToolsTest extends TestCase
         $callWithError = [
             'array, size 1' => [$testObject],
             'array, size 3' => [$testObject, 'f_private', 'value'],
-            'string, not callable' => '_not_function_name_' . uniqid()
         ];
 
         foreach ($callWithError as $testName => $notCallable)
         {
-            /** @psalm-suppress PossiblyInvalidArgument Специально можем передать невалидно значения, так как тестируем работу функции */
             if (ExceptionTools::callAndReturnException($notCallable) === null)
             {
                 $this->fail("Fail test call not callable: {$testName}");

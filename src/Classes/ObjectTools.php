@@ -37,10 +37,8 @@ final class ObjectTools
      *                                * {@see \ReflectionProperty::IS_PRIVATE}: Только private свойства
      *
      * @return  \Generator
-     *
-     * @todo PHP8 типизация аргументов
      */
-    public static function propertiesFor(object $object, bool $intKey = false, ?int $filter = \ReflectionProperty::IS_PUBLIC): \Generator
+    public static function propertiesFor(object $object, bool $intKey = false, null|int $filter = \ReflectionProperty::IS_PUBLIC): \Generator
     {
         $objectReader = ClassNotPublicManager::getInstanceFor($object);
 
@@ -72,10 +70,8 @@ final class ObjectTools
      *                                * {@see \ReflectionProperty::IS_PRIVATE}: Только private свойства
      *
      * @return  array
-     *
-     * @todo PHP8 типизация аргументов
      */
-    public static function toArray(object $object, bool $intKey = false, ?int $filter = \ReflectionProperty::IS_PUBLIC): array
+    public static function toArray(object $object, bool $intKey = false, null|int $filter = \ReflectionProperty::IS_PUBLIC): array
     {
         return iterator_to_array(self::propertiesFor($object, $intKey, $filter));
     }

@@ -44,26 +44,26 @@ class IteratorTraitTest extends AbstractIteratorTestFunctions
                 throw new \LogicException('This method should not be called');
             }
 
-            public function current()
+            public function current(): mixed
             {
                 if ($this->__test__position === 2) return null;
 
                 return $this->__test__position . 'abc';
             }
 
-            public function key()
+            public function key(): mixed
             {
                 return $this->__test__position;
             }
 
-            public function next(int $position = 1)
+            public function next(int $position = 1): self
             {
                 $this->__test__position += $position;
 
                 return $this;
             }
 
-            public function rewind()
+            public function rewind(): self
             {
                 $this->__test__position = 0;
 

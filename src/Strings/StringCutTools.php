@@ -12,7 +12,6 @@
 namespace DraculAid\PhpTools\Strings;
 
 use DraculAid\Php8forPhp7\LoaderPhp8Lib;
-use DraculAid\Php8forPhp7\TypeValidator;
 use DraculAid\PhpTools\tests\Strings\StringCutToolsTest;
 
 // @todo PHP8 удалить
@@ -40,26 +39,18 @@ final class StringCutTools
      *
      * (!) Поиск ведется до первого нахождения подстроки
      *
-     * @param   string         $string       Строка для обрезания
-     * @param   string|array   $substr       Строка до которой ведется поиск или массив с подстроками (поиск ведется до нахождения первой из них)
-     * @param   bool           $withSubstr   Нужно ли подстроку оставить в ответе
-     * @param   int            $start        Позиция начала поиска в символах (замедляет поиск)
+     * @param   string                                $string       Строка для обрезания
+     * @param   string|iterable<string|\Stringable>   $substr       Строка до которой ведется поиск или массив с подстроками (поиск ведется до нахождения первой из них)
+     * @param   bool                                  $withSubstr   Нужно ли подстроку оставить в ответе
+     * @param   int                                   $start        Позиция начала поиска в символах (замедляет поиск)
      *
      * @return  string   Вернет изначальную строку или обрезанную строку
      *
-     *
-     * @psalm-param string|iterable<string|\Stringable> $substr
-     *
-     * @todo PHP8 Типизация аргументов функции
-     *
      * @psalm-suppress PossiblyInvalidArrayAccess Мы точно знаем, что запрошенный элемент массива будет
-     * @psalm-suppress UnusedParam Псалм считает, что большая часть аргументов функции не используется внутри функции, но это не так
-     * @psalm-suppress UndefinedDocblockClass В PHP 7.4 Псалм ругается на \Stringable, так как не может его найти @todo PHP8 удалить
+     * @psalm-suppress UnusedParam Псалм считает, что большая часть аргументов функции не используется внутри функции, но это не так (@todo php8 проверить на актуальность)
      */
-    public static function firstSubstrBefore(string $string, $substr, bool $withSubstr = false, int $start = 0): string
+    public static function firstSubstrBefore(string $string, string|iterable $substr, bool $withSubstr = false, int $start = 0): string
     {
-        TypeValidator::validateOr($substr, ['string', 'array']);
-
         if (is_string($substr)) $substr = [$substr];
 
         $utf8mode = $start !== 0;
@@ -87,25 +78,18 @@ final class StringCutTools
      *
      * (!) Поиск ведется до первого нахождения подстроки
      *
-     * @param   string            $string       Строка для обрезания
-     * @param   string|iterable   $substr       Строка до которой ведется поиск или массив с подстроками (поиск ведется до нахождения первой из них)
-     * @param   bool              $withSubstr   Нужно ли найденную подстроку оставить в ответе
-     * @param   int               $start        Позиция начала поиска в символах (замедляет поиск)
+     * @param   string                                $string       Строка для обрезания
+     * @param   string|iterable<string|\Stringable>   $substr       Строка до которой ведется поиск или массив с подстроками (поиск ведется до нахождения первой из них)
+     * @param   bool                                  $withSubstr   Нужно ли найденную подстроку оставить в ответе
+     * @param   int                                   $start        Позиция начала поиска в символах (замедляет поиск)
      *
      * @return  string   Вернет изначальную строку или обрезанную строку
      *
-     * @todo PHP8 Типизация аргументов функции
-     *
-     * @psalm-param string|iterable<string|\Stringable> $substr
-     *
      * @psalm-suppress PossiblyInvalidArrayAccess Мы точно знаем, что запрошенный элемент массива будет
      * @psalm-suppress UnusedParam Псалм считает, что большая часть аргументов функции не используется внутри функции, но это не так
-     * @psalm-suppress UndefinedDocblockClass В PHP 7.4 Псалм ругается на \Stringable, так как не может его найти @todo PHP8 удалить
      */
-    public static function firstSubstrAfter(string $string, $substr, bool $withSubstr = false, int $start = 0): string
+    public static function firstSubstrAfter(string $string, string|iterable $substr, bool $withSubstr = false, int $start = 0): string
     {
-        TypeValidator::validateOr($substr, ['string', 'array']);
-
         if (is_string($substr)) $substr = [$substr];
 
         $utf8mode = $start !== 0;

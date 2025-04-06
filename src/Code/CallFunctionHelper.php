@@ -65,13 +65,12 @@ final class CallFunctionHelper implements StaticRunnerInterface
      * @throws  \LogicException       Если $function не может быть вызвана
      * @throws  \ReflectionException  В случае провала получения рефлексии для функции или метода
      *
-     * @todo PHP8 аргументы и ответ функции
      * @todo PHP8 Реализовать - Если нужно передать все аргументы, воспользуйтесь 'isset_list'
      * @todo PHP8 match()
      * @todo Реализовать - больше тестов для различных конструкций языка
      * @todo Реализовать - тесты для вызова методов классов
      */
-    public static function exe($function, ... $arguments)
+    public static function exe(string|callable $function, mixed ... $arguments): mixed
     {
         if (is_callable($function)) return self::exeCallable($function, $arguments);
 
@@ -112,10 +111,8 @@ final class CallFunctionHelper implements StaticRunnerInterface
      * @param   array<string, mixed>          $properties       Список свойств для установки создаваемому объекту (в том числе и непубличных)
      *
      * @return  mixed   Вернет результат работы вызванного метода
-     *
-     * @todo PHP8 ответ функции
      */
-    public static function callMethodFromEmptyObject(array $classAndMethod, array $arguments = [], array $properties = [])
+    public static function callMethodFromEmptyObject(array $classAndMethod, array $arguments = [], array $properties = []): mixed
     {
         if (!is_string($classAndMethod[0] ?? null) || !is_string($classAndMethod[1] ?? null))
         {
@@ -156,11 +153,9 @@ final class CallFunctionHelper implements StaticRunnerInterface
      *
      * @param   string|callable   $function
      *
-     * @return bool
-     *
-     * @todo PHP8 аргументы функции
+     * @return  bool
      */
-    public static function isCallable($function): bool
+    public static function isCallable(string|callable $function): bool
     {
         return is_callable($function) || self::isStructures($function);
     }
@@ -170,7 +165,7 @@ final class CallFunctionHelper implements StaticRunnerInterface
      *
      * @param   callable   $function      "Вызываемое" для проверки
      *
-     * @return bool
+     * @return  bool
      */
     public static function isClassCallable(callable $function): bool
     {

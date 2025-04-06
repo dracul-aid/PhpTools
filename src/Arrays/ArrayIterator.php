@@ -42,9 +42,9 @@ final class ArrayIterator
      *
      * @return \Generator
      *
-     * @todo PHP8 типизация аргументов
+     * @todo PHP8.2 типизация аргументов ($array)
      */
-    public static function map(iterable $array, $keyRule = false, $valuesRule = false): \Generator
+    public static function map(iterable $array, bool|int|string $keyRule = false, false|int|string|array $valuesRule = false): \Generator
     {
         foreach ($array as $index => $data)
         {
@@ -62,9 +62,9 @@ final class ArrayIterator
      *
      * @return  mixed
      *
-     * @todo PHP8 типизация аргументов и ответа функции
+     * @todo PHP8.2 типизация аргументов ($keyRule)
      */
-    private static function mapGetKey($index, $data, $keyRule)
+    private static function mapGetKey(mixed $index, mixed $data, bool|int|string|array $keyRule): mixed
     {
         if ($keyRule === true) return $index;
         else return $data[$keyRule];
@@ -77,10 +77,8 @@ final class ArrayIterator
      * @param   false|int|string|array   $valuesRule   Правила формирования значения
      *
      * @return  mixed
-     *
-     * @todo PHP8 типизация аргументов и ответа функции
      */
-    private static function mapGetValues($data, $valuesRule)
+    private static function mapGetValues(mixed $data, false|int|string|array $valuesRule): mixed
     {
         // @todo PHP8 заменить на math
         if ($valuesRule === false) return $data;

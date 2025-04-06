@@ -64,10 +64,8 @@ final class CharTools
      * @param    null|bool   $onlyAbc    TRUE - если нужно вернуть только тип буквы, или FALSE - если любая не буква
      *
      * @return   false|int см константы {@see \DraculAid\PhpTools\Strings\Components\CharTypes}
-     *
-     * @todo PHP8 типизация аргументов и результатов работы функции
      */
-    public static function getType(string $char, ?bool $onlyAbc = null)
+    public static function getType(string $char, null|bool $onlyAbc = null): false|int
     {
         if ($char === '' || !empty($char[1])) return CharTypes::IS_NOT_CHAR;
 

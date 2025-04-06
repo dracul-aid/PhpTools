@@ -47,9 +47,9 @@ final class TimestampHelper
      *
      * @throws  \RuntimeException   Если нужно вернуть ввиде числа, а версия PHP не поддерживает int64 (например, запущена на 32 битной операционной системе)
      *
-     * @todo PHP8 Типизация аргументов и ответа функции
+     * @todo PHP8 рассмотреть вариант ответа ввиде числа (32 битная система маловероятна)
      */
-    public static function toJsTimestamp($timestamp, bool $asInt64 = false)
+    public static function toJsTimestamp(int|float|\DateTimeInterface $timestamp, bool $asInt64 = false): int|string
     {
         // Если версия PHP не поддерживает int64
         if ($asInt64 && PHP_INT_SIZE < 5){
@@ -73,10 +73,8 @@ final class TimestampHelper
      * @param   string      $format       Формат преобразования, см https://www.php.net/manual/ru/datetime.format.php
      *
      * @return  string
-     *
-     * @todo PHP8 Типизация аргументов функции
      */
-    public static function toString($timestamp, string $format = DateTimeFormats::FUNCTIONS): string
+    public static function toString(int|float $timestamp, string $format = DateTimeFormats::FUNCTIONS): string
     {
         if (is_int($timestamp)) return date($format, $timestamp);
 
@@ -103,10 +101,8 @@ final class TimestampHelper
      *
      * @throws  \TypeError          Если был передан неподходящий тип данных (в случае массива, массив не имел всех необходимых полей для построения даты)
      * @throws  \RuntimeException   Если версия PHP не поддерживает int64 (например, запущена на 32 битной операционной системе)
-     *
-     * @todo PHP8 типизация аргументов (null|int|float|string|array|\DateTimeInterface|GetTimestampInterface)
      */
-    public static function getTimestamp($dateTime = null): int
+    public static function getTimestamp(null|int|float|string|array|\DateTimeInterface|GetTimestampInterface $dateTime = null): int
     {
         if (is_null($dateTime)) return time();
 
@@ -118,7 +114,7 @@ final class TimestampHelper
 
         if (is_array($dateTime)) return self::getdateArrayToTimestamp($dateTime);
 
-        if (DateTimeObjectHelper::isGetTimestamp($dateTime, true)) return $dateTime->getTimestamp();
+        if (DateTimeObjectHelper::isGetTimestamp($dateTime, false)) return $dateTime->getTimestamp();
 
         throw new \TypeError('$dateTime is not correct type (it can be a number, string, array or \DateTimeInterface object)');
     }
@@ -179,10 +175,8 @@ final class TimestampHelper
      * @param   mixed      $endDay   Указание времени, см {@see DateTimeHelper::getTimeString}
      *
      * @return int
-     *
-     * @todo PHP8 типизация аргументов функции
      */
-    public static function getYearDay(?int $year, ?int $day, $endDay = false): int
+    public static function getYearDay(null|int $year, null|int $day, mixed $endDay = false): int
     {
         $endDay = DateTimeHelper::getTimeString($endDay);
 
@@ -204,11 +198,9 @@ final class TimestampHelper
      *
      * @return  int
      *
-     * @throws  \LogicException   Если была передан невалидная дата
-     *
-     * @todo PHP8 типизация аргументов функции
+     * @throws  \LogicException   Если была передана невалидная дата
      */
-    public static function getMonDay(?int $year, ?int $mon, ?int $day, $endDay = false): int
+    public static function getMonDay(null|int $year, null|int $mon, null|int $day, mixed $endDay = false): int
     {
         $endDay = DateTimeHelper::getTimeString($endDay);
 
@@ -238,10 +230,8 @@ final class TimestampHelper
      * @param   mixed      $endDay         Указание времени, см {@see DateTimeHelper::getTimeString}
      *
      * @return  int
-     *
-     * @todo PHP8 типизация аргументов функции
      */
-    public static function getWeekDay(?int $year, ?int $week, ?int $day, $endDay = false): int
+    public static function getWeekDay(null|int $year, null|int $week, null|int $day, mixed $endDay = false): int
     {
         $endDay = DateTimeHelper::getTimeInt($endDay);
 
@@ -269,10 +259,8 @@ final class TimestampHelper
      * @param   null|int   $year   Номер года (NULL - текущий год)
      *
      * @return  int
-     *
-     * @todo PHP8 типизация аргументов функции
      */
-    public static function getFirstWeek(?int $year): int
+    public static function getFirstWeek(null|int $year): int
     {
         if ($year === null) $year = NowTimeGetter::getYear();
 

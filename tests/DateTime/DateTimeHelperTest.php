@@ -15,6 +15,7 @@ use DraculAid\PhpTools\DateTime\DateTimeHelper;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
 use DraculAid\PhpTools\DateTime\Dictionary\TimestampConstants;
 use DraculAid\PhpTools\DateTime\TimestampHelper;
+use DraculAid\PhpTools\DateTime\Types\GetTimestampInterface;
 use DraculAid\PhpTools\DateTime\Types\TimestampType;
 use PHPUnit\Framework\TestCase;
 
@@ -93,13 +94,16 @@ class DateTimeHelperTest extends TestCase
         self::assertEquals(
             $dateArray,
             DateTimeHelper::getDateArray(
-                new class($dateArray) {
+                new class($dateArray) implements GetTimestampInterface {
                     private array $dateArray;
                     public function __construct(array $dateArray) {
                         $this->dateArray = $dateArray;
                     }
                     public function getTimestamp(): int {
                         return TimestampHelper::getdateArrayToTimestamp($this->dateArray);
+                    }
+                    public function format(string $format): string {
+                        return "Не реализованно, для теста и не надо";
                     }
                 }
             )

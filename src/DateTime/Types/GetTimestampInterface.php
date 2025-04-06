@@ -23,11 +23,9 @@ interface GetTimestampInterface
     /**
      * Вернет таймштамп (в секундах)
      *
-     * @return false|int
-     *
-     * @todo PHP8 Типизация ответа функции (до PHP8 {@see \DateTimeInterface::getTimestamp()} могла вернуть FALSE, с 8.0 это больше невозможно
+     * @return int
      */
-    public function getTimestamp();
+    public function getTimestamp(): int;
 
     /**
      * Преобразует таймштам в строку
@@ -36,9 +34,7 @@ interface GetTimestampInterface
      *
      * @param   string   $format   Формат преобразования
      *
-     * @return  false|string
-     *
-     * @todo PHP8 Типизация ответа функции (до PHP8 {@see \DateTimeInterface::format()} могла вернуть FALSE, с 8.0 это больше невозможно
+     * @return  string
      */
-    public function format(string $format);
+    public function format(string $format): string;
 }

@@ -42,23 +42,13 @@ use DraculAid\PhpTools\DateTime\TimestampHelper;
  */
 class TimestampRangeType extends AbstractDateTimeRange
 {
-    /**
-     * Начало Диапазона (NULL - диапазон еще не установлен)
-     *
-     * @todo PHP8 Типизация
-     */
-    public ?int $start = null;
+    /** Начало Диапазона (NULL - диапазон еще не установлен) */
+    public null|int $start = null;
 
-    /**
-     * Конец Диапазона (NULL - диапазон еще не установлен)
-     *
-     * @todo PHP8 Типизация
-     */
-    public ?int $finish = null;
+    /** Конец Диапазона (NULL - диапазон еще не установлен) */
+    public null|int $finish = null;
 
-    /**
-     * @inheritdoc
-     */
+    /** @inheritdoc */
     public function startSet($start): self
     {
         $this->start = TimestampHelper::getTimestamp($start);
@@ -66,9 +56,7 @@ class TimestampRangeType extends AbstractDateTimeRange
         return $this;
     }
 
-    /**
-     * @inheritdoc
-     */
+    /** @inheritdoc */
     public function finishSet($finish): self
     {
         $this->finish = TimestampHelper::getTimestamp($finish);
@@ -76,48 +64,32 @@ class TimestampRangeType extends AbstractDateTimeRange
         return $this;
     }
 
-    /**
-     * @inheritdoc
-     *
-     * @todo PHP8 Типизация ответа функции
-     */
-    public function startGetTimestamp(bool $withMs = false): ?int
+    /** @inheritdoc */
+    public function startGetTimestamp(bool $withMs = false): null|int
     {
         if ($this->start === null) return null;
 
         return $this->start;
     }
 
-    /**
-     * @inheritdoc
-     *
-     * @todo PHP8 Типизация ответа функции
-     */
-    public function finishGetTimestamp(bool $withMs = false): ?int
+    /** @inheritdoc */
+    public function finishGetTimestamp(bool $withMs = false): null|int
     {
         if ($this->finish === null) return null;
 
         return $this->finish;
     }
 
-    /**
-     * @inheritdoc
-     *
-     * @todo PHP8 Типизация ответа функции
-     */
-    public function startGetString(string $format = DateTimeFormats::FUNCTIONS): ?string
+    /** @inheritdoc */
+    public function startGetString(string $format = DateTimeFormats::FUNCTIONS): null|string
     {
         if ($this->start === null) return null;
 
         return date($format, $this->start);
     }
 
-    /**
-     * @inheritdoc
-     *
-     * @todo PHP8 Типизация ответа функции
-     */
-    public function finishGetString(string $format = DateTimeFormats::FUNCTIONS): ?string
+    /** @inheritdoc */
+    public function finishGetString(string $format = DateTimeFormats::FUNCTIONS): null|string
     {
         if ($this->finish === null) return null;
 

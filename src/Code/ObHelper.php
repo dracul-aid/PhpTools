@@ -39,10 +39,8 @@ final class ObHelper
      * @param   mixed        $_return      Ответ вызванной функции
      *
      * @return  string    Вернет выведенные в поток вывода функцией данные
-     *
-     * @todo PHP8 Типизация для аргументов функции
      */
-    public static function callFunction(callable $function, array $arguments = [], &$_return = null): string
+    public static function callFunction(callable $function, array $arguments = [], mixed &$_return = null): string
     {
         ob_start();
 
@@ -68,10 +66,8 @@ final class ObHelper
      * @return  string    Вернет выведенные в поток вывода функцией данные
      *
      * @throws  \ReflectionException  Будет выброшен, в случае невозможности получения рефлексии для вызываемой функции
-     *
-     * @todo PHP8 Типизация для аргументов функции
      */
-    public static function callWithFunctionHelper($function, array $arguments = [], &$_return = null): string
+    public static function callWithFunctionHelper($function, array $arguments = [], mixed &$_return = null): string
     {
         ob_start();
 
@@ -93,10 +89,8 @@ final class ObHelper
      * @return  string   Вернет выведенные в поток вывода функцией данные
      *
      * @throws  \TypeError   В случае, если передан не массив вида [$objectOrClass, $method]
-     *
-     * @todo PHP8 Типизация для аргументов функции
      */
-    public static function callNotPublicMethod(array $method, array $arguments = [], &$_return = null): string
+    public static function callNotPublicMethod(array $method, array $arguments = [], mixed &$_return = null): string
     {
         ob_start();
 
@@ -119,10 +113,8 @@ final class ObHelper
      * @return  string   Вернет выведенные в поток вывода функцией данные
      *
      * @throws  \TypeError   В случае, если передан не массив вида [$class, $method]
-     *
-     * @todo PHP8 Типизация для аргументов функции
      */
-    public static function callMethodFromEmptyObject(array $method, array $arguments = [], array $properties = [], &$_return = null): string
+    public static function callMethodFromEmptyObject(array $method, array $arguments = [], array $properties = [], mixed &$_return = null): string
     {
         ob_start();
 

@@ -27,10 +27,8 @@ final class DebugVarHtmlTools
      * @param   mixed   $values
      *
      * @return  string
-     *
-     * @todo PHP8 Типизация аргументов
      */
-    public static function varDump($values): string
+    public static function varDump(mixed $values): string
     {
         return self::htmlBlock(
             ObHelper::callFunction('var_dump', [$values])
@@ -43,10 +41,8 @@ final class DebugVarHtmlTools
      * @param   mixed   $values
      *
      * @return  string
-     *
-     * @todo PHP8 Типизация аргументов
      */
-    public static function printR($values): string
+    public static function printR(mixed $values): string
     {
         return self::htmlBlock(
             print_r($values, true)
@@ -59,10 +55,8 @@ final class DebugVarHtmlTools
      * @param   mixed   $values
      *
      * @return  string
-     *
-     * @todo PHP8 Типизация аргументов
      */
-    public static function json($values): string
+    public static function json(mixed $values): string
     {
         return self::htmlBlock(
             json_encode($values, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)

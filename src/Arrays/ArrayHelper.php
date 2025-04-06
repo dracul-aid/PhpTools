@@ -49,10 +49,8 @@ final class ArrayHelper
      * @param   bool    $countable   Должно ли переданное значение корректно отрабатываться функцией {@see count()}
      *
      * @return  bool
-     *
-     * @todo PHP8 Типизация для аргументов
      */
-    public static function isAsArray($asArray, bool $countable = true): bool
+    public static function isAsArray(mixed $asArray, bool $countable = true): bool
     {
         if (is_array($asArray)) return true;
 
@@ -123,10 +121,9 @@ final class ArrayHelper
      *
      * @return  int
      *
-     * @todo PHP8 Типизация для аргументов
      * @todo PHP8.2 Типизация для аргументов
      */
-    public static function getNewIndex($asArray): int
+    public static function getNewIndex(array $asArray): int
     {
         // @todo PHP8.2 условие с !ArrayHelper::isAsArray теряет смысл
         if (!ArrayHelper::isAsArray($asArray)) throw new \TypeError('$array can be array or array-object, call is a ' .gettype($asArray));
@@ -198,10 +195,8 @@ final class ArrayHelper
      * @param   mixed                $default    Значение по умолчанию, если элемент не был найден
      *
      * @return  array
-     *
-     * @todo PHP8 типизация аргументов
      */
-    public static function getByIndexes($array, array $indexes, $default = null): array
+    public static function getByIndexes(array|\ArrayAccess $array, array $indexes, mixed $default = null): array
     {
         $_return = [];
 

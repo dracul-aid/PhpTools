@@ -205,10 +205,8 @@ final class DaysDictionary
      * @return  false|string
      *
      * @throws  \LogicException Формат должен быть равен 2 или 3
-     *
-     * @todo PHP8 типизация ответа функции
      */
-    public static function getDayLabel(int $numberDay, int $format = 2)
+    public static function getDayLabel(int $numberDay, int $format = 2): false|string
     {
         if ($format != 2 && $format != 3) throw new \LogicException("\$format format can be 2 or 3, but function call with {$format}");
 

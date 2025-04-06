@@ -38,10 +38,8 @@ final class ExceptionTools
      * @param   mixed            $returnForException   Что вернет функция, если было перехвачено исключение
      *
      * @return  mixed
-     *
-     * @todo PHP8 типизация аргументов и ответа функции
      */
-    public static function safeCallWithResult($function, array $arguments = [], $returnForException = null)
+    public static function safeCallWithResult(callable|array $function, array $arguments = [], mixed $returnForException = null): mixed
     {
         try
         {
@@ -64,10 +62,8 @@ final class ExceptionTools
      *                                                   <br>Вызов: <code>f(\Throwable $exception, array $arguments, callable $function): mixed</code>
      *
      * @return  mixed
-     *
-     * @todo PHP8 типизация ответа функции
      */
-    public static function safeCallWithCallable($function, array $arguments, callable $callableForException)
+    public static function safeCallWithCallable(callable|array $function, array $arguments, callable $callableForException): mixed
     {
         try
         {
@@ -89,10 +85,8 @@ final class ExceptionTools
      *                                                             <br>Вызов: <code>f(\Throwable $exception, callable $function): mixed</code>
      *
      * @return  void
-     *
-     * @todo PHP8 Типизация для аргументов функции
      */
-    public static function safeCallFunctions(iterable $functions, ?callable $callableForException = null): void
+    public static function safeCallFunctions(iterable $functions, null|callable $callableForException = null): void
     {
         foreach ($functions as $function)
         {
@@ -117,10 +111,8 @@ final class ExceptionTools
      * @param   mixed           &$_return      Результат работы функции
      *
      * @return  null|\Throwable    Вернет пойманное исключение или NULL, если исключение не было выброшено
-     *
-     * @todo PHP8 типизация аргументов и ответа функции
      */
-    public static function callAndReturnException($function, array $arguments = [], &$_return = null): ?\Throwable
+    public static function callAndReturnException(callable|array $function, array $arguments = [], mixed &$_return = null): null|\Throwable
     {
         try
         {
@@ -149,10 +141,8 @@ final class ExceptionTools
      * @return  bool   Вернет TRUE, если в ходе работы функции было выброшено нужно исключение
      *
      * @throws  \Throwable   Если в ходе выполнения было выброшено неожидаемое исключение, оно будет проброшено далее
-     *
-     * @todo PHP8 типизация аргументов
      */
-    public static function wasCalledWithException($function, array $arguments = [], string $throwableClass = \Throwable::class, ?string $throwableMessage = null, $throwableCode = null, &$_return = null): bool
+    public static function wasCalledWithException(callable|array $function, array $arguments = [], string $throwableClass = \Throwable::class, ?string $throwableMessage = null, mixed $throwableCode = null, mixed &$_return = null): bool
     {
         try
         {
@@ -181,12 +171,10 @@ final class ExceptionTools
      *
      * @throws  \TypeError  Если функцию невозможно вызвать
      *
-     * @todo PHP8 типизация аргументов и результата работы функции
-     *
      * @psalm-suppress RedundantConditionGivenDocblockType Мы вынуждены указать в докблоке для $function массив, иначе
      *                 нельзя будет вызывать непубличные методы (PHP не будет массив с непубличным методом считать callable-array)
      */
-    private static function functionCall($function, array $arguments)
+    private static function functionCall(callable|array $function, array $arguments): mixed
     {
         if (is_callable($function))
         {

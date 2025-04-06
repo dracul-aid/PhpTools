@@ -45,25 +45,15 @@ class DateTimeExtendedRangeType extends AbstractDateTimeRange
 {
     /**
      * Начало Диапазона (NULL - диапазон еще не установлен)
-     *
-     * @var null|DateTimeExtendedType
-     *
-     * @todo PHP8 Типизация
      */
-    public $start = null;
+    public null|DateTimeExtendedType $start = null;
 
     /**
      * Конец Диапазона (NULL - диапазон еще не установлен)
-     *
-     * @var null|DateTimeExtendedType
-     *
-     * @todo PHP8 Типизация
      */
-    public $finish = null;
+    public null|DateTimeExtendedType $finish = null;
 
-    /**
-     * @inheritdoc
-     */
+    /** @inheritdoc */
     public function startSet($start): self
     {
         /** @psalm-suppress PropertyTypeCoercion мы тут явно указываем, какой класс вернет функция, так что пласм зря переживает */
@@ -72,9 +62,7 @@ class DateTimeExtendedRangeType extends AbstractDateTimeRange
         return $this;
     }
 
-    /**
-     * @inheritdoc
-     */
+    /** @inheritdoc */
     public function finishSet($finish): self
     {
         /** @psalm-suppress PropertyTypeCoercion мы тут явно указываем, какой класс вернет функция, так что пласм зря переживает */
@@ -83,12 +71,8 @@ class DateTimeExtendedRangeType extends AbstractDateTimeRange
         return $this;
     }
 
-    /**
-     * @inheritdoc
-     *
-     * @todo PHP8 Типизация ответа функции
-     */
-    public function startGetTimestamp(bool $withMs = false)
+    /** @inheritdoc */
+    public function startGetTimestamp(bool $withMs = false): null|int|float
     {
         if ($this->start === null) return null;
 
@@ -96,12 +80,8 @@ class DateTimeExtendedRangeType extends AbstractDateTimeRange
         else return (float)$this->start->format(DateTimeFormats::TIMESTAMP_WITH_MICROSECONDS);
     }
 
-    /**
-     * @inheritdoc
-     *
-     * @todo PHP8 Типизация ответа функции
-     */
-    public function finishGetTimestamp(bool $withMs = false)
+    /** @inheritdoc */
+    public function finishGetTimestamp(bool $withMs = false): null|int|float
     {
         if ($this->finish === null) return null;
 
@@ -109,24 +89,16 @@ class DateTimeExtendedRangeType extends AbstractDateTimeRange
         else return (float)$this->finish->format(DateTimeFormats::TIMESTAMP_WITH_MICROSECONDS);
     }
 
-    /**
-     * @inheritdoc
-     *
-     * @todo PHP8 Типизация ответа функции
-     */
-    public function startGetString(string $format = DateTimeFormats::FUNCTIONS): ?string
+    /** @inheritdoc */
+    public function startGetString(string $format = DateTimeFormats::FUNCTIONS): null|string
     {
         if ($this->start === null) return null;
 
         return $this->start->format($format);
     }
 
-    /**
-     * @inheritdoc
-     *
-     * @todo PHP8 Типизация ответа функции
-     */
-    public function finishGetString(string $format = DateTimeFormats::FUNCTIONS): ?string
+    /** @inheritdoc */
+    public function finishGetString(string $format = DateTimeFormats::FUNCTIONS): null|string
     {
         if ($this->finish === null) return null;
 

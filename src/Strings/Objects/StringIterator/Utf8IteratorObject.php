@@ -102,7 +102,7 @@ class Utf8IteratorObject extends AbstractStringIterator
     }
 
     /** @inheritdoc */
-    public function next(int $position = 1)
+    public function next(int $position = 1): static
     {
         // перемещение вперед
         if ($position > 0)

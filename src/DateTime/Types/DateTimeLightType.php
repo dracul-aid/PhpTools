@@ -52,9 +52,8 @@ use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
  * @method self setSecond(int $value) Установит секунду (0 - 60)
  *
  * @todo TEST тебует покрытия теста
- * @todo PHP8 добавить интерфейс {@see \Stringable}
  */
-class DateTimeLightType implements GetTimestampInterface
+class DateTimeLightType implements GetTimestampInterface, \Stringable
 {
     /** DTO с частями времени */
     protected DateTimeLightDto $dateTimeDto;

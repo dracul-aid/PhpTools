@@ -44,10 +44,8 @@ use DraculAid\PhpTools\DateTime\Types\GetTimestampInterface;
  * <br> {@see self::setWeekDay()} Сменит неделю (и день недели)
  * <br> {@see self::moveMon()} Переместит на указанное кол-во месяцев (если надо, также сменит день месяца)
  * <br> {@see self::moveWeek()} Переместится на указанное кол-во недель (если надо, также сменит день недели)
- *
- * @todo PHP8 добавить интерфейс {@see \Stringable}
  */
-class DateTimeExtendedType extends \DateTime implements GetTimestampInterface
+class DateTimeExtendedType extends \DateTime implements GetTimestampInterface, \Stringable
 {
     /**
      * Создание расширенного объекта для работы с датой-временем (расширяет {@see \DateTime})

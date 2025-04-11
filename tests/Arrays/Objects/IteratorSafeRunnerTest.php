@@ -26,6 +26,30 @@ use PHPUnit\Framework\TestCase;
 class IteratorSafeRunnerTest extends TestCase
 {
     /**
+     * Test for {@covers IteratorSafeRunner::__get()}
+     * Test for {@covers IteratorSafeRunner::$cursor}
+     *
+     * @return void
+     */
+    public function testMagicGet(): void
+    {
+        $testArray = [0, 1, 2, 3, 4, 5];
+
+        $testIterator = new IteratorSafeRunnerTestClass();
+        $testIterator->array = $testArray;
+        $testIterator->cursor = 3;
+
+        $testRunner = new IteratorSafeRunner($testIterator, $testIterator->cursor);
+
+        // * * *
+
+        self::assertEquals(3, $testIterator->cursor);
+        self::assertEquals(3, $testRunner->cursor);
+        $testIterator->cursor = 1;
+        self::assertEquals(1, $testRunner->cursor);
+    }
+
+    /**
      * Test for {@covers IteratorSafeRunner::runNoSafe()}
      *
      * @return void
@@ -39,6 +63,8 @@ class IteratorSafeRunnerTest extends TestCase
         $testIterator->cursor = 3;
 
         $testRunner = new IteratorSafeRunner($testIterator, $testIterator->cursor);
+
+        // * * *
 
         self::assertEquals(
             $testArray,

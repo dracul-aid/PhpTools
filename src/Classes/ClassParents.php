@@ -29,10 +29,8 @@ final class ClassParents
      * Имя читаемого класса
      *
      * @var class-string $className
-     * @todo PHP8 readonly
-     * @readonly
      */
-    private string $className;
+    readonly private string $className;
 
     /**
      * Результат работы - Массив с всеми родительскими классами, интерфейсами и трейтами

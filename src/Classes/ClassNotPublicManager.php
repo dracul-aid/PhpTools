@@ -63,13 +63,8 @@ final class ClassNotPublicManager
      */
     public static array $_notPublicClasses = [];
 
-    /**
-     * Для какого объекта создан "объект для взаимодействия с непубличными элементами"
-     *
-     * @todo PHP8 readonly
-     * @readonly
-     */
-    public object $toObject;
+    /** Для какого объекта создан "объект для взаимодействия с непубличными элементами" */
+    readonly public object $toObject;
 
     /**
      * Массив с "функциями взаимодействия с классами", в качестве ключей выступают имена "методов-генератов" этих функций

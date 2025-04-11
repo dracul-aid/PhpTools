@@ -45,6 +45,8 @@ use DraculAid\PhpTools\tests\Arrays\Objects\IteratorSafeRunnerTest;
  * <br>- {@see self::getIterator()} Безопасно переберет установленный итератор
  *
  * Test cases for class {@see IteratorSafeRunnerTest}
+ *
+ * @property-read mixed $cursor Ссылка на курсор (см аналогичное private свойство)
  */
 final class IteratorSafeRunner implements StaticRunnerInterface, \IteratorAggregate
 {
@@ -55,21 +57,8 @@ final class IteratorSafeRunner implements StaticRunnerInterface, \IteratorAggreg
     /** Исключения Будут перехвачены и Будут накаливаться в {@see self::$throwableList}, обслуживает {@see self::$errorRule} */
     public const EXCEPTION_RULES_SAFE_WITH_ERRORS_SAVE = 2;
 
-    /**
-     * Итератор для перебора
-     *
-     * @readonly
-     * @todo PHP8 сделать "риад онли"
-     */
-    public \Iterator|IteratorInterface $iterator;
-
-    /**
-     * Ссылка на курсор
-     *
-     * @var mixed
-     * @todo PHP8 сделать "риад онли"
-     */
-    public mixed $cursor;
+    /** Итератор для перебора */
+    readonly public \Iterator|IteratorInterface $iterator;
 
     /**
      * Правила работы с исключениями, см {@see self::EXCEPTION_RULES_NO_SAFE}, {@see self::EXCEPTION_RULES_SAFE} {@see self::EXCEPTION_RULES_SAFE_WITH_ERRORS_SAVE}
@@ -82,6 +71,9 @@ final class IteratorSafeRunner implements StaticRunnerInterface, \IteratorAggreg
      * @var IteratorSafeRunThrowableStructure[]
      */
     public array $throwableList = [];
+
+    /** Ссылка на курсор */
+    private mixed $cursor;
 
     /**
      * Создаст объект для "безопасного" перебора итераторов ({@see \Iterator})
@@ -101,6 +93,21 @@ final class IteratorSafeRunner implements StaticRunnerInterface, \IteratorAggreg
         $this->iterator = $iterator;
         $this->cursor = &$cursor;
         $this->errorRule = $errorRule;
+    }
+
+    /**
+     * Реализует "свойства для чтения":
+     * - {@see self::$cursor}
+     *
+     * @param   string   $name    Имя запрошенного свойства
+     *
+     * @return mixed
+     */
+    public function __get(string $name): mixed
+    {
+        return match ($name) {
+            'cursor' => $this->cursor,
+        };
     }
 
     /**

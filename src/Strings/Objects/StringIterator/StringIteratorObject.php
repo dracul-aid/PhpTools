@@ -38,14 +38,8 @@ use DraculAid\PhpTools\tests\Strings\Objects\StringIterator\StringIteratorObject
  */
 class StringIteratorObject extends AbstractStringIterator
 {
-    /**
-     * Длина каждого читаемого символа (в байтах)
-     *
-     * @todo PHP8 сделать `readonly public`
-     *
-     * @readonly
-     */
-    protected int $charLen = 0;
+    /** Длина каждого читаемого символа (в байтах) */
+    readonly public int $charLen;
 
     /**
      * Создаст итератор для перебора строки с явно указанным размером символа (в байтах)

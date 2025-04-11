@@ -11,6 +11,8 @@
 
 namespace DraculAid\PhpTools\tests\Arrays\Objects\_resources;
 
+use DraculAid\PhpTools\tests\Arrays\Objects\IteratorSafeRunnerTest;
+
 /**
  * Тест класс "итератора" для тестирования функции {@see IteratorSafeRunnerTest)}
  */

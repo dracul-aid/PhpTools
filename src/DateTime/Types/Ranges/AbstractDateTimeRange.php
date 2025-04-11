@@ -105,43 +105,33 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
     /**
      * @inheritdoc
      *
-     * @todo PHP8 match()
-     *
      * @todo Вынести юнит-тесты из тестов конкретных классов в тест абстрактного класса
      */
     public function isSet(): bool|int
     {
-        // (!) В функции специально используется isset(), так как Psalm не умеет нормально работать с докблоками интерфейсов
-
-        if (!isset($this->start) && !isset($this->finish)) return false;
-
-        if (isset($this->start) && isset($this->finish)) return true;
-
-        if (!isset($this->start) && isset($this->finish)) return -1;
-
-        /** @psalm-suppress RedundantCondition isset($this->start) всегда будет TRUE, оставлено для облегчения чтения кода */
-        if (isset($this->start) && !isset($this->finish)) return 1;
-
-        return false;
+        // (!) В функции специально используется isset(), так как Psalm не умеет нормально работать с докблоками интерфейсов (не вычитывает свойства)
+        return match (true) {
+            !isset($this->start) && !isset($this->finish) => false,
+            isset($this->start) && isset($this->finish)   => true,
+            !isset($this->start) && isset($this->finish)  => -1,
+            isset($this->start) && !isset($this->finish)  => 1,
+            default                                       => false
+        };
     }
 
     /**
      * @inheritdoc
      *
-     * @todo PHP8 match()
-     *
      * @todo Вынести тестирование их конкретных классов в тест абстрактного класса
      */
     public function getSqlDateTime(string $column, string $format = DateTimeFormats::SQL_DATETIME, string $quote = "'"): string
     {
-        if ($this->isSet() === false) return '';
-
-        if ($this->isSet() === true) return " {$column} BETWEEN {$quote}{$this->startGetString($format)}{$quote} AND {$quote}{$this->finishGetString($format)}{$quote} ";
-
-        if ($this->isSet() === -1) return " {$column} <= {$quote}{$this->finishGetString($format)}{$quote} ";
-        if ($this->isSet() === 1) return " {$column} >= {$quote}{$this->startGetString($format)}{$quote} ";
-
-        return '';
+        return match ($this->isSet()) {
+            true    => " {$column} BETWEEN {$quote}{$this->startGetString($format)}{$quote} AND {$quote}{$this->finishGetString($format)}{$quote} ",
+            -1      => " {$column} <= {$quote}{$this->finishGetString($format)}{$quote} ",
+            1       => " {$column} >= {$quote}{$this->startGetString($format)}{$quote} ",
+            default => '' // Этот же вариант срабатывает при false - но нет смысла его отдельно выделять
+        };
     }
 
     /**

@@ -40,8 +40,6 @@ final class StringSearchTools
      * @return  null|int|array   Вернет позицию первой найденной подстроки или NULL, если ни одна подстрока не найдена
      *                           Также может вернуть массив, с номером позиции и найденной подстрокой, см параметр $return_array
      *
-     * @todo PHP8 Разблокировать match()
-     *
      * @psalm-suppress UnusedParam Псалм считает, что большая часть аргументов функции не используется внутри функции, но это не так
      * @psalm-suppress UndefinedDocblockClass В PHP 7.4 Псалм ругается на \Stringable, так как не может его найти @todo PHP8 удалить
      */
@@ -82,17 +80,11 @@ final class StringSearchTools
 
         // * * *
 
-        /*
         return match (true) {
             (bool) $_returnString === false => null,
             $returnArray === true => [$_returnPosition, $_returnString],
             default => $_returnPosition,
         };
-        */
-
-        if ((bool) $_returnString === false) return null;
-        elseif ($returnArray === true) return [$_returnPosition, $_returnString];
-        else return $_returnPosition;
     }
 
     /**

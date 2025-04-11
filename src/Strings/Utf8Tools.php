@@ -45,19 +45,12 @@ final class Utf8Tools
 
         $charCode = ord($firstByte[0]);
 
-        if ($charCode < 128) return 1;
-        elseif ($charCode < 224) return 2;
-        elseif ($charCode < 240) return 3;
-        else return 4;
-
-        /* TODO PHP8
         return match (true) {
             $charCode < 128 => 1,
             $charCode < 224 => 2,
             $charCode < 240 => 3,
             default => 4,
         };
-        */
     }
 
     /**

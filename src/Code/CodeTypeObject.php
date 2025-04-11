@@ -62,11 +62,12 @@ class CodeTypeObject implements \IteratorAggregate, \Stringable
     public static function __callStatic(string $name, array $arguments): mixed
     {
         // получение имени функции, которая будет использована для установки списка типов
-        // @todo PHP8 заменить на math
-        if ($name === 'createFromPhp') $name = 'set'; /** {@see self::set()} */
-        elseif ($name === 'createFromSql') $name = 'setFromSql'; /** {@see self::setFromSql()} */
-        elseif ($name === 'createFromDocBlock') $name = 'setFromDocBlock'; /** {@see self::setFromDocBlock()} */
-        else throw new \TypeError("Magic method for {$name} not found");
+        $name = match ($name) {
+            'createFromPhp'      => 'set', /** {@see self::set()} */
+            'createFromSql'      => 'setFromSql', /** {@see self::setFromSql()} */
+            'createFromDocBlock' => 'setFromDocBlock', /** {@see self::setFromDocBlock()} */
+            default              => throw new \TypeError("Magic method for {$name} not found"),
+        };
 
         return (new static())->{$name}(... $arguments);
     }
@@ -129,34 +130,24 @@ class CodeTypeObject implements \IteratorAggregate, \Stringable
      * @param   bool     $isNull    TRUE если может быть NULL
      *
      * @return  $this
+     *
+     * @todo у функции нет юнит-теста
      */
     public function setFromSql(string $type, bool $isNull): self
     {
         $type = strtolower($type);
 
-        // @todo PHP8 заменить на math
-        switch ($type)
+        $type = match ($type)
         {
-            case 'tinyint':
-            case 'smallint':
-            case 'int':
-            case 'bigint':
-            case 'mediumint':
-            {
-                $type = ['int'];
-                break;
-            }
-            case 'float':
-            case 'double':
-            {
-                $type = ['float'];
-                break;
-            }
-            default:
-            {
-                $type = ['string'];
-            }
-        }
+            'tinyint',
+            'smallint',
+            'int',
+            'bigint',
+            'mediumint' => ['int'],
+            'float',
+            'double'    => ['float'],
+            default     => ['string'],
+        };
 
         if ($isNull) $type[] = 'null';
 
@@ -182,11 +173,13 @@ class CodeTypeObject implements \IteratorAggregate, \Stringable
         // приведение типов к PHP стандарту
         foreach ($type as &$value)
         {
-            // @todo PHP8 заменить на math
-            if ($value === 'integer') $value = 'int';
-            elseif ($value === 'double') $value = 'float';
-            elseif ($value === 'boolean') $value = 'bool';
-            elseif ($value === 'str') $value = 'string';
+            $value = match ($value) {
+                'integer' => 'int',
+                'double'  => 'float',
+                'boolean' => 'bool',
+                'str'     => 'string',
+                default   => $value,
+            };
         }
 
         // * * *

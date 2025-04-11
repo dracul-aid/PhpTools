@@ -65,7 +65,6 @@ final class CallFunctionHelper implements StaticRunnerInterface
      * @throws  \LogicException       Если $function не может быть вызвана
      * @throws  \ReflectionException  В случае провала получения рефлексии для функции или метода
      *
-     * @todo PHP8 match()
      * @todo Реализовать - больше тестов для различных конструкций языка
      * @todo Реализовать - тесты для вызова методов классов
      */

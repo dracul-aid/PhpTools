@@ -102,7 +102,7 @@ class DateTimeHelperTest extends TestCase
                     public function getTimestamp(): int {
                         return TimestampHelper::getdateArrayToTimestamp($this->dateArray);
                     }
-                    public function format(string $format): string {
+                    public function format(string $format = ''): string {
                         return "Не реализованно, для теста и не надо";
                     }
                 }

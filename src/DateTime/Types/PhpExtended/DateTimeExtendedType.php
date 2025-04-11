@@ -428,4 +428,20 @@ class DateTimeExtendedType extends \DateTime implements GetTimestampInterface, \
 
         return $this;
     }
+
+    /** {@inheritdoc} */
+    public function getTimestamp(): int
+    {
+        // Это "наследование" добавлено исключительно что бы не ругался PSALM, к сожелению в нем есть косяк, если класс
+        // наседует метод из базового PHP класса, и пользовательского интерфейса, то PSALM-у становится плохо(((
+        return parent::getTimestamp();
+    }
+
+    /** {@inheritdoc} */
+    public function format(string $format = ''): string
+    {
+        // Это "наследование" добавлено исключительно что бы не ругался PSALM, к сожелению в нем есть косяк, если класс
+        // наседует метод из базового PHP класса, и пользовательского интерфейса, то PSALM-у становится плохо(((
+        return parent::format($format);
+    }
 }

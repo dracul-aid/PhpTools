@@ -96,7 +96,7 @@ class TimestampHelperTest extends TestCase
                 123123,
                 [new class() implements GetTimestampInterface {
                     public function getTimestamp(): int {return 123123;}
-                    public function format(string $format): string {return "Не реализован, так как не требуется для теста";}
+                    public function format(string $format = ''): string {return "Не реализован, так как не требуется для теста";}
                 }],
             ],
         ];

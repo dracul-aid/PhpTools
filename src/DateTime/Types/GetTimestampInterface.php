@@ -36,5 +36,5 @@ interface GetTimestampInterface
      *
      * @return  string
      */
-    public function format(string $format): string;
+    public function format(string $format = ''): string;
 }

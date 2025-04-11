@@ -11,8 +11,8 @@
 
 namespace DraculAid\PhpTools\DateTime\Types;
 
-use DraculAid\PhpTools\DateTime\TimestampHelper;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
+use DraculAid\PhpTools\DateTime\TimestampHelper;
 
 /**
  * Работа с таймштампами, как с объектами (таймштамп в формате секунд)
@@ -63,7 +63,7 @@ class TimestampType implements GetTimestampInterface
     }
 
     /** @inheritdoc */
-    public function format(string $format): string
+    public function format(string $format = ''): string
     {
         return date($format, $this->timestamp);
     }

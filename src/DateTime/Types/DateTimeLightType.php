@@ -179,7 +179,7 @@ class DateTimeLightType implements GetTimestampInterface, \Stringable
     }
 
     /** @inheritdoc */
-    public function format(string $format): string
+    public function format(string $format = ''): string
     {
         return date($format, $this->getTimestamp());
     }

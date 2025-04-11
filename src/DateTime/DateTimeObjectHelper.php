@@ -129,7 +129,7 @@ final class DateTimeObjectHelper
     {
         if ($dateTimeClass === null)
         {
-            $dateTimeClass = get_class($dateTime);
+            $dateTimeClass = $dateTime::class;
         }
 
         if (!is_subclass_of($dateTimeClass, \DateTimeInterface::class) && !is_subclass_of($dateTimeClass, GetTimestampInterface::class))

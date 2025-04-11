@@ -74,8 +74,6 @@ final class CallFunctionHelper implements StaticRunnerInterface
     {
         if (is_callable($function)) return self::exeCallable($function, $arguments);
 
-        if (!is_string($function)) throw new \LogicException('$function is not callable and not PHP code construction. It is a ' .gettype($function));
-
         /** Создание нового класса */
         if ($function[0] === 'n' && $function[1] === 'e' && $function[2] === 'w' && $function[3] === ' ')
         {

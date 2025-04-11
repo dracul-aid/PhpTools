@@ -37,8 +37,6 @@ use DraculAid\PhpTools\tests\Classes\ClassNotPublicManagerTest;
  * <br>{@see self::run()} - Позволяет выполнить произвольную функцию внутри указанной области видимости
  *
  * Test cases for class {@see ClassNotPublicManagerTest}
- *
- * @todo PHP8 В коде много мест с get_class($this), можно поменять на $this::class
  */
 final class ClassNotPublicManager
 {
@@ -150,7 +148,7 @@ final class ClassNotPublicManager
     {
         $readFunction = $this->getOrCreateFunctionForConstants();
 
-        if ($classContext === '' || get_class($this->toObject) === $classContext) return $readFunction($name);
+        if ($classContext === '' || $this->toObject::class === $classContext) return $readFunction($name);
 
         /** @psalm-suppress PossiblyNullFunctionCall Если не удастся сменить область видимости то пусть падает TypeError, так и должно быть */
         return ($readFunction->bindTo($this->toObject, $classContext))($name, $classContext);
@@ -185,7 +183,7 @@ final class ClassNotPublicManager
     {
         $readFunction = $this->getOrCreateFunctionForGetProperties();
 
-        if ($classContext === '' || get_class($this->toObject) === $classContext) return $readFunction($name);
+        if ($classContext === '' || $this->toObject::class === $classContext) return $readFunction($name);
 
         /** @psalm-suppress PossiblyNullFunctionCall Если не удастся сменить область видимости то пусть падает TypeError, так и должно быть */
         return ($readFunction->bindTo($this->toObject, $classContext))($name);
@@ -203,7 +201,7 @@ final class ClassNotPublicManager
     {
         $readFunction = $this->getOrCreateFunctionForGetStaticProperties();
 
-        if ($classContext === '' || get_class($this->toObject) === $classContext) return $readFunction($name);
+        if ($classContext === '' || $this->toObject::class === $classContext) return $readFunction($name);
 
         /** @psalm-suppress PossiblyNullFunctionCall Если не удастся сменить область видимости то пусть падает TypeError, так и должно быть */
         return ($readFunction->bindTo($this->toObject, $classContext))($name, $classContext);
@@ -251,7 +249,7 @@ final class ClassNotPublicManager
         if (is_array($var) && $classContext !== '') throw new \LogicException('Cannot pass $classContext if $var is an array');
 
         $readFunction = $this->getOrCreateFunctionForSetProperties();
-        if ($classContext !== '' && get_class($this->toObject) !== $classContext) $readFunction = $readFunction->bindTo($this->toObject, $classContext);
+        if ($classContext !== '' && $this->toObject::class !== $classContext) $readFunction = $readFunction->bindTo($this->toObject, $classContext);
 
         if (is_string($var)) $readFunction($var, $data);
         else foreach ($var as $name => $data) $readFunction($name, $data);
@@ -279,7 +277,7 @@ final class ClassNotPublicManager
         if (is_array($var) && $classContext !== '') throw new \LogicException('Cannot pass $classContext if $var is an array');
 
         $readFunction = $this->getOrCreateFunctionForSetStaticProperties();
-        if ($classContext !== '' && get_class($this->toObject) !== $classContext) $readFunction = $readFunction->bindTo($this->toObject, $classContext);
+        if ($classContext !== '' && $this->toObject::class !== $classContext) $readFunction = $readFunction->bindTo($this->toObject, $classContext);
 
         if (is_string($var)) $readFunction($var, $data, $classContext);
         else foreach ($var as $name => $data) $readFunction($name, $data, $classContext);
@@ -322,7 +320,7 @@ final class ClassNotPublicManager
     {
         $callFunction = $this->getOrCreateFunctionForCall();
 
-        if ($classContext !== '' && get_class($this->toObject) !== $classContext) $callFunction = $callFunction->bindTo($this->toObject, $classContext);
+        if ($classContext !== '' && $this->toObject::class !== $classContext) $callFunction = $callFunction->bindTo($this->toObject, $classContext);
 
         /** @psalm-suppress PossiblyNullFunctionCall Если не удастся сменить область видимости то пусть падает TypeError, так и должно быть */
         return $callFunction($name, $arguments);
@@ -341,7 +339,7 @@ final class ClassNotPublicManager
     {
         $callFunction = $this->getOrCreateFunctionForCallStatic();
 
-        if ($classContext !== '' && get_class($this->toObject) !== $classContext) $callFunction = $callFunction->bindTo($this->toObject, $classContext);
+        if ($classContext !== '' && $this->toObject::class !== $classContext) $callFunction = $callFunction->bindTo($this->toObject, $classContext);
 
         /** @psalm-suppress PossiblyNullFunctionCall Если не удастся сменить область видимости то пусть падает TypeError, так и должно быть */
         return $callFunction($name, $arguments, $classContext);
@@ -373,7 +371,7 @@ final class ClassNotPublicManager
      */
     public function run(\Closure $function, string $classContext = '', array $arguments = []): mixed
     {
-        $function = $function->bindTo($this->toObject, $classContext === '' ? get_class($this->toObject) : $classContext);
+        $function = $function->bindTo($this->toObject, $classContext === '' ? $this->toObject::class : $classContext);
 
         /** @psalm-suppress PossiblyNullFunctionCall Если привязка к определенной области видимости провалится, мы и должны упасть */
         return $function(... $arguments);
@@ -389,7 +387,7 @@ final class ClassNotPublicManager
         if (empty($this->closureForObjects[__FUNCTION__]))
         {
             $this->closureForObjects[__FUNCTION__] = function(string $name, $context = '') {
-                return constant(($context ? $context : get_class($this)) . "::{$name}");
+                return constant(($context ? $context : $this::class) . "::{$name}");
             };
             $this->closureForObjects[__FUNCTION__] = $this->closureForObjects[__FUNCTION__]->bindTo($this->toObject, $this->toObject);
         }
@@ -425,7 +423,7 @@ final class ClassNotPublicManager
         if (empty($this->closureForObjects[__FUNCTION__]))
         {
             $this->closureForObjects[__FUNCTION__] = function(string $name, string $classContext = '') {
-                return ($classContext ? $classContext : get_class($this))::$$name;
+                return ($classContext ? $classContext : $this::class)::$$name;
             };
             $this->closureForObjects[__FUNCTION__] = $this->closureForObjects[__FUNCTION__]->bindTo($this->toObject, $this->toObject);
         }
@@ -463,7 +461,7 @@ final class ClassNotPublicManager
         if (empty($this->closureForObjects[__FUNCTION__]))
         {
             $this->closureForObjects[__FUNCTION__] = function(string $name, mixed $data, string $classContext) {
-                ($classContext ? $classContext : get_class($this))::$$name = $data;
+                ($classContext ? $classContext : $this::class)::$$name = $data;
             };
             $this->closureForObjects[__FUNCTION__] = $this->closureForObjects[__FUNCTION__]->bindTo($this->toObject, $this->toObject);
         }
@@ -499,7 +497,7 @@ final class ClassNotPublicManager
         if (empty($this->closureForObjects[__FUNCTION__]))
         {
             $this->closureForObjects[__FUNCTION__] = function(string $name, array $arguments, string $classContext) {
-                return [$classContext ? $classContext : get_class($this), $name](...$arguments);
+                return [$classContext ? $classContext : $this::class, $name](...$arguments);
             };
             $this->closureForObjects[__FUNCTION__] = $this->closureForObjects[__FUNCTION__]->bindTo($this->toObject, $this->toObject);
         }

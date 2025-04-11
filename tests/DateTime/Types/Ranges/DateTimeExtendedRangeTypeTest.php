@@ -54,10 +54,8 @@ class DateTimeExtendedRangeTypeTest extends AbstractProjectTestCase
         // * * *
 
         $testRange = DateTimeRangeType::create('2023-06-15 12:30:30.123', '2023-06-16 12:30:30.123');
-        /** @psalm-suppress PossiblyNullReference В данном случае свойства и методы всегда будут, но в TODO PHP8 можно добавить `?->` */
-        self::assertTimestamp(strtotime('2023-06-15 12:30:30'), $testRange->start->getTimestamp());
-        /** @psalm-suppress PossiblyNullReference В данном случае свойства и методы всегда будут, но в TODO PHP8 можно добавить `?->` */
-        self::assertTimestamp(strtotime('2023-06-16 12:30:30'), $testRange->finish->getTimestamp());
+        self::assertTimestamp(strtotime('2023-06-15 12:30:30'), $testRange->start?->getTimestamp());
+        self::assertTimestamp(strtotime('2023-06-16 12:30:30'), $testRange->finish?->getTimestamp());
         self::assertTimestamp(strtotime('2023-06-15 12:30:30'), $testRange->startGetTimestamp());
         self::assertTimestamp(strtotime('2023-06-16 12:30:30'), $testRange->finishGetTimestamp());
         self::assertEquals('2023-06-15 12:30:30', $testRange->startGetString(DateTimeFormats::SQL_DATETIME));

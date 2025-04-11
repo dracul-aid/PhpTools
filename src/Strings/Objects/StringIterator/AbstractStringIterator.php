@@ -11,11 +11,7 @@
 
 namespace DraculAid\PhpTools\Strings\Objects\StringIterator;
 
-use DraculAid\Php8forPhp7\LoaderPhp8Lib;
 use DraculAid\PhpTools\Classes\Patterns\Iterator\IteratorTrait;
-
-// @todo PHP8 удалить
-LoaderPhp8Lib::loadInterfaces();
 
 /**
  * Абстрактный класс для итераторов строк, основанных на типе данных `string`

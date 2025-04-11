@@ -84,8 +84,7 @@ class ListObject extends AbstractIterator implements ArrayInterface
      */
     public function exchangeArray(array $newList): static
     {
-        //  TODO PHP8 array_values станет отчасти ненужной, так как во многих случаях уже передан список (см array_is_list())
-        $this->list = array_values($newList);
+        $this->list = array_is_list($newList) ? $newList : array_values($newList);
         $this->cursor = 0;
 
         return $this;

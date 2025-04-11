@@ -11,11 +11,7 @@
 
 namespace DraculAid\PhpTools\Strings;
 
-use DraculAid\Php8forPhp7\LoaderPhp8Lib;
 use DraculAid\PhpTools\tests\Strings\StringSearchToolsTest;
-
-// @todo PHP8 удалить
-LoaderPhp8Lib::loadInterfaces();
 
 /**
  * Статический класс для осуществления различных действий связанных с поиском внутри строк, если в описании функции не
@@ -133,13 +129,9 @@ final class StringSearchTools
      *                                            <br>* 'border': в начале И конце строки
      *
      * @return   bool   Вернет TRUE если строка удовлетворяет условию или FALSE в противном случае
-     *
-     * @todo PHP8 убрать загрузку функций
      */
     public static function inString(string $string, array $filter): bool
     {
-        LoaderPhp8Lib::loadAllFunctions();
-
         // Если строка в любом месте
         if (!empty($filter['content']) && !str_contains($string, $filter['content'])) return false;
 

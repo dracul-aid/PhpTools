@@ -186,10 +186,9 @@ final class ExceptionTools
         }
         else
         {
-            $varDesc = gettype($function);
+            $varDesc = get_debug_type($function);
             if (is_array($function)) $varDesc .= '(' . count($function) . ')';
 
-            /** @todo PHP8 заменить на get_debug_type() */
             throw new \TypeError("Argument \$function must be a callable or be an array, with a non-public method, but it a {$varDesc}");
         }
     }

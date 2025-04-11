@@ -78,13 +78,10 @@ final class DateTimeObjectHelper
 
         if (is_int($dateTime))
         {
-            /**
-             * @todo PHP8 код можно упросить до такого - но это не точно, может такой вариант и не нужен
-             * $dateTimeObject = new $dateTimeClass();
-             * $dateTimeObject->setTimestamp($dateTime);
-             * return $dateTimeObject;
-             */
-            return new $dateTimeClass(date('r', $dateTime));
+            $dateTimeObject = new $dateTimeClass();
+            $dateTimeObject->setTimestamp($dateTime);
+
+            return $dateTimeObject;
         }
 
         if (is_float($dateTime))

@@ -11,11 +11,7 @@
 
 namespace DraculAid\PhpTools\Strings;
 
-use DraculAid\Php8forPhp7\LoaderPhp8Lib;
 use DraculAid\PhpTools\tests\Strings\StringCutToolsTest;
-
-// @todo PHP8 удалить
-LoaderPhp8Lib::loadInterfaces();
 
 /**
  * Статический класс для осуществления обрезания строк

@@ -11,7 +11,6 @@
 
 namespace DraculAid\PhpTools\Code;
 
-use DraculAid\Php8forPhp7\LoaderPhp8Lib;
 use DraculAid\PhpTools\tests\Code\CodeTypeObjectTest;
 
 /**

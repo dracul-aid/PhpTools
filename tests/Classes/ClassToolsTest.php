@@ -41,12 +41,10 @@ class ClassToolsTest extends TestCase
         /**
          * @psalm-suppress PossiblyNullArgument Пслам не умеет нормально работать с "ссылками" (а эта переменная получает значение ппо ссылке выше
          * @psalm-suppress ArgumentTypeCoercion Пслам не умеет нормально работать с "ссылками" (а эта переменная получает значение ппо ссылке выше
-         * @todo           PHP8 можно будет избавиться, переделва на `[$traitName, $enumName] =  $this->createTestTraitAndEnum()`
+         * @todo PHP8 можно будет избавиться, переделва на `[$traitName, $enumName] =  $this->createTestTraitAndEnum()`
          */
         self::assertTrue(ClassTools::isLoad($traitName));
-
-        // TODO PHP81 актуально начиная c 8.1
-        //self::assertTrue(ClassTools::isLoad($enumName));
+        self::assertTrue(ClassTools::isLoad($enumName));
 
         /** @psalm-suppress UndefinedClass Мы знаем что такой класс не существует, проверяем, как функция отреагирует на такой кейс */
         self::assertFalse(ClassTools::isInternal(_______NoClassName_______::class));
@@ -144,9 +142,8 @@ class ClassToolsTest extends TestCase
         $enumName = '___test_enum_name_' . uniqid() . '___';
 
         eval("trait {$traitName} {}");
-
-        // TODO PHP81 актуально начиная c 8.1
-        //eval("enum {$enumName} {}");
+        
+        eval("enum {$enumName} {}");
     }
 
     /**

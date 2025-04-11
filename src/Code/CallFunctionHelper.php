@@ -65,7 +65,6 @@ final class CallFunctionHelper implements StaticRunnerInterface
      * @throws  \LogicException       Если $function не может быть вызвана
      * @throws  \ReflectionException  В случае провала получения рефлексии для функции или метода
      *
-     * @todo PHP8 Реализовать - Если нужно передать все аргументы, воспользуйтесь 'isset_list'
      * @todo PHP8 match()
      * @todo Реализовать - больше тестов для различных конструкций языка
      * @todo Реализовать - тесты для вызова методов классов
@@ -94,8 +93,8 @@ final class CallFunctionHelper implements StaticRunnerInterface
             return null;
         }
         elseif ($function === 'print') return print($arguments[0]);
-        elseif ($function === 'array') return array(...array_values($arguments)); // TODO PHP8 array_values() станет не нужным, добавлен для ПСАЛМ-а
-        else throw new \LogicException("{$function} is not callable");
+        elseif ($function === 'array') return array(...$arguments);
+        else throw new \LogicException("{$function} is not callable or php construction");
     }
 
     /**

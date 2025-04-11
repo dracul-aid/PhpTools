@@ -11,13 +11,9 @@
 
 namespace DraculAid\PhpTools\DateTime\Types;
 
-use DraculAid\Php8forPhp7\LoaderPhp8Lib;
 use DraculAid\PhpTools\DateTime\DateTimeHelper;
 use DraculAid\PhpTools\DateTime\DateTimeValidator;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
-
-/** @todo PHP8 убрать загрузку функции */
-LoaderPhp8Lib::loadFunction('str_starts_with');
 
 /**
  * Минималистичный объект для хранения даты-времени

@@ -97,9 +97,6 @@ class PhpErrorCodeThrowableTools
     {
         if (!isset(self::TYPE_AND_ERROR_CLASSES[$errorType])) throw new \RuntimeException("Not found class for error code #{$errorType}");
 
-        /** @var class-string<\Error&PhpCodeErrorBasicInterface> $classError Класс для создания ошибки (TODO PHP8 - эта промежуточная переменная нужна только в PHP7) */
-        $classError = self::TYPE_AND_ERROR_CLASSES[$errorType];
-
-        return new $classError($message, $code, $previous);
+        return new (self::TYPE_AND_ERROR_CLASSES[$errorType])($message, $code, $previous);
     }
 }

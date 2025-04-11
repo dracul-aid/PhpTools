@@ -106,10 +106,11 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
      * @inheritdoc
      *
      * @todo Вынести юнит-тесты из тестов конкретных классов в тест абстрактного класса
-     */
+    */
     public function isSet(): bool|int
     {
-        // (!) В функции специально используется isset(), так как Psalm не умеет нормально работать с докблоками интерфейсов (не вычитывает свойства)
+        // (!) В функции специально используется isset(), в качестве "защиты от дурака", изначально это помогало и от
+        //     PSALM, но с новыми версиями он так и не начал видеть "свойства описанные в докблоках интерфейсов" + усвоил, что "динамические свойства - это плохо"
         return match (true) {
             !isset($this->start) && !isset($this->finish) => false,
             isset($this->start) && isset($this->finish)   => true,

@@ -47,7 +47,6 @@ class ClassNotPublicManagerTest extends TestCase
      * Test for {@see ClassNotPublicManager::call()}
      * Test for {@see ClassNotPublicManager::callStatic()}
      *
-     * @psalm-suppress UndefinedThisPropertyFetch
      * @psalm-suppress PossiblyNullFunctionCall
      */
     public function testObject(): void

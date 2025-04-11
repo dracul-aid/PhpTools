@@ -68,6 +68,7 @@ class TimestampRangeTypeTest extends AbstractProjectTestCase
         self::assertEquals(-1, $testRange->isSet());
         $testRange->finishClear();
         self::assertEquals(false, $testRange->isSet());
+        /** @psalm-suppress UndefinedPropertyAssignment Псалм не умеет читать свойства "объявленные" в докблоках интерфейсов */
         $testRange->start = 123123123;
         self::assertEquals(1, $testRange->isSet());
 

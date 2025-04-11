@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <psalm
-    errorLevel="2"
+    errorLevel="8"
     resolveFromConfigFile="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
     findUnusedBaselineEntry="true"
     findUnusedCode="true"
-    phpVersion="7.4"
+    phpVersion="8.1"
 >
     <projectFiles>
         <directory name="src" />
@@ -21,12 +21,8 @@
         <PossiblyUnusedMethod errorLevel="suppress" /> <!-- Это пакет-библиотека, методы могут нигде не вызываться -->
         <PossiblyUnusedReturnValue errorLevel="suppress" /> <!-- Это нормально, если результат работы функции не нужен -->
         <UnusedReturnValue errorLevel="suppress" /> <!-- Это нормально, если результат работы функции не нужен -->
-        <DocblockTypeContradiction errorLevel="suppress" /> <!-- TODO PHP8 скорее всего можно будет убрать. Во многих местах в функцию входит mixed, а нам нужны строго определенные значения -->
         <UnusedForeachValue errorLevel="suppress" /> <!-- При переборе действительно не всегда нужно значение, иногда нужен только ключ -->
         <MissingTemplateParam errorLevel="suppress" /> <!-- Базовые интерфейсы реально иногда нужно имплементировать, с нарушением правил наследования типизации -->
-        <MissingDependency errorLevel="suppress" /> <!-- PSALM тупит и не видит загружаемые LoaderPhp8Lib::loadInterfaces() интерфейсы "под PHP8", @todo PHP8 удалить -->
-        <UndefinedClass errorLevel="suppress" /> <!-- PSALM тупит и не видит загружаемые LoaderPhp8Lib::loadInterfaces() интерфейсы "под PHP8", @todo PHP8 удалить -->
-        <PossiblyUnusedParam errorLevel="suppress" /> <!-- PSALM тупит и постоянно ложно срабатывает на PHP7.4, @todo PHP8 удалить -->
         <!-- LEVEL 7 -->
         <!-- LEVEL 6 -->
         <!-- LEVEL 5 -->
@@ -36,11 +32,7 @@
         <UnsupportedReferenceUsage errorLevel="suppress" /> <!-- Работа с ссылками на таком уровне нужно при проведении тестов (вне тестов, это использовать как-то странно))) -->
         <PropertyNotSetInConstructor errorLevel="suppress" /> <!-- Инициализация свойств по мере надобности - это очень удобно (не нужно создавать nullable переменные) -->
         <RiskyTruthyFalsyComparison errorLevel="suppress" /> <!-- Создает больше проблем, чем пользы, так как зачастую вместо `empty()` нужно городить трехэтажные проверки -->
-        <MissingParamType errorLevel="suppress" /> <!-- Когда у аргументов функции нет явно указанных типов - Мы вынуждены на это пойти в PHP7, TODO PHP8 избавиться от этой заглушки -->
-        <MissingClosureReturnType errorLevel="suppress" /> <!-- Когда у анонимной функции нет установленного типа ответа - Мы вынуждены на это пойти в PHP7, TODO PHP8 избавиться от этой заглушки -->
-        <MissingClosureParamType errorLevel="suppress" /> <!-- Когда у анонимной функции нет установленных типов у аргументов - Мы вынуждены на это пойти в PHP7, TODO PHP8 избавиться от этой заглушки -->
         <UnresolvableInclude errorLevel="suppress" /> <!-- Передача имени файла для загрузки ввиде переменной, это не баг, а фича) -->
         <UnsafeInstantiation errorLevel="suppress" /> <!-- Тут кто догадывается полностью менять аргументы конструктора, сам дурак) -->
-        <RedundantConditionGivenDocblockType errorLevel="suppress" /> <!-- Проверки на входящие типы реально иногда нужны, в PHP7 нет гарантий, что придет что надо, TODO PHP8 избавиться от этой заглушки -->
     </issueHandlers>
 </psalm>

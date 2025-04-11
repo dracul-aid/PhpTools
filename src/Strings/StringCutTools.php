@@ -43,7 +43,6 @@ final class StringCutTools
      * @return  string   Вернет изначальную строку или обрезанную строку
      *
      * @psalm-suppress PossiblyInvalidArrayAccess Мы точно знаем, что запрошенный элемент массива будет
-     * @psalm-suppress UnusedParam Псалм считает, что большая часть аргументов функции не используется внутри функции, но это не так (@todo php8 проверить на актуальность)
      */
     public static function firstSubstrBefore(string $string, string|iterable $substr, bool $withSubstr = false, int $start = 0): string
     {

@@ -39,8 +39,6 @@ final class StringSearchTools
      *
      * @return  null|int|array   Вернет позицию первой найденной подстроки или NULL, если ни одна подстрока не найдена
      *                           Также может вернуть массив, с номером позиции и найденной подстрокой, см параметр $return_array
-     *
-     * @psalm-suppress UnusedParam Псалм считает, что большая часть аргументов функции не используется внутри функции, но это не так (TODO PHP8 проверить на актуальность)
      */
     public static function position(string $string, iterable $searchList, int $start = 0, bool $utf8 = true, bool $returnArray = false):  null|int|array
     {

@@ -79,6 +79,7 @@ final class DateTimeObjectHelper
         if (is_int($dateTime))
         {
             $dateTimeObject = new $dateTimeClass();
+            /** @psalm-suppress UndefinedInterfaceMethod Псалм не знает, о том, что в PHP8 интерфейс уже обновлен и содержит \DateTimeImmutable::setTimestamp (TODO PHP8.2 проверить актуальность) */
             $dateTimeObject->setTimestamp($dateTime);
 
             return $dateTimeObject;

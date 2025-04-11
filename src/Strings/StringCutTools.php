@@ -114,9 +114,12 @@ final class StringCutTools
      * @param   string   $replace   На что будут заменены найденные пробелы (по умолчанию на ' ')
      *
      * @return string
+     *
+     * @psalm-suppress InvalidNullableReturnType Если preg_replace() вернет NULL (или иной другой тип кроме строки) мы и правда хотим упасть
      */
     public static function trimInString(string $string, string $replace = ' '): string
     {
+        /** @psalm-suppress NullableReturnStatement Если preg_replace() вернет NULL (или иной другой тип кроме строки) мы и правда хотим упасть */
         return preg_replace("/\s+/", $replace, $string);
     }
 
@@ -141,11 +144,14 @@ final class StringCutTools
      * @param   string   $replace   Строка для замены (по умолчанию пробел: `' '`)
      *
      * @return  string
+     *
+     * @psalm-suppress InvalidNullableReturnType Если preg_replace() вернет NULL (или иной другой тип кроме строки) мы и правда хотим упасть
      */
     public static function clearMultiSpaces(string $string, string $replace = ' '): string
     {
         if ($string === '' || $replace === '') return $string;
 
+        /** @psalm-suppress NullableReturnStatement Если preg_replace() вернет NULL (или иной другой тип кроме строки) мы и правда хотим упасть */
         return preg_replace('/\s+/', $replace, $string);
     }
 }

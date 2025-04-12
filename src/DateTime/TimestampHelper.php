@@ -48,6 +48,8 @@ final class TimestampHelper
      * @throws  \RuntimeException   Если нужно вернуть ввиде числа, а версия PHP не поддерживает int64 (например, запущена на 32 битной операционной системе)
      *
      * @todo PHP8 рассмотреть вариант ответа ввиде числа (32 битная система маловероятна)
+     *
+     * @psalm-suppress InvalidOperand $timestamp к концу выполнеия функции сужает свой тип и это сводит с ума Псалм
      */
     public static function toJsTimestamp(int|float|\DateTimeInterface $timestamp, bool $asInt64 = false): int|string
     {

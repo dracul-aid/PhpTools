@@ -144,7 +144,7 @@ abstract class AbstractDateTimeRange implements DateTimeRangeInterface
     {
         if ($this->isSet() !== true) return 0;
 
-        return abs($this->finishGetTimestamp($withMs) - $this->startGetTimestamp($withMs));
+        return abs((double)$this->finishGetTimestamp($withMs) - (double)$this->startGetTimestamp($withMs));
     }
 
     /**

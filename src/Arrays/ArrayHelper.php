@@ -123,10 +123,10 @@ final class ArrayHelper
      *
      * @todo PHP8.2 Типизация для аргументов
      */
-    public static function getNewIndex(array $asArray): int
+    public static function getNewIndex(array|object $asArray): int
     {
         // @todo PHP8.2 условие с !ArrayHelper::isAsArray теряет смысл
-        if (!ArrayHelper::isAsArray($asArray)) throw new \TypeError('$array can be array or array-object, call is a ' .gettype($asArray));
+        if (!ArrayHelper::isAsArray($asArray)) throw new \TypeError('$array can be array or array-object, call is a ' . gettype($asArray));
 
         if (count($asArray) === 0) return 0;
 

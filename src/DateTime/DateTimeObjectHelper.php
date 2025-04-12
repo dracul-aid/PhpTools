@@ -88,8 +88,7 @@ final class DateTimeObjectHelper
         if (is_float($dateTime))
         {
             $second = intval($dateTime);
-            // PHP7.4 ожидает, что дробная часть секунды, будет от 0 до 6 знаков после запятой,
-            // прочие варианты (например, наносекунды) приведут к ошибке разбора строки-даты времени (критическая ошибка)
+            /** @psalm-suppress InvalidOperand ПСАЛМ не понимает, что в данном участке кода $dateTime может быть только FLOAT */
             $microsecond = substr((string)($dateTime - $second), 2, 6);
 
             return new $dateTimeClass(

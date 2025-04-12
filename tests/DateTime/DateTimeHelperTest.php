@@ -46,6 +46,8 @@ class DateTimeHelperTest extends TestCase
      * Test for {@see DateTimeHelper::isValidDateArray()}
      *
      * @return void
+     *
+     * @psalm-suppress InvalidOperand Псалм ругается на недопустимые арифметические операции, причина, члены операций теоретически могут быть разными типами, на практике такого быть не может
      */
     public function testGetDateArrayAndIsValidDateArray(): void
     {
@@ -122,6 +124,7 @@ class DateTimeHelperTest extends TestCase
         self::assertEquals('00:00:00', DateTimeHelper::getTimeString(false));
         self::assertEquals('23:59:59', DateTimeHelper::getTimeString(true));
         self::assertEquals(date(DateTimeFormats::SQL_TIME), DateTimeHelper::getTimeString(time()));
+        /** @psalm-suppress InvalidOperand Псалм ругается на недопустимые арифметические операции, причина, члены операций теоретически могут быть разными типами, на практике такого быть не может */
         self::assertEquals(date(DateTimeFormats::SQL_TIME), DateTimeHelper::getTimeString(time() + 0.123456));
         self::assertEquals('00:00:00', DateTimeHelper::getTimeString(new \DateTime('Now midnight')));
         self::assertEquals('00:00:00', DateTimeHelper::getTimeString(new \DateTimeImmutable('Now midnight')));

@@ -46,6 +46,8 @@ class TimestampHelperTest extends TestCase
      * Test for {@see TimestampHelper::toString()}
      *
      * @return void
+     *
+     * @psalm-suppress InvalidOperand Псалм ругается на недопустимые арифметические операции, причина, члены операций теоретически могут быть разными типами, на практике такого быть не может
      */
     public function testToString(): void
     {
@@ -76,6 +78,8 @@ class TimestampHelperTest extends TestCase
      * @return void
      *
      * @todo Доработь тест
+     *
+     * @psalm-suppress InvalidOperand Псалм ругается на недопустимые арифметические операции, причина, члены операций теоретически могут быть разными типами, на практике такого быть не может
      */
     public function testGetTimestamp(): void
     {

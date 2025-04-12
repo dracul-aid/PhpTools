@@ -180,14 +180,13 @@ final class ExceptionTools
         {
             return $function(... $arguments);
         }
-        elseif (is_array($function) && count($function) === 2)
+        elseif (count($function) === 2)
         {
             return ClassNotPublicManager::callMethod($function, $arguments);
         }
         else
         {
-            $varDesc = get_debug_type($function);
-            if (is_array($function)) $varDesc .= '(' . count($function) . ')';
+            $varDesc = get_debug_type($function) . '(' . count($function) . ')';
 
             throw new \TypeError("Argument \$function must be a callable or be an array, with a non-public method, but it a {$varDesc}");
         }

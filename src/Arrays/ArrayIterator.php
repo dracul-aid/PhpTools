@@ -80,9 +80,10 @@ final class ArrayIterator
      */
     private static function mapGetValues(mixed $data, false|int|string|array $valuesRule): mixed
     {
-        // @todo PHP8 заменить на math
-        if ($valuesRule === false) return $data;
-        elseif (is_array($valuesRule)) return ArrayHelper::getByIndexes($data, $valuesRule);
-        else return $data[$valuesRule];
+        return match (true) {
+            $valuesRule === false => $data,
+            is_array($valuesRule) => ArrayHelper::getByIndexes($data, $valuesRule),
+            default => $data[$valuesRule],
+        };
     }
 }

@@ -16,8 +16,7 @@ use DraculAid\PhpTools\tests\Strings\Objects\StringIterator\Utf8IteratorObjectTe
 /**
  * Класс для итерирования строк UTF8 (посимвольного обхода строк с помощью `foreach`)
  *
- * (!) Замещает устаревший {@see \DraculAid\PhpTools\Strings\Utf8Iterator}
- * <br>(!) Каждый символ в UTF8 занимает от 1 до 4 байт
+ * (!) Каждый символ в UTF8 занимает от 1 до 4 байт
  *
  * Для перебора строк с фиксированным размером символа, см {@see StringIteratorObject}
  *

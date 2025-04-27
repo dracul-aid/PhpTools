@@ -34,12 +34,10 @@ class TimestampHelperTest extends TestCase
     public function testToJsTimestamp(): void
     {
         $timestamp = time();
-        self::assertEquals((string)($timestamp * 1000), TimestampHelper::toJsTimestamp($timestamp));
-        self::assertEquals((string)($timestamp * 1000), TimestampHelper::toJsTimestamp($timestamp, false));
+        self::assertEquals($timestamp * 1000, TimestampHelper::toJsTimestamp($timestamp));
 
         $timeObject = new \DateTime('2018-09-05 1:02:08.123456');
-        self::assertEquals((string)($timeObject->getTimestamp() * 1000 + 123), TimestampHelper::toJsTimestamp($timeObject));
-        self::assertEquals((string)($timeObject->getTimestamp() * 1000 + 123), TimestampHelper::toJsTimestamp($timeObject, false));
+        self::assertEquals($timeObject->getTimestamp() * 1000 + 123, TimestampHelper::toJsTimestamp($timeObject));
     }
 
     /**

@@ -41,29 +41,18 @@ final class TimestampHelper
      * Преобразование в JS таймштам (INT64, обычный таймштамп с милисекундами)
      *
      * @param   int|float|\DateTimeInterface    $timestamp    Таймштамп для преобразования или объект даты-времени
-     * @param   bool                            $asInt64      Нужно ли вернуть в виде числа (int64)
      *
-     * @return  int|string
+     * @return  int
      *
      * @throws  \RuntimeException   Если нужно вернуть ввиде числа, а версия PHP не поддерживает int64 (например, запущена на 32 битной операционной системе)
      *
-     * @todo PHP8 рассмотреть вариант ответа ввиде числа (32 битная система маловероятна)
-     *
-     * @psalm-suppress InvalidOperand $timestamp к концу выполнеия функции сужает свой тип и это сводит с ума Псалм
+     * @psalm-suppress InvalidOperand $timestamp к концу выполнения функции сужает свой тип и это сводит с ума Псалм
      */
-    public static function toJsTimestamp(int|float|\DateTimeInterface $timestamp, bool $asInt64 = false): int|string
+    public static function toJsTimestamp(int|float|\DateTimeInterface $timestamp): int
     {
-        // Если версия PHP не поддерживает int64
-        if ($asInt64 && PHP_INT_SIZE < 5){
-            throw new \RuntimeException('PHP run on a 32 bit OS system, Int64 not supported, use method  toJsTimestamp() with $asString = true');
-        }
-
-        // * * *
-
         if ($timestamp instanceof \DateTimeInterface) $timestamp = (float)$timestamp->format(DateTimeFormats::TIMESTAMP_WITH_MILLISECONDS);
 
-        if (!$asInt64) return (string)($timestamp * TimestampConstants::MILLISECOND_MODIFICATION);
-        else return (int)($timestamp * TimestampConstants::MILLISECOND_MODIFICATION);
+        return (int)($timestamp * TimestampConstants::MILLISECOND_MODIFICATION);
     }
 
     /**

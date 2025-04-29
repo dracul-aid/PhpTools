@@ -22,6 +22,8 @@ use DraculAid\PhpTools\tests\Console\ConsoleArgumentsFromPhpArgvCreatorTest;
  * (!) В результате разбора именованными аргументами будут только аргументы начинавшиеся с `-`
  *
  * Test cases for class {@see ConsoleArgumentsFromPhpArgvCreatorTest}
+ *
+ * @see ConsoleArgumentsFromString Для получения объекта-аргументов из строки
  */
 final class ConsoleArgumentsFromPhpArgvCreator
 {

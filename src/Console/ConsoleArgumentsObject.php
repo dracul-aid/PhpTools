@@ -23,6 +23,7 @@ use DraculAid\PhpTools\Arrays\Objects\ListObject;
  * <br>- Флаги `-h` или `--help` имеет имя (`-h` или `--help`), а в качестве значения имеет TRUE или строку (если было `-h=abc`)
  *
  * См также {@see ConsoleArgumentsFromPhpArgvCreator} Вернет параметры текущего скрипта (т.е. из `$_SERVER['argv']`)
+ * и {@see ConsoleArgumentsFromString} для получения объекта аргументов из строки
  *
  * Оглавление:
  * <br>- {@see self::$script} Имя запущенного скрипта

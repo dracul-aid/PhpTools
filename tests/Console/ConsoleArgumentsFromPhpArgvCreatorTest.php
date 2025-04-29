@@ -79,11 +79,8 @@ class ConsoleArgumentsFromPhpArgvCreatorTest extends TestCase
         $testResult = $this->callParseParamRowValue('abc12=123');
 
         self::assertEquals(1, $testResult->count());
-        self::assertEquals(1, $testResult->countNames());
-        self::assertEquals('123', $testResult->getByName('abc12'));
-        self::assertEquals('123', $testResult->getByPosition(0));
-        self::assertEquals(0, $testResult->getPositionByName('abc12'));
-        self::assertEquals('abc12', $testResult->getNameByPosition(0));
+        self::assertEquals(0, $testResult->countNames());
+        self::assertEquals('abc12=123', $testResult->getByPosition(0));
     }
 
     /**
@@ -100,22 +97,23 @@ class ConsoleArgumentsFromPhpArgvCreatorTest extends TestCase
             '*abc*=ddd',
             '-h',
             '--help',
-            '-x=ggg',
+            '-x=gg',
             'abc=def',
-            '-x=zzz',
+            '-z=zzz',
+            '--null=',
         ];
 
         $testResult = ConsoleArgumentsFromPhpArgvCreator::exe();
 
         self::assertEquals('script.php', $testResult->script);
 
-        self::assertEquals(6, $testResult->count());
-        self::assertEquals(4, $testResult->countNames());
+        self::assertEquals(7, $testResult->count());
+        self::assertEquals(5, $testResult->countNames());
 
-        self::assertEquals(['*abc*=ddd', true, true, 'ggg', 'def', 'zzz'], iterator_to_array($testResult->getIterator()));
-        self::assertEquals(['*abc*=ddd', true, true, 'ggg', 'def', 'zzz'], iterator_to_array($testResult->getIterator(false)));
+        self::assertEquals(['*abc*=ddd', true, true, 'gg', 'abc=def', 'zzz', ''], iterator_to_array($testResult->getIterator()));
+        self::assertEquals(['*abc*=ddd', true, true, 'gg', 'abc=def', 'zzz', ''], iterator_to_array($testResult->getIterator(false)));
 
-        self::assertEquals(['-h' => true, '--help' => true, 'abc' => 'def', '-x' => 'zzz'], iterator_to_array($testResult->getIterator(true)));
+        self::assertEquals(['-h' => true, '--help' => true, '-x' => 'gg', '-z' => 'zzz', '--null' => ''], iterator_to_array($testResult->getIterator(true)));
 
         $_SERVER['argv'] = $SERVER_ARGV;
     }

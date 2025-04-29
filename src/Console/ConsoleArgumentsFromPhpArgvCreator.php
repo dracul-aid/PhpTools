@@ -19,6 +19,8 @@ use DraculAid\PhpTools\tests\Console\ConsoleArgumentsFromPhpArgvCreatorTest;
  *
  * Используйте для работы {@see ConsoleArgumentsFromPhpArgvCreator::exe()} вернет объект-аргумент {@see ConsoleArgumentsObject}
  *
+ * (!) В результате разбора именованными аргументами будут только аргументы начинавшиеся с `-`
+ *
  * Test cases for class {@see ConsoleArgumentsFromPhpArgvCreatorTest}
  */
 final class ConsoleArgumentsFromPhpArgvCreator
@@ -66,9 +68,6 @@ final class ConsoleArgumentsFromPhpArgvCreator
         /** Итератор, для перебора строки с значением аргумента */
         $utf8Iterator = new Utf8IteratorObject($paramRowValue);
 
-        /** Флаг, указывающий, что текущий аргумент является "флагом" (т.е. его имя начинается с `-`, например `-h`) */
-        $isFlag = false;
-
         /** Для накопления разобранной строки */
         $tmpString = '';
 
@@ -77,20 +76,18 @@ final class ConsoleArgumentsFromPhpArgvCreator
         /** Очередной прочитанный символ */
         $char = $utf8Iterator->currentValueAndNext();
 
-        // если первый символ "не буква" и не указатель флага - значит считаем, что это аргумент без имени
-        if (!ctype_alpha($char) && $char !== '-')
+        // если первый символ не указатель флага - значит считаем, что это аргумент без имени
+        if ($char !== '-')
         {
             $consoleParam->setArgument($position, $paramRowValue);
 
             return;
         }
 
-        // если первый символ `-` это флаг
-        if ($char === '-') $isFlag = true;
-
         $tmpString .= $char;
 
         // * * * Анализ последующих символов
+
         // анализируем строку, если в ней найдем `=` значит мы нашли "именной" аргумент
         while ($char = $utf8Iterator->currentValueAndNext())
         {
@@ -107,16 +104,7 @@ final class ConsoleArgumentsFromPhpArgvCreator
             $tmpString .= $char;
         }
 
-        // если дошли сюда, и это потенциальный флаг - то создадим именованную запись без текстового значения
-        if ($isFlag)
-        {
-            $consoleParam->setArgument($position, true);
-            $consoleParam->setName($position, $tmpString);
-
-            return;
-        }
-
-        // если дошли сюда - значит это аргумент без имени
-        $consoleParam->setArgument($position, $tmpString);
+        // если дошли сюда - то именованный аргумент без значения
+        $consoleParam->setArgument($position, true)->setName($position, $tmpString);
     }
 }

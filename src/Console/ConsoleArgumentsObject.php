@@ -30,6 +30,8 @@ use DraculAid\PhpTools\Arrays\Objects\ListObject;
  * <br>- {@see self::count()} Вернет кол-во аргументов
  * <br>- {@see self::countNames()} Вернет кол-во аргументов с именем
  * <br>- {@see self::getIterator()} Переберет или все аргументы, или только аргументы по имени
+ * <br>- {@see self::commandNameCount()} Вернет кол-во аргументов до первого именованного аргумента
+ * <br>- {@see self::commandNameIterator()} Итератор, перебирающие аргументы до первого именованного аргумента
  * <br>--- Операции записи
  * <br>- {@see self::setArgument()} Установит значение аргумента по номеру позиции
  * <br>- {@see self::setName()} Установит значение аргумента по имени
@@ -256,6 +258,42 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
 
         foreach ($this->arguments as $position => $value)
         {
+            yield $position => $value;
+        }
+    }
+
+    /**
+     * Вернет кол-во аргументов до первого именованного аргумента, обычно это имя/путь к функции/классу,
+     * внутри какого-то фреймворка
+     *
+     *  Например: `command.php alfa beta -f=123` это будут `['alfa', 'beta']`, значит функция вернет 0
+     *
+     * @return int<0, max>
+     */
+    public function commandNameCount(): int
+    {
+        if ($this->arguments->count() === 0 || $this->arguments->count() === count($this->nameAndPosition)) return 0;
+
+        if (count($this->nameAndPosition) === 0) return $this->arguments->count();
+        else return min($this->nameAndPosition);
+    }
+
+    /**
+     * Итератор, перебирающие аргументы до первого именованного аргумента, обычно это имя/путь к функции/классу,
+     * внутри какого-то фреймворка
+     *
+     * Например: `command.php alfa beta -f=123` переберет `['alfa', 'beta']`
+     *
+     * @return \Generator<int, string>
+     */
+    public function commandNameIterator(): \Generator
+    {
+        $stopPosition = $this->commandNameCount();
+
+        foreach ($this->arguments as $position => $value)
+        {
+            if ($position >= $stopPosition) return;
+
             yield $position => $value;
         }
     }

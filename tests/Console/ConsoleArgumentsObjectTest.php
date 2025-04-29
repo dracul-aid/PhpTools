@@ -15,6 +15,7 @@ use DraculAid\PhpTools\Arrays\Objects\ListObject;
 use DraculAid\PhpTools\Classes\ClassNotPublicManager;
 use DraculAid\PhpTools\Classes\ClassTools;
 use DraculAid\PhpTools\Console\ConsoleArgumentsFromPhpArgvCreator;
+use DraculAid\PhpTools\Console\ConsoleArgumentsFromString;
 use DraculAid\PhpTools\Console\ConsoleArgumentsObject;
 use DraculAid\PhpTools\ExceptionTools\ExceptionTools;
 use PHPUnit\Framework\TestCase;
@@ -30,6 +31,7 @@ class ConsoleArgumentsObjectTest extends TestCase
     {
         $this->testConstructorAndProperty();
         $this->testGetIteratorAndCounts();
+        $this->testCommandNameIterator();
         $this->testSetArgument();
         $this->testSetName();
 
@@ -94,6 +96,31 @@ class ConsoleArgumentsObjectTest extends TestCase
         self::assertEquals(['a' => 'aaa', 'x' => true], iterator_to_array($testObject->getIterator(true)));
         self::assertEquals(3, $testObject->count());
         self::assertEquals(2, $testObject->countNames());
+    }
+
+    /**
+     * Test for {@covers ConsoleArgumentsObject::commandNameCount()}
+     * Test for {@covers ConsoleArgumentsObject::commandNameIterator()}
+     *
+     * @return void
+     */
+    private function testCommandNameIterator(): void
+    {
+        $argumentTestObject = ConsoleArgumentsFromString::exe("-a -b");
+        self::assertEquals(0, $argumentTestObject->commandNameCount());
+        self::assertEquals([], iterator_to_array($argumentTestObject->commandNameIterator()));
+
+        $argumentTestObject = ConsoleArgumentsFromString::exe("-a -b end");
+        self::assertEquals(0, $argumentTestObject->commandNameCount());
+        self::assertEquals([], iterator_to_array($argumentTestObject->commandNameIterator()));
+
+        $argumentTestObject = ConsoleArgumentsFromString::exe("first second");
+        self::assertEquals(2, $argumentTestObject->commandNameCount());
+        self::assertEquals(['first', 'second'], iterator_to_array($argumentTestObject->commandNameIterator()));
+
+        $argumentTestObject = ConsoleArgumentsFromString::exe("first second -a -b end");
+        self::assertEquals(2, $argumentTestObject->commandNameCount());
+        self::assertEquals(['first', 'second'], iterator_to_array($argumentTestObject->commandNameIterator()));
     }
 
     /**

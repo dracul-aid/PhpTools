@@ -14,6 +14,7 @@ namespace DraculAid\PhpTools\tests\Console;
 use DraculAid\PhpTools\Arrays\Objects\ListObject;
 use DraculAid\PhpTools\Classes\ClassNotPublicManager;
 use DraculAid\PhpTools\Classes\ClassTools;
+use DraculAid\PhpTools\Console\ConsoleArgumentsFromPhpArgvCreator;
 use DraculAid\PhpTools\Console\ConsoleArgumentsObject;
 use DraculAid\PhpTools\ExceptionTools\ExceptionTools;
 use PHPUnit\Framework\TestCase;
@@ -471,6 +472,28 @@ class ConsoleArgumentsObjectTest extends TestCase
      */
     private function testToString(): void
     {
+        $SERVER_ARGV = $_SERVER['argv'] ?? [];
 
+        $_SERVER['argv'] = [
+            'script.php',
+            '*abc*=ddd',
+            '-h',
+            '--help',
+            '-x=gg',
+            'abc=def',
+            '-z=zzz',
+            '--null=',
+            '-w==',
+        ];
+
+        // * * *
+
+        $testResult = ConsoleArgumentsFromPhpArgvCreator::exe();
+
+        self::assertEquals('script.php *abc*=ddd -h --help -x=gg abc=def -z=zzz --null= -w==', (string)$testResult);
+
+        // * * *
+
+        $_SERVER['argv'] = $SERVER_ARGV;
     }
 }

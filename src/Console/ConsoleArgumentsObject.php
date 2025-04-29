@@ -359,16 +359,22 @@ class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Str
         return $this;
     }
 
+    /** {@inheritdoc} */
     public function __toString(): string
     {
-        $_return = [$this->script];
+        $_return = $this->script === '' ? [] : [$this->script];
 
         foreach ($this->arguments as $position => $value)
         {
-            $name = $this->positionAndName[$position] ?? '';
-            $_return[] = $name;
-        }
+            // если именованный аргумент
+            if (array_key_exists($position, $this->positionAndName))
+            {
+                $_return[] = "{$this->positionAndName[$position]}" . (is_string($value) ? "={$value}" : '');
+                continue;
+            }
 
+            $_return[] = $value;
+        }
 
         return implode(' ', $_return);
     }

@@ -16,6 +16,7 @@
 
     <issueHandlers>
         <!-- LEVEL 8 -->
+        <UnnecessaryVarAnnotation errorLevel="suppress" /> <!-- ПСАЛМу не нравится, когда через `@var` определен тип переменных в функциях, если этот тип "очевиден" -->
         <UnusedClass errorLevel="suppress" /> <!-- Это пакет-библиотека, все классы могут не использоваться -->
         <PossiblyUnusedProperty errorLevel="suppress" /> <!-- Это пакет-библиотека, свойства могут не читаться -->
         <PossiblyUnusedMethod errorLevel="suppress" /> <!-- Это пакет-библиотека, методы могут нигде не вызываться -->

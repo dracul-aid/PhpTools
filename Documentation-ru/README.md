@@ -23,6 +23,10 @@
       * [IteratorInterface](../src/Classes/Patterns/Iterator/IteratorInterface.php) Интерфейс для итераторов
       * [AbstractIterator](../src/Classes/Patterns/Iterator/AbstractIterator.php) Абстрактный класс для итераторов
       * [IteratorTrait](../src/Classes/Patterns/Iterator/IteratorTrait.php) Трейт для реализации "сахара" для итераторов
+* [StaticDi](../src/Classes/StaticDi) Di контейнер для работы со статическими классами
+  * [StaticDi](../src/Classes/StaticDi/StaticDi.php) Di контейнер
+  * [StaticDiMagicTrait](../src/Classes/StaticDi/StaticDiMagicTrait.php) Трейт, для реализации Di контейнера в легаси проектах
+  * [StaticDiEvents](../src/Classes/StaticDi/StaticDiEvents.php) События Di контейнера
 * [ClassNotPublicManager](../src/Classes/ClassNotPublicManager.php) Набор функций для взаимодействия с непубличными
   элементами классов (методами, свойствами и константами), в том числе и со статическими
 * [ClassParents](../src/Classes/ClassParents.php) Позволяет получить информацию о родителях класса (включая информацию по трейтам)

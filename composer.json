@@ -23,7 +23,6 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
-        "draculaid/phpmocker": "dev-master",
         "vimeo/psalm": "^6.0"
     }
 }

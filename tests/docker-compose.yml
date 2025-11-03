@@ -1,6 +1,0 @@
-services:
-  php81:
-    image: php:8.1.32-apache
-    restart: always
-    volumes:
-      - ../:/var/www/html

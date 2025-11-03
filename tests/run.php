@@ -21,14 +21,16 @@ $vendorPath = dirname(__DIR__) . '/vendor';
 require_once("{$vendorPath}/autoload.php");
 
 /**
- * Каталог, в котором размещен PhpUnit
+ * Каталог, в котором размещен PhpUnit (файл сборки фреймворка)
  * @var string $phpUnitPath
  */
 $phpUnitPath = dirname(__DIR__) . '/vendor/phpunit/phpunit/phpunit';
 
-if ($phpUnitPath !== '')
+if (file_exists($phpUnitPath))
 {
-    // получаем PHP код "консольного приложения PhpUnit" и выбрасываем из него declare(strict_types=1);
+    // Получаем PHP код "консольного приложения PhpUnit" и выбрасываем из него declare(strict_types=1);
+    // Нужно, чтобы запустить юнит-тесты через eval().
+    // Запускаем их через eval() для того, что бы была возможность обернуть своим кодом
     $phpUnitCodeExecutor = explode("\n", file_get_contents($phpUnitPath));
     unset($phpUnitCodeExecutor[0], $phpUnitCodeExecutor[1]);
 

@@ -38,6 +38,7 @@
 * [DebugVarTools](../src/Code/DebugVarTools.php) Инструменты для отладки значений
 * [DebugVarHtmlTools](../src/Code/DebugVarHtmlTools.php) Инструменты для отладки значений в HTML формате
 * [CallFunctionHelper](../src/Code/CallFunctionHelper.php) Хэлпер для вызова функций и языковых конструкций
+* [AbstractFunctionRunList](../src/Code/FunctionRunList/AbstractFunctionRunList.php) Абстрактный класс, для реализации списков функций, которые должны быть выполнены вместе (аналог транзакций)
 * [FunctionAsPropertyObject](../src/Code/FunctionAsPropertyObject.php) Объект-функция, позволяет использовать функции и
   конструкции языка в качестве типа свойств классов
 * [ObHelper](../src/Code/ObHelper.php) Позволяет вызывать функции с перехватом потока вывода

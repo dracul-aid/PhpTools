@@ -209,7 +209,6 @@ final class CallFunctionHelper implements StaticRunnerInterface
     private static function exeCallable(callable $function, array $arguments)
     {
         if (count($arguments) === 0) return call_user_func($function);
-        elseif (count($arguments) === 1 && array_key_exists(0, $arguments)) return call_user_func($function, $arguments[0]);
 
         // * * *
 

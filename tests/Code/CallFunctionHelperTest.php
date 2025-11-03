@@ -108,7 +108,8 @@ class CallFunctionHelperTest extends TestCase
 
 
         // * * * Вызов функций
-
+        $t = 'XXX';
+        self::assertTrue((bool)CallFunctionHelper::exe('time', $t));
         $t = 'XXX';
         self::assertFalse(CallFunctionHelper::exe('is_int', $t));
         $t = 0;
@@ -119,6 +120,8 @@ class CallFunctionHelperTest extends TestCase
         // вызов методов
         $testObject = $this->getTestObject();
         self::assertEquals(3, CallFunctionHelper::exe([$testObject, 'f2'], 5, 2));
+        self::assertEquals(4, CallFunctionHelper::exe($testObject->f2(...), 6, 2));
+        self::assertEquals(9, CallFunctionHelper::exe($testObject::f1(...), 8, 1));
     }
 
     /**

@@ -12,7 +12,6 @@
 namespace DraculAid\PhpTools\tests\Code\FunctionRunList;
 
 use DraculAid\PhpTools\Code\FunctionRunList\AbstractFunctionRunList;
-use DraculAid\PhpTools\Code\FunctionRunList\FunctionElement;
 use DraculAid\PhpTools\Code\FunctionRunList\FunctionTransactionElements;
 use DraculAid\PhpTools\tests\Code\FunctionRunList\resources\TestClassForTestFunctionRunList;
 use PHPUnit\Framework\TestCase;
@@ -21,6 +20,9 @@ use PHPUnit\Framework\TestCase;
  * Test for {@see AbstractFunctionRunList}, функционал по выполнению списка функций см в {@see AbstractFunctionRunExecuteTest}
  *
  * @run php tests/run.php tests/Code/FunctionRunList/AbstractFunctionRunListTest.php
+ *
+ * @psalm-suppress UndefinedPropertyAssignment В тесте используются несуществующие в абстрактном классе свойства, это нормально, они определены в анонимном классе внутри теста
+ * @psalm-suppress UndefinedMethod В тесте используются несуществующие в абстрактном классе свойства, это нормально, они определены в анонимном классе внутри теста
  */
 class AbstractFunctionRunListTest extends TestCase
 {

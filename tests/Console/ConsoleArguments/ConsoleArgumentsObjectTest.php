@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace DraculAid\PhpTools\tests\Console;
+namespace DraculAid\PhpTools\tests\Console\ConsoleArguments;
 
 use DraculAid\PhpTools\Arrays\Objects\ListObject;
 use DraculAid\PhpTools\Classes\ClassNotPublicManager;
 use DraculAid\PhpTools\Classes\ClassTools;
-use DraculAid\PhpTools\Console\ConsoleArgumentsFromPhpArgvCreator;
-use DraculAid\PhpTools\Console\ConsoleArgumentsFromString;
-use DraculAid\PhpTools\Console\ConsoleArgumentsObject;
+use DraculAid\PhpTools\Console\ConsoleArguments\ConsoleArgumentsFromPhpArgvCreator;
+use DraculAid\PhpTools\Console\ConsoleArguments\ConsoleArgumentsFromString;
+use DraculAid\PhpTools\Console\ConsoleArguments\ConsoleArgumentsObject;
 use DraculAid\PhpTools\ExceptionTools\ExceptionTools;
 use PHPUnit\Framework\TestCase;
 

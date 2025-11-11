@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace DraculAid\PhpTools\Console;
+namespace DraculAid\PhpTools\Console\ConsoleArguments;
 
 use DraculAid\PhpTools\Strings\Objects\StringIterator\StringIteratorInterface;
 use DraculAid\PhpTools\Strings\Objects\StringIterator\StringIteratorObject;
@@ -23,8 +23,6 @@ use DraculAid\PhpTools\Strings\Objects\StringIterator\Utf8IteratorObject;
  * Test cases for class {@see ConsoleArgumentsFromPhpArgvCreatorTest}
  *
  * @see ConsoleArgumentsFromPhpArgvCreator Получит объект-аргументов из `$_SERVER['argv']`
- *
- * @deprecated Будет удален в не ранее v2.0.0, используйте {@see \DraculAid\PhpTools\Console\ConsoleArguments\ConsoleArgumentsFromString}
  */
 final class ConsoleArgumentsFromString
 {

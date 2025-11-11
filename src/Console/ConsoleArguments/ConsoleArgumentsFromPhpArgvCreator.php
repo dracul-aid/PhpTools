@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace DraculAid\PhpTools\Console;
+namespace DraculAid\PhpTools\Console\ConsoleArguments;
 
 use DraculAid\PhpTools\Strings\Objects\StringIterator\Utf8IteratorObject;
 use DraculAid\PhpTools\tests\Console\ConsoleArgumentsFromPhpArgvCreatorTest;
@@ -24,8 +24,6 @@ use DraculAid\PhpTools\tests\Console\ConsoleArgumentsFromPhpArgvCreatorTest;
  * Test cases for class {@see ConsoleArgumentsFromPhpArgvCreatorTest}
  *
  * @see ConsoleArgumentsFromString Для получения объекта-аргументов из строки
- *
- * @deprecated Будет удален в не ранее v2.0.0, используйте {@see \DraculAid\PhpTools\Console\ConsoleArguments\ConsoleArgumentsFromPhpArgvCreator}
  */
 final class ConsoleArgumentsFromPhpArgvCreator
 {
@@ -67,7 +65,7 @@ final class ConsoleArgumentsFromPhpArgvCreator
      *
      * @return  void
      */
-    protected static function parseParamRowValue(int $position, string $paramRowValue, ConsoleArgumentsObject $consoleParam): void
+    private static function parseParamRowValue(int $position, string $paramRowValue, ConsoleArgumentsObject $consoleParam): void
     {
         /** Итератор, для перебора строки с значением аргумента */
         $utf8Iterator = new Utf8IteratorObject($paramRowValue);

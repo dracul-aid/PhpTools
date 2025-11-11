@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace DraculAid\PhpTools\tests\Console;
+namespace DraculAid\PhpTools\tests\Console\ConsoleArguments;
 
-use DraculAid\PhpTools\Console\ConsoleArgumentsFromPhpArgvCreator;
-use DraculAid\PhpTools\Console\ConsoleArgumentsFromString;
+use DraculAid\PhpTools\Console\ConsoleArguments\ConsoleArgumentsFromPhpArgvCreator;
+use DraculAid\PhpTools\Console\ConsoleArguments\ConsoleArgumentsFromString;
 use PHPUnit\Framework\TestCase;
 
 /**

@@ -111,8 +111,9 @@
 
 ### [Console](../src/Console) Для работы с консолью
 
-* [ConsoleArgumentsObject](../src/Console/ConsoleArgumentsObject.php) Объекты для работы с аргументами консольных команд
-* [ConsoleArgumentsFromPhpArgvCreator](../src/Console/ConsoleArgumentsFromPhpArgvCreator.php) Получение объекта с аргументами консольных команд из `$_SERVER['argv']` 
+* [ConsoleArguments](../src/Console/ConsoleArguments) Функционал для работы с аргументами консольных команд
+  * [ConsoleArgumentsObject](../src/Console/ConsoleArguments/ConsoleArgumentsObject.php) Объекты для работы с аргументами консольных команд
+  * [ConsoleArgumentsFromPhpArgvCreator](../src/Console/ConsoleArguments/ConsoleArgumentsFromPhpArgvCreator.php) Получение объекта с аргументами консольных команд из `$_SERVER['argv']` 
 
 ### [TestTools](../src/TestTools) Инструменты для облегчения юнит-тестов
 

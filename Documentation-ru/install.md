@@ -10,7 +10,7 @@ composer require draculaid/phptools
 ```json
 {
   "require": {
-    "draculaid/phptools": "^1.0.0"
+    "draculaid/phptools": "^1.1.0"
   }
 }
 ```

@@ -43,6 +43,7 @@
   конструкции языка в качестве типа свойств классов
 * [ObHelper](../src/Code/ObHelper.php) Позволяет вызывать функции с перехватом потока вывода
 * [ScriptLoader](../src/Code/ScriptLoader.php) Позволяет вызывать скрипты с перехватом потока вывода
+* [TypeValidator](../src/Code/TypeValidator.php) Позволяет проверить переменную на соответствие PHP типу
 
 ### [ExceptionTools](../src/ExceptionTools) Для работы с исключениями
 

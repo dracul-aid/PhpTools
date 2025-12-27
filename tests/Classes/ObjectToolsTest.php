@@ -21,16 +21,11 @@ use PHPUnit\Framework\TestCase;
  */
 class ObjectToolsTest extends TestCase
 {
-    public function testRun(): void
-    {
-        $this->runTestToArray();
-    }
-
     /**
      * Test for {@see ObjectTools::propertiesFor()}
      * Test for {@see ObjectTools::toArray()}
      */
-    private function runTestToArray(): void
+    public function testToArrayAndPropertiesFor(): void
     {
         self::assertEquals(['public_1' => 'public-1', 'public_2' => 'public-2'], ObjectTools::toArray($this->createObjectForTestToArray()));
         self::assertEquals(['public_1' => 'public-1', 'public_2' => 'public-2'], ObjectTools::toArray($this->createObjectForTestToArray(), false));

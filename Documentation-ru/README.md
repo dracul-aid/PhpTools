@@ -32,6 +32,7 @@
 * [ClassParents](../src/Classes/ClassParents.php) Позволяет получить информацию о родителях класса (включая информацию по трейтам)
 * [ClassTools](../src/Classes/ClassTools.php) Инструменты для работы с классами
 * [ObjectTools](../src/Classes/ObjectTools.php) Инструменты для работы с объектами
+* [ClassConstructorTools](../src/Classes/ClassConstructorTools.php) Инструменты для работы с конструкторами классов
 
 ### [Code](../src/Code) Функционал для работы с кодом
 

@@ -13,6 +13,7 @@ namespace DraculAid\PhpTools\Arrays;
 
 use DraculAid\PhpTools\Arrays\Objects\Interfaces\ArrayInterface;
 use DraculAid\PhpTools\Classes\ClassTools;
+use DraculAid\PhpTools\Code\TypeValidator;
 use DraculAid\PhpTools\tests\Arrays\ArrayHelperTest;
 
 /**
@@ -203,5 +204,63 @@ final class ArrayHelper
         foreach ($indexes as $keyName) $_return[$keyName] = $array[$keyName] ?? $default;
 
         return $_return;
+    }
+
+    /**
+     * Проверит, является ли "перечисляемое" списком (т.е. Имеет ли он числовые индексы, идущие подряд, начиная с 0)
+     *
+     * @param   iterable   $array    Перечисляемое для проверки
+     *
+     * @return  bool
+     */
+    public static function isList(iterable $array): bool
+    {
+        if (is_array($array)) return array_is_list($array);
+
+        $lastIndex = -1;
+        foreach ($array as $index => $value)
+        {
+            if (!is_int($index) || $index !== $lastIndex + 1) return false;
+            $lastIndex = $index;
+        }
+
+        return true;
+    }
+
+    /**
+     * Проверит, что перебираемое содержит элементы одного указанного типа
+     *
+     * (!) Пустое "перечисляемое" (в том числе и массив) всегда проходит проверку успешно
+     *
+     * @param   iterable   $array   Перечисляемое для проверки
+     * @param   string     $type    Тип для проверки (см {@see gettype()})
+     *
+     * @return  bool
+     */
+    public static function isTypeArray(iterable $array, string $type): bool
+    {
+        foreach ($array as $value)
+        {
+            if (!TypeValidator::validate($value, $type)) return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Проверит, что перебираемое является вектором (т.е. списком из элементов одного типа)
+     *
+     *  (!) Пустое "перечисляемое" (в том числе и массив) всегда проходит проверку успешно
+     *
+     * @param   iterable   $array   Перечисляемое для проверки
+     * @param   string     $type    Тип для проверки (см {@see gettype()})
+     *
+     * @return  bool
+     */
+    public static function isVector(iterable $array, string $type): bool
+    {
+        if (!self::isList($array)) return false;
+
+        return self::isTypeArray($array, $type);
     }
 }

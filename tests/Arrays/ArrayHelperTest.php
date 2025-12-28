@@ -179,4 +179,114 @@ class ArrayHelperTest extends TestCase
             ArrayHelper::getByIndexes($array, ['a', 'x'], 'XXX')
         );
     }
+
+    /**
+     * Test for {@covers ArrayHelper::isList()}
+     *
+     * @return void
+     */
+    public function testIsList(): void
+    {
+        // * * * Для массивов
+
+        self::assertTrue(ArrayHelper::isList([]));
+        self::assertTrue(ArrayHelper::isList([1, 2, 3]));
+        self::assertTrue(ArrayHelper::isList([0 => 1, 1 => 2, 2 => 3]));
+        self::assertTrue(ArrayHelper::isList(['0' => 'a', 1 => 'b']));
+        self::assertTrue(ArrayHelper::isList(['0' => 'a', '1' => 'b']));
+
+        self::assertFalse(ArrayHelper::isList([1 => 'a', 0 => 'b']));
+        self::assertFalse(ArrayHelper::isList(['a' => 1, 'b' => 2]));
+        self::assertFalse(ArrayHelper::isList([0 => 'a', 2 => 'b']));
+        self::assertFalse(ArrayHelper::isList(['1' => 'a', '2' => 'b']));
+
+        // * * * Для итерируемых объектов
+
+        self::assertTrue(ArrayHelper::isList(new \ArrayObject([])));
+        self::assertTrue(ArrayHelper::isList(new \ArrayObject([1, 2, 3])));
+        self::assertTrue(ArrayHelper::isList(new \ArrayObject([0 => 1, 1 => 2, 2 => 3])));
+        self::assertTrue(ArrayHelper::isList(new \ArrayObject(['0' => 'a', 1 => 'b'])));
+        self::assertTrue(ArrayHelper::isList(new \ArrayObject(['0' => 'a', '1' => 'b'])));
+
+        self::assertFalse(ArrayHelper::isList(new \ArrayObject([1 => 'a', 0 => 'b'])));
+        self::assertFalse(ArrayHelper::isList(new \ArrayObject(['a' => 1, 'b' => 2])));
+        self::assertFalse(ArrayHelper::isList(new \ArrayObject([0 => 'a', 2 => 'b'])));
+        self::assertFalse(ArrayHelper::isList(new \ArrayObject(['1' => 'a', '2' => 'b'])));
+
+        // * * * Убеждаемся, что не падает, если ключи объекты
+
+        $keyObject = new class() {};
+        $testObject = new \WeakMap();
+        $testObject[$keyObject] = 123;
+        self::assertFalse(ArrayHelper::isList($testObject));
+    }
+
+    /**
+     * Test for {@covers ArrayHelper::isTypeArray()}
+     *
+     * @return void
+     */
+    public function testIsTypeArray(): void
+    {
+        // * * * Для массивов
+
+        self::assertTrue(ArrayHelper::isTypeArray([], 'int'));
+        self::assertTrue(ArrayHelper::isTypeArray([1, 2, 3], 'int'));
+
+        self::assertFalse(ArrayHelper::isTypeArray(['1', '2', '3'], 'int'));
+        self::assertFalse(ArrayHelper::isTypeArray(['x', 'y', 'z'], 'int'));
+
+        // * * * Для итерируемых объектов
+
+        self::assertTrue(ArrayHelper::isTypeArray(new \ArrayObject([]), 'int'));
+        self::assertTrue(ArrayHelper::isTypeArray(new \ArrayObject([1, 2, 3]), 'int'));
+
+        self::assertFalse(ArrayHelper::isTypeArray(new \ArrayObject(['1', '2', '3']), 'int'));
+        self::assertFalse(ArrayHelper::isTypeArray(new \ArrayObject(['x', 'y', 'z']), 'int'));
+    }
+
+    /**
+    /**
+     * Test for {@covers ArrayHelper::isVector()}
+     *
+     * @return void
+     */
+    public function testIsVector(): void
+    {
+        // * * * Для массивов
+
+        self::assertTrue(ArrayHelper::isVector([], 'int'));
+        self::assertTrue(ArrayHelper::isVector([1, 2, 3], 'int'));
+        self::assertTrue(ArrayHelper::isVector([0 => 1, 1 => 2, 2 => 3], 'int'));
+        self::assertTrue(ArrayHelper::isVector(['0' => 1, '1' => 2], 'int'));
+
+        self::assertFalse(ArrayHelper::isVector([1 => 'a', 0 => 'b'], 'int'));
+        self::assertFalse(ArrayHelper::isVector(['a' => 1, 'b' => 2], 'int'));
+        self::assertFalse(ArrayHelper::isVector([0 => 'a', 2 => 'b'], 'int'));
+        self::assertFalse(ArrayHelper::isVector(['1' => 'a', '2' => 'b'], 'int'));
+        self::assertFalse(ArrayHelper::isVector([0 => 'a', 1 => 'b'], 'int'));
+        self::assertFalse(ArrayHelper::isVector(['0' => 'a', '1' => 'b'], 'int'));
+
+        // * * * Для итерируемых объектов
+
+        self::assertTrue(ArrayHelper::isVector(new \ArrayObject([]), 'int'));
+        self::assertTrue(ArrayHelper::isVector(new \ArrayObject([1, 2, 3]), 'int'));
+        self::assertTrue(ArrayHelper::isVector(new \ArrayObject([0 => 1, 1 => 2, 2 => 3]), 'int'));
+        self::assertTrue(ArrayHelper::isVector(new \ArrayObject(['0' => 1, '1' => 2]), 'int'));
+
+        self::assertFalse(ArrayHelper::isVector(new \ArrayObject([1 => 'a', 0 => 'b']), 'int'));
+        self::assertFalse(ArrayHelper::isVector(new \ArrayObject(['a' => 1, 'b' => 2]), 'int'));
+        self::assertFalse(ArrayHelper::isVector(new \ArrayObject([0 => 'a', 2 => 'b']), 'int'));
+        self::assertFalse(ArrayHelper::isVector(new \ArrayObject(['1' => 'a', '2' => 'b']), 'int'));
+        self::assertFalse(ArrayHelper::isVector(new \ArrayObject([0 => 'a', 1 => 'b']), 'int'));
+        self::assertFalse(ArrayHelper::isVector(new \ArrayObject(['0' => 'a', '1' => 'b']), 'int'));
+
+        // * * * Убеждаемся, что не падает, если ключи объекты
+
+        $keyObject = new class ( ) { };
+        $testObject = new \WeakMap();
+        $testObject[$keyObject] = 123;
+        self::assertFalse(ArrayHelper::isVector($testObject, 'int'));
+        self::assertFalse(ArrayHelper::isVector($testObject, 'string'));
+    }
 }

@@ -110,6 +110,7 @@
     * [IteratorSafeRunner](../src/Arrays/Objects/IteratorSafeRunner.php) Безопасный перебор итераторов \Iterator
 * [ArrayHelper](../src/Arrays/ArrayHelper.php) Хэлпер для работы с массивами
 * [ArrayIterator](../src/Arrays/ArrayIterator.php) Итераторы, для облегчения перебора массивов
+* [IteratorTools](../src/Arrays/IteratorTools.php) Инструменты для работы с итераторами
 
 ### [Console](../src/Console) Для работы с консолью
 

@@ -26,6 +26,10 @@ use DraculAid\PhpTools\tests\Arrays\Objects\IteratorSafeRunnerTest;
  * В обычной ситуации, перебирая элементы объекта {@see \Iterator}, например с помощью `foreach()` или {@see iterator_to_array()}
  * "курсор" будет перемещен в конец, и окажется за пределами содержимого, и его нужно будет перемотать в начало самостоятельно
  *
+ * (!) Механизм не позволяет "отгатить" генераторы ({@see \Generator}), т.к. они не поддерживают перемотку назад,
+ *     Попытка перебрать генератор закончится ошибкой, если все таки нужно "безопасно" перебрать генератор можно
+ *     воспользоваться {@see \DraculAid\PhpTools\Arrays\IteratorTools::iterateAndRewind()}
+ *
  * Функцию также можно использовать для получения массива для итератора, без изменения позиции курсор
  * <pre>
  * iterator_to_array(ArrayObjectTools::iteratorSafeRun($iterator, $cursor));
@@ -43,6 +47,9 @@ use DraculAid\PhpTools\tests\Arrays\Objects\IteratorSafeRunnerTest;
  * <br>- {@see self::$iterator} Перебираемый объект-итератор
  * <br>- {@see self::$cursor} Ссылка на курсор
  * <br>- {@see self::getIterator()} Безопасно переберет установленный итератор
+ *
+ * См также:
+ * <br>{@see \DraculAid\PhpTools\Arrays\IteratorTools::iterateAndRewind()} Упрощенный способ перебора итераторов с восстановлением позиции курсора
  *
  * Test cases for class {@see IteratorSafeRunnerTest}
  *

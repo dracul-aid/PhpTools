@@ -40,8 +40,8 @@ class SecondsToHelperTest extends TestCase
 
         self::assertEquals(0, SecondsToHelper::getHours(0));
         self::assertEquals(0, SecondsToHelper::getHours(60));
-        self::assertEquals(0, SecondsToHelper::getHours(1*60*60 - 1));
-        self::assertEquals(1, SecondsToHelper::getHours(1*60*60));
+        self::assertEquals(0, SecondsToHelper::getHours(1 * 60 * 60 - 1));
+        self::assertEquals(1, SecondsToHelper::getHours(1 * 60 * 60));
 
         self::assertEquals([0, 0], SecondsToHelper::minutesAndSeconds(0));
         self::assertEquals([0, 59], SecondsToHelper::minutesAndSeconds(59));
@@ -49,25 +49,25 @@ class SecondsToHelperTest extends TestCase
         self::assertEquals([1, 59], SecondsToHelper::minutesAndSeconds(119));
         self::assertEquals([2, 0], SecondsToHelper::minutesAndSeconds(120));
 
-        self::assertEquals([0, 0, 0], SecondsToHelper::time(0));
-        self::assertEquals([0, 0, 59], SecondsToHelper::time(59));
-        self::assertEquals([0, 1, 0], SecondsToHelper::time(60));
-        self::assertEquals([0, 1, 59], SecondsToHelper::time(119));
-        self::assertEquals([0, 2, 1], SecondsToHelper::time(2*60+1));
-        self::assertEquals([0, 59, 58], SecondsToHelper::time(60*60-2));
-        self::assertEquals([1, 1, 2], SecondsToHelper::time(60*60+62));
-        self::assertEquals([24, 2, 3], SecondsToHelper::time(24*60*60+123));
+        self::assertEquals([0, 0, 0, 0], SecondsToHelper::time(0));
+        self::assertEquals([0, 0, 59, 0], SecondsToHelper::time(59));
+        self::assertEquals([0, 1, 0, 0], SecondsToHelper::time(60));
+        self::assertEquals([0, 1, 59, 0], SecondsToHelper::time(119));
+        self::assertEquals([0, 2, 1, 0], SecondsToHelper::time(2 * 60 + 1));
+        self::assertEquals([0, 59, 58, 0], SecondsToHelper::time(60 * 60 - 2));
+        self::assertEquals([1, 1, 2, 0], SecondsToHelper::time(60 * 60 + 62));
+        self::assertEquals([24, 2, 3, 0], SecondsToHelper::time(24 * 60 * 60 + 123));
 
         self::assertEquals([0, 0, 0, 0], SecondsToHelper::timeAndDays(0));
         self::assertEquals([0, 0, 0, 59], SecondsToHelper::timeAndDays(59));
         self::assertEquals([0, 0, 1, 0], SecondsToHelper::timeAndDays(60));
         self::assertEquals([0, 0, 1, 59], SecondsToHelper::timeAndDays(119));
-        self::assertEquals([0, 0, 2, 1], SecondsToHelper::timeAndDays(2*60+1));
-        self::assertEquals([0, 0, 59, 58], SecondsToHelper::timeAndDays(60*60-2));
-        self::assertEquals([0, 1, 1, 2], SecondsToHelper::timeAndDays(60*60+62));
-        self::assertEquals([0, 23, 2, 3], SecondsToHelper::timeAndDays(23*60*60+123));
-        self::assertEquals([1, 0, 2, 3], SecondsToHelper::timeAndDays(24*60*60+123));
-        self::assertEquals([1, 23, 2, 3], SecondsToHelper::timeAndDays(47*60*60+123));
-        self::assertEquals([2, 0, 2, 3], SecondsToHelper::timeAndDays(48*60*60+123));
+        self::assertEquals([0, 0, 2, 1], SecondsToHelper::timeAndDays(2 * 60 + 1));
+        self::assertEquals([0, 0, 59, 58], SecondsToHelper::timeAndDays(60 * 60-2));
+        self::assertEquals([0, 1, 1, 2], SecondsToHelper::timeAndDays(60 * 60 + 62));
+        self::assertEquals([0, 23, 2, 3], SecondsToHelper::timeAndDays(23 * 60 * 60 + 123));
+        self::assertEquals([1, 0, 2, 3], SecondsToHelper::timeAndDays(24 * 60 * 60 + 123));
+        self::assertEquals([1, 23, 2, 3], SecondsToHelper::timeAndDays(47 * 60 * 60+123));
+        self::assertEquals([2, 0, 2, 3], SecondsToHelper::timeAndDays(48 * 60 * 60+123));
     }
 }

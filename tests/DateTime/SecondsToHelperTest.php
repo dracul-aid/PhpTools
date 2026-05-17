@@ -89,4 +89,37 @@ class SecondsToHelperTest extends TestCase
         self::assertEquals([1, 0, 2, 3, 12235523], SecondsToHelper::timeAndDays(24 * 60 * 60 + 123.12235523));
         self::assertEquals([1, 0, 2, 3, 000001], SecondsToHelper::timeAndDays(24 * 60 * 60 + 123.000001));
     }
+
+    /**
+     * Test for {@see SecondsToHelper::minutesAndSecondsAsString()}
+     * Test for {@see SecondsToHelper::timeAsString()}
+     *
+     * @return void
+     *
+     * @psalm-suppress InvalidOperand PSALM ругается на то, что к int прибавляется float
+     */
+    public function runGetString(): void
+    {
+        self::assertEquals('00:00', SecondsToHelper::minutesAndSecondsAsString(0));
+        self::assertEquals('00:59', SecondsToHelper::minutesAndSecondsAsString(59));
+        self::assertEquals('01:00', SecondsToHelper::minutesAndSecondsAsString(60));
+        self::assertEquals('01:59', SecondsToHelper::minutesAndSecondsAsString(119));
+        self::assertEquals('02:00', SecondsToHelper::minutesAndSecondsAsString(120));
+        self::assertEquals('02:00', SecondsToHelper::minutesAndSecondsAsString(120.0));
+        self::assertEquals('02:00.123', SecondsToHelper::minutesAndSecondsAsString(120.123));
+        self::assertEquals('02:00.12235523', SecondsToHelper::minutesAndSecondsAsString(120.12235523));
+        self::assertEquals('02:00.000001', SecondsToHelper::minutesAndSecondsAsString(120.000001));
+
+        self::assertEquals('00:00:00', SecondsToHelper::timeAsString(0));
+        self::assertEquals('00:00:59', SecondsToHelper::timeAsString(59));
+        self::assertEquals('00:01:00', SecondsToHelper::timeAsString(60));
+        self::assertEquals('00:01:59', SecondsToHelper::timeAsString(119));
+        self::assertEquals('00:02:01', SecondsToHelper::timeAsString(2 * 60 + 1));
+        self::assertEquals('00:59:58', SecondsToHelper::timeAsString(60 * 60 - 2));
+        self::assertEquals('01:01:02', SecondsToHelper::timeAsString(60 * 60 + 62));
+        self::assertEquals('02:02:03', SecondsToHelper::timeAsString(24 * 60 * 60 + 123));
+        self::assertEquals('02:02:03.12', SecondsToHelper::timeAsString(24 * 60 * 60 + 123.12));
+        self::assertEquals('02:02:03.12235523', SecondsToHelper::timeAsString(24 * 60 * 60 + 123.12235523));
+        self::assertEquals('02:02:03.000001', SecondsToHelper::timeAsString(24 * 60 * 60 + 123.000001));
+    }
 }

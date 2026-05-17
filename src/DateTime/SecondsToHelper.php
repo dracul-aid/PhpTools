@@ -82,6 +82,25 @@ final class SecondsToHelper
     }
 
     /**
+     * Получит секунды и вернет кол-во целых минут и секунд в формате ММ::СС (например 01:54 или 01:54.123)
+     *
+     * @param   int<0, max>|float   $seconds
+     *
+     * @return string
+     */
+    public static function minutesAndSecondsAsString(int|float $seconds): string
+    {
+        [$minutes, $seconds, $microseconds] = self::minutesAndSeconds($seconds);
+
+        $result = sprintf('%02d:%02d', $minutes, $seconds);
+        if ($microseconds > 0) {
+            $result .= '.' . $microseconds;
+        }
+
+        return $result;
+    }
+
+    /**
      * Получит секунды и вернет кол-во целых часов, минут и секунд
      *
      * @param   int<0, max>|float   $seconds
@@ -108,6 +127,25 @@ final class SecondsToHelper
             $seconds - $minutes * TimestampConstants::MINUTE_SEC,
             $microseconds,
         ];
+    }
+
+    /**
+     * Получит секунды и вернет кол-во целых часов, минут и секунд в формате ЧЧ::ММ::СС (например 13:01:54 или 00:01:54.123)
+     *
+     * @param   int<0, max>|float   $seconds
+     *
+     * @return  string
+     */
+    public static function timeAsString(int|float $seconds): string
+    {
+        [$hours, $minutes, $seconds, $microseconds] = self::time($seconds);
+
+        $result = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+        if ($microseconds > 0) {
+            $result .= '.' . $microseconds;
+        }
+
+        return $result;
     }
 
     /**

@@ -30,29 +30,29 @@ use DraculAid\PhpTools\tests\DateTime\SecondsToHelperTest;
 final class SecondsToHelper
 {
     /**
-     * Вернет целое кол-во минут в переданных секундах (0 и более минут)
+     * Вернет целое кол-во минут в переданных секундах (0 и более минут), с округлением минут вниз
      *
      * (!) Также может использоваться для получения часов из минут
      *
-     * @param   int   $seconds   Кол-во секунд
+     * @param   int<0, max>   $seconds   Кол-во секунд
      *
-     * @return  int
+     * @return  int<0, max>
      */
     public static function getMinutes(int $seconds): int
     {
-        return (int)floor($seconds / TimestampConstants::MINUTE_SEC);
+        return abs((int)floor($seconds / TimestampConstants::MINUTE_SEC));
     }
 
     /**
-     * Вернет целое кол-во часов в переданных секундах (0 и более часов)
+     * Вернет целое кол-во часов в переданных секундах (0 и более часов), с округлением часов вниз
      *
-     * @param   int   $seconds   Кол-во секунд
+     * @param   int<0, max>   $seconds   Кол-во секунд
      *
-     * @return  int
+     * @return  int<0, max>
      */
     public static function getHours(int $seconds): int
     {
-        return (int)floor($seconds / TimestampConstants::HOUR_SEC);
+        return abs((int)floor($seconds / TimestampConstants::HOUR_SEC));
     }
 
     /**
@@ -60,7 +60,10 @@ final class SecondsToHelper
      *
      * @param   int   $seconds
      *
-     * @return  int[]   Вернет массив [минуты, секунды]
+     * @return  list{0: int<0, max>, 1: int<0, 60>}   Вернет массив [минуты, секунды]
+     *
+     * @psalm-suppress MoreSpecificReturnType Функция всегда вернет именно указанный в return диапазон
+     * @psalm-suppress LessSpecificReturnStatement -//-
      */
     public static function minutesAndSeconds(int $seconds): array
     {
@@ -75,9 +78,12 @@ final class SecondsToHelper
     /**
      * Получит секунды и вернет кол-во целых часов, минут и секунд
      *
-     * @param   int   $seconds
+     * @param   int<0, max>   $seconds
      *
-     * @return  int[]   Вернет массив [часы, минуты, секунды]
+     * @return  list{0: int<0, max>, 1: int<0, 60>, 2: int<0, 60>}   Вернет массив [часы, минуты, секунды]
+     *
+     * @psalm-suppress MoreSpecificReturnType Функция всегда вернет именно указанный в return диапазон
+     * @psalm-suppress LessSpecificReturnStatement -//-
      */
     public static function time(int $seconds): array
     {
@@ -96,9 +102,12 @@ final class SecondsToHelper
     /**
      * Получит секунды и вернет кол-во целых дней, часов, минут и секунд
      *
-     * @param   int    $seconds
+     * @param   int<0, max>    $seconds
      *
-     * @return  int[]   Вернет массив [дни, часы, минуты, секунды]
+     * @return  list{0: int<0, max>, 1: int<0, 23>, 2: int<0, 60>, 3: int<0, 60>}   Вернет массив [дни, часы, минуты, секунды]
+     *
+     * @psalm-suppress MoreSpecificReturnType Функция всегда вернет именно указанный в return диапазон
+     * @psalm-suppress LessSpecificReturnStatement -//-
      */
     public static function timeAndDays(int $seconds): array
     {

@@ -58,37 +58,47 @@ final class SecondsToHelper
     /**
      * Получит секунды и вернет кол-во целых минут и секунд
      *
-     * @param   int   $seconds
+     * @param   int<0, max>|float   $seconds
      *
-     * @return  list{0: int<0, max>, 1: int<0, 60>}   Вернет массив [минуты, секунды]
+     * @return  list{0: int<0, max>, 1: int<0, 60>, 2: int<0, max>}   Вернет массив [минуты, секунды, дробная часть секунды]
      *
      * @psalm-suppress MoreSpecificReturnType Функция всегда вернет именно указанный в return диапазон
      * @psalm-suppress LessSpecificReturnStatement -//-
      */
-    public static function minutesAndSeconds(int $seconds): array
+    public static function minutesAndSeconds(int|float $seconds): array
     {
+        if (is_float($seconds)) {
+            $microseconds = (int)explode('.', (string)$seconds)[1];
+            $seconds = (int)$seconds;
+        } else $microseconds = 0;
+
         $minutes = self::getMinutes($seconds);
 
         return [
             $minutes,
             $seconds - $minutes * TimestampConstants::MINUTE_SEC,
+            $microseconds,
         ];
     }
 
     /**
      * Получит секунды и вернет кол-во целых часов, минут и секунд
      *
-     * @param   int<0, max>   $seconds
+     * @param   int<0, max>|float   $seconds
      *
-     * @return  list{0: int<0, max>, 1: int<0, 60>, 2: int<0, 60>}   Вернет массив [часы, минуты, секунды]
+     * @return  list{0: int<0, max>, 1: int<0, 60>, 2: int<0, 60>, 3: int<0, max>}   Вернет массив [часы, минуты, секунды, дробная часть секунды]
      *
      * @psalm-suppress MoreSpecificReturnType Функция всегда вернет именно указанный в return диапазон
      * @psalm-suppress LessSpecificReturnStatement -//-
      */
-    public static function time(int $seconds): array
+    public static function time(int|float $seconds): array
     {
-        // (!) Помните, что минут в часах, столько же, сколько и секунд в минуте...
+        if (is_float($seconds)) {
+            $microseconds = (int)explode('.', (string)$seconds)[1];
+            $seconds = (int)$seconds;
+        } else $microseconds = 0;
 
+        // (!) Помните, что минут в часах, столько же, сколько и секунд в минуте...
         $minutes = self::getMinutes($seconds);
         $hours = self::getMinutes($minutes);
 
@@ -96,22 +106,23 @@ final class SecondsToHelper
             $hours,
             $minutes - $hours * TimestampConstants::MINUTE_SEC,
             $seconds - $minutes * TimestampConstants::MINUTE_SEC,
+            $microseconds,
         ];
     }
 
     /**
      * Получит секунды и вернет кол-во целых дней, часов, минут и секунд
      *
-     * @param   int<0, max>    $seconds
+     * @param   int<0, max>|float    $seconds
      *
-     * @return  list{0: int<0, max>, 1: int<0, 23>, 2: int<0, 60>, 3: int<0, 60>}   Вернет массив [дни, часы, минуты, секунды]
+     * @return  list{0: int<0, max>, 1: int<0, 23>, 2: int<0, 60>, 3: int<0, 60>, 4: int<0, max>}   Вернет массив [дни, часы, минуты, секунды, дробная часть секунды]
      *
      * @psalm-suppress MoreSpecificReturnType Функция всегда вернет именно указанный в return диапазон
      * @psalm-suppress LessSpecificReturnStatement -//-
      */
-    public static function timeAndDays(int $seconds): array
+    public static function timeAndDays(int|float $seconds): array
     {
-        [$hours, $minutes, $seconds] = self::time($seconds);
+        [$hours, $minutes, $seconds, $microseconds] = self::time($seconds);
 
         $days = (int)floor($hours / DaysDictionary::HOURS_IN_DAY);
         $hours = $hours - $days * DaysDictionary::HOURS_IN_DAY;
@@ -121,6 +132,7 @@ final class SecondsToHelper
             $hours,
             $minutes,
             $seconds,
+            $microseconds,
         ];
     }
 }

@@ -69,9 +69,7 @@ final class TimestampHelper
     {
         if (is_int($timestamp)) return date($format, $timestamp);
 
-        if (is_float($timestamp)) return DateTimeObjectHelper::getDateObject($timestamp)->format($format);
-
-        throw new \TypeError('$timestamp can be int or float, bat is a ' .gettype($timestamp));
+        return DateTimeObjectHelper::getDateObject($timestamp)->format($format);
     }
 
     /**

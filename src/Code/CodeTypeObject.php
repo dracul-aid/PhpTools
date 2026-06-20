@@ -62,14 +62,14 @@ class CodeTypeObject implements \IteratorAggregate, \Stringable
     public static function __callStatic(string $name, array $arguments): mixed
     {
         // получение имени функции, которая будет использована для установки списка типов
-        $name = match ($name) {
-            'createFromPhp'      => 'set', /** {@see self::set()} */
-            'createFromSql'      => 'setFromSql', /** {@see self::setFromSql()} */
-            'createFromDocBlock' => 'setFromDocBlock', /** {@see self::setFromDocBlock()} */
+        $function = match ($name) {
+            'createFromPhp'      => (new static())->set(...),
+            'createFromSql'      => (new static())->setFromSql(...),
+            'createFromDocBlock' => (new static())->setFromDocBlock(...),
             default              => throw new \TypeError("Magic method for {$name} not found"),
         };
 
-        return (new static())->{$name}(... $arguments);
+        return $function(... $arguments);
     }
 
     public function __toString(): string
@@ -137,17 +137,44 @@ class CodeTypeObject implements \IteratorAggregate, \Stringable
     {
         $type = strtolower($type);
 
-        $type = match ($type)
+        // NUMBER(X) в Oracle Database - если тип оканчивается на скобки
+        if (str_ends_with($type, ')') && str_starts_with($type, 'number'))
         {
-            'tinyint',
-            'smallint',
-            'int',
-            'bigint',
-            'mediumint' => ['int'],
-            'float',
-            'double'    => ['float'],
-            default     => ['string'],
-        };
+            $type =[(int)substr($type, 7, -1) > 18 ? 'string' : 'int'];
+        }
+        // прочие варианты - это какие-то стандартные типы, или типы, которые должны быть представлены строкой
+        else
+        {
+            $type = match ($type)
+            {
+                // Целые числа
+                'tinyint',                  //             MySQL / MariaDB, SQL Server
+                'smallint',                 // PostgreSQL, MySQL / MariaDB, SQL Server
+                'int16',                    // ClickHouse
+                'uint16',                   // ClickHouse
+                'int2',                     // PostgreSQL,
+                'int',                      // PostgreSQL, MySQL / MariaDB, SQL Server,
+                'integer',                  // PostgreSQL, MySQL / MariaDB,             SQLite
+                'int32',                    // ClickHouse
+                'uint32',                   // ClickHouse
+                'int4',                     // PostgreSQL
+                'bigint',                   // PostgreSQL, MySQL / MariaDB,
+                'int8',                     // PostgreSQL (аналог bigint), ClickHouse (аналог tinyint)
+                'int64',                    // ClickHouse
+                'mediumint'  => ['int'],    // MySQL / MariaDB
+                // Числа с плавающей точкой
+                'float',                    //            MySQL / MariaDB, SQL Server
+                'float32',
+                'float64',
+                'real',                     // PostgreSQL,                 SQL Server
+                'double precision',         // PostgreSQL
+                'binary_float',             // Oracle
+                'binary_double',            // Oracle
+                'double'    => ['float'],   //             MySQL / MariaDB
+                // для всех прочих вариантов
+                default     => ['string'],
+            };
+        }
 
         if ($isNull) $type[] = 'null';
 
@@ -189,6 +216,8 @@ class CodeTypeObject implements \IteratorAggregate, \Stringable
 
     /**
      * В типе данных, есть указанный тип или нет
+     *
+     * @param   string   $type
      *
      * @return bool
      */

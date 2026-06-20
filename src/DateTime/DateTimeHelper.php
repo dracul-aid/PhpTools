@@ -49,7 +49,7 @@ final class DateTimeHelper
      *                               <br>+ {@see \DateTimeInterface}: Объект даты-времени
      *                               <br>+ {@see GetTimestampInterface}: Объект, поддерживающий ответ ввиде таймштампа
      *
-     * @return array{year: int, mon: int, yday: int, mday: int, wday: int, hours: int, minutes: int, seconds: int, month: string, weekday: string, 0: int}
+     * @return array{year: int, mon: int<1, 12>, yday: int<0, 365>, mday: int<1, 31>, wday: int<0, 6>, hours: int<0, 23>, minutes: int<0, 59>, seconds: int<0, 59>, month: string, weekday: string, 0: int}
      */
     public static function getDateArray(null|int|float|string|array|\DateTimeInterface|GetTimestampInterface $dateTime = null): array
     {

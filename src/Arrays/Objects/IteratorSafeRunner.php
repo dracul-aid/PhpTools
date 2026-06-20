@@ -26,7 +26,7 @@ use DraculAid\PhpTools\tests\Arrays\Objects\IteratorSafeRunnerTest;
  * В обычной ситуации, перебирая элементы объекта {@see \Iterator}, например с помощью `foreach()` или {@see iterator_to_array()}
  * "курсор" будет перемещен в конец, и окажется за пределами содержимого, и его нужно будет перемотать в начало самостоятельно
  *
- * (!) Механизм не позволяет "отгатить" генераторы ({@see \Generator}), т.к. они не поддерживают перемотку назад,
+ * (!) Механизм не позволяет "откатить" генераторы ({@see \Generator}), т.к. они не поддерживают перемотку назад,
  *     Попытка перебрать генератор закончится ошибкой, если все таки нужно "безопасно" перебрать генератор можно
  *     воспользоваться {@see \DraculAid\PhpTools\Arrays\IteratorTools::iterateAndRewind()}
  *
@@ -79,7 +79,11 @@ final class IteratorSafeRunner implements StaticRunnerInterface, \IteratorAggreg
      */
     public array $throwableList = [];
 
-    /** Ссылка на курсор */
+    /**
+     * Ссылка на курсор
+     *
+     * @todo PHP8.4, сделать публичной на чтение, позволит избавиться от магического __get()
+     */
     private mixed $cursor;
 
     /**
@@ -150,7 +154,7 @@ final class IteratorSafeRunner implements StaticRunnerInterface, \IteratorAggreg
     }
 
     /**
-     * Перебирает все элементы переданного итератора
+     * Перебирает все элементы переданного итератора, в отличие от {@see self::runSafe()} выброшенные ошибки не будут перехвачены
      *
      * @return \Generator
      */

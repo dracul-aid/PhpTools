@@ -38,7 +38,7 @@ use DraculAid\PhpTools\tests\DateTime\TimestampHelperTest;
 final class TimestampHelper
 {
     /**
-     * Преобразование в JS таймштам (INT64, обычный таймштамп с милисекундами)
+     * Преобразование в JS таймштам (INT64, обычный таймштамп с милисекундами, т.е. 1 сек = 1_000 мс).
      *
      * @param   int|float|\DateTimeInterface    $timestamp    Таймштамп для преобразования или объект даты-времени
      *
@@ -213,10 +213,10 @@ final class TimestampHelper
      * <br>+ Неделя, которая содержит как минимум четыре дня нового года
      * <br>Т.е. 52 неделя года может оказаться уже в "новом году" (например 1 января суббота, это будет 52 неделя и она будет относиться к предыдущему году)
      *
-     * @param   null|int   $year           Номер года (NULL - текущий год)
-     * @param   null|int   $week           Номер недели (NULL - текущий номер недели), Отсчет от 1
-     * @param   null|int   $day            Номер для дня недели (NULL - текущий день недели), 1 понедельник ... 7 воскресенье
-     * @param   mixed      $endDay         Указание времени, см {@see DateTimeHelper::getTimeString}
+     * @param   null|int   $year     Номер года (NULL - текущий год)
+     * @param   null|int   $week     Номер недели (NULL - текущий номер недели), Отсчет от 1
+     * @param   null|int   $day      Номер для дня недели (NULL - текущий день недели), 1 понедельник ... 7 воскресенье
+     * @param   mixed      $endDay   Указание времени, см {@see DateTimeHelper::getTimeString()}
      *
      * @return  int
      */

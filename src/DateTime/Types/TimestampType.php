@@ -30,9 +30,9 @@ class TimestampType implements GetTimestampInterface
     /**
      * Создаст объект для работы с таймштампами (в секундах), как с объектами
      *
-     * @param   mixed   $dateTime   Дата-время, см {@see TimestampHelper::getTimestamp()}
+     * @param   null|int|float|string|array|\DateTimeInterface|GetTimestampInterface   $dateTime   Дата-время, см {@see TimestampHelper::getTimestamp()}
      */
-    public function __construct($dateTime = null)
+    public function __construct(null|int|float|string|array|\DateTimeInterface|GetTimestampInterface $dateTime = null)
     {
         $this->setTimestamp($dateTime);
     }
@@ -45,11 +45,11 @@ class TimestampType implements GetTimestampInterface
     /**
      * Установит таймштамп (в секундах)
      *
-     * @param   mixed   $dateTime   Дата-время, см {@see TimestampHelper::getTimestamp()}
+     * @param   null|int|float|string|array|\DateTimeInterface|GetTimestampInterface   $dateTime   Дата-время, см {@see TimestampHelper::getTimestamp()}
      *
      * @return  $this
      */
-    public function setTimestamp($dateTime): self
+    public function setTimestamp(null|int|float|string|array|\DateTimeInterface|GetTimestampInterface $dateTime): self
     {
         $this->timestamp = TimestampHelper::getTimestamp($dateTime);
 

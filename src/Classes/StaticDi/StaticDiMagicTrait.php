@@ -22,6 +22,7 @@ trait StaticDiMagicTrait
 {
     public static function __callStatic(string $name, array $arguments): mixed
     {
+        /** @psalm-suppress InvalidArgument PSALM сходит с ума, и видит тут какой-то мусор всместо static::class, TODO PHP8.2 убрать, в более поздних версиях PSALM не ругался */
         return [StaticDi::getDefaultInstance()->getClass(static::class), $name](... $arguments);
     }
 }

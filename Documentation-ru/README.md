@@ -60,6 +60,7 @@
 
 ### [DateTime](../src/DateTime) Для работы с датой и временем
 
+* [Clock](../src/DateTime/Clock) Расширенная реализация PSR-20 (компонент-часы)
 * [Dictionary](../src/DateTime/Dictionary) Словари
     * [DateConstants](../src/DateTime/Dictionary/DateConstants.php) Константы элементов даты (года, месяца, недели)
     * [DateTimeFormats](../src/DateTime/Dictionary/DateTimeFormats.php) Маски форматирования даты для date()

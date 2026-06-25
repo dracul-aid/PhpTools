@@ -11,6 +11,8 @@
 
 namespace DraculAid\PhpTools\DateTime;
 
+use DraculAid\PhpTools\DateTime\Clock\Abstraction\BigClockInterface;
+use DraculAid\PhpTools\DateTime\Clock\RealBigClock;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
 use DraculAid\PhpTools\tests\DateTime\NowTimeGetterTest;
 
@@ -18,6 +20,8 @@ use DraculAid\PhpTools\tests\DateTime\NowTimeGetterTest;
  * Статический класс, с набором функций, для получения частей текущей даты-времени
  *
  * Оглавление:
+ * <br> {@see NowTimeGetter::getClock()} - Вернет текущие часы
+ * <br> {@see NowTimeGetter::setClock()} - Заменит текущие часы
  * <br>--- SQL форматы
  * <br> {@see NowTimeGetter::sqlDate()} - SQL дата (ДДДД-ММ-ДД)
  * <br> {@see NowTimeGetter::sqlTime()} - SQL время (ЧЧ:ММ:СС)
@@ -48,6 +52,42 @@ use DraculAid\PhpTools\tests\DateTime\NowTimeGetterTest;
  */
 final class NowTimeGetter
 {
+    /** Объект-часы для получения текущего времени */
+    protected static BigClockInterface $clock;
+
+    /**
+     * Вернет часы, для получения текущего времени
+     *
+     * @return BigClockInterface
+     *
+     * @since 1.3.0
+     */
+    public static function getClock(): BigClockInterface
+    {
+        /** @psalm-suppress TypeDoesNotContainType PSALM не понимает, что переменные могут быть неинициализированными */
+        if (empty(self::$clock)) {
+            self::$clock = new RealBigClock();
+        }
+
+        return self::$clock;
+    }
+
+    /**
+     * Заменит текущие часы
+     *
+     * @param   BigClockInterface   $clock
+     *
+     * @return  class-string<self>
+     *
+     * @since 1.3.0
+     */
+    public static function setClock(BigClockInterface $clock): string
+    {
+        self::$clock = $clock;
+
+        return self::class;
+    }
+
     /**
      * Вернет текущую дату в SQL формате для типа DATE (ДДДД-ММ-ДД)
      *
@@ -55,7 +95,7 @@ final class NowTimeGetter
      */
     public static function sqlDate(): string
     {
-        return date(DateTimeFormats::SQL_DATE);
+        return self::getClock()->format(DateTimeFormats::SQL_DATE);
     }
 
     /**
@@ -65,7 +105,7 @@ final class NowTimeGetter
      */
     public static function sqlTime(): string
     {
-        return date(DateTimeFormats::SQL_TIME);
+        return self::getClock()->format(DateTimeFormats::SQL_TIME);
     }
 
     /**
@@ -75,7 +115,7 @@ final class NowTimeGetter
      */
     public static function sqlDateTime(): string
     {
-        return date(DateTimeFormats::SQL_DATETIME);
+        return self::getClock()->format(DateTimeFormats::SQL_DATETIME);
     }
 
     /**
@@ -85,7 +125,7 @@ final class NowTimeGetter
      */
     public static function getYear(): int
     {
-        return (int)date('Y');
+        return (int)self::getClock()->format('Y');
     }
 
     /**
@@ -98,7 +138,7 @@ final class NowTimeGetter
      */
     public static function getMon(): int
     {
-        return (int)date('n');
+        return (int)self::getClock()->format('n');
     }
 
     /**
@@ -108,7 +148,7 @@ final class NowTimeGetter
      */
     public static function getMon2(): string
     {
-        return date('m');
+        return self::getClock()->format('m');
     }
 
     /**
@@ -127,7 +167,7 @@ final class NowTimeGetter
      */
     public static function getWeek(): int
     {
-        return (int)date('W');
+        return (int)self::getClock()->format('W');
     }
 
     /**
@@ -143,7 +183,7 @@ final class NowTimeGetter
      */
     public static function getWeek2(): string
     {
-        $week = date('W');
+        $week = self::getClock()->format('W');
 
         if (strlen($week) === 1) return "0{$week}";
         else return $week;
@@ -159,7 +199,7 @@ final class NowTimeGetter
      */
     public static function getMonDay(): int
     {
-        return (int)date('j');
+        return (int)self::getClock()->format('j');
     }
 
     /**
@@ -169,7 +209,7 @@ final class NowTimeGetter
      */
     public static function getMonDay2(): string
     {
-        return date('d');
+        return self::getClock()->format('d');
     }
 
     /**
@@ -182,7 +222,7 @@ final class NowTimeGetter
      */
     public static function getWeekDay(): int
     {
-        return (int)date('N');
+        return (int)self::getClock()->format('N');
     }
 
     /**
@@ -195,7 +235,7 @@ final class NowTimeGetter
      */
     public static function getWeekDayUSA(): int
     {
-        return getdate()['wday'];
+        return getdate(self::getClock()->timestamp())['wday'];
     }
 
     /**
@@ -208,7 +248,7 @@ final class NowTimeGetter
      */
     public static function getYearDay(): int
     {
-        return getdate()['yday'] + 1;
+        return getdate(self::getClock()->timestamp())['yday'] + 1;
     }
 
     /**
@@ -235,7 +275,7 @@ final class NowTimeGetter
      */
     public static function getHour(): int
     {
-        return (int)date('G');
+        return (int)self::getClock()->format('G');
     }
 
     /**
@@ -245,7 +285,7 @@ final class NowTimeGetter
      */
     public static function getHour2(): string
     {
-        return date('H');
+        return self::getClock()->format('H');
     }
 
     /**
@@ -260,7 +300,7 @@ final class NowTimeGetter
      */
     public static function getMinute(): int
     {
-        $minutes = date('i');
+        $minutes = self::getClock()->format('i');
         if ($minutes[0] === '0') $minutes = $minutes[1];
 
         return (int)$minutes;
@@ -275,7 +315,7 @@ final class NowTimeGetter
      */
     public static function getMinute2(): string
     {
-        return date('i');
+        return self::getClock()->format('i');
     }
 
     /**
@@ -290,7 +330,7 @@ final class NowTimeGetter
      */
     public static function getSecond(): int
     {
-        $second = date('s');
+        $second = self::getClock()->format('s');
         if ($second[0] === '0') $second = (int)$second[1];
 
         // * * *
@@ -307,6 +347,6 @@ final class NowTimeGetter
      */
     public static function getSecond2(): string
     {
-        return date('s');
+        return self::getClock()->format('s');
     }
 }

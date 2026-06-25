@@ -11,6 +11,8 @@
 
 namespace DraculAid\PhpTools\tests\DateTime;
 
+use DraculAid\PhpTools\DateTime\Clock\FrozenBigClock;
+use DraculAid\PhpTools\DateTime\Clock\RealBigClock;
 use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
 use DraculAid\PhpTools\DateTime\NowTimeGetter;
 use PHPUnit\Framework\TestCase;
@@ -41,8 +43,18 @@ class NowTimeGetterTest extends TestCase
      */
     public function testRun(): void
     {
-        $nowTime = time();
+        $this->testForTime(time());
 
+        $newClock = new FrozenBigClock(new \DateTimeImmutable('2005-12-15 23:59:59'));
+        NowTimeGetter::setClock($newClock);
+        $this->testForTime($newClock->timestamp());
+
+        // Возвращаем часы, работающие с реальным временем
+        NowTimeGetter::setClock(new RealBigClock());
+    }
+
+    private function testForTime(int $nowTime): void
+    {
         self::assertEquals(date(DateTimeFormats::SQL_DATE, $nowTime), NowTimeGetter::sqlDate());
         self::assertEquals(date(DateTimeFormats::SQL_TIME, $nowTime), NowTimeGetter::sqlTime());
         self::assertEquals(date(DateTimeFormats::SQL_DATETIME, $nowTime), NowTimeGetter::sqlDateTime());

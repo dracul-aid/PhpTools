@@ -25,6 +25,7 @@ class ArrayAndStringToolsTest extends TestCase
      * Test for {@see ArrayAndStringTools::arrayToStringWithoutEmpty()}
      *
      * @return void
+     * @throws \ReflectionException
      */
     public function testArrayToStringWithoutEmpty(): void
     {

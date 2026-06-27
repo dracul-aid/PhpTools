@@ -22,8 +22,8 @@ use DraculAid\PhpTools\DateTime\Types\PhpExtended\DateTimeExtendedType;
  * @see TimestampRangeType Временные диапазоны на основе таймштампов (в секундах)
  *
  * Оглавление:
- * <br>{@see self::create()} Создаст заполненный диапазон
- * <br>{@see self::createAsTmp()} Создает временной диапазон, начало и конец которого указывают на "сейчас"
+ * <br>{@see DateTimeExtendedRangeType::create()} Создаст заполненный диапазон
+ * <br>{@see DateTimeExtendedRangeType::createAsTmp()} Создает временной диапазон, начало и конец которого указывают на "сейчас"
  * <br>--- Начало диапазона
  * <br>{@see self::$start} Начало диапазона (NULL - не установлен)
  * <br>{@see self::startSet()} Устанавливает стартовую точку диапазона

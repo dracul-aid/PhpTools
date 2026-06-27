@@ -21,8 +21,8 @@ use DraculAid\PhpTools\DateTime\TimestampHelper;
  * @see DateTimeExtendedRangeType Диапазон основанный на расширении объекта даты время PHP, см {@see DateTimeExtendedType}
  *
  * Оглавление:
- * <br>{@see self::create()} Создаст заполненный диапазон
- * <br>{@see self::createAsTmp()} Создает временной диапазон, начало и конец которого указывают на "сейчас"
+ * <br>{@see TimestampRangeType::create()} Создаст заполненный диапазон
+ * <br>{@see TimestampRangeType::createAsTmp()} Создает временной диапазон, начало и конец которого указывают на "сейчас"
  * <br>--- Начало диапазона
  * <br>{@see self::$start} Начало диапазона (NULL - не установлен)
  * <br>{@see self::startSet()} Устанавливает стартовую точку диапазона

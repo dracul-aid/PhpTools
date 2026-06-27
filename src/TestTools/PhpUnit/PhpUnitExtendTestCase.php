@@ -18,8 +18,10 @@ use PHPUnit\Framework\TestCase;
  * Расширяет стандартный тест-класс PhpUnit
  *
  * Оглавление:
- * <br>{@see PhpUnitExtendTestCase::assertPropertyEquals()}  Проводит проверку для указанного свойства
+ * <br>{@see PhpUnitExtendTestCase::assertPropertyEquals()} Проводит проверку для указанного свойства
  * <br>{@see PhpUnitExtendTestCase::assertMethodEquals()} Проводит проверку результатов работы метода
+ *
+ * @since 0.4.0
  */
 class PhpUnitExtendTestCase extends TestCase
 {

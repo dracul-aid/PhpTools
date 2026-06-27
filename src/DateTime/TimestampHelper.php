@@ -34,6 +34,8 @@ use DraculAid\PhpTools\tests\DateTime\TimestampHelperTest;
  * @see DateTimeObjectHelper Набор функий для работы с объектами даты и времени
  *
  * Test cases for class {@see TimestampHelperTest}
+ *
+ * @since 0.2.0
  */
 final class TimestampHelper
 {

@@ -53,6 +53,8 @@ use DraculAid\PhpTools\tests\Arrays\Objects\ListObjectTest;
  * Test cases for class {@see ListObjectTest}
  *
  * @todo Добавить полный набор функций {@see ArrayObject}, что бы сделать максимально совместимым с ним
+ *
+ * @since 0.6.0
  */
 class ListObject extends AbstractIterator implements ArrayInterface
 {

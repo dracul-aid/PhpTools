@@ -35,6 +35,8 @@ use DraculAid\PhpTools\Classes\Patterns\Iterator\IteratorTrait;
  * <br>- {@see self::rewind()} Осуществит перемещение в начало итерируемой строки
  * <br>- {@see self::currentValueAndNext()} Вернет текущее значение и сдвинет "курсор", в случае достижения "конца", вернет NULL
  * <br>- {@see self::currentElementAndNext()} Вернет текущий ключ и значение и сдвинет "курсор"
+ *
+ * @since 0.4.0
  */
 abstract class AbstractStringIterator implements StringIteratorInterface, \Stringable
 {

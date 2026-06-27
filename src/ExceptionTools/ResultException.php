@@ -19,13 +19,15 @@ use DraculAid\PhpTools\tests\ExceptionTools\ResultExceptionTest;
  * (!) Это исключение не должно использоваться для генерации ошибок
  *
  * Оглавление:
- * <br>{@see ResultException::call()} Выполнит функцию, ожидая, что она может вернуть как обычны ответ, так и всплывающий ответ
+ * <br>{@see ResultException::call()} Выполнит функцию, ожидая, что она может вернуть как обычны ответ, так и всплывающий ответ,
  * <br>---
  * <br>{@see self::$result}        Хранит результат работы
  * <br>{@see self::__invoke()}     Вернет результат работы (в том числе и по ссылке)
  * <br>{@see self::__construct()}  Создаст исключение и запишет результат работы
  *
  * Test cases for class {@see ResultExceptionTest}
+ *
+ * @since 0.2.0
  */
 final class ResultException extends \Exception
 {

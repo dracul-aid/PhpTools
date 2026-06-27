@@ -15,6 +15,8 @@ use DraculAid\PhpTools\ExceptionTools\PhpErrorCode\Errors\Interfaces\PhpCodeErro
 
 /**
  * Предупреждения времени выполнения (Включаются для того, чтобы PHP предлагал изменения в коде, которые обеспечат лучшее взаимодействие и совместимость кода)
+ *
+ * @since 0.5.0
  */
 class Strict extends \Error implements PhpCodeErrorInterface
 {

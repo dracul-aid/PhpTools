@@ -15,6 +15,8 @@ use DraculAid\PhpTools\ExceptionTools\PhpErrorCode\Errors\Interfaces\PhpCodeErro
 
 /**
  * Указание на "пользовательскую" устаревшую конструкцию
+ *
+ * @since 0.5.0
  */
 class UserDeprecated extends \Error implements PhpCodeErrorInterface
 {

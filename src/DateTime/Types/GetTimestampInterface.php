@@ -17,6 +17,8 @@ namespace DraculAid\PhpTools\DateTime\Types;
  * Оглавление:
  * <br>{@see self::getTimestamp()} Преобразует объект в таймштамп (в секундах)
  * <br>{@see self::format()} Преобразует объект в строку, по указанному формату (аналогично {@see date()})
+ *
+ * @since 0.2.0
  */
 interface GetTimestampInterface
 {

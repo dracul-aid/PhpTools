@@ -21,6 +21,8 @@ use DraculAid\PhpTools\DateTime\TimestampHelper;
  * <br>{@see self::setTimestamp()} Установит таймштамп (в секундах)
  * <br>{@see self::getTimestamp()} Вернет таймштамп (в секундах)
  * <br>{@see self::format()} Вернет строковое представление даты-времени
+ *
+ * @since 0.2.0
  */
 class TimestampType implements GetTimestampInterface
 {

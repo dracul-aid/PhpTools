@@ -23,6 +23,8 @@ use DraculAid\PhpTools\tests\Strings\StringSearchToolsTest;
  * <br>{@see StringSearchTools::inString()} - Проверит, строка начинается, кончается или включает в себя указанную подстроку
  *
  * Test cases for class {@see StringSearchToolsTest}
+ *
+ * @since 0.3.0
  */
 final class StringSearchTools
 {

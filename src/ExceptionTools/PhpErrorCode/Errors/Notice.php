@@ -15,6 +15,8 @@ use DraculAid\PhpTools\ExceptionTools\PhpErrorCode\Errors\Interfaces\PhpCodeErro
 
 /**
  * Оповещения в ходе выполнения
+ *
+ * @since 0.5.0
  */
 class Notice extends \Error implements PhpCodeErrorInterface
 {

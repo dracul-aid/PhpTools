@@ -40,6 +40,8 @@ use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
  * <br>{@see self::isSet()} Вернет указание, установлен диапазон, его часть или нет
  * <br>{@see self::getSqlDateTime} Сгенерирует строку пригодную для использования в качестве части SQL запроса для проверки поля на диапазон даты-времени
  * <br>{@see self::getLenght()} Вернет длину диапазону в секундах, возможно с микросекундами
+ *
+ * @since 0.2.0
  */
 abstract class AbstractDateTimeRange implements DateTimeRangeInterface
 {

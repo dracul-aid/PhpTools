@@ -18,6 +18,8 @@ namespace DraculAid\PhpTools\Code;
  * <br>{@see DebugVarHtmlTools::varDump()} - Аналог {@see var_dump()}
  * <br>{@see DebugVarHtmlTools::printR()} - Аналог {@see print_r()}
  * <br>{@see DebugVarHtmlTools::json()} - Вернет переданное значение ввиде отформатированной JSON строки
+ *
+ * @since 0.4.0
  */
 final class DebugVarHtmlTools
 {

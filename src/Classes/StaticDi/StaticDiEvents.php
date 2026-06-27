@@ -18,6 +18,8 @@ namespace DraculAid\PhpTools\Classes\StaticDi;
  * <br>{@see self::$eventSearchBefore} Перед началом поиска класса
  * <br>{@see self::$eventSearchAfter} После поиска класса
  * <br>{@see self::$notFoundExceptionClassName} Имя класса исключения, которое может быть выброшено - если не удалось найти класс для ответа
+ *
+ * @since 1.1.0
  */
 final class StaticDiEvents
 {

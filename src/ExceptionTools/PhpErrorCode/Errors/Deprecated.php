@@ -15,6 +15,8 @@ use DraculAid\PhpTools\ExceptionTools\PhpErrorCode\Errors\Interfaces\PhpCodeErro
 
 /**
  * Указание на устаревшую конструкцию PHP
+ *
+ * @since 0.5.0
  */
 class Deprecated extends \Error implements PhpCodeErrorInterface
 {

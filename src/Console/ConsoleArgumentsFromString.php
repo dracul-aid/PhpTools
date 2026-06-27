@@ -25,6 +25,8 @@ use DraculAid\PhpTools\Strings\Objects\StringIterator\Utf8IteratorObject;
  * @see ConsoleArgumentsFromPhpArgvCreator Получит объект-аргументов из `$_SERVER['argv']`
  *
  * @deprecated Будет удален в не ранее v2.0.0, используйте {@see \DraculAid\PhpTools\Console\ConsoleArguments\ConsoleArgumentsFromString}
+ *
+ * @since 0.6.0
  */
 final class ConsoleArgumentsFromString
 {

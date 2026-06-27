@@ -34,6 +34,8 @@ use DraculAid\PhpTools\tests\Strings\CharToolsTest;
  * @see CharTools::isInsideNameOfVar() - Проверяет, символ является символом, допустимым внутри имени переменной (т.е. кроме первого символа)
  *
  * Test cases for class {@see CharToolsTest}
+ *
+ * @since 0.1.0
  */
 final class CharTools
 {

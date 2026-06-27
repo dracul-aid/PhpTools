@@ -22,6 +22,8 @@ use DraculAid\PhpTools\tests\Classes\ClassParentsTest;
  * <br>{@see ClassParents::getTraits()} - Вернет все трейты класса, и классов-родителей
  *
  * Test cases for class {@see ClassParentsTest}
+ *
+ * @since 0.1.0
  */
 final class ClassParents
 {
@@ -33,7 +35,7 @@ final class ClassParents
     readonly private string $className;
 
     /**
-     * Результат работы - Массив с всеми родительскими классами, интерфейсами и трейтами
+     * Результат работы - Массив со всеми родительскими классами, интерфейсами и трейтами
      *
      * @var string[]
      */
@@ -44,7 +46,7 @@ final class ClassParents
      *
      * @param   class-string   $class   Имя класса
      *
-     * @return  string[]  Массив с всеми родительскими классами, интерфейсами и трейтами
+     * @return  string[]  Массив со всеми родительскими классами, интерфейсами и трейтами
      *
      * @throws  \ReflectionException  Если не удалось получить рефлексию класса или родительских классов
      */
@@ -64,7 +66,7 @@ final class ClassParents
      *
      * @param   class-string   $class   Имя класса
      *
-     * @return  string[]  Массив с всеми родительскими классами, интерфейсами и трейтами
+     * @return  string[]  Массив со всеми родительскими классами, интерфейсами и трейтами
      *
      * @throws  \ReflectionException  Если не удалось получить рефлексию класса или родительских классов
      */
@@ -79,7 +81,7 @@ final class ClassParents
     }
 
     /**
-     * Вернет все трейты класса, и классов-родителей
+     * Вернет все трейты класса и классов-родителей
      *
      * @param   class-string   $class   Имя класса
      *

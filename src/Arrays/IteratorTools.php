@@ -10,6 +10,8 @@ use DraculAid\PhpTools\Arrays\Objects\IteratorSafeRunner;
  * Оглавление:
  * <br>{@see IteratorTools::count()} Вернет кол-во элементов в перебираемом
  * <br>{@see IteratorTools::iterateAndRewind()} Переберет перебираемое, если надо, перемотав его в начало после перебора
+ *
+ * @since 1.2.0
  */
 class IteratorTools
 {

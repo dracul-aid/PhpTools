@@ -26,6 +26,8 @@ use DraculAid\PhpTools\tests\Console\ConsoleArgumentsFromPhpArgvCreatorTest;
  * @see ConsoleArgumentsFromString Для получения объекта-аргументов из строки
  *
  * @deprecated Будет удален в не ранее v2.0.0, используйте {@see \DraculAid\PhpTools\Console\ConsoleArguments\ConsoleArgumentsFromPhpArgvCreator}
+ *
+ * @since 0.6.0
  */
 final class ConsoleArgumentsFromPhpArgvCreator
 {

@@ -25,6 +25,8 @@ use DraculAid\PhpTools\tests\ExceptionTools\ExceptionToolsTest;
  * <br>{@see ExceptionTools::wasCalledWithException()} - Выполнит функцию, и проверит, не вернула ли она необходимое исключение
  *
  * Test cases for class {@see ExceptionToolsTest}
+ *
+ * @since 0.2.0
  */
 final class ExceptionTools
 {

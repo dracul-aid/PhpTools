@@ -22,6 +22,8 @@ use DraculAid\PhpTools\tests\Strings\StringToolsTest;
  * <br>{@see StringTools::ipFilenameEncode()} Преобразует IP адрес из формата имени файла, в IP адрес
  *
  * Test cases for class {@see StringToolsTest}
+ *
+ * @since 0.3.0
  */
 final class StringTools
 {

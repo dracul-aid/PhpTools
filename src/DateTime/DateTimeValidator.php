@@ -38,6 +38,8 @@ use DraculAid\PhpTools\tests\DateTime\DateTimeValidatorTest;
  * @see DateTimeHelper::isValidDateArray() Проверяет валидность массива {@see getdate()}
  *
  * Test cases for class {@see DateTimeValidatorTest}
+ *
+ * @since 0.2.0
  */
 final class DateTimeValidator
 {

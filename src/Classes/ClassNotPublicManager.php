@@ -36,6 +36,8 @@ use DraculAid\PhpTools\tests\Classes\ClassNotPublicManagerTest;
  * <br>{@see self::run()} - Позволяет выполнить произвольную функцию внутри указанной области видимости
  *
  * Test cases for class {@see ClassNotPublicManagerTest}
+ *
+ * @since 0.1.0
  */
 final class ClassNotPublicManager
 {
@@ -353,6 +355,8 @@ final class ClassNotPublicManager
      * @param   array                 $arguments       Аргументы для функции
      *
      * @return  mixed
+     *
+     * @since 0.7.0
      */
     public static function execute($objectOrClass, \Closure $function, string $classContext = '', array $arguments = []): mixed
     {
@@ -367,6 +371,8 @@ final class ClassNotPublicManager
      * @param   array          $argumentsСписок   Аргументы для функции
      *
      * @return  mixed
+     *
+     * @since 0.7.0
      */
     public function run(\Closure $function, string $classContext = '', array $arguments = []): mixed
     {

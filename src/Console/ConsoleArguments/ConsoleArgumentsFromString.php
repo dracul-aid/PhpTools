@@ -23,6 +23,8 @@ use DraculAid\PhpTools\Strings\Objects\StringIterator\Utf8IteratorObject;
  * Test cases for class {@see ConsoleArgumentsFromPhpArgvCreatorTest}
  *
  * @see ConsoleArgumentsFromPhpArgvCreator Получит объект-аргументов из `$_SERVER['argv']`
+ *
+ * @since 1.1.0
  */
 final class ConsoleArgumentsFromString
 {

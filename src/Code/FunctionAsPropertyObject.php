@@ -27,6 +27,8 @@ use DraculAid\PhpTools\tests\Code\FunctionAsPropertyObjectTest;
  * <br>{@see self::getFunction()} Вернет установленную функцию
  *
  * Test cases for class {@see FunctionAsPropertyObjectTest}
+ *
+ * @since 0.4.0
  */
 class FunctionAsPropertyObject
 {

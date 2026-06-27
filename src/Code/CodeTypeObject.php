@@ -42,6 +42,8 @@ use DraculAid\PhpTools\tests\Code\CodeTypeObjectTest;
  * @method static CodeTypeObject createFromDocBlock(string|string[] $type) Создает с переданными DocBlock типами
  *
  * Test cases for class {@see CodeTypeObjectTest}
+ *
+ * @since 0.3.0
  */
 class CodeTypeObject implements \IteratorAggregate, \Stringable
 {

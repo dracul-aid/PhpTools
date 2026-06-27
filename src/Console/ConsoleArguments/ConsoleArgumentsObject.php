@@ -50,10 +50,12 @@ use DraculAid\PhpTools\Arrays\Objects\ListObject;
  * Test cases for class {@see ConsoleArgumentsObjectTest}
  *
  * @todo Реализовать IteratorInterface
+ *
+ * @since 1.1.0
  */
 class ConsoleArgumentsObject implements ArrayInterface, \IteratorAggregate, \Stringable
 {
-    /** Скрипт, из под которого была запущена команда */
+    /** Скрипт, из-под которого была запущена команда */
     public string $script = '';
 
     /** Список аргументов */

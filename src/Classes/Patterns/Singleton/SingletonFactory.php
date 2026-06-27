@@ -25,6 +25,8 @@ use DraculAid\PhpTools\tests\Classes\Patterns\Singleton\SingletonFactoryTest;
  * <br>{@see SingletonFactory::$uniqKeyObjects} - Созданные синглтон-объекты
  *
  * Test cases for class {@see SingletonFactoryTest}
+ *
+ * @since 0.1.0
  */
 final class SingletonFactory
 {

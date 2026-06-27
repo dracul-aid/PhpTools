@@ -39,6 +39,8 @@ use DraculAid\PhpTools\DateTime\TimestampHelper;
  * <br>{@see self::isSet()} Вернет указание, установлен диапазон, его часть или нет
  * <br>{@see self::getSqlDateTime} Сгенерирует строку пригодную для использования в качестве части SQL запроса для проверки поля на диапазон даты-времени
  * <br>{@see self::getLenght()} Вернет длину диапазону в секундах, возможно с микросекундами
+ *
+ * @since 0.2.0
  */
 class TimestampRangeType extends AbstractDateTimeRange
 {

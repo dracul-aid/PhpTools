@@ -12,13 +12,15 @@
 namespace DraculAid\PhpTools\Strings\Components;
 
 /**
- * Типы символов, используется при определении типа символа, см {@see \DraculAid\PhpTools\Strings\CharTools::getType()}
+ * Типы символов (используется при определении типа символа, см {@see \DraculAid\PhpTools\Strings\CharTools::getType()})
  *
  * <br>{@see CharTypes::IS_NOT_CHAR} - Не символ (обычно подразумевает строку)
  * <br>{@see CharTypes::IS_OTHER} - Тип символа - Неизвестный тип символа
  * <br>{@see CharTypes::IS_ABC_UPPER} - Тип символа - Заглавная латинская буква (Большая буква)
  * <br>{@see CharTypes::IS_ABC_LOWER} - Тип символа - Прописная латинская буква (Маленькая буква)
  * <br>{@see CharTypes::IS_NUMBER} - Тип символа - Десятичное число
+ *
+ * @since 0.2.0
  */
 final class CharTypes
 {

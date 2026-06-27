@@ -15,6 +15,8 @@ use DraculAid\PhpTools\ExceptionTools\PhpErrorCode\Errors\Interfaces\PhpCodeErro
 
 /**
  * "Пользовательские" ошибки
+ *
+ * @since 0.5.0
  */
 class UserError extends \Error implements PhpCodeErrorInterface
 {

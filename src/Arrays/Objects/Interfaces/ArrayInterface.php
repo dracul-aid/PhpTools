@@ -22,5 +22,7 @@ use DraculAid\PhpTools\Classes\ClassTools;
  *
  * @see ArrayHelper::isAsArray() Проверит, является ли объект похожим на массив
  * @see ClassTools::isAsArray() Проверит, похож ли объект или класс на массив
+ *
+ * @since 0.5.0
  */
 interface ArrayInterface extends \Countable, \ArrayAccess, \Traversable {}

@@ -15,6 +15,8 @@ use DraculAid\PhpTools\ExceptionTools\PhpErrorCode\Errors\Interfaces\PhpCodeErro
 
 /**
  * Критическая ошибка синтаксического анализатора кода
+ *
+ * @since 0.5.0
  */
 class Parse extends \CompileError implements PhpCodeErrorInterface
 {

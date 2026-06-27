@@ -32,6 +32,8 @@ use DraculAid\PhpTools\tests\DateTime\Dictionary\DateConstantsTest;
  * <br>{@see DateConstants::MON_SHORT_LIST} Список коротких месяцев, т.е. 28 - 30 дней (Февраль, Апрель, Июнь, Сентябрь, Ноябрь)
  *
  * Test cases for class {@see DateConstantsTest}
+ *
+ * @since 0.2.0
  */
 final class DateConstants
 {

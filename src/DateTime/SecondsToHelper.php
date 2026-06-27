@@ -26,6 +26,8 @@ use DraculAid\PhpTools\tests\DateTime\SecondsToHelperTest;
  * <br>{@see SecondsToHelper::timeAndDays()} Получит секунды и вернет кол-во целых дней, часов, минут и секунд
  *
  * Test cases for class {@see SecondsToHelperTest}
+ *
+ * @since 0.3.0
  */
 final class SecondsToHelper
 {

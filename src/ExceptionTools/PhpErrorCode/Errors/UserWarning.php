@@ -15,9 +15,12 @@ use DraculAid\PhpTools\ExceptionTools\PhpErrorCode\Errors\Interfaces\PhpCodeErro
 
 /**
  * Пользовательское предупреждение
+ *
+ * @since 0.5.0
  */
 class UserWarning extends \Error implements PhpCodeErrorInterface
 {
+    /** @inheritdoc */
     public static function getPhpErrorCode(): int
     {
         return E_USER_WARNING;

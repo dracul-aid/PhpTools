@@ -12,8 +12,8 @@
 namespace DraculAid\PhpTools\Code\FunctionRunList;
 
 use DraculAid\PhpTools\Classes\Patterns\Runner\RunnerInterface;
-use DraculAid\PhpTools\tests\Code\FunctionRunList\AbstractFunctionRunListTest;
 use DraculAid\PhpTools\tests\Code\FunctionRunList\AbstractFunctionRunExecuteTest;
+use DraculAid\PhpTools\tests\Code\FunctionRunList\AbstractFunctionRunListTest;
 
 /**
  * Абстрактный класс для создания списка функций для последовательного выполнения
@@ -32,6 +32,8 @@ use DraculAid\PhpTools\tests\Code\FunctionRunList\AbstractFunctionRunExecuteTest
  * Test cases for class {@see AbstractFunctionRunListTest} и {@see AbstractFunctionRunExecuteTest}
  *
  * @link https://github.com/dracul-aid/PhpTools/blob/master/Documentation-ru/FunctionRunList.md Докуметация (как это работает)
+ *
+ * @since 1.1.0
  */
 abstract class AbstractFunctionRunList implements RunnerInterface
 {

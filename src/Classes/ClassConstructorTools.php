@@ -20,6 +20,8 @@ namespace DraculAid\PhpTools\Classes;
  *
  * См также:
  * <br>{@see ClassTools::createObject()} Облегчает создание объектов, позволяя создавать объекты без вызова конструктора и(или) установить также и свойства
+ *
+ * @since 1.2.0
  */
 final class ClassConstructorTools
 {

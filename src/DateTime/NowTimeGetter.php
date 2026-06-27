@@ -49,6 +49,8 @@ use DraculAid\PhpTools\tests\DateTime\NowTimeGetterTest;
  * <br> {@see NowTimeGetter::getSecond2()} - Секунда с ведущим 0-ом (00 - 59)
  *
  * Test cases for class {@see NowTimeGetterTest}
+ *
+ * @since 0.2.0
  */
 final class NowTimeGetter
 {

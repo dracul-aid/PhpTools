@@ -35,6 +35,8 @@ use DraculAid\PhpTools\tests\Strings\Objects\StringIterator\Utf8IteratorObjectTe
  * <br>- {@see self::currentElementAndNext()} Вернет текущий ключ и значение и сдвинет "курсор"
  *
  * Test cases for class {@see Utf8IteratorObjectTest}
+ *
+ * @since 0.4.0
  */
 class Utf8IteratorObject extends AbstractStringIterator
 {

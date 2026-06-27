@@ -28,7 +28,9 @@ use DraculAid\PhpTools\tests\Code\TypeValidatorTest;
  *
  * @link https://www.php.net/manual/ru/language.types.declarations.php#language.types.declarations.composite Документация PHP о составных типах данных
  *
- *  Test cases for class {@see TypeValidatorTest}
+ * Test cases for class {@see TypeValidatorTest}
+ *
+ * @since 1.2.0
  */
 final class TypeValidator
 {

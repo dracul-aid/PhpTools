@@ -45,6 +45,8 @@ use DraculAid\PhpTools\DateTime\Types\PhpExtended\DateTimeExtendedType;
  *
  * @property $start Начало диапазона (NULL - не установлен)
  * @property $finish Конец диапазона (NULL - не установлен)
+ *
+ * @since 0.2.0
  */
 interface DateTimeRangeInterface
 {

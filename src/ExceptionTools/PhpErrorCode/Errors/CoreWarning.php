@@ -15,6 +15,8 @@ use DraculAid\PhpTools\ExceptionTools\PhpErrorCode\Errors\Interfaces\PhpCodeErro
 
 /**
  * Предупреждения во время компиляции
+ *
+ * @since 0.5.0
  */
 class CoreWarning extends \Error implements PhpCodeErrorInterface
 {

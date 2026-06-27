@@ -11,7 +11,11 @@
 
 namespace DraculAid\PhpTools\ExceptionTools\PhpErrorCode\Errors\Interfaces;
 
-/** Интерфейс всех Классов-ошибок (соответствий PHP кодам ошибок) */
+/**
+ * Интерфейс всех Классов-ошибок (соответствий PHP кодам ошибок)
+ *
+ * @since 0.5.0
+ */
 interface PhpCodeErrorBasicInterface extends \Throwable
 {
     /**

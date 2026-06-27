@@ -12,8 +12,8 @@
 namespace DraculAid\PhpTools\Code\FunctionRunList;
 
 use DraculAid\PhpTools\Code\CallFunctionHelper;
-use DraculAid\PhpTools\tests\Code\FunctionRunList\AbstractFunctionRunListTest;
 use DraculAid\PhpTools\tests\Code\FunctionRunList\AbstractFunctionRunExecuteTest;
+use DraculAid\PhpTools\tests\Code\FunctionRunList\AbstractFunctionRunListTest;
 
 /**
  * Структура для хранения и выполнения функции из списка функций ({@see AbstractFunctionRunList})
@@ -23,6 +23,8 @@ use DraculAid\PhpTools\tests\Code\FunctionRunList\AbstractFunctionRunExecuteTest
  * <br>- {@see self::run()} - Выполнит функцию
  *
  * Test cases for class - Тестируется в рамках {@see AbstractFunctionRunListTest} и {@see AbstractFunctionRunExecuteTest}
+ *
+ * @since 1.1.0
  */
 class FunctionElement
 {

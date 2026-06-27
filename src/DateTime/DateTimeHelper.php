@@ -31,6 +31,8 @@ use DraculAid\PhpTools\tests\DateTime\Dictionary\DateConstantsTest;
  * @see TimestampHelper Хэлпер, для работы с таймштампами
  *
  * Test cases for class {@see DateConstantsTest}
+ *
+ * @since 0.2.0
  */
 final class DateTimeHelper
 {

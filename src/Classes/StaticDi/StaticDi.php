@@ -54,6 +54,8 @@ use DraculAid\PhpTools\tests\Classes\StaticDiTest;
  * @link https://github.com/dracul-aid/PhpTools/blob/master/Documentation-ru/StaticDi.md Докуметация (как это работает)
  *
  * Test cases for class {@see StaticDiTest}
+ *
+ * @since 1.1.0
  */
 final class StaticDi
 {

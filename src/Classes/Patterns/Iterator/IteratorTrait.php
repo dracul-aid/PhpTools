@@ -21,6 +21,8 @@ use DraculAid\PhpTools\tests\Classes\Patterns\Iterator\IteratorTraitTest;
  * Test cases for class {@see IteratorTraitTest}
  *
  * @psalm-require-implements IteratorInterface
+ *
+ * @since 0.6.0
  */
 trait IteratorTrait
 {

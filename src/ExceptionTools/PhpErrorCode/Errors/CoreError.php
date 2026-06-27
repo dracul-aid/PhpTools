@@ -15,6 +15,8 @@ use DraculAid\PhpTools\ExceptionTools\PhpErrorCode\Errors\Interfaces\PhpCodeErro
 
 /**
  * Фатальные ошибки ядра PHP
+ *
+ * @since 0.5.0
  */
 class CoreError extends \Error implements PhpCodeErrorInterface
 {

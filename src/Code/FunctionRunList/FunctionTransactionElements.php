@@ -20,6 +20,8 @@ namespace DraculAid\PhpTools\Code\FunctionRunList;
  * <br>- {@see self::$failRollbackList} - Список исключений пойманных в ходе выполнения роллбек-функций
  *
  * Test cases for class - Не требуется, в классе только свойства
+ *
+ * @since 1.1.0
  */
 class FunctionTransactionElements
 {

@@ -34,6 +34,8 @@ use DraculAid\PhpTools\tests\Code\ScriptLoaderTest;
  * <br>{@see ScriptLoader::obEval()} с помощью `eval()`
  *
  * Test cases for class {@see ScriptLoaderTest}
+ *
+ * @since 0.4.0
  */
 final class ScriptLoader
 {

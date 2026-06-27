@@ -27,6 +27,8 @@ use DraculAid\PhpTools\tests\Strings\StringCutToolsTest;
  * @todo Реализовать StringCut::fromBetweenSubstr() - Обрежет строку между указанными подстроками
  *
  * Test cases for class {@see StringCutToolsTest}
+ *
+ * @since 0.3.0
  */
 final class StringCutTools
 {
@@ -146,6 +148,8 @@ final class StringCutTools
      * @return  string
      *
      * @psalm-suppress InvalidNullableReturnType Если preg_replace() вернет NULL (или иной другой тип кроме строки) мы и правда хотим упасть
+     *
+     * @since 0.7.0
      */
     public static function clearMultiSpaces(string $string, string $replace = ' '): string
     {

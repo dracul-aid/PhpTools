@@ -35,6 +35,8 @@ use DraculAid\PhpTools\tests\Strings\Objects\StringIterator\StringIteratorObject
  * <br>- {@see self::currentElementAndNext()} Вернет текущий ключ и значение и сдвинет "курсор"
  *
  * Test cases for class {@see StringIteratorObjectTest}
+ *
+ * @since 0.4.0
  */
 class StringIteratorObject extends AbstractStringIterator
 {

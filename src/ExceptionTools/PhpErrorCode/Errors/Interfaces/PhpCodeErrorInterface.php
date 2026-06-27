@@ -11,5 +11,9 @@
 
 namespace DraculAid\PhpTools\ExceptionTools\PhpErrorCode\Errors\Interfaces;
 
-/** Интерфейс Классов-ошибок, для кодов ошибок приводящих к остановке выполнения скрипта */
+/**
+ * Интерфейс Классов-ошибок, для кодов ошибок приводящих к остановке выполнения скрипта
+ *
+ * @since 0.5.0
+ */
 interface PhpCodeErrorInterface extends PhpCodeErrorBasicInterface {}

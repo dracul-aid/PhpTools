@@ -15,6 +15,8 @@ use DraculAid\PhpTools\Arrays\Objects\IteratorSafeRunner;
 
 /**
  * Структура для хранения пойманных исключений в ходе выполнения {@see IteratorSafeRunner::exe()}
+ *
+ * @since 0.6.0
  */
 final class IteratorSafeRunThrowableStructure
 {

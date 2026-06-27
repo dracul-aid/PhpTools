@@ -15,6 +15,8 @@ use DraculAid\PhpTools\ExceptionTools\PhpErrorCode\Errors\Interfaces\PhpCodeErro
 
 /**
  * Фатальные ошибки с возможностью обработки
+ *
+ * @since 0.5.0
  */
 class RecoverableError extends \Error implements PhpCodeErrorInterface
 {

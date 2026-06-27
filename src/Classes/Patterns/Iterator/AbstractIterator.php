@@ -15,6 +15,8 @@ namespace DraculAid\PhpTools\Classes\Patterns\Iterator;
  * Абстрактный класс для классов, реализующих функционал итераторов {@see IteratorInterface}
  *
  * "Сахарные методы" из {@see IteratorInterface} также реализованны в трейте {@see IteratorTrait}
+ *
+ * @since 0.6.0
  */
 abstract class AbstractIterator implements IteratorInterface
 {

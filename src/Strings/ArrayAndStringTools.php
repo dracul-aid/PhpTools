@@ -19,6 +19,8 @@ use DraculAid\PhpTools\Code\CallFunctionHelper;
  * Оглавление
  * <br>{@see ArrayAndStringTools::arrayToStringWithoutEmpty()} Преобразует массив в строку, аналогично PHP функции {@see implode()} но с игнорированием пустых значений
  * <br>{@see ArrayAndStringTools::subStringToArray()} Разбивает строку на подстроки указанной длины и помещает все подстроки в массив
+ *
+ * @since 0.3.0
  */
 final class ArrayAndStringTools
 {

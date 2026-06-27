@@ -54,6 +54,8 @@ use DraculAid\PhpTools\tests\Arrays\Objects\IteratorSafeRunnerTest;
  * Test cases for class {@see IteratorSafeRunnerTest}
  *
  * @property-read mixed $cursor Ссылка на курсор (см аналогичное private свойство)
+ *
+ * @since 0.6.0
  */
 final class IteratorSafeRunner implements StaticRunnerInterface, \IteratorAggregate
 {

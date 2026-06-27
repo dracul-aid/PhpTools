@@ -29,6 +29,8 @@ use DraculAid\PhpTools\tests\Classes\ClassToolsTest;
  * <br>{@see ClassTools::getNameAndNamespace()} - Вернет имя класса и его пространство имен
  *
  * Test cases for class {@see ClassToolsTest}
+ *
+ * @since 0.1.0
  */
 final class ClassTools
 {

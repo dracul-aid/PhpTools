@@ -34,6 +34,8 @@ use DraculAid\PhpTools\tests\Arrays\ArrayHelperTest;
  * <br>{@see ArrayHelper::getByIndexes()} Вернет срез массива, по списку указанных индексов массива
  *
  * Test cases for class {@see ArrayHelperTest}
+ *
+ * @since 0.5.0
  */
 final class ArrayHelper
 {
@@ -215,6 +217,8 @@ final class ArrayHelper
      * @param   iterable   $array    Перечисляемое для проверки
      *
      * @return  bool
+     *
+     * @since 1.2.0
      */
     public static function isList(iterable $array): bool
     {
@@ -239,6 +243,8 @@ final class ArrayHelper
      * @param   string     $type    Тип для проверки (см {@see gettype()})
      *
      * @return  bool
+     *
+     * @since 1.2.0
      */
     public static function isTypeArray(iterable $array, string $type): bool
     {
@@ -259,6 +265,8 @@ final class ArrayHelper
      * @param   string     $type    Тип для проверки (см {@see gettype()})
      *
      * @return  bool
+     *
+     * @since 1.2.0
      */
     public static function isVector(iterable $array, string $type): bool
     {

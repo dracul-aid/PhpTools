@@ -11,9 +11,6 @@
 
 namespace DraculAid\PhpTools\Console;
 
-use DraculAid\PhpTools\Arrays\Objects\Interfaces\ArrayInterface;
-use DraculAid\PhpTools\Arrays\Objects\ListObject;
-
 /**
  * Объект для работы с аргументами консольных команд.
  *
@@ -52,5 +49,7 @@ use DraculAid\PhpTools\Arrays\Objects\ListObject;
  * @todo Реализовать IteratorInterface
  *
  * @deprecated Будет удален в не ранее v2.0.0, используйте {@see ConsoleArguments\ConsoleArgumentsObject}
+ *
+ * @since 0.6.0
  */
 class ConsoleArgumentsObject extends ConsoleArguments\ConsoleArgumentsObject {}

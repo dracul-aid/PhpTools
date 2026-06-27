@@ -24,5 +24,7 @@ namespace DraculAid\PhpTools\Classes\Patterns\Runner;
  * <pre>
  * StaticRunnerInterface::exe()
  * </pre>
+ *
+ * @since 0.6.0
  */
 interface StaticRunnerInterface {}

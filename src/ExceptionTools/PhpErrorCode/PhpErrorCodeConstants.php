@@ -30,6 +30,8 @@ namespace DraculAid\PhpTools\ExceptionTools\PhpErrorCode;
  * <br>- {@see PhpErrorCodeConstants::USER_ERRORS} - "Пользовательские" ошибки
  *
  * Test cases for class {@see PhpErrorCodeDescriptionsConstantsTest}
+ *
+ * @since 0.5.0
  */
 final class PhpErrorCodeConstants
 {
@@ -94,7 +96,7 @@ final class PhpErrorCodeConstants
         E_RECOVERABLE_ERROR,
     ];
 
-    /** Список ошибок связанный с непосредственным выполнением кода */
+    /** Список ошибок, связанный с непосредственным выполнением кода */
     public const SCRIPT_ERRORS = [
         E_ERROR,
         E_WARNING,
@@ -108,7 +110,7 @@ final class PhpErrorCodeConstants
         E_USER_DEPRECATED,
     ];
 
-    /** Список ошибок относящихся к ядру PHP (т.е. не связанных с кодом) */
+    /** Список ошибок, относящихся к ядру PHP (т.е. не связанных с кодом) */
     public const CORE_ERRORS = [
         E_CORE_ERROR,
         E_CORE_WARNING,
@@ -121,14 +123,14 @@ final class PhpErrorCodeConstants
         E_COMPILE_WARNING,
     ];
 
-    /** "Пользовательские" ошибки, т.е. ошибки выброшенные по задумке разработчика, при использовании PHP функции trigger_error() */
+    /** "Пользовательские" ошибки, т.е. Ошибки выброшенные по задумке разработчика, при использовании PHP функции trigger_error() */
     public const USER_ERRORS = [
         E_USER_ERROR,
         E_USER_WARNING,
         E_USER_NOTICE,
     ];
 
-    /** Ошибки связанные с использованием "устаревшего" кода */
+    /** Ошибки, связанные с использованием "устаревшего" кода */
     public const DEPRECATED_ERRORS = [
         E_DEPRECATED,
         E_USER_DEPRECATED,

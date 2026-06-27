@@ -17,6 +17,8 @@ namespace DraculAid\PhpTools\Classes\StaticDi;
  * @link https://github.com/dracul-aid/PhpTools/blob/master/Documentation-ru/StaticDi.md Докуметация (как это работает)
  *
  * Test cases for class {@see StaticDiMagicTraitTest}
+ *
+ * @since 1.1.0
  */
 trait StaticDiMagicTrait
 {

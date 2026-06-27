@@ -32,6 +32,8 @@ use DraculAid\PhpTools\tests\Code\CallFunctionHelperTest;
  * <br>{@see CallFunctionHelper::getReflectionForCallable()} Вернет рефлексию для "Вызываемого", определив чем оно является, методом или функцией
  *
  * Test cases for class {@see CallFunctionHelperTest}
+ *
+ * @since 0.3.0
  */
 final class CallFunctionHelper implements StaticRunnerInterface
 {

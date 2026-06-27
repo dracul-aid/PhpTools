@@ -13,6 +13,8 @@ namespace DraculAid\PhpTools\DateTime\Types;
 
 /**
  * DTO с описанием даты-времени (Год, Месяц, Число и Время)
+ *
+ * @since 0.2.0
  */
 class DateTimeLightDto
 {

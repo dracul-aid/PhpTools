@@ -15,8 +15,10 @@ use DraculAid\PhpTools\ExceptionTools\PhpErrorCode\Errors\Interfaces\PhpCodeErro
 
 /**
  * Критическая ошибка во время компиляции
+ *
+ * @since 0.5.0
  */
-class CompileError extends \CompileError  implements PhpCodeErrorInterface
+class CompileError extends \CompileError implements PhpCodeErrorInterface
 {
     /** @inheritdoc */
     public static function getPhpErrorCode(): int

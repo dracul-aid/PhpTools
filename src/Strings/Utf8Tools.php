@@ -25,6 +25,8 @@ use DraculAid\PhpTools\tests\Strings\Utf8ToolsTest;
  * @link https://unicode.org/charts/nameslist/ Список символов UTF-8 по группам
  *
  * Test cases for class {@see Utf8ToolsTest}
+ *
+ * @since 0.7.0
  */
 final class Utf8Tools
 {

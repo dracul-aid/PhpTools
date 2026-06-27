@@ -14,10 +14,10 @@ namespace DraculAid\PhpTools\Strings\Components\TranslitConverter;
 use DraculAid\PhpTools\Strings\TranslitConverter;
 
 /**
- * Таблица транслитерации. Соответствия символов кириллицы и латиницы по формату принятому в ИКАО (Международная организация
+ * Таблица транслитерации. Соответствия символов кириллицы и латиницы по формату, принятому в ИКАО (Международная организация
  * гражданской авиации)
  *
- * (!) Этот формат используется в России для транслитерации для в загран паспортах и банковских картах, см https://www.gosuslugi.ru/help/faq/foreign_passport/100359
+ * (!) Этот формат используется в России для транслитерации загран паспортов и банковских карт, см https://www.gosuslugi.ru/help/faq/foreign_passport/100359
  *
  * См также
  * <br>{@see CharRuToEn} Таблица транслитерации кириллицы для наиболее удобного чтения на латинице
@@ -26,6 +26,8 @@ use DraculAid\PhpTools\Strings\TranslitConverter;
  *
  * Оглавление
  * <br>{@see CharRuToEn::LIST} Соответствия символов кириллицы и латиницы
+ *
+ * @since 0.5.0
  */
 final class CharRuToEnIcao
 {

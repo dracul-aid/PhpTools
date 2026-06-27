@@ -15,6 +15,8 @@ use DraculAid\PhpTools\ExceptionTools\PhpErrorCode\Errors\Interfaces\PhpCodeErro
 
 /**
  * Критическая ошибка времени выполнения
+ *
+ * @since 0.5.0
  */
 class Error extends \Error implements PhpCodeErrorInterface
 {

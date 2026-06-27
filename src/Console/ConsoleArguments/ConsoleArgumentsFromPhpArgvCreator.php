@@ -24,6 +24,8 @@ use DraculAid\PhpTools\tests\Console\ConsoleArgumentsFromPhpArgvCreatorTest;
  * Test cases for class {@see ConsoleArgumentsFromPhpArgvCreatorTest}
  *
  * @see ConsoleArgumentsFromString Для получения объекта-аргументов из строки
+ *
+ * @since 1.1.0
  */
 final class ConsoleArgumentsFromPhpArgvCreator
 {

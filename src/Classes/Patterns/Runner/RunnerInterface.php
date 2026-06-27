@@ -22,6 +22,8 @@ namespace DraculAid\PhpTools\Classes\Patterns\Runner;
  * <pre>
  * new (RunnerInterface())::run()
  * </pre>
+ *
+ * @since 0.6.0
  */
 interface RunnerInterface
 {

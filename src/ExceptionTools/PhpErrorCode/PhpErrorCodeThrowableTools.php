@@ -22,6 +22,8 @@ use DraculAid\PhpTools\ExceptionTools\PhpErrorCode\Errors\Interfaces\PhpCodeErro
  * <br>--- Создание объектов ошибок:
  * <br>- {@see PhpErrorCodeThrowableTools::getErrorObject()} Вернет объект ошибку, по типу ошибки
  * <br>- {@see PhpErrorCodeThrowableTools::getBasicErrorObject()} Вернет объект PHP ошибки, по типу ошибки
+ *
+ * @since 0.5.0
  */
 class PhpErrorCodeThrowableTools
 {

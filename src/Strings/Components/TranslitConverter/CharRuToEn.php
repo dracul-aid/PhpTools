@@ -28,6 +28,8 @@ use DraculAid\PhpTools\tests\Strings\Components\TranslitConverter\CharRuToEnTest
  * <br>{@see CharRuToEn::CYRILLIC_TU_EN} Соответствия символов кириллицы и латиницы
  *
  * Test cases for class {@see CharRuToEnTest}
+ *
+ * @since 0.5.0
  */
 final class CharRuToEn
 {

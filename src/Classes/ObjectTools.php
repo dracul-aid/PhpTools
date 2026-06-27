@@ -22,6 +22,8 @@ use DraculAid\PhpTools\tests\Classes\ObjectToolsTest;
  * <br>{@see ObjectTools::getStringNewInstance()} Вернет строку создания нового экземпляра класса, используется, когда нужно динамически создать PHP код с созданием объекта
  *
  * Test cases for class {@see ObjectToolsTest}
+ *
+ * @since 0.1.0
  */
 final class ObjectTools
 {

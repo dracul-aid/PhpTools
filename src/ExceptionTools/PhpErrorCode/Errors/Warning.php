@@ -15,6 +15,8 @@ use DraculAid\PhpTools\ExceptionTools\PhpErrorCode\Errors\Interfaces\PhpCodeErro
 
 /**
  * Предупреждения времени выполнения
+ *
+ * @since 0.5.0
  */
 class Warning extends \Error implements PhpCodeErrorInterface
 {

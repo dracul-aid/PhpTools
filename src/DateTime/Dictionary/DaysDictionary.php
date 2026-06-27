@@ -35,6 +35,8 @@ use DraculAid\PhpTools\tests\DateTime\Dictionary\DaysDictionaryTest;
  * <br>{@see DaysDictionary::CHAR3_LIST} Список 3 буквенных кодов дней недели
  *
  * Test cases for class {@see DaysDictionaryTest}
+ *
+ * @since 0.3.0
  */
 final class DaysDictionary
 {
@@ -51,25 +53,25 @@ final class DaysDictionary
      */
     public const SECONDS_IN_DAY = 86400;
 
-    /** Секунда начала суток */
+    /** Секунда начала суток @since 0.7.0 */
     public const START_DAY_SECOND = 0;
 
-    /** Минута начала суток */
+    /** Минута начала суток @since 0.7.0 */
     public const START_DAY_MINUTE = 0;
 
-    /** Последняя секунда суток */
+    /** Последняя секунда суток @since 0.7.0 */
     public const END_DAY_SECOND = 86400;
 
-    /** Последняя минута суток */
+    /** Последняя минута суток @since 0.7.0 */
     public const END_DAY_MINUTE = 1440;
 
     /** Час начала суток */
     public const START_DAY_HOUR = 0;
 
-    /** Час конца суток (в 12-ти часовом формате) */
+    /** Час конца суток (в 12-ти часовом формате) @since 0.7.0 */
     public const END_DAY_HOUR_12 = 12;
 
-    /** Час конца суток (в 24-ти часовом формате) */
+    /** Час конца суток (в 24-ти часовом формате) @since 0.7.0 */
     public const END_DAY_HOUR_24 = 24;
 
     /** Понедельник, в формате {@see getdate()} (Номер дня, с 0 до 6) */

@@ -28,6 +28,8 @@ use DraculAid\PhpTools\tests\Code\ObHelperTest;
  * <br>{@see ObHelper::callMethodFromEmptyObject()} Позволяет вызвать метод "пустого объекта"
  *
  * Test cases for class {@see ObHelperTest}
+ *
+ * @since 0.4.0
  */
 final class ObHelper
 {

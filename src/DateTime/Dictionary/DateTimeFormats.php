@@ -33,6 +33,8 @@ namespace DraculAid\PhpTools\DateTime\Dictionary;
  * <br>+ {@see DateTimeFormats::SQL_TIME_MS} - Хранение времени (без даты), тип TIME, с микросекундами (HH:MI:SS.ms)
  * <br>+ {@see DateTimeFormats::SQL_DATETIME} - Хранение даты и времени, тип DATETIME, SMALLDATETIME, без указания микросекунд (YYYY-MM-DD HH:MI:SS.ms)
  * <br>+ {@see DateTimeFormats::SQL_DATETIME_MS} - Хранение даты и времени, тип DATETIME, SMALLDATETIME, с микросекундами (YYYY-MM-DD HH:MI:SS.ms)
+ *
+ * @since 0.2.0
  */
 final class DateTimeFormats
 {

@@ -20,6 +20,8 @@ use DraculAid\PhpTools\tests\Classes\Patterns\Singleton\SingletonTraitTest;
  * <br>{@see SingletonTrait::getInstance()} Вернет экземпляр класса
  *
  * Test cases for class {@see SingletonTraitTest}
+ *
+ * @since 0.1.0
  */
 trait SingletonTrait
 {

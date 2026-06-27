@@ -32,6 +32,8 @@ namespace DraculAid\PhpTools\Classes\Patterns\Iterator;
  * <br>- {@see self::next()} Позволяет передвинуть курсор вперед или назад на указанное кол-во позиций
  * <br>- {@see self::currentValueAndNext()} Вернет текущее значение и сдвинет "курсор", в случае достижения "конца", вернет NULL
  * <br>- {@see self::currentElementAndNext()} Вернет текущий ключ и значение и сдвинет "курсор"
+ *
+ * @since 0.6.0
  */
 interface IteratorInterface extends \IteratorAggregate
 {

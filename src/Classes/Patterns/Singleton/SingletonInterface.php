@@ -16,6 +16,8 @@ namespace DraculAid\PhpTools\Classes\Patterns\Singleton;
  *
  * Оглавление:
  * <br>{@see SingletonInterface::getInstance()} Вернет экземпляр класса
+ *
+ * @since 0.1.0
  */
 interface SingletonInterface
 {

@@ -29,6 +29,8 @@ use DraculAid\PhpTools\tests\Strings\TranslitConverterTest;
  * паспортов и банковских карт России)
  *
  * Test cases for class {@see TranslitConverterTest}
+ *
+ * @since 0.3.0
  */
 final class TranslitConverter
 {
@@ -101,6 +103,8 @@ final class TranslitConverter
      * @param   string   $string
      *
      * @return string
+     *
+     * @since 0.5.0
      */
     public static function CyrillicToIcao(string $string): string
     {

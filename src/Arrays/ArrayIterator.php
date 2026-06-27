@@ -20,6 +20,8 @@ use DraculAid\PhpTools\tests\Arrays\ArrayIteratorTest;
  * <br>{@see ArrayIterator::map()} Позволяет перебрать массив, указав что будет "индексом" и "значениями" массива
  *
  * Test cases for class {@see ArrayIteratorTest}
+ *
+ * @since 0.5.0
  */
 final class ArrayIterator
 {

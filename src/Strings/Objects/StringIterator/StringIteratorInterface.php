@@ -14,7 +14,7 @@ namespace DraculAid\PhpTools\Strings\Objects\StringIterator;
 use DraculAid\PhpTools\Classes\Patterns\Iterator\IteratorInterface;
 
 /**
- * Интерфейс для итераторов строк (объектов позволяющих посимвольно обойти строку с помощью `foreach`)
+ * Интерфейс для итераторов строк (объектов, позволяющих посимвольно обойти строку с помощью `foreach`)
  *
  * Основные реализации:
  * <br>- {@see StringIteratorObject} Для перебора строк с явно указанным размером символа (1, 2.. байтовые кодировки)
@@ -31,6 +31,8 @@ use DraculAid\PhpTools\Classes\Patterns\Iterator\IteratorInterface;
  * <br>- {@see self::rewind()} Осуществит перемещение в начало итерируемой строки
  * <br>- {@see self::currentValueAndNext()} Вернет текущее значение и сдвинет "курсор", в случае достижения "конца", вернет NULL
  * <br>- {@see self::currentElementAndNext()} Вернет текущий ключ и значение и сдвинет "курсор"
+ *
+ * @since 0.4.0
  */
 interface StringIteratorInterface extends IteratorInterface
 {

@@ -58,10 +58,10 @@ final class StringTools
      * @return  string    Вернет строку с ip адресом
      *
      */
-    public static function ipFilenameEncode( string $string ) : string
+    public static function ipFilenameEncode(string $string) : string
     {
         // заменяем в строке разделители
-        return str_replace( array( '.', ':' ), array( 'p', 'x' ), $string );
+        return str_replace(array( '.', ':' ), array( 'p', 'x' ), $string);
     }
 
     /**
@@ -77,8 +77,8 @@ final class StringTools
      * @return  string   Вернет строку ip адресом без разделительных символов
      *
      */
-    public static function ipFilenameDecode( string $string ) : string
+    public static function ipFilenameDecode(string $string) : string
     {
-        return str_replace( array( 'p', 'x' ), array( '.', ':' ), $string );
+        return str_replace(array( 'p', 'x' ), array( '.', ':' ), $string);
     }
 }

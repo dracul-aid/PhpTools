@@ -22,6 +22,8 @@ use DraculAid\PhpTools\tests\Strings\StringCutToolsTest;
  * <br>{@see StringCutTools::trimInString()} - Удалит все повторяющиеся пробелы, в том числе и внутри строки
  * <br>{@see StringCutTools::quoteTrim()} - Удалит из начала и конца строки все кавычки
  * <br>{@see StringCutTools::clearMultiSpaces()} - Удалит повторяющиеся пробельные символы
+ * <br>{@see StringCutTools::mask()} - Маскирует строку
+ * <br>{@see StringCutTools::resize()} - Обрежет или дополнит строку до указанной длины
  *
  * @todo Реализовать StringCut::afterLastSubstr() - Обрежет строку после указанной подстроки (или подстрок)
  * @todo Реализовать StringCut::fromBetweenSubstr() - Обрежет строку между указанными подстроками
@@ -157,5 +159,81 @@ final class StringCutTools
 
         /** @psalm-suppress NullableReturnStatement Если preg_replace() вернет NULL (или иной другой тип кроме строки) мы и правда хотим упасть */
         return preg_replace('/\s+/', $replace, $string);
+    }
+
+    /**
+     * Маскирует строку (например, ключи или пароли), маска будет вставлена в центр строки
+     *
+     * @param   string        $string   Строка для обработки
+     * @param   int<0, max>   $margin   Кол-во символов справа и слева от маски
+     * @param   int<0, max>   $length   Разме строки после маскирования
+     * @param   string        $mask     Символы маскирования
+     *
+     * @return  string
+     *
+     * @since 1.3.0
+     */
+    public static function mask(string $string, int $margin, int $length, string $mask = '*'): string
+    {
+        if ($length === 0 || $string === '') return '';
+
+        if ($mask === '') return self::resize($string, $length, '');
+
+        $stringLength = mb_strlen($string);
+        $leftLength = min($margin, $stringLength, $length);
+        $rightLength = min($margin, max(0, $stringLength - $leftLength), max(0, $length - $leftLength));
+        $maskLength = $length - $leftLength - $rightLength;
+
+        if ($maskLength <= 0) return self::resize($string, $length, '');
+
+        if ($margin === 0) return StringTools::repeat($mask, $maskLength);
+
+        return mb_substr($string, 0, $leftLength)
+            . StringTools::repeat($mask, $maskLength)
+            . mb_substr($string, -1 * $rightLength);
+    }
+
+    /**
+     * Вернет строку, обрезав ее до нужного размера, если строка стала меньше нужного размера, дополнит ее указанными символами
+     *
+     * - Если $padding будет передан пустой строкой, то дополнение до указанной длины в $length не произойдет.
+     * - Если $padding не кратен $length, одна из его вставок может быть обрезана
+     *
+     * @param   string   $string    Строка для обработки
+     * @param   int      $length    Размер строки в символах (положительное число - обрезаем слева->направо, отрицательное число - обрезаем справа->налево [т.е. с конца])
+     * @param   string   $padding   Строка для дозаполнения
+     *
+     * @return  string
+     *
+     * @since 1.3.0
+     */
+    public static function resize(string $string, int $length, string $padding): string
+    {
+        if ($length === 0) return '';
+
+        $needLength = abs($length);
+        $paddingLength = mb_strlen($padding);
+
+        if ($string === '' && $padding !== '')
+        {
+            return StringTools::repeat($padding, $length);
+        }
+
+        $stringLength = mb_strlen($string);
+
+        if ($stringLength === $needLength) return $string;
+
+        // если длина строки больше, чем надо - обрежем
+        if ($stringLength > $needLength)
+        {
+            if ($length > 0) return mb_substr($string, 0, $needLength);
+            else return mb_substr($string, -1 * $needLength);
+        }
+
+        if ($padding === '') return $string;
+
+        // Дополним строку справа или лева и вернем
+        if ($length > 0) return $string . StringTools::repeat($padding, (int)($needLength - $stringLength / $paddingLength));
+        else return StringTools::repeat($padding, (int)($needLength - $stringLength / $paddingLength)) . $string;
     }
 }

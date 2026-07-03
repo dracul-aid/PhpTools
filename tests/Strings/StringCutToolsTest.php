@@ -28,6 +28,8 @@ class StringCutToolsTest extends TestCase
         $this->testTrimInString();
         $this->testQuoteTrim();
         $this->testClearMultiSpaces();
+        $this->testMask();
+        $this->testResize();
     }
 
     /**
@@ -171,5 +173,70 @@ class StringCutToolsTest extends TestCase
         self::assertEquals('abc', StringCutTools::clearMultiSpaces('abc'));
         self::assertEquals(' abc ', StringCutTools::clearMultiSpaces(' abc '));
         self::assertEquals(' abc ', StringCutTools::clearMultiSpaces("\n\tabc      "));
+    }
+
+    /**
+     * Test for {@see StringCutTools::mask()}
+     *
+     * @return void
+     */
+    private function testMask(): void
+    {
+        $testFunction = StringCutTools::mask(...);
+
+        self::assertEquals('', $testFunction('', 0, 0));
+        self::assertEquals('', $testFunction('password', 0, 0));
+        self::assertEquals('password', $testFunction('password', 2, 8, ''));
+        self::assertEquals('pass', $testFunction('password', 2, 4, ''));
+
+        self::assertEquals('********', $testFunction('password', 0, 8));
+        self::assertEquals('я******ж', $testFunction('яж', 1, 8));
+        self::assertEquals('яг****да', $testFunction('ягода', 2, 8));
+        self::assertEquals('pa****rd', $testFunction('password', 2, 8));
+        self::assertEquals('pa##rd', $testFunction('password-password', 2, 6, '#'));
+        self::assertEquals('пар**оль', $testFunction('пароль', 3, 8));
+        self::assertEquals('паабабль', $testFunction('пароль', 2, 8, 'аб'));
+
+        self::assertEquals('pass', $testFunction('password', 2, 4));
+        self::assertEquals('password', $testFunction('password', 4, 8));
+    }
+
+    /**
+     * Test for {@see StringCutTools::resize()}
+     *
+     * @return void
+     */
+    private function testResize(): void
+    {
+        $testFunction = StringCutTools::resize(...);
+
+        self::assertEquals('', $testFunction('', 0, ''));
+        self::assertEquals('', $testFunction('', 0, '*'));
+        self::assertEquals('', $testFunction('', 123, ''));
+
+        // Когда функция работает, как аналог репита
+        StringToolsTest::repeatTestRun(fn ($a, $b) => $testFunction('', $b, $a), 'StringCutTools::resize');
+
+        // уменьшение строки
+        self::assertEquals('123', $testFunction('123456', 3, ''));
+        self::assertEquals('123', $testFunction('123456', 3, '**'));
+        self::assertEquals('яяя', $testFunction('яяя|жжж', 3, '**'));
+        self::assertEquals('яяя|', $testFunction('яяя|жжж', 4, '**'));
+        self::assertEquals('456', $testFunction('123456', -3, ''));
+        self::assertEquals('456', $testFunction('123456', -3, '**'));
+        self::assertEquals('жжж', $testFunction('яяя|жжж', -3, '**'));
+        self::assertEquals('|жжж', $testFunction('яяя|жжж', -4, '**'));
+
+        // увеличение размера строки
+        self::assertEquals('12*', $testFunction('12', 3, '*'));
+        self::assertEquals('1**', $testFunction('1', 3, '*'));
+        self::assertEquals('123', $testFunction('123', 3, '*'));
+        self::assertEquals('12я', $testFunction('12', 3, 'я'));
+        self::assertEquals('12яя', $testFunction('12', 4, 'я'));
+        self::assertEquals('*12', $testFunction('12', -3, '*'));
+        self::assertEquals('**1', $testFunction('1', -3, '*'));
+        self::assertEquals('123', $testFunction('123', -3, '*'));
+        self::assertEquals('я12', $testFunction('12', -3, 'я'));
+        self::assertEquals('яя12', $testFunction('12', -4, 'я'));
     }
 }

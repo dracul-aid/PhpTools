@@ -81,4 +81,35 @@ final class StringTools
     {
         return str_replace(array( 'p', 'x' ), array( '.', ':' ), $string);
     }
+
+    /**
+     * Продублирует строку столько раз, что бы она уместилась в указанную длину
+     *
+     * (!) Если $length не кратна длине $string, последняя часть вставки будет включать только часть $string
+     *
+     * @param   string        $string   Строка для повторения
+     * @param   int<0, max>   $length   Длина результирующий строки в символах
+     *
+     * @return string
+     *
+     * @since 1.3.0
+     */
+    public static function repeat(string $string, int $length): string
+    {
+        if ($length < 1 || $string === '') return '';
+
+        /** @var int<1, max> $stringChars Кол-во символов в строке для повторов */
+        $stringChars = mb_strlen($string);
+
+        /** @var int<1, max> $stringChars Кол-во вставок строки, что бы с запасом покрыть нужную длину */
+        $countRepeat = (int)ceil($length / $stringChars);
+
+        if ($countRepeat * $stringChars === $length) return str_repeat($string, $countRepeat);
+
+        return mb_substr(
+            str_repeat($string, $countRepeat),
+            0,
+            $length
+        );
+    }
 }

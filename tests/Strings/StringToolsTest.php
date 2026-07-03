@@ -47,4 +47,43 @@ class StringToolsTest extends TestCase
         self::assertEquals('128.200.100.150', StringTools::ipFilenameDecode('128p200p100p150'));
         self::assertEquals('128:200:100::', StringTools::ipFilenameDecode('128x200x100xx'));
     }
+
+    /**
+     * Test for {@covers StringTools::repeat()}
+     *
+     * @return void
+     */
+    public function testRepeat(): void
+    {
+        self::repeatTestRun(StringTools::repeat(...), 'StringTools::repeat');
+    }
+
+    public static function repeatTestRun(callable $repeatFunction, $label): void
+    {
+        $cases = [
+            ['', '', 0],
+            ['', '*', 0],
+            ['', '', 123123],
+            ['', '*', -12],
+            ['', '222', -12],
+
+            ['*', '*', 1],
+            ['***', '*', 3],
+            ['я', 'я', 1],
+            ['яяя', 'я', 3],
+            ['яяяя', 'яя', 4],
+            ['--', '--', 2],
+            ['----', '--', 4],
+
+            ['-+-', '-+', 3],
+            ['-+-+-', '-+', 5],
+            ['яяяяя', 'яя', 5],
+
+            ['-+-', '-+-!', 3],
+            ['-+-!-', '-+-!', 5],
+        ];
+
+        foreach ($cases as $case)
+            self::assertEquals($case[0], $repeatFunction($case[1], $case[2]), "{$label}({$case[1]}, {$case[2]}) !== {$case[0]}");
+    }
 }

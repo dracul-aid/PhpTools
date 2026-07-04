@@ -289,4 +289,33 @@ class ArrayHelperTest extends TestCase
         self::assertFalse(ArrayHelper::isVector($testObject, 'int'));
         self::assertFalse(ArrayHelper::isVector($testObject, 'string'));
     }
+
+    /**
+     * Test for {@covers ArrayHelper::resize()}
+     *
+     * @return void
+     *
+     * @psalm-suppress InvalidArgument В юнит-тестах нормально передавать невалидные аргументы, что бы проверить поведение функции
+     */
+    public function testResize(): void
+    {
+        $testFunction = ArrayHelper::resize(...);
+
+        self::assertEquals([], $testFunction(['a', 'b', 'c'], 0, 'x'));
+        self::assertEquals([], $testFunction(['a', 'b', 'c'], -1, 'x'));
+
+        self::assertEquals(['a', 'b'], $testFunction(['a', 'b'], 2, 'x'));
+        self::assertEquals(['a', 'b'], $testFunction(['a', 'b', 'c'], 2, 'x'));
+        self::assertEquals(['a', 'b', 'x', 'x'], $testFunction(['a', 'b'], 4, 'x'));
+
+        self::assertEquals(
+            ['a' => 'A', 'b' => 'B'],
+            $testFunction(['a' => 'A', 'b' => 'B', 'c' => 'C'], 2, 'X')
+        );
+
+        self::assertEquals(
+            ['a' => 'A', 10 => 'B', 11 => 'X', 12 => 'X'],
+            $testFunction(['a' => 'A', 10 => 'B'], 4, 'X')
+        );
+    }
 }

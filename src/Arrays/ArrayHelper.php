@@ -27,7 +27,9 @@ use DraculAid\PhpTools\tests\Arrays\ArrayHelperTest;
  * <br>--- Проверки
  * <br>{@see ArrayHelper::isAsArray()} Проверит, что значение является массивом или объектом, похожим на массив
  * <br>{@see ArrayHelper::keyExist()} Проверит, есть ли в массиве или объекте схожем с массивом значение, по указанному ключу
- ** <br>--- Работа с данными
+ * <br>--- Переработка массива
+ * <br>{@see ArrayHelper::resize()} Изменит размер массива, убрав или добавив в него элементы
+ * <br>--- Работа с данными
  * <br>{@see ArrayHelper::getNewIndex()} Вернет числовой индекс, который будет присвоен новому элементу массива
  * <br>{@see ArrayHelper::countSafe()} Вернет кол-во элементов в массиве, если посчитать невозможно - вернет "значение по умолчанию"
  * <br>{@see ArrayHelper::setInPositionAndMoveOldValues()} Вставит новые значения в массив (начиная с указанной позиции)
@@ -273,5 +275,30 @@ final class ArrayHelper
         if (!self::isList($array)) return false;
 
         return self::isTypeArray($array, $type);
+    }
+
+    /**
+     * Приведет массив к указанному размеру, обрезав его часть (справа) или добавив в него новые элементы
+     *
+     * Новые элементы будут добавлены с числовыми индексами как `$arr[] = $newValue`
+     *
+     * @param   array         $array       Массив
+     * @param   int<0, max>   $size        К какому размеру необходимо привести
+     * @param   mixed         $newValue    Значения, которое плучат новые элементы массива
+     *
+     * @return  array
+     *
+     * @since 1.3.0
+     */
+    public static function resize(array $array, int $size, mixed $newValue): array
+    {
+        if ($size <= 0) return [];
+        if (count($array) === $size) return $array;
+
+        if (count($array) > $size) return array_slice($array, 0, $size, true);
+
+        for ($i = count($array); $i < $size; $i++) $array[] = $newValue;
+
+        return $array;
     }
 }

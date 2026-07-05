@@ -16,7 +16,7 @@ use DraculAid\PhpTools\Strings\TranslitConverter;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see TranslitConverter}
+ * Test for {@coversDefaultClass TranslitConverter}
  *
  * @run php tests/run.php tests/Strings/TranslitConverterTest.php
  */

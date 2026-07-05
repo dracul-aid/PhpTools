@@ -16,7 +16,7 @@ use DraculAid\PhpTools\ExceptionTools\ExceptionTools;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see ExceptionTools}
+ * Test for {@coversDefaultClass ExceptionTools}
  *
  * @run php tests/run.php tests/ExceptionTools/ExceptionToolsTest.php
  */

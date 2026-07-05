@@ -15,7 +15,7 @@ use DraculAid\PhpTools\Strings\Utf8Tools;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see Utf8Tools}
+ * Test for {@coversDefaultClass Utf8Tools}
  *
  * @run php tests/run.php tests/Strings/Utf8ToolsTest.php
  */

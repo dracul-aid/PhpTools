@@ -15,7 +15,7 @@ use DraculAid\PhpTools\Strings\StringCutTools;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see StringCutTools}
+ * Test for {@coversDefaultClass StringCutTools}
  *
  * @run php tests/run.php tests/Strings/StringCutToolsTest.php
  */

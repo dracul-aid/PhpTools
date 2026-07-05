@@ -17,7 +17,7 @@ use DraculAid\PhpTools\DateTime\Types\Ranges\TimestampRangeType;
 use DraculAid\PhpTools\tests\AbstractProjectTestCase;
 
 /**
- * Test for {@see DateTimeRangeType}
+ * Test for {@coversDefaultClass DateTimeRangeType}
  *
  * @run php tests/run.php tests/DateTime/Types/Ranges/DateTimeRangeTypeTest.php
  */

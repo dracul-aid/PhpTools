@@ -15,7 +15,7 @@ use DraculAid\PhpTools\Classes\Patterns\Singleton\SingletonTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see SingletonTrait}
+ * Test for {@coversDefaultClass SingletonTrait}
  *
  * @run php tests/run.php tests/Classes/Patterns/Singleton/SingletonTraitTest.php
  */

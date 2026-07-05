@@ -16,7 +16,7 @@ use DraculAid\PhpTools\Strings\Components\CharTypes;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see CharTools}
+ * Test for {@coversDefaultClass CharTools}
  *
  * @run php tests/run.php tests/Strings/CharToolsTest.php
  */

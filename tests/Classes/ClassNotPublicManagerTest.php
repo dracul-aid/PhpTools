@@ -15,7 +15,7 @@ use DraculAid\PhpTools\Classes\ClassNotPublicManager;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see ClassNotPublicManager}
+ * Test for {@coversDefaultClass ClassNotPublicManager}
  *
  * @run php tests/run.php tests/Classes/ClassNotPublicManagerTest.php
  */

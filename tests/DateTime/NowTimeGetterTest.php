@@ -18,7 +18,7 @@ use DraculAid\PhpTools\DateTime\NowTimeGetter;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see NowTimeGetter}. Это не полный тест, ввиду сложности отслеживания минут и секунд
+ * Test for {@coversDefaultClass NowTimeGetter}. Это не полный тест, ввиду сложности отслеживания минут и секунд
  *
  * @run php tests/run.php tests/DateTime/NowTimeGetterTest.php
  */

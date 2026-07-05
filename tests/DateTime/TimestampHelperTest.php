@@ -20,7 +20,7 @@ use DraculAid\PhpTools\ExceptionTools\ExceptionTools;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see TimestampHelper}
+ * Test for {@coversDefaultClass TimestampHelper}
  *
  * @run php tests/run.php tests/DateTime/TimestampHelperTest.php
  */

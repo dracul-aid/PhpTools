@@ -20,7 +20,7 @@ use DraculAid\PhpTools\DateTime\Types\TimestampType;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see DateTimeHelper}
+ * Test for {@coversDefaultClass DateTimeHelper}
  *
  * @run php tests/run.php tests/DateTime/DateTimeHelperTest.php
  */

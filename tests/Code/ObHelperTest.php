@@ -15,7 +15,7 @@ use DraculAid\PhpTools\Code\ObHelper;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see ObHelper}
+ * Test for {@coversDefaultClass ObHelper}
  *
  * @run php tests/run.php tests/Code/ObHelperTest.php
  */

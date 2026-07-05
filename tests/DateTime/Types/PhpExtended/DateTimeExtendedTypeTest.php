@@ -17,7 +17,7 @@ use DraculAid\PhpTools\DateTime\Types\TimestampType;
 use DraculAid\PhpTools\tests\AbstractProjectTestCase;
 
 /**
- * Test for {@see DateTimeExtendedType}
+ * Test for {@coversDefaultClass DateTimeExtendedType}
  *
  * @run php tests/run.php tests/DateTime/Types/PhpExtended/DateTimeExtendedTypeTest.php
  */

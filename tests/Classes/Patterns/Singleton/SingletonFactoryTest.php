@@ -15,7 +15,7 @@ use DraculAid\PhpTools\Classes\Patterns\Singleton\SingletonFactory;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see SingletonFactory}
+ * Test for {@coversDefaultClass SingletonFactory}
  *
  * @run php tests/run.php tests/Classes/Patterns/Singleton/SingletonFactoryTest.php
  */

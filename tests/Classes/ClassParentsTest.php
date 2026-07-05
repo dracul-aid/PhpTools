@@ -15,7 +15,7 @@ use DraculAid\PhpTools\Classes\ClassParents;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see ClassParents}
+ * Test for {@coversDefaultClass ClassParents}
  *
  * @run php tests/run.php tests/Classes/ClassParentsTest.php
  */

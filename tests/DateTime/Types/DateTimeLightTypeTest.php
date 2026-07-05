@@ -16,7 +16,7 @@ use DraculAid\PhpTools\DateTime\Types\DateTimeLightType;
 use DraculAid\PhpTools\tests\AbstractProjectTestCase;
 
 /**
- * Test for {@see DateTimeLightType}
+ * Test for {@coversDefaultClass DateTimeLightType}
  *
  * @run php tests/run.php tests/DateTime/Types/DateTimeLightTypeTest.php
  */

@@ -16,7 +16,7 @@ use DraculAid\PhpTools\ExceptionTools\ExceptionTools;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see DaysDictionary}
+ * Test for {@coversDefaultClass DaysDictionary}
  *
  * @run php tests/run.php tests/DateTime/Dictionary/DaysDictionaryTest.php
  */

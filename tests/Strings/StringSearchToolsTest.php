@@ -15,7 +15,7 @@ use DraculAid\PhpTools\Strings\StringSearchTools;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see StringSearchTools}
+ * Test for {@coversDefaultClass StringSearchTools}
  *
  * @run php tests/run.php tests/Strings/StringSearchToolsTest.php
  */

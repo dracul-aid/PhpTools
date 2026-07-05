@@ -15,7 +15,7 @@ use DraculAid\PhpTools\DateTime\SecondsToHelper;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see SecondsToHelper}
+ * Test for {@coversDefaultClass SecondsToHelper}
  *
  * @run php tests/run.php tests/DateTime/SecondsToHelperTest.php
  */

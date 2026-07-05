@@ -16,7 +16,7 @@ use DraculAid\PhpTools\ExceptionTools\ExceptionTools;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see TypeValidator}
+ * Test for {@coversDefaultClass TypeValidator}
  *
  * @run php tests/run.php tests/Code/TypeValidatorTest.php
  *

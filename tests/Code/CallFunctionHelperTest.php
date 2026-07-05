@@ -16,7 +16,7 @@ use DraculAid\PhpTools\ExceptionTools\ExceptionTools;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see CallFunctionHelper}
+ * Test for {@coversDefaultClass CallFunctionHelper}
  *
  * @run php tests/run.php tests/Code/CallFunctionHelperTest.php
  */

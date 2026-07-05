@@ -15,7 +15,7 @@ use DraculAid\PhpTools\DateTime\Dictionary\TimestampConstants;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see TimestampConstants}
+ * Test for {@coversDefaultClass TimestampConstants}
  *
  * @run php tests/run.php tests/DateTime/Dictionary/DateConstantsTest.php
  */

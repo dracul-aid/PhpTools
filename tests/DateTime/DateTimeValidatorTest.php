@@ -16,7 +16,7 @@ use DraculAid\PhpTools\DateTime\Dictionary\DateConstants;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see DateTimeValidator}
+ * Test for {@coversDefaultClass DateTimeValidator}
  *
  * @run php tests/run.php tests/DateTime/DateTimeValidatorTest.php
  */

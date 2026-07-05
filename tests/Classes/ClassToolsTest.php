@@ -17,7 +17,7 @@ use PHPUnit\Framework\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see ClassTools}
+ * Test for {@coversDefaultClass ClassTools}
  *
  * @run php tests/run.php tests/Classes/ClassToolsTest.php
  */

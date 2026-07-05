@@ -15,7 +15,7 @@ use DraculAid\PhpTools\ExceptionTools\ResultException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see ResultException}
+ * Test for {@coversDefaultClass ResultException}
  *
  * @run php tests/run.php tests/ExceptionTools/ResultExceptionTest.php
  */

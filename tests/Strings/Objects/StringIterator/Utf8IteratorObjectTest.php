@@ -15,7 +15,7 @@ use DraculAid\PhpTools\Strings\Objects\StringIterator\Utf8IteratorObject;
 use DraculAid\PhpTools\TestTools\PhpUnit\PhpUnitExtendTestCase;
 
 /**
- * Test for {@see Utf8IteratorObject}
+ * Test for {@coversDefaultClass Utf8IteratorObject}
  *
  * @run php tests/run.php tests/Strings/Objects/StringIterator/Utf8IteratorObjectTest.php
  */

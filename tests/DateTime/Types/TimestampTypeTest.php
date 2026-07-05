@@ -16,7 +16,7 @@ use DraculAid\PhpTools\DateTime\Types\TimestampType;
 use DraculAid\PhpTools\tests\AbstractProjectTestCase;
 
 /**
- * Test for {@see TimestampType}
+ * Test for {@coversDefaultClass TimestampType}
  *
  * @run php tests/run.php tests/DateTime/Types/TimestampTest.php
  */

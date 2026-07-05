@@ -17,7 +17,7 @@ use DraculAid\PhpTools\tests\Code\FunctionRunList\resources\TestClassForTestFunc
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see AbstractFunctionRunList}, функционал по выполнению списка функций см в {@see AbstractFunctionRunExecuteTest}
+ * Test for {@coversDefaultClass AbstractFunctionRunList}, функционал по выполнению списка функций см в {@see AbstractFunctionRunExecuteTest}
  *
  * @run php tests/run.php tests/Code/FunctionRunList/AbstractFunctionRunListTest.php
  *

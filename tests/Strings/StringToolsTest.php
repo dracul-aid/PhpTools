@@ -15,7 +15,7 @@ use DraculAid\PhpTools\Strings\StringTools;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see StringTools}
+ * Test for {@coversDefaultClass StringTools}
  *
  * @run php tests/run.php tests/Strings/StringToolsTest.php
  */

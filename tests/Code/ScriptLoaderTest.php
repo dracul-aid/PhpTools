@@ -15,7 +15,7 @@ use DraculAid\PhpTools\Code\ScriptLoader;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see ScriptLoader}
+ * Test for {@coversDefaultClass ScriptLoader}
  *
  * @run php tests/run.php tests/Code/ScriptLoaderTest.php
  *

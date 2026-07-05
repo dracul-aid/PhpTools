@@ -12,12 +12,13 @@
 namespace DraculAid\PhpTools\tests\Code\FunctionRunList;
 
 use DraculAid\PhpTools\Code\FunctionRunList\AbstractFunctionRunList;
+use DraculAid\PhpTools\Code\FunctionRunList\FunctionElement;
 use DraculAid\PhpTools\Code\FunctionRunList\FunctionTransactionElements;
 use DraculAid\PhpTools\tests\Code\FunctionRunList\resources\TestClassForTestFunctionRunList;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@see AbstractFunctionRunList} и {@see FunctionElement}
+ * Test for {@coversDefaultClass AbstractFunctionRunList} и {@coversDefaultClass FunctionElement}
  *
  * @run php tests/run.php tests/Code/FunctionRunList/AbstractFunctionRunExecuteTest.php
  */

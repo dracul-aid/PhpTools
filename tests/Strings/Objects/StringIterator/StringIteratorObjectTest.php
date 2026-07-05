@@ -22,7 +22,7 @@ use DraculAid\PhpTools\TestTools\PhpUnit\PhpUnitExtendTestCase;
 class StringIteratorObjectTest extends PhpUnitExtendTestCase
 {
     /**
-     * Test for {@see StringIteratorObject::__construct()}
+     * Test for {@covers StringIteratorObject::__construct()}
      *
      * @return void
      */
@@ -37,13 +37,13 @@ class StringIteratorObjectTest extends PhpUnitExtendTestCase
     }
 
     /**
-     * Test for {@see StringIteratorObject::toPosition()}
-     * Test for {@see StringIteratorObject::toStart()}
-     * Test for {@see StringIteratorObject::current()}
-     * Test for {@see StringIteratorObject::next()}
-     * Test for {@see StringIteratorObject::key()}
-     * Test for {@see StringIteratorObject::valid()}
-     * Test for {@see StringIteratorObject::rewind()}
+     * Test for {@covers StringIteratorObject::toPosition()}
+     * Test for {@covers StringIteratorObject::toStart()}
+     * Test for {@covers StringIteratorObject::current()}
+     * Test for {@covers StringIteratorObject::next()}
+     * Test for {@covers StringIteratorObject::key()}
+     * Test for {@covers StringIteratorObject::valid()}
+     * Test for {@covers StringIteratorObject::rewind()}
      *
      * @return void
      */

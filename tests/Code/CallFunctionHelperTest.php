@@ -23,9 +23,9 @@ use PHPUnit\Framework\TestCase;
 class CallFunctionHelperTest extends TestCase
 {
     /**
-     * Test for {@see CallFunctionHelper::STRUCTURES}
-     * Test for {@see CallFunctionHelper::isStructures()}
-     * Test for {@see CallFunctionHelper::isCallable()}
+     * Test for {@covers CallFunctionHelper::STRUCTURES}
+     * Test for {@covers CallFunctionHelper::isStructures()}
+     * Test for {@covers CallFunctionHelper::isCallable()}
      *
      * @return void
      */
@@ -47,10 +47,10 @@ class CallFunctionHelperTest extends TestCase
     }
 
     /**
-     * Test for {@see CallFunctionHelper::exe()}
-     * Test for {@see CallFunctionHelper::exeCallable()}
-     * Test for {@see CallFunctionHelper::isClassCallable()} in {@see CallFunctionHelper::exeCallable()}
-     * Test for {@see CallFunctionHelper::getReflectionForCallable()} in {@see CallFunctionHelper::exeCallable()}
+     * Test for {@covers CallFunctionHelper::exe()}
+     * Test for {@covers CallFunctionHelper::exeCallable()}
+     * Test for {@covers CallFunctionHelper::isClassCallable()} in {@covers CallFunctionHelper::exeCallable()}
+     * Test for {@covers CallFunctionHelper::getReflectionForCallable()} in {@covers CallFunctionHelper::exeCallable()}
      *
      * @return void
      *
@@ -125,7 +125,7 @@ class CallFunctionHelperTest extends TestCase
     }
 
     /**
-     * Test for {@see CallFunctionHelper::callMethodFromEmptyObject()}
+     * Test for {@covers CallFunctionHelper::callMethodFromEmptyObject()}
      *
      * @return void
      */

@@ -23,7 +23,7 @@ use PHPUnit\Framework\TestCase;
 class ObjectToolsTest extends TestCase
 {
     /**
-     * Test for {@see ObjectTools::getStringNewInstance()}
+     * Test for {@covers ObjectTools::getStringNewInstance()}
      */
     public function testGetStringNewInstance(): void
     {
@@ -88,8 +88,8 @@ class ObjectToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see ObjectTools::propertiesFor()}
-     * Test for {@see ObjectTools::toArray()}
+     * Test for {@covers ObjectTools::propertiesFor()}
+     * Test for {@covers ObjectTools::toArray()}
      */
     public function testToArrayAndPropertiesFor(): void
     {

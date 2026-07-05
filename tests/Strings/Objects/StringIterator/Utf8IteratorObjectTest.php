@@ -22,7 +22,7 @@ use DraculAid\PhpTools\TestTools\PhpUnit\PhpUnitExtendTestCase;
 class Utf8IteratorObjectTest extends PhpUnitExtendTestCase
 {
     /**
-     * Test for {@see Utf8IteratorObject::calculationCharLen()}
+     * Test for {@covers Utf8IteratorObject::calculationCharLen()}
      */
     public function testCalculationCharLen(): void
     {
@@ -35,15 +35,15 @@ class Utf8IteratorObjectTest extends PhpUnitExtendTestCase
     }
 
     /**
-     * Test for {@see Utf8IteratorObject::__construct()}
-     * Test for {@see Utf8IteratorObject::toPosition()}
-     * Test for {@see Utf8IteratorObject::toStart()}
-     * Test for {@see Utf8IteratorObject::current()}
-     * Test for {@see Utf8IteratorObject::next()}
-     * Test for {@see Utf8IteratorObject::getCharLen()}
-     * Test for {@see Utf8IteratorObject::key()}
-     * Test for {@see Utf8IteratorObject::valid()}
-     * Test for {@see Utf8IteratorObject::rewind()}
+     * Test for {@covers Utf8IteratorObject::__construct()}
+     * Test for {@covers Utf8IteratorObject::toPosition()}
+     * Test for {@covers Utf8IteratorObject::toStart()}
+     * Test for {@covers Utf8IteratorObject::current()}
+     * Test for {@covers Utf8IteratorObject::next()}
+     * Test for {@covers Utf8IteratorObject::getCharLen()}
+     * Test for {@covers Utf8IteratorObject::key()}
+     * Test for {@covers Utf8IteratorObject::valid()}
+     * Test for {@covers Utf8IteratorObject::rewind()}
      *
      * @return void
      */

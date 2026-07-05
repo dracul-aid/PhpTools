@@ -22,8 +22,8 @@ use PHPUnit\Framework\TestCase;
 class SecondsToHelperTest extends TestCase
 {
     /**
-     * Test for {@see SecondsToHelper::getMinutes()}
-     * Test for {@see SecondsToHelper::getHours()}
+     * Test for {@covers SecondsToHelper::getMinutes()}
+     * Test for {@covers SecondsToHelper::getHours()}
      *
      * @return void
      */
@@ -42,9 +42,9 @@ class SecondsToHelperTest extends TestCase
     }
 
     /**
-     * Test for {@see SecondsToHelper::minutesAndSeconds()}
-     * Test for {@see SecondsToHelper::time()}
-     * Test for {@see SecondsToHelper::timeAndDays()}
+     * Test for {@covers SecondsToHelper::minutesAndSeconds()}
+     * Test for {@covers SecondsToHelper::time()}
+     * Test for {@covers SecondsToHelper::timeAndDays()}
      *
      * @return void
      *
@@ -91,8 +91,8 @@ class SecondsToHelperTest extends TestCase
     }
 
     /**
-     * Test for {@see SecondsToHelper::minutesAndSecondsAsString()}
-     * Test for {@see SecondsToHelper::timeAsString()}
+     * Test for {@covers SecondsToHelper::minutesAndSecondsAsString()}
+     * Test for {@covers SecondsToHelper::timeAsString()}
      *
      * @return void
      *

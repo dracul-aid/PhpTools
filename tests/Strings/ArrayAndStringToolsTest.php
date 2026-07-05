@@ -22,7 +22,7 @@ use PHPUnit\Framework\TestCase;
 class ArrayAndStringToolsTest extends TestCase
 {
     /**
-     * Test for {@see ArrayAndStringTools::arrayToStringWithoutEmpty()}
+     * Test for {@covers ArrayAndStringTools::arrayToStringWithoutEmpty()}
      *
      * @return void
      * @throws \ReflectionException
@@ -59,7 +59,7 @@ class ArrayAndStringToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see ArrayAndStringTools::subStringToArray()}
+     * Test for {@covers ArrayAndStringTools::subStringToArray()}
      *
      * @return void
      */

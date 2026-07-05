@@ -23,11 +23,11 @@ use DraculAid\PhpTools\tests\AbstractProjectTestCase;
 class TimestampTypeTest extends AbstractProjectTestCase
 {
     /**
-     * Test for {@see TimestampType::__construct()}
-     * Test for {@see TimestampType::__toString()}
-     * Test for {@see TimestampType::setTimestamp()}
-     * Test for {@see TimestampType::getTimestamp()}
-     * Test for {@see TimestampType::format()}
+     * Test for {@covers TimestampType::__construct()}
+     * Test for {@covers TimestampType::__toString()}
+     * Test for {@covers TimestampType::setTimestamp()}
+     * Test for {@covers TimestampType::getTimestamp()}
+     * Test for {@covers TimestampType::format()}
      *
      * @return void
      */

@@ -22,7 +22,7 @@ use PHPUnit\Framework\TestCase;
 class Utf8ToolsTest extends TestCase
 {
     /**
-     * Test for {@see Utf8Tools::calculationCharLen()}
+     * Test for {@covers Utf8Tools::calculationCharLen()}
      *
      * @return void
      */
@@ -47,7 +47,7 @@ class Utf8ToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see Utf8Tools::clearFatChars()}
+     * Test for {@covers Utf8Tools::clearFatChars()}
      *
      * @return void
      */
@@ -88,7 +88,7 @@ class Utf8ToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see Utf8Tools::convertToUtf8mb3()}
+     * Test for {@covers Utf8Tools::convertToUtf8mb3()}
      *
      * @return void
      */

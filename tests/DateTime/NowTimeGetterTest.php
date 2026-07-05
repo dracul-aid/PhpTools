@@ -25,21 +25,21 @@ use PHPUnit\Framework\TestCase;
 class NowTimeGetterTest extends TestCase
 {
     /**
-     * Test for {@see NowTimeGetter::sqlDate()}
-     * Test for {@see NowTimeGetter::sqlTime}
-     * Test for {@see NowTimeGetter::sqlDateTime}
-     * Test for {@see NowTimeGetter::getYear()}
-     * Test for {@see NowTimeGetter::getYearDay()}
-     * Test for {@see NowTimeGetter::getYearDay2()}
-     * Test for {@see NowTimeGetter::getMon}
-     * Test for {@see NowTimeGetter::getMon2}
-     * Test for {@see NowTimeGetter::getMonDay}
-     * Test for {@see NowTimeGetter::getMonDay2}
-     * Test for {@see NowTimeGetter::getWeek()}
-     * Test for {@see NowTimeGetter::getWeek2()}
-     * Test for {@see NowTimeGetter::getWeekDay()}
-     * Test for {@see NowTimeGetter::getWeekDayUSA()}
-     * Test for {@see NowTimeGetter::getHour()}
+     * Test for {@covers NowTimeGetter::sqlDate()}
+     * Test for {@covers NowTimeGetter::sqlTime}
+     * Test for {@covers NowTimeGetter::sqlDateTime}
+     * Test for {@covers NowTimeGetter::getYear()}
+     * Test for {@covers NowTimeGetter::getYearDay()}
+     * Test for {@covers NowTimeGetter::getYearDay2()}
+     * Test for {@covers NowTimeGetter::getMon}
+     * Test for {@covers NowTimeGetter::getMon2}
+     * Test for {@covers NowTimeGetter::getMonDay}
+     * Test for {@covers NowTimeGetter::getMonDay2}
+     * Test for {@covers NowTimeGetter::getWeek()}
+     * Test for {@covers NowTimeGetter::getWeek2()}
+     * Test for {@covers NowTimeGetter::getWeekDay()}
+     * Test for {@covers NowTimeGetter::getWeekDayUSA()}
+     * Test for {@covers NowTimeGetter::getHour()}
      */
     public function testRun(): void
     {

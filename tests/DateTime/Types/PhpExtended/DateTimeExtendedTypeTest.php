@@ -24,7 +24,7 @@ use DraculAid\PhpTools\tests\AbstractProjectTestCase;
 class DateTimeExtendedTypeTest extends AbstractProjectTestCase
 {
     /**
-     * Test for {@see DateTimeExtendedType::getTimestamp()}
+     * Test for {@covers DateTimeExtendedType::getTimestamp()}
      *
      * @return void
      */
@@ -38,19 +38,19 @@ class DateTimeExtendedTypeTest extends AbstractProjectTestCase
     }
 
     /**
-     * Test for {@see DateTimeExtendedType::getYear()}
-     * Test for {@see DateTimeExtendedType::getMon()}
-     * Test for {@see DateTimeExtendedType::getMonDay()}
-     * Test for {@see DateTimeExtendedType::getHours()}
-     * Test for {@see DateTimeExtendedType::getMinutes()}
-     * Test for {@see DateTimeExtendedType::getSeconds()}
-     * Test for {@see DateTimeExtendedType::getWeekDay()}
-     * Test for {@see DateTimeExtendedType::getWeekDayUsa()}
-     * Test for {@see DateTimeExtendedType::getWeek()}
-     * Test for {@see DateTimeExtendedType::getYearDay()}
-     * Test for {@see DateTimeExtendedType::getMS()}
-     * Test for {@see DateTimeExtendedType::getTimeSecondFormat()}
-     * Test for {@see DateTimeExtendedType::getSqlString()}
+     * Test for {@covers DateTimeExtendedType::getYear()}
+     * Test for {@covers DateTimeExtendedType::getMon()}
+     * Test for {@covers DateTimeExtendedType::getMonDay()}
+     * Test for {@covers DateTimeExtendedType::getHours()}
+     * Test for {@covers DateTimeExtendedType::getMinutes()}
+     * Test for {@covers DateTimeExtendedType::getSeconds()}
+     * Test for {@covers DateTimeExtendedType::getWeekDay()}
+     * Test for {@covers DateTimeExtendedType::getWeekDayUsa()}
+     * Test for {@covers DateTimeExtendedType::getWeek()}
+     * Test for {@covers DateTimeExtendedType::getYearDay()}
+     * Test for {@covers DateTimeExtendedType::getMS()}
+     * Test for {@covers DateTimeExtendedType::getTimeSecondFormat()}
+     * Test for {@covers DateTimeExtendedType::getSqlString()}
      */
     public function testGets(): void
     {
@@ -125,7 +125,7 @@ class DateTimeExtendedTypeTest extends AbstractProjectTestCase
     }
 
     /**
-     * Test for {@see DateTimeExtendedType::setDateValues()}
+     * Test for {@covers DateTimeExtendedType::setDateValues()}
      *
      * @todo Добавить тесты, с високосным годом, Добавить тесты с сменой месяца в котором другое кол-во дней
      */
@@ -171,7 +171,7 @@ class DateTimeExtendedTypeTest extends AbstractProjectTestCase
     }
 
     /**
-     * Test for {@see DateTimeExtendedType::set()}
+     * Test for {@covers DateTimeExtendedType::set()}
      *
      */
     public function testSet(): void
@@ -200,7 +200,7 @@ class DateTimeExtendedTypeTest extends AbstractProjectTestCase
     }
 
     /**
-     * Test for {@see DateTimeExtendedType::setWeekDay()}
+     * Test for {@covers DateTimeExtendedType::setWeekDay()}
      *
      * @todo Добавить проверки на разные стартовые дни года
      */
@@ -235,7 +235,7 @@ class DateTimeExtendedTypeTest extends AbstractProjectTestCase
     }
 
     /**
-     * Test for {@see DateTimeExtendedType::moveMon()}
+     * Test for {@covers DateTimeExtendedType::moveMon()}
      */
     public function testMoveMon(): void
     {
@@ -277,7 +277,7 @@ class DateTimeExtendedTypeTest extends AbstractProjectTestCase
     }
 
     /**
-     * Test for {@see DateTimeExtendedType::moveWeek()}
+     * Test for {@covers DateTimeExtendedType::moveWeek()}
      */
     public function testMoveWeek(): void
     {

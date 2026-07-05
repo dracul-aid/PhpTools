@@ -24,7 +24,7 @@ use PHPUnit\Framework\TestCase;
 class ClassToolsTest extends TestCase
 {
     /**
-     * Test for {@see ClassTools::isLoad()}
+     * Test for {@covers ClassTools::isLoad()}
      */
     public function testIsLoad(): void
     {
@@ -50,7 +50,7 @@ class ClassToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see ClassTools::isInternal()}
+     * Test for {@covers ClassTools::isInternal()}
      */
     public function testIsInternal(): void
     {
@@ -59,7 +59,7 @@ class ClassToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see ClassTools::isAsArray()}
+     * Test for {@covers ClassTools::isAsArray()}
      */
     public function testIsAsArray(): void
     {
@@ -71,9 +71,9 @@ class ClassToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see ClassTools::getNamespace()}
-     * Test for {@see ClassTools::getNameWithoutNamespace()}
-     * Test for {@see ClassTools::getNameAndNamespace()}
+     * Test for {@covers ClassTools::getNamespace()}
+     * Test for {@covers ClassTools::getNameWithoutNamespace()}
+     * Test for {@covers ClassTools::getNameAndNamespace()}
      */
     public function testGetNameOrNamespace(): void
     {
@@ -103,7 +103,7 @@ class ClassToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see ClassTools::createObject()}
+     * Test for {@covers ClassTools::createObject()}
      */
     public function testCreateObjectWithoutConstructor(): void
     {
@@ -117,7 +117,7 @@ class ClassToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see ClassTools::createObject()}
+     * Test for {@covers ClassTools::createObject()}
      */
     public function testCreateObjectWithConstructor(): void
     {

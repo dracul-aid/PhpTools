@@ -22,7 +22,7 @@ use PHPUnit\Framework\TestCase;
 class ObHelperTest extends TestCase
 {
     /**
-     * Test for {@see ObHelper::callFunction()}
+     * Test for {@covers ObHelper::callFunction()}
      *
      * @return void
      */
@@ -32,7 +32,7 @@ class ObHelperTest extends TestCase
     }
 
     /**
-     * Test for {@see ObHelper::callWithFunctionHelper()}
+     * Test for {@covers ObHelper::callWithFunctionHelper()}
      *
      * @return void
      */
@@ -58,7 +58,7 @@ class ObHelperTest extends TestCase
     }
 
     /**
-     * Test for {@see ObHelper::callNotPublicMethod()}
+     * Test for {@covers ObHelper::callNotPublicMethod()}
      *
      * @return void
      */
@@ -98,7 +98,7 @@ class ObHelperTest extends TestCase
     }
 
     /**
-     * Test for {@see ObHelper::callMethodFromEmptyObject()}
+     * Test for {@covers ObHelper::callMethodFromEmptyObject()}
      *
      * @return void
      */

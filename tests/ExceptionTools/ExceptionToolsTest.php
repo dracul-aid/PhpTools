@@ -23,7 +23,7 @@ use PHPUnit\Framework\TestCase;
 class ExceptionToolsTest extends TestCase
 {
     /**
-     * Test for {@see ExceptionTools::safeCallWithResult()}
+     * Test for {@covers ExceptionTools::safeCallWithResult()}
      */
     public function testSafeCallWithResult(): void
     {
@@ -49,7 +49,7 @@ class ExceptionToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see ExceptionTools::safeCallWithCallable()}
+     * Test for {@covers ExceptionTools::safeCallWithCallable()}
      *
      * @psalm-suppress UndefinedVariable Пслам имеет проблемы с переменными-ссылками
      */
@@ -74,7 +74,7 @@ class ExceptionToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see ExceptionTools::safeCallFunctions()}
+     * Test for {@covers ExceptionTools::safeCallFunctions()}
      *
      * @psalm-suppress UndefinedVariable Пслам имеет проблемы с переменными-ссылками
      */
@@ -104,7 +104,7 @@ class ExceptionToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see ExceptionTools::callAndReturnException()}
+     * Test for {@covers ExceptionTools::callAndReturnException()}
      */
     public function testCallAndReturnException(): void
     {
@@ -124,7 +124,7 @@ class ExceptionToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see ExceptionTools::wasCalledWithException()}
+     * Test for {@covers ExceptionTools::wasCalledWithException()}
      */
     public function testWasCalledWithException(): void
     {
@@ -192,7 +192,7 @@ class ExceptionToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see ExceptionTools::functionCall()}
+     * Test for {@covers ExceptionTools::functionCall()}
      */
     public function testFunctionCall(): void
     {

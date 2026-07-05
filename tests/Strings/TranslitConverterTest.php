@@ -23,7 +23,7 @@ use PHPUnit\Framework\TestCase;
 class TranslitConverterTest extends TestCase
 {
     /**
-     * Test for {@see TranslitConverter::toUrl()}
+     * Test for {@covers TranslitConverter::toUrl()}
      *
      * @return void
      */
@@ -36,7 +36,7 @@ class TranslitConverterTest extends TestCase
     }
 
     /**
-     * Test for {@see TranslitConverter::CyrillicToIcao()}
+     * Test for {@covers TranslitConverter::CyrillicToIcao()}
      *
      * @return void
      */

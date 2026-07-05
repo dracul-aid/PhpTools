@@ -25,23 +25,23 @@ use DraculAid\PhpTools\tests\AbstractProjectTestCase;
 class DateTimeExtendedRangeTypeTest extends AbstractProjectTestCase
 {
     /**
-     * Test for {@see DateTimeRangeType::__construct()}
+     * Test for {@covers DateTimeRangeType::__construct()}
      * * * *
-     * Test for {@see DateTimeRangeType::create()}
-     * Test for {@see DateTimeRangeType::startGetTimestamp()}
-     * Test for {@see DateTimeRangeType::finishGetTimestamp()}
-     * Test for {@see DateTimeRangeType::startGetString()}
-     * Test for {@see DateTimeRangeType::finishGetString()}
+     * Test for {@covers DateTimeRangeType::create()}
+     * Test for {@covers DateTimeRangeType::startGetTimestamp()}
+     * Test for {@covers DateTimeRangeType::finishGetTimestamp()}
+     * Test for {@covers DateTimeRangeType::startGetString()}
+     * Test for {@covers DateTimeRangeType::finishGetString()}
      * * * *
-     * Test for {@see DateTimeRangeType::startClear()}
-     * Test for {@see DateTimeRangeType::finishClear()}
-     * Test for {@see DateTimeRangeType::isSet()}
+     * Test for {@covers DateTimeRangeType::startClear()}
+     * Test for {@covers DateTimeRangeType::finishClear()}
+     * Test for {@covers DateTimeRangeType::isSet()}
      * * * *
-     * Test for {@see DateTimeRangeType::startSet()}
-     * Test for {@see DateTimeRangeType::finishSet()}
-     * Test for {@see DateTimeRangeType::getSqlDateTime}
+     * Test for {@covers DateTimeRangeType::startSet()}
+     * Test for {@covers DateTimeRangeType::finishSet()}
+     * Test for {@covers DateTimeRangeType::getSqlDateTime}
      * * * *
-     * Test for {@see DateTimeRangeType::getLenght()}
+     * Test for {@covers DateTimeRangeType::getLenght()}
      *
      * @return void
      */

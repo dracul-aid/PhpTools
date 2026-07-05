@@ -23,24 +23,24 @@ use DraculAid\PhpTools\tests\AbstractProjectTestCase;
 class DateTimeLightTypeTest extends AbstractProjectTestCase
 {
     /**
-     * Test for {@see DateTimeLightType::getTimestamp()}
-     * Test for {@see DateTimeLightType::format()}
-     * Test for {@see DateTimeLightType::__toString()}
+     * Test for {@covers DateTimeLightType::getTimestamp()}
+     * Test for {@covers DateTimeLightType::format()}
+     * Test for {@covers DateTimeLightType::__toString()}
      *
-     * Test for {@see DateTimeLightType::$year}
-     * Test for {@see DateTimeLightType::$mon}
-     * Test for {@see DateTimeLightType::$day}
-     * Test for {@see DateTimeLightType::$hour}
-     * Test for {@see DateTimeLightType::$minute}
-     * Test for {@see DateTimeLightType::$second}
+     * Test for {@covers DateTimeLightType::$year}
+     * Test for {@covers DateTimeLightType::$mon}
+     * Test for {@covers DateTimeLightType::$day}
+     * Test for {@covers DateTimeLightType::$hour}
+     * Test for {@covers DateTimeLightType::$minute}
+     * Test for {@covers DateTimeLightType::$second}
      *
-     * Test for {@see DateTimeLightType::setDate()}
-     * Test for {@see DateTimeLightType::setYear()}
-     * Test for {@see DateTimeLightType::setMon()}
-     * Test for {@see DateTimeLightType::setDay()}
-     * Test for {@see DateTimeLightType::setHour()}
-     * Test for {@see DateTimeLightType::setMinutes()}
-     * Test for {@see DateTimeLightType::setSecond()}
+     * Test for {@covers DateTimeLightType::setDate()}
+     * Test for {@covers DateTimeLightType::setYear()}
+     * Test for {@covers DateTimeLightType::setMon()}
+     * Test for {@covers DateTimeLightType::setDay()}
+     * Test for {@covers DateTimeLightType::setHour()}
+     * Test for {@covers DateTimeLightType::setMinutes()}
+     * Test for {@covers DateTimeLightType::setSecond()}
      *
      * @return void
      */

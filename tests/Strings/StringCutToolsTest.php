@@ -33,7 +33,7 @@ class StringCutToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see StringCutTools::firstSubstrBefore()}
+     * Test for {@covers StringCutTools::firstSubstrBefore()}
      *
      * @return void
      */
@@ -78,7 +78,7 @@ class StringCutToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see StringCutTools::firstSubstrAfter()}
+     * Test for {@covers StringCutTools::firstSubstrAfter()}
      *
      * @return void
      */
@@ -123,7 +123,7 @@ class StringCutToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see StringCutTools::trimInString()}
+     * Test for {@covers StringCutTools::trimInString()}
      *
      * @return void
      */
@@ -135,7 +135,7 @@ class StringCutToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see StringCutTools::quoteTrim()}
+     * Test for {@covers StringCutTools::quoteTrim()}
      *
      * @return void
      */
@@ -154,7 +154,7 @@ class StringCutToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see StringCutTools::clearMultiSpaces()}
+     * Test for {@covers StringCutTools::clearMultiSpaces()}
      *
      * @return void
      */
@@ -176,7 +176,7 @@ class StringCutToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see StringCutTools::mask()}
+     * Test for {@covers StringCutTools::mask()}
      *
      * @return void
      */
@@ -202,7 +202,7 @@ class StringCutToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see StringCutTools::resize()}
+     * Test for {@covers StringCutTools::resize()}
      *
      * @return void
      */

@@ -33,7 +33,7 @@ class ScriptLoaderTest extends TestCase
     private int $testCounter = 0;
 
     /**
-     * Test for {@see ScriptLoader::exeRequireOnce()}
+     * Test for {@covers ScriptLoader::exeRequireOnce()}
      *
      * @return void
      */
@@ -43,7 +43,7 @@ class ScriptLoaderTest extends TestCase
     }
 
     /**
-     * Test for {@see ScriptLoader::exeIncludeOnce()}
+     * Test for {@covers ScriptLoader::exeIncludeOnce()}
      *
      * @return void
      */
@@ -53,7 +53,7 @@ class ScriptLoaderTest extends TestCase
     }
 
     /**
-     * Test for {@see ScriptLoader::obRequireOnce()}
+     * Test for {@covers ScriptLoader::obRequireOnce()}
      *
      * @return void
      */
@@ -63,7 +63,7 @@ class ScriptLoaderTest extends TestCase
     }
 
     /**
-     * Test for {@see ScriptLoader::obIncludeOnce()}
+     * Test for {@covers ScriptLoader::obIncludeOnce()}
      *
      * @return void
      */
@@ -73,10 +73,10 @@ class ScriptLoaderTest extends TestCase
     }
 
     /**
-     * Test for {@see ScriptLoader::exeRequire()}
-     * Test for {@see ScriptLoader::exeInclude()}
-     * Test for {@see ScriptLoader::obRequire()}
-     * Test for {@see ScriptLoader::obInclude()}
+     * Test for {@covers ScriptLoader::exeRequire()}
+     * Test for {@covers ScriptLoader::exeInclude()}
+     * Test for {@covers ScriptLoader::obRequire()}
+     * Test for {@covers ScriptLoader::obInclude()}
      */
     public function testRequireAndInclude(): void
     {

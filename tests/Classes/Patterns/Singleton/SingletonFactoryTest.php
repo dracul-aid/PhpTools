@@ -22,7 +22,7 @@ use PHPUnit\Framework\TestCase;
 class SingletonFactoryTest extends TestCase
 {
     /**
-     * Test for {@see SingletonFactory::createObject()}
+     * Test for {@covers SingletonFactory::createObject()}
      */
     public function testCreateObject(): void
     {
@@ -37,7 +37,7 @@ class SingletonFactoryTest extends TestCase
     }
 
     /**
-     * Test for {@see SingletonFactory::createObjectForIndex()}
+     * Test for {@covers SingletonFactory::createObjectForIndex()}
      */
     public function testCreateObjectForIndex(): void
     {

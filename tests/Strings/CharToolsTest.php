@@ -36,7 +36,7 @@ class CharToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see CharTools::getType()}
+     * Test for {@covers CharTools::getType()}
      */
     private function runTestGetType(): void
     {
@@ -72,7 +72,7 @@ class CharToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see CharTools::isStartNameOfVar()}
+     * Test for {@covers CharTools::isStartNameOfVar()}
      */
     private function runTestIsStartNameOfVar(): void
     {
@@ -83,7 +83,7 @@ class CharToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see CharTools::isInsideNameOfVar()}
+     * Test for {@covers CharTools::isInsideNameOfVar()}
      */
     private function runTestIsInsideNameOfVar(): void
     {
@@ -108,7 +108,7 @@ class CharToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see CharTools::isNumber()}
+     * Test for {@covers CharTools::isNumber()}
      */
     private function runTestIsNumber(): void
     {
@@ -119,7 +119,7 @@ class CharToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see CharTools::isHex()}
+     * Test for {@covers CharTools::isHex()}
      */
     private function runTestIsHex(): void
     {
@@ -152,7 +152,7 @@ class CharToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see CharTools::isAbc()}
+     * Test for {@covers CharTools::isAbc()}
      */
     private function runTestIsAbc(): void
     {
@@ -165,7 +165,7 @@ class CharToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see CharTools::isAbcLower()}
+     * Test for {@covers CharTools::isAbcLower()}
      */
     private function runTestIsAbcLow(): void
     {
@@ -179,7 +179,7 @@ class CharToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see CharTools::isAbcUpper()}
+     * Test for {@covers CharTools::isAbcUpper()}
      */
     private function runTestIsAbcUpper(): void
     {

@@ -39,13 +39,13 @@ class ClassNotPublicManagerTest extends TestCase
     /**
      * Тестирование режима работы "прокси-объекта"
      *
-     * Test for {@see ClassNotPublicManager::constant()}
-     * Test for {@see ClassNotPublicManager::get()}
-     * Test for {@see ClassNotPublicManager::getStatic()}
-     * Test for {@see ClassNotPublicManager::set()}
-     * Test for {@see ClassNotPublicManager::setStatic()}
-     * Test for {@see ClassNotPublicManager::call()}
-     * Test for {@see ClassNotPublicManager::callStatic()}
+     * Test for {@covers ClassNotPublicManager::constant()}
+     * Test for {@covers ClassNotPublicManager::get()}
+     * Test for {@covers ClassNotPublicManager::getStatic()}
+     * Test for {@covers ClassNotPublicManager::set()}
+     * Test for {@covers ClassNotPublicManager::setStatic()}
+     * Test for {@covers ClassNotPublicManager::call()}
+     * Test for {@covers ClassNotPublicManager::callStatic()}
      *
      * @psalm-suppress PossiblyNullFunctionCall
      */
@@ -170,10 +170,10 @@ class ClassNotPublicManagerTest extends TestCase
     /**
      * Тестирование упрощенного режима работы, без прокси-объекта
      *
-     * Test for {@see ClassNotPublicManager::readConstant()}
-     * Test for {@see ClassNotPublicManager::readProperty()}
-     * Test for {@see ClassNotPublicManager::writeProperty()}
-     * Test for {@see ClassNotPublicManager::callMethod()}
+     * Test for {@covers ClassNotPublicManager::readConstant()}
+     * Test for {@covers ClassNotPublicManager::readProperty()}
+     * Test for {@covers ClassNotPublicManager::writeProperty()}
+     * Test for {@covers ClassNotPublicManager::callMethod()}
      *
      * @psalm-suppress UndefinedThisPropertyFetch
      * @psalm-suppress PossiblyNullFunctionCall

@@ -25,7 +25,7 @@ use PHPUnit\Framework\TestCase;
 class TypeValidatorTest extends TestCase
 {
     /**
-     * Test for {@see TypeValidator::validateOr()}
+     * Test for {@covers TypeValidator::validateOr()}
      */
     public function testValidateOr(): void
     {
@@ -112,7 +112,7 @@ class TypeValidatorTest extends TestCase
     }
 
     /**
-     * Test for {@see TypeValidator::validateAnd()}
+     * Test for {@covers TypeValidator::validateAnd()}
      */
     public function testValidateAnd(): void
     {
@@ -129,8 +129,8 @@ class TypeValidatorTest extends TestCase
     }
 
     /**
-     * Test for {@see TypeValidator::validate()}
-     * Test for {@see TypeValidator::validateOrError()}
+     * Test for {@covers TypeValidator::validate()}
+     * Test for {@covers TypeValidator::validateOrError()}
      */
     public function testRunValidate(): void
     {

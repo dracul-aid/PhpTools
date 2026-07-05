@@ -25,7 +25,7 @@ use DraculAid\PhpTools\tests\AbstractProjectTestCase;
 class DateTimeObjectHelperTest extends AbstractProjectTestCase
 {
     /**
-     * Test for {@see DateTimeObjectHelper::getDateObject()}
+     * Test for {@covers DateTimeObjectHelper::getDateObject()}
      *
      * @return void
      */
@@ -108,7 +108,7 @@ class DateTimeObjectHelperTest extends AbstractProjectTestCase
     }
 
     /**
-     * Test for {@see DateTimeObjectHelper::copyDateTimeObject()}
+     * Test for {@covers DateTimeObjectHelper::copyDateTimeObject()}
      *
      * @return void
      */
@@ -137,7 +137,7 @@ class DateTimeObjectHelperTest extends AbstractProjectTestCase
     }
 
     /**
-     * Test for {@see DateTimeObjectHelper::isGetTimestamp()}
+     * Test for {@covers DateTimeObjectHelper::isGetTimestamp()}
      *
      * @return void
      */

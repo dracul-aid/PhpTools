@@ -27,7 +27,7 @@ use PHPUnit\Framework\TestCase;
 class TimestampHelperTest extends TestCase
 {
     /**
-     * Test for {@see TimestampHelper::toJsTimestamp()}
+     * Test for {@covers TimestampHelper::toJsTimestamp()}
      *
      * @return void
      */
@@ -41,7 +41,7 @@ class TimestampHelperTest extends TestCase
     }
 
     /**
-     * Test for {@see TimestampHelper::toString()}
+     * Test for {@covers TimestampHelper::toString()}
      *
      * @return void
      *
@@ -69,7 +69,7 @@ class TimestampHelperTest extends TestCase
     }
 
     /**
-     * Test for {@see TimestampHelper::getTimestamp()}
+     * Test for {@covers TimestampHelper::getTimestamp()}
      *
      * Не проверяет $dateTime = array(), так как, он проверяется в {@see self::testGetdateArrayToTimestamp()}
      *
@@ -111,7 +111,7 @@ class TimestampHelperTest extends TestCase
     }
 
     /**
-     * Test for {@see TimestampHelper::getdateArrayToTimestamp()}
+     * Test for {@covers TimestampHelper::getdateArrayToTimestamp()}
      *
      * @return void
      */
@@ -160,7 +160,7 @@ class TimestampHelperTest extends TestCase
     }
 
     /**
-     * Test for {@see TimestampHelper::getYearDay()}
+     * Test for {@covers TimestampHelper::getYearDay()}
      *
      * @return void
      */
@@ -183,7 +183,7 @@ class TimestampHelperTest extends TestCase
     }
 
     /**
-     * Test for {@see TimestampHelper::getMonDay()}
+     * Test for {@covers TimestampHelper::getMonDay()}
      *
      * @return void
      */
@@ -220,8 +220,8 @@ class TimestampHelperTest extends TestCase
     }
 
     /**
-     * Test for {@see TimestampHelper::getFirstWeek()}
-     * Test for {@see TimestampHelper::getWeekDay()}
+     * Test for {@covers TimestampHelper::getFirstWeek()}
+     * Test for {@covers TimestampHelper::getWeekDay()}
      *
      * @return void
      */

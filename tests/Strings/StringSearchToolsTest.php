@@ -29,7 +29,7 @@ class StringSearchToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see StringSearchTools::position()}
+     * Test for {@covers StringSearchTools::position()}
      */
     private function runTestPosition(): void
     {
@@ -59,7 +59,7 @@ class StringSearchToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see StringSearchTools::inCenter()}
+     * Test for {@covers StringSearchTools::inCenter()}
      */
     private function runTestInCenter(): void
     {
@@ -77,7 +77,7 @@ class StringSearchToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see StringSearchTools::inString()}
+     * Test for {@covers StringSearchTools::inString()}
      */
     private function runTestInString(): void
     {

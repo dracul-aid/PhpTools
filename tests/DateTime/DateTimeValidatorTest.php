@@ -23,16 +23,16 @@ use PHPUnit\Framework\TestCase;
 class DateTimeValidatorTest extends TestCase
 {
     /**
-     * Test for {@see DateTimeValidator::year()}
-     * Test for {@see DateTimeValidator::yearDay()}
-     * Test for {@see DateTimeValidator::mon()}
-     * Test for {@see DateTimeValidator::week()}
-     * Test for {@see DateTimeValidator::weekDay()}
-     * Test for {@see DateTimeValidator::yearDay()}
-     * Test for {@see DateTimeValidator::day()}
-     * Test for {@see DateTimeValidator::hour()}
-     * Test for {@see DateTimeValidator::minute()}
-     * Test for {@see DateTimeValidator::second()}
+     * Test for {@covers DateTimeValidator::year()}
+     * Test for {@covers DateTimeValidator::yearDay()}
+     * Test for {@covers DateTimeValidator::mon()}
+     * Test for {@covers DateTimeValidator::week()}
+     * Test for {@covers DateTimeValidator::weekDay()}
+     * Test for {@covers DateTimeValidator::yearDay()}
+     * Test for {@covers DateTimeValidator::day()}
+     * Test for {@covers DateTimeValidator::hour()}
+     * Test for {@covers DateTimeValidator::minute()}
+     * Test for {@covers DateTimeValidator::second()}
      */
     public function testRun(): void
     {
@@ -83,7 +83,7 @@ class DateTimeValidatorTest extends TestCase
     }
 
     /**
-     * Test for {@see DateTimeValidator::isValidDateAndTime()}
+     * Test for {@covers DateTimeValidator::isValidDateAndTime()}
      */
     public function test(): void
     {
@@ -103,7 +103,7 @@ class DateTimeValidatorTest extends TestCase
     }
 
     /**
-     * Test for {@see DateTimeValidator::validMonAndDay()}
+     * Test for {@covers DateTimeValidator::validMonAndDay()}
      *
      * @return void
      */
@@ -159,7 +159,7 @@ class DateTimeValidatorTest extends TestCase
     }
 
     /**
-     * Test for {@see DateTimeValidator::validTime()}
+     * Test for {@covers DateTimeValidator::validTime()}
      *
      * @return void
      */
@@ -197,7 +197,7 @@ class DateTimeValidatorTest extends TestCase
     }
 
     /**
-     * Test for {@see DateTimeValidator::getValidDayOfMon()}
+     * Test for {@covers DateTimeValidator::getValidDayOfMon()}
      *
      * @return void
      */

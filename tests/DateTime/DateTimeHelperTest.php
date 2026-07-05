@@ -27,7 +27,7 @@ use PHPUnit\Framework\TestCase;
 class DateTimeHelperTest extends TestCase
 {
     /**
-     * Test for {@see DateTimeHelper::getTimezoneOffsetSec()}
+     * Test for {@covers DateTimeHelper::getTimezoneOffsetSec()}
      *
      * @return void
      */
@@ -42,8 +42,8 @@ class DateTimeHelperTest extends TestCase
     }
 
     /**
-     * Test for {@see DateTimeHelper::getDateArray()}
-     * Test for {@see DateTimeHelper::isValidDateArray()}
+     * Test for {@covers DateTimeHelper::getDateArray()}
+     * Test for {@covers DateTimeHelper::isValidDateArray()}
      *
      * @return void
      *
@@ -113,7 +113,7 @@ class DateTimeHelperTest extends TestCase
     }
 
     /**
-     * Test for {@see DateTimeHelper::getTimeString()}
+     * Test for {@covers DateTimeHelper::getTimeString()}
      *
      * @return void
      */
@@ -131,8 +131,8 @@ class DateTimeHelperTest extends TestCase
     }
 
     /**
-     * Test for {@see DateTimeHelper::getTimeInt()}
-     * Test for {@see DateTimeHelper::getDaySecFromDateTime()}
+     * Test for {@covers DateTimeHelper::getTimeInt()}
+     * Test for {@covers DateTimeHelper::getDaySecFromDateTime()}
      *
      * @return void
      */

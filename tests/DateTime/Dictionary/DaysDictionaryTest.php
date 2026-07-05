@@ -50,8 +50,8 @@ class DaysDictionaryTest extends TestCase
     }
 
     /**
-     * Test for {@see DaysDictionary::getDayLabel()}
-     * Test for {@see DaysDictionary::getDayLabelOrException()}
+     * Test for {@covers DaysDictionary::getDayLabel()}
+     * Test for {@covers DaysDictionary::getDayLabelOrException()}
      *
      * @return void
      */

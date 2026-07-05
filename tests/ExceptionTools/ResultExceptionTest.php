@@ -22,8 +22,8 @@ use PHPUnit\Framework\TestCase;
 class ResultExceptionTest extends TestCase
 {
     /**
-     * Test for {@see ResultException::$result}
-     * Test for {@see ResultException::__invoke()}
+     * Test for {@covers ResultException::$result}
+     * Test for {@covers ResultException::__invoke()}
      */
     public function testReadResult(): void
     {
@@ -39,7 +39,7 @@ class ResultExceptionTest extends TestCase
     }
 
     /**
-     * Test for {@see ResultException::call()}
+     * Test for {@covers ResultException::call()}
      */
     public function testCall(): void
     {

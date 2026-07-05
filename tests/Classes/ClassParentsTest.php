@@ -27,7 +27,7 @@ class ClassParentsTest extends TestCase
     private array $classParentNames;
 
     /**
-     * Test for {@see ClassParents::getAllParents()}
+     * Test for {@covers ClassParents::getAllParents()}
      */
     public function testGetAllParents(): void
     {
@@ -44,7 +44,7 @@ class ClassParentsTest extends TestCase
     }
 
     /**
-     * Test for {@see ClassParents::getWithoutInterfaces()}
+     * Test for {@covers ClassParents::getWithoutInterfaces()}
      */
     public function testGetWithoutInterfaces(): void
     {
@@ -67,7 +67,7 @@ class ClassParentsTest extends TestCase
     }
 
     /**
-     * Test for {@see ClassParents::getTraits()}
+     * Test for {@covers ClassParents::getTraits()}
      */
     public function testGetTraits(): void
     {

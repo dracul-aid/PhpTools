@@ -22,7 +22,7 @@ use PHPUnit\Framework\TestCase;
 class StringToolsTest extends TestCase
 {
     /**
-     * Test for {@see StringTools::lengthTrim()}
+     * Test for {@covers StringTools::lengthTrim()}
      *
      * @return void
      */
@@ -34,8 +34,8 @@ class StringToolsTest extends TestCase
     }
 
     /**
-     * Test for {@see StringTools::ipFilenameEncode()}
-     * Test for {@see StringTools::ipFilenameDecode()}
+     * Test for {@covers StringTools::ipFilenameEncode()}
+     * Test for {@covers StringTools::ipFilenameDecode()}
      *
      * @return void
      */

@@ -32,24 +32,24 @@ use DraculAid\PhpTools\tests\Arrays\Objects\IteratorSafeRunnerTest;
  *
  * Функцию также можно использовать для получения массива для итератора, без изменения позиции курсор
  * <pre>
- * iterator_to_array(ArrayObjectTools::iteratorSafeRun($iterator, $cursor));
+ *     iterator_to_array(ArrayObjectTools::iteratorSafeRun($iterator, $cursor));
  * </pre>
  *
  * Оглавление:
- * <br>- {@see IteratorSafeRunner::exe()} Обеспечивает перебор объектов {@see \Iterator} с восстановлением позиции "курсора" после перебора
+ * <br>- {@see IteratorSafeRunner::exe()} - Обеспечивает перебор объектов {@see \Iterator} с восстановлением позиции "курсора" после перебора
  * <br>--- Варианты взаимодействия с ошибками
- * <br>- {@see self::$errorRule} Устанавливает правило взаимодействия с ошибками
- * <br>- {@see self::$throwableList} Список накопленных исключений
- * <br>- {@see IteratorSafeRunner::EXCEPTION_RULES_NO_SAFE} Исключения Не будут перехвачены
- * <br>- {@see IteratorSafeRunner::EXCEPTION_RULES_SAFE} Исключения Будут перехвачены, но Не будут накаливаться
- * <br>- {@see IteratorSafeRunner::EXCEPTION_RULES_SAFE_WITH_ERRORS_SAVE} Исключения Будут перехвачены и Будут накаливаться
+ * <br>- {@see self::$errorRule} - Устанавливает правило взаимодействия с ошибками
+ * <br>- {@see self::$throwableList} - Список накопленных исключений
+ * <br>- {@see IteratorSafeRunner::EXCEPTION_RULES_NO_SAFE} - Исключения Не будут перехвачены
+ * <br>- {@see IteratorSafeRunner::EXCEPTION_RULES_SAFE} - Исключения Будут перехвачены, но Не будут накаливаться
+ * <br>- {@see IteratorSafeRunner::EXCEPTION_RULES_SAFE_WITH_ERRORS_SAVE} - Исключения Будут перехвачены и Будут накаливаться
  * <br>---
- * <br>- {@see self::$iterator} Перебираемый объект-итератор
- * <br>- {@see self::$cursor} Ссылка на курсор
- * <br>- {@see self::getIterator()} Безопасно переберет установленный итератор
+ * <br>- {@see self::$iterator} - Перебираемый объект-итератор
+ * <br>- {@see self::$cursor} - Ссылка на курсор
+ * <br>- {@see self::getIterator()} - Безопасно переберет установленный итератор
  *
  * См также:
- * <br>{@see \DraculAid\PhpTools\Arrays\IteratorTools::iterateAndRewind()} Упрощенный способ перебора итераторов с восстановлением позиции курсора
+ * <br>- {@see \DraculAid\PhpTools\Arrays\IteratorTools::iterateAndRewind()} - Упрощенный способ перебора итераторов с восстановлением позиции курсора
  *
  * Test cases for class {@see IteratorSafeRunnerTest}
  *

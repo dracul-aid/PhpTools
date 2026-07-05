@@ -15,7 +15,7 @@ namespace DraculAid\PhpTools\Classes\Patterns\Singleton;
  * Интерфейс, для создания Синглтонов (Классов-одиночек)
  *
  * Оглавление:
- * <br>{@see SingletonInterface::getInstance()} Вернет экземпляр класса
+ * <br>- {@see SingletonInterface::getInstance()} - Вернет экземпляр класса
  *
  * @since 0.1.0
  */

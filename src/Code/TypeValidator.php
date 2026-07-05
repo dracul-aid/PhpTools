@@ -19,10 +19,10 @@ use DraculAid\PhpTools\tests\Code\TypeValidatorTest;
  * (!) Этот функционал не может корректно отработать с типами 'never', 'void', 'self', 'static', 'parent'
  *
  * Оглавление:
- * <br>{@see TypeValidator::validate()} Соответствует ли значение PHP типу данных (включая составные с объединением и пересечением)
- * <br>{@see TypeValidator::validateOrError()} Соответствует ли значение PHP типу данных, если не соответствует - выбрасывает исключение
- * <br>{@see TypeValidator::validateOr()} Валидирует по "Одному из" типов данных (т.е. A|B|C)
- * <br>{@see TypeValidator::validateAnd()} Валидирует объекты по точному совпадению со всеми типами данных (т.е. A&B&C)
+ * <br>- {@see TypeValidator::validate()} - Соответствует ли значение PHP типу данных (включая составные с объединением и пересечением)
+ * <br>- {@see TypeValidator::validateOrError()} - Соответствует ли значение PHP типу данных, если не соответствует - выбрасывает исключение
+ * <br>- {@see TypeValidator::validateOr()} - Валидирует по "Одному из" типов данных (т.е. A|B|C)
+ * <br>- {@see TypeValidator::validateAnd()} - Валидирует объекты по точному совпадению со всеми типами данных (т.е. A&B&C)
  *
  * Ранее функционал валидатора был частью https://github.com/dracul-aid/Php8forPhp7
  *

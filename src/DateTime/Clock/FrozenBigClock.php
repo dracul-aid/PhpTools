@@ -19,14 +19,14 @@ use DraculAid\PhpTools\tests\DateTime\Clock\FrozenBigClockTest;
  * Часы, всегда возвращающие одно и то же время, идеально подходят для тестов
  *
  * Оглавление:
- * <br>+{@see self::$frozenDateTime} - Значение "Замороженного времени"
- * <br>+{@see self::now()} - Вернет немутабельный объект даты времени ({@see \DateTimeImmutable})
- * <br>+{@see self::timestamp()} - Вернет таймштамп текущего времени
- * <br>+{@see self::timestampJs()} - Вернет таймштамп текущего времени в JS форматера (1 сек = 1000 мс)
- * <br>+{@see self::microtime()} - Вернет кол-во секунд и долей секунд
- * <br>+{@see self::format()} - Вернет текущую дату-время в указанном формате
- * <br>+{@see self::dateTime()} - Вернет мутабельный объект даты времени ({@see \DateTime})
- * <br>+{@see self::object()} - Вернет дату-время ввиде указанного объекта {@see \DateTimeInterface}
+ * <br>- {@see self::$frozenDateTime} - Значение "Замороженного времени"
+ * <br>- {@see self::now()} - Вернет немутабельный объект даты времени ({@see \DateTimeImmutable})
+ * <br>- {@see self::timestamp()} - Вернет таймштамп текущего времени
+ * <br>- {@see self::timestampJs()} - Вернет таймштамп текущего времени в JS форматера (1 сек = 1000 мс)
+ * <br>- {@see self::microtime()} - Вернет кол-во секунд и долей секунд
+ * <br>- {@see self::format()} - Вернет текущую дату-время в указанном формате
+ * <br>- {@see self::dateTime()} - Вернет мутабельный объект даты времени ({@see \DateTime})
+ * <br>- {@see self::object()} - Вернет дату-время ввиде указанного объекта {@see \DateTimeInterface}
  *
  * Test cases for class {@see FrozenBigClockTest}
  *

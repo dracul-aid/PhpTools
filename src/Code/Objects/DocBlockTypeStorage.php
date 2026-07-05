@@ -21,21 +21,21 @@ use DraculAid\PhpTools\tests\Code\Objects\DocBlockTypeStorageTest;
  *
  * Оглавление
  * <br>--- Создание объекта
- * <br>{@see DocBlockTypeStorage::createFromPhp()} Создает с переданными PHP типами
- * <br>{@see DocBlockTypeStorage::createFromSql()} Создает с переданным SQL типом
- * <br>{@see DocBlockTypeStorage::createFromDocBlock()} Установит тип(ы) данных принятых в DocBlock / PhpDoc
+ * <br>- {@see DocBlockTypeStorage::createFromPhp()} - Создает с переданными PHP типами
+ * <br>- {@see DocBlockTypeStorage::createFromSql()} - Создает с переданным SQL типом
+ * <br>- {@see DocBlockTypeStorage::createFromDocBlock()} - Установит тип(ы) данных принятых в DocBlock / PhpDoc
  * <br>--- Установка типов
- * <br>{@see self::set()} Установит тип данных
- * <br>{@see self::setFromSql()} Установит тип по SQL типу
- * <br>{@see self::setFromDocBlock()} Установит тип(ы) данных принятых в DocBlock / PhpDoc
+ * <br>- {@see self::set()} - Установит тип данных
+ * <br>- {@see self::setFromSql()} - Установит тип по SQL типу
+ * <br>- {@see self::setFromDocBlock()} - Установит тип(ы) данных принятых в DocBlock / PhpDoc
  * <br>--- Проверка типов
- * <br>{@see self::isWithType()} В типе данных, есть указанный тип или нет
- * <br>{@see self::isWithNull()} В типе данных, есть NULL или нет
- * <br>{@see self::isWithBool()} В типе данных, есть булевы варианты (bool, true, false)
- * <br>{@see self::isWithNumber()} В типе данных, есть числа
+ * <br>- {@see self::isWithType()} - В типе данных, есть указанный тип или нет
+ * <br>- {@see self::isWithNull()} - В типе данных, есть NULL или нет
+ * <br>- {@see self::isWithBool()} - В типе данных, есть булевы варианты (bool, true, false)
+ * <br>- {@see self::isWithNumber()} - В типе данных, есть числа
  * <br>--- Проверка типов
- * <br>{@see self::getIterator()} Позволит перебрать все типы
- * <br>{@see self::getType()} Вернет все типы ввиде массива
+ * <br>- {@see self::getIterator()} - Позволит перебрать все типы
+ * <br>- {@see self::getType()} - Вернет все типы ввиде массива
  *
  * @method static DocBlockTypeStorage createFromPhp(string|string[] $type) Создает с переданными PHP типами
  * @method static DocBlockTypeStorage createFromSql(string $type, bool $isNull) Создает с переданным SQL типом

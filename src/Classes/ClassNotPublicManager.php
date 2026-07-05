@@ -17,23 +17,23 @@ use DraculAid\PhpTools\tests\Classes\ClassNotPublicManagerTest;
  * Класс для работы с непубличными элементами классов и объектов
  *
  * Оглавление:
- * <br>{@see ClassNotPublicManager::getInstanceFor()} - Вернет объект для работы с не публичными элементами
+ * <br>- {@see ClassNotPublicManager::getInstanceFor()} - Вернет объект для работы с не публичными элементами
  * <br>--- "Процедурный стиль"
- * <br>{@see ClassNotPublicManager::readConstant()} - Чтение значения константы
- * <br>{@see ClassNotPublicManager::readProperty()} - Чтение значения свойства
- * <br>{@see ClassNotPublicManager::writeProperty()} - Запись значения свойства (списка свойств)
- * <br>{@see ClassNotPublicManager::callMethod()} - Вызов метода
- * <br>{@see ClassNotPublicManager::execute()} - Позволяет выполнить произвольную функцию внутри указанной области видимости
+ * <br>- {@see ClassNotPublicManager::readConstant()} - Чтение значения константы
+ * <br>- {@see ClassNotPublicManager::readProperty()} - Чтение значения свойства
+ * <br>- {@see ClassNotPublicManager::writeProperty()} - Запись значения свойства (списка свойств)
+ * <br>- {@see ClassNotPublicManager::callMethod()} - Вызов метода
+ * <br>- {@see ClassNotPublicManager::execute()} - Позволяет выполнить произвольную функцию внутри указанной области видимости
  * <br>--- Объект для взаимодействия с непубличными элементами
- * <br>{@see self::$toObject} [const] - Для какого объекта создан объект
- * <br>{@see self::constant()} - Вернет значение указанной константы
- * <br>{@see self::get()} - Чтение статического свойства
- * <br>{@see self::getStatic()} - Чтение статического свойства
- * <br>{@see self::set()} - Установка свойства (или списка свойств)
- * <br>{@see self::setStatic()} - Установка статического свойства (или списка свойств)
- * <br>{@see self::call()} - Вызов метода
- * <br>{@see self::callStatic()} - Вызов статического метода
- * <br>{@see self::run()} - Позволяет выполнить произвольную функцию внутри указанной области видимости
+ * <br>- {@see self::$toObject} - [const] - Для какого объекта создан объект
+ * <br>- {@see self::constant()} - Вернет значение указанной константы
+ * <br>- {@see self::get()} - Чтение статического свойства
+ * <br>- {@see self::getStatic()} - Чтение статического свойства
+ * <br>- {@see self::set()} - Установка свойства (или списка свойств)
+ * <br>- {@see self::setStatic()} - Установка статического свойства (или списка свойств)
+ * <br>- {@see self::call()} - Вызов метода
+ * <br>- {@see self::callStatic()} - Вызов статического метода
+ * <br>- {@see self::run()} - Позволяет выполнить произвольную функцию внутри указанной области видимости
  *
  * Test cases for class {@see ClassNotPublicManagerTest}
  *

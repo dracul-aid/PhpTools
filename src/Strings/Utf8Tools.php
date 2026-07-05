@@ -18,9 +18,9 @@ use DraculAid\PhpTools\tests\Strings\Utf8ToolsTest;
  * Набор функций для облегчения работы с UTF-8 кодировкой
  *
  * Оглавление:
- * <br>- {@see Utf8Tools::calculationCharLen()} Проводит вычисление длины в байтах читаемого символа UTF-8 строки
- * <br>- {@see Utf8Tools::clearFatChars()} Очистит UTF-8 строку от символов, размер которых превышает указанное число байт
- * <br>- {@see Utf8Tools::convertToUtf8mb3()} Очистит UTF-8 строку от 4 байтовых символов
+ * <br>- {@see Utf8Tools::calculationCharLen()} - Проводит вычисление длины в байтах читаемого символа UTF-8 строки
+ * <br>- {@see Utf8Tools::clearFatChars()} - Очистит UTF-8 строку от символов, размер которых превышает указанное число байт
+ * <br>- {@see Utf8Tools::convertToUtf8mb3()} - Очистит UTF-8 строку от 4 байтовых символов
  *
  * @link https://unicode.org/charts/nameslist/ Список символов UTF-8 по группам
  *

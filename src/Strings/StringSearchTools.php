@@ -18,9 +18,9 @@ use DraculAid\PhpTools\tests\Strings\StringSearchToolsTest;
  * указано иначе то - работает с UTF8
  *
  * Оглавление:
- * <br>{@see StringSearchTools::position()} - Вернет первое вхождение любой подстроки в строке
- * <br>{@see StringSearchTools::inCenter()} - Проверяет, нет ли в центре строки, указанной подстроки
- * <br>{@see StringSearchTools::inString()} - Проверит, строка начинается, кончается или включает в себя указанную подстроку
+ * <br>- {@see StringSearchTools::position()} - Вернет первое вхождение любой подстроки в строке
+ * <br>- {@see StringSearchTools::inCenter()} - Проверяет, нет ли в центре строки, указанной подстроки
+ * <br>- {@see StringSearchTools::inString()} - Проверит, строка начинается, кончается или включает в себя указанную подстроку
  *
  * Test cases for class {@see StringSearchToolsTest}
  *

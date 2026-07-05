@@ -22,24 +22,24 @@ use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
  * <br> {@see TimestampRangeType} Временные диапазоны на основе таймштампов (в секундах)
  *
  * Оглавление:
- * <br>{@see AbstractDateTimeRange::create()} Создаст заполненный диапазон
- * <br>{@see AbstractDateTimeRange::createAsTmp()} Создает временной диапазон, начало и конец которого указывают на "сейчас"
+ * <br>- {@see AbstractDateTimeRange::create()} - Создаст заполненный диапазон
+ * <br>- {@see AbstractDateTimeRange::createAsTmp()} - Создает временной диапазон, начало и конец которого указывают на "сейчас"
  * <br>--- Начало диапазона
- * <br>{@see self::$start} Начало диапазона (NULL - не установлен)
- * <br>{@see self::startSet()} Устанавливает стартовую точку диапазона
- * <br>{@see self::startClear()} Очистит стартовую точку диапазона
- * <br>{@see self::startGetTimestamp()} Вернет начало диапазона ввиде таймштампа
- * <br>{@see self::startGetString()} Вернет начало диапазона ввиде строки
+ * <br>- {@see self::$start} - Начало диапазона (NULL - не установлен)
+ * <br>- {@see self::startSet()} - Устанавливает стартовую точку диапазона
+ * <br>- {@see self::startClear()} - Очистит стартовую точку диапазона
+ * <br>- {@see self::startGetTimestamp()} - Вернет начало диапазона ввиде таймштампа
+ * <br>- {@see self::startGetString()} - Вернет начало диапазона ввиде строки
  * <br>--- Конец диапазона
- * <br>{@see self::$finish} Конец диапазона (NULL - не установлен)
- * <br>{@see self::finishSet()} Устанавливает конечную точку диапазона
- * <br>{@see self::finishClear()} Очистит конечную точку диапазона
- * <br>{@see self::finishGetTimestamp()} Вернет конец диапазона ввиде таймштампа
- * <br>{@see self::finishGetString()} Вернет конец диапазона ввиде строки
+ * <br>- {@see self::$finish} - Конец диапазона (NULL - не установлен)
+ * <br>- {@see self::finishSet()} - Устанавливает конечную точку диапазона
+ * <br>- {@see self::finishClear()} - Очистит конечную точку диапазона
+ * <br>- {@see self::finishGetTimestamp()} - Вернет конец диапазона ввиде таймштампа
+ * <br>- {@see self::finishGetString()} - Вернет конец диапазона ввиде строки
  * <br>--- Взаимодействие с диапазоном
- * <br>{@see self::isSet()} Вернет указание, установлен диапазон, его часть или нет
- * <br>{@see self::getSqlDateTime} Сгенерирует строку пригодную для использования в качестве части SQL запроса для проверки поля на диапазон даты-времени
- * <br>{@see self::getLenght()} Вернет длину диапазону в секундах, возможно с микросекундами
+ * <br>- {@see self::isSet()} - Вернет указание, установлен диапазон, его часть или нет
+ * <br>- {@see self::getSqlDateTime} - Сгенерирует строку пригодную для использования в качестве части SQL запроса для проверки поля на диапазон даты-времени
+ * <br>- {@see self::getLenght()} - Вернет длину диапазону в секундах, возможно с микросекундами
  *
  * @since 0.2.0
  */

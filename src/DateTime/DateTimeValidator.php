@@ -18,22 +18,22 @@ use DraculAid\PhpTools\tests\DateTime\DateTimeValidatorTest;
  * Набор функций для валидации частей даты-времени
  *
  * Оглавление:
- * <br> {@see DateTimeValidator::isValidDateAndTime()} - Проверяет валидность даты и времени (по григорианскому календарю)
+ * <br>- {@see DateTimeValidator::isValidDateAndTime()} - Проверяет валидность даты и времени (по григорианскому календарю)
  * --- Вернет ближайшие валидные значения
- * <br> {@see DateTimeValidator::validMonAndDay()} Проверит, валиден ли год, месяц и число. Если нет, обновит переданные данные до валидных значений
- * <br> {@see DateTimeValidator::validTime()} - Проверит, валиден ли час, минута и секунда. Если нет - вернет ближайшие валидные значения
- * <br> {@see DateTimeValidator::getValidDayOfMon()} Проверит, валиден ли число (день месяца), если нет - вернет ближайшей валидный номер дня
+ * <br>- {@see DateTimeValidator::validMonAndDay()} - Проверит, валиден ли год, месяц и число. Если нет, обновит переданные данные до валидных значений
+ * <br>- {@see DateTimeValidator::validTime()} - Проверит, валиден ли час, минута и секунда. Если нет - вернет ближайшие валидные значения
+ * <br>- {@see DateTimeValidator::getValidDayOfMon()} - Проверит, валиден ли число (день месяца), если нет - вернет ближайшей валидный номер дня
  * <br>--- Проверка частей даты
- * <br> {@see DateTimeValidator::year()} - Год
- * <br> {@see DateTimeValidator::mon()} - Номер месяца
- * <br> {@see DateTimeValidator::week()} - Неделя
- * <br> {@see DateTimeValidator::yearDay()} - День года
- * <br> {@see DateTimeValidator::weekDay()} - День недели
- * <br> {@see DateTimeValidator::day()} - Число (день месяца)
+ * <br>- {@see DateTimeValidator::year()} - Год
+ * <br>- {@see DateTimeValidator::mon()} - Номер месяца
+ * <br>- {@see DateTimeValidator::week()} - Неделя
+ * <br>- {@see DateTimeValidator::yearDay()} - День года
+ * <br>- {@see DateTimeValidator::weekDay()} - День недели
+ * <br>- {@see DateTimeValidator::day()} - Число (день месяца)
  * <br>--- Проверка частей времени
- * <br> {@see DateTimeValidator::hour()} - Часы
- * <br> {@see DateTimeValidator::minute()} - Минуты
- * <br> {@see DateTimeValidator::second()} - Секунды
+ * <br>- {@see DateTimeValidator::hour()} - Часы
+ * <br>- {@see DateTimeValidator::minute()} - Минуты
+ * <br>- {@see DateTimeValidator::second()} - Секунды
  *
  * @see DateTimeHelper::isValidDateArray() Проверяет валидность массива {@see getdate()}
  *

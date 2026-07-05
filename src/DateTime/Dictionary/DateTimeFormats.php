@@ -17,22 +17,22 @@ namespace DraculAid\PhpTools\DateTime\Dictionary;
  * @link https://www.php.net/manual/ru/datetime.format.php Форматы преобразования даты-времени в строку в PHP
  *
  * Оглавление:
- * <br>+ {@see DateTimeFormats::FUNCTIONS} - Системный вариант, подходит для работы с функциями даты-времени в PHP (YYYY-MM-DD HH:MI:SS.ms timezone)
- * <br>+ {@see DateTimeFormats::TIMESTAMP_SEC_TO_STRING} - Преобразование таймштампа (сек) в строку (YYYY-MM-DD HH:MI:SS)
- * <br>+ {@see DateTimeFormats::TIMESTAMP_WITH_MILLISECONDS} - Таймштамп с милисекундами (123456789.123)
- * <br>+ {@see DateTimeFormats::TIMESTAMP_WITH_MICROSECONDS} - Таймштамп с милисекундами (123456789.123456)
+ * <br>- {@see DateTimeFormats::FUNCTIONS} - Системный вариант, подходит для работы с функциями даты-времени в PHP (YYYY-MM-DD HH:MI:SS.ms timezone)
+ * <br>- {@see DateTimeFormats::TIMESTAMP_SEC_TO_STRING} - Преобразование таймштампа (сек) в строку (YYYY-MM-DD HH:MI:SS)
+ * <br>- {@see DateTimeFormats::TIMESTAMP_WITH_MILLISECONDS} - Таймштамп с милисекундами (123456789.123)
+ * <br>- {@see DateTimeFormats::TIMESTAMP_WITH_MICROSECONDS} - Таймштамп с милисекундами (123456789.123456)
  * <br>--- Отображения для людей
- * <br>+ {@see DateTimeFormats::VIEW_FOR_PEOPLE} - Вариант для отображения людям без часового пояса (YYYY-MM-DD HH:MI:SS)
- * <br>+ {@see DateTimeFormats::VIEW_FOR_PEOPLE_DATE} - Отображение даты людям (YYYY-MM-DD)
- * <br>+ {@see DateTimeFormats::VIEW_FOR_PEOPLE_TIME} - Отображение времени людям (HH:MI:SS)
- * <br>+ {@see DateTimeFormats::VIEW_FOR_PEOPLE_WITH_TIMEZONE} - Вариант для отображения людям С часовым пояса (YYYY-MM-DD HH:MI:SS timezone)
+ * <br>- {@see DateTimeFormats::VIEW_FOR_PEOPLE} - Вариант для отображения людям без часового пояса (YYYY-MM-DD HH:MI:SS)
+ * <br>- {@see DateTimeFormats::VIEW_FOR_PEOPLE_DATE} - Отображение даты людям (YYYY-MM-DD)
+ * <br>- {@see DateTimeFormats::VIEW_FOR_PEOPLE_TIME} - Отображение времени людям (HH:MI:SS)
+ * <br>- {@see DateTimeFormats::VIEW_FOR_PEOPLE_WITH_TIMEZONE} - Вариант для отображения людям С часовым пояса (YYYY-MM-DD HH:MI:SS timezone)
  * <br>--- Типы для SQL (MySQL)
- * <br>+ {@see DateTimeFormats::SQL_YEAR} - Хранение года, тип YEAR (YYYY)
- * <br>+ {@see DateTimeFormats::SQL_DATE} - Хранение даты (без времени), тип DATE (YYYY-MM-DD)
- * <br>+ {@see DateTimeFormats::SQL_TIME} - Хранение времени (без даты), тип DATE, без микросекунд (HH:MI:SS)
- * <br>+ {@see DateTimeFormats::SQL_TIME_MS} - Хранение времени (без даты), тип TIME, с микросекундами (HH:MI:SS.ms)
- * <br>+ {@see DateTimeFormats::SQL_DATETIME} - Хранение даты и времени, тип DATETIME, SMALLDATETIME, без указания микросекунд (YYYY-MM-DD HH:MI:SS.ms)
- * <br>+ {@see DateTimeFormats::SQL_DATETIME_MS} - Хранение даты и времени, тип DATETIME, SMALLDATETIME, с микросекундами (YYYY-MM-DD HH:MI:SS.ms)
+ * <br>- {@see DateTimeFormats::SQL_YEAR} - Хранение года, тип YEAR (YYYY)
+ * <br>- {@see DateTimeFormats::SQL_DATE} - Хранение даты (без времени), тип DATE (YYYY-MM-DD)
+ * <br>- {@see DateTimeFormats::SQL_TIME} - Хранение времени (без даты), тип DATE, без микросекунд (HH:MI:SS)
+ * <br>- {@see DateTimeFormats::SQL_TIME_MS} - Хранение времени (без даты), тип TIME, с микросекундами (HH:MI:SS.ms)
+ * <br>- {@see DateTimeFormats::SQL_DATETIME} - Хранение даты и времени, тип DATETIME, SMALLDATETIME, без указания микросекунд (YYYY-MM-DD HH:MI:SS.ms)
+ * <br>- {@see DateTimeFormats::SQL_DATETIME_MS} - Хранение даты и времени, тип DATETIME, SMALLDATETIME, с микросекундами (YYYY-MM-DD HH:MI:SS.ms)
  *
  * @since 0.2.0
  */

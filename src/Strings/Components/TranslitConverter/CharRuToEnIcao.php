@@ -25,7 +25,7 @@ use DraculAid\PhpTools\Strings\TranslitConverter;
  * <br>{@see TranslitConverter} Класс, для работы с транслитом
  *
  * Оглавление
- * <br>{@see CharRuToEn::LIST} Соответствия символов кириллицы и латиницы
+ * <br>- {@see CharRuToEn::LIST} - Соответствия символов кириллицы и латиницы
  *
  * @since 0.5.0
  */

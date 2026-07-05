@@ -20,9 +20,9 @@ use DraculAid\PhpTools\tests\DateTime\DateTimeObjectHelperTest;
  * Набор функция для облегчения работы с объектами даты-времени (см {@see \DateTimeInterface})
  *
  * Оглавление:
- * <br> {@see DateTimeObjectHelper::getDateObject()} - Вернет дата-тайм объект, из разного представления даты-времени
- * <br> {@see DateTimeObjectHelper::copyDateTimeObject()} - Копирует объект даты-времени
- * <br> {@see DateTimeObjectHelper::isGetTimestamp()} - Проверяет, может ли объект вернуть тайштамп
+ * <br>- {@see DateTimeObjectHelper::getDateObject()} - Вернет дата-тайм объект, из разного представления даты-времени
+ * <br>- {@see DateTimeObjectHelper::copyDateTimeObject()} - Копирует объект даты-времени
+ * <br>- {@see DateTimeObjectHelper::isGetTimestamp()} - Проверяет, может ли объект вернуть тайштамп
  *
  * @see DateTimeHelper Набор функий для работы с датой и временем
  * @see TimestampHelper Хэлпер, для работы с таймштампами

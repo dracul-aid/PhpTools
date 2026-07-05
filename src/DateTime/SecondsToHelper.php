@@ -19,11 +19,11 @@ use DraculAid\PhpTools\tests\DateTime\SecondsToHelperTest;
  * Класс, для преобразования секунд в удобно читаемое время
  *
  * Оглавление:
- * <br>{@see SecondsToHelper::getMinutes()} Вернет целое кол-во минут в переданных секундах (0 и более минут)
- * <br>{@see SecondsToHelper::getHours()} Вернет целое кол-во часов в переданных секундах (0 и более часов)
- * <br>{@see SecondsToHelper::minutesAndSeconds()} Получит секунды и вернет кол-во целых минут и секунд
- * <br>{@see SecondsToHelper::time()} Получит секунды и вернет кол-во целых часов, минут и секунд
- * <br>{@see SecondsToHelper::timeAndDays()} Получит секунды и вернет кол-во целых дней, часов, минут и секунд
+ * <br>- {@see SecondsToHelper::getMinutes()} - Вернет целое кол-во минут в переданных секундах (0 и более минут)
+ * <br>- {@see SecondsToHelper::getHours()} - Вернет целое кол-во часов в переданных секундах (0 и более часов)
+ * <br>- {@see SecondsToHelper::minutesAndSeconds()} - Получит секунды и вернет кол-во целых минут и секунд
+ * <br>- {@see SecondsToHelper::time()} - Получит секунды и вернет кол-во целых часов, минут и секунд
+ * <br>- {@see SecondsToHelper::timeAndDays()} - Получит секунды и вернет кол-во целых дней, часов, минут и секунд
  *
  * Test cases for class {@see SecondsToHelperTest}
  *

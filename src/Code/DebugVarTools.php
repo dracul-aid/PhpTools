@@ -15,8 +15,8 @@ namespace DraculAid\PhpTools\Code;
  * Полезные инструменты для отладки
  *
  * Оглавление:
- * <br>{@see DebugVarTools::varDump()} - Аналог PHP функции {@see var_dump()}, но вернет дебаг информацию о переменной в виде строки
- * <br>{@see DebugVarTools::json()} - Вернет отформатированную JSON строку для переданного значения
+ * <br>- {@see DebugVarTools::varDump()} - Аналог PHP функции {@see var_dump()}, но вернет дебаг информацию о переменной в виде строки
+ * <br>- {@see DebugVarTools::json()} - Вернет отформатированную JSON строку для переданного значения
  *
  * @since 0.4.0
  */

@@ -20,12 +20,12 @@ use DraculAid\PhpTools\tests\DateTime\Dictionary\DateConstantsTest;
  * Полезные функции для работы с датой-временем
  *
  * Оглавление:
- * <br> {@see DateTimeHelper::getDateArray()} -  Вернет массив с описанием даты-времени (аналогичный {@see getdate()} для даты представленной в любом формате
- * <br> {@see DateTimeHelper::getTimezoneOffsetSec()} - Вернет смещение часового пояса в секундах для текущего установленного часового пояса PHP
- * <br> {@see DateTimeHelper::getTimeString()} - Вернет время ввиде строки, вне зависимости от переданного типа (ЧЧ-ММ-СС)
- * <br> {@see DateTimeHelper::getTimeInt()} - Вернет время ввиде числа (кол-во секунд с начала суток)
- * <br> {@see DateTimeHelper::getDaySecFromDateTime()} - Вернет для переданной даты кол-во секунд с начала суток
- * <br> {@see DateTimeHelper::isValidDateArray()} - Проверяет массив, соответствует ли он массиву-ответу функции {@see getdate()}
+ * <br>- {@see DateTimeHelper::getDateArray()} - Вернет массив с описанием даты-времени (аналогичный {@see getdate()} для даты представленной в любом формате
+ * <br>- {@see DateTimeHelper::getTimezoneOffsetSec()} - Вернет смещение часового пояса в секундах для текущего установленного часового пояса PHP
+ * <br>- {@see DateTimeHelper::getTimeString()} - Вернет время ввиде строки, вне зависимости от переданного типа (ЧЧ-ММ-СС)
+ * <br>- {@see DateTimeHelper::getTimeInt()} - Вернет время ввиде числа (кол-во секунд с начала суток)
+ * <br>- {@see DateTimeHelper::getDaySecFromDateTime()} - Вернет для переданной даты кол-во секунд с начала суток
+ * <br>- {@see DateTimeHelper::isValidDateArray()} - Проверяет массив, соответствует ли он массиву-ответу функции {@see getdate()}
  *
  * @see DateTimeObjectHelper Хэлпер, для работы с датой-времени, как с объектами
  * @see TimestampHelper Хэлпер, для работы с таймштампами

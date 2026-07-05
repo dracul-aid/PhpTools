@@ -18,11 +18,11 @@ use DraculAid\PhpTools\tests\ExceptionTools\ExceptionToolsTest;
  * Инструменты, для облегчения работы с исключениями
  *
  * Оглавление:
- * <br>{@see ExceptionTools::safeCallWithResult()} - В случае возникновения исключения, вернет переданное значение
- * <br>{@see ExceptionTools::safeCallWithCallable()} - В случае возникновения исключения - перехватит его и выполнит переданную функцию
- * <br>{@see ExceptionTools::safeCallFunctions()} - Вызовет список функций. Результаты выполнения функций - игнорируются
- * <br>{@see ExceptionTools::callAndReturnException()} - Перехватит и вернет пойманное исключение (или NULL)
- * <br>{@see ExceptionTools::wasCalledWithException()} - Выполнит функцию, и проверит, не вернула ли она необходимое исключение
+ * <br>- {@see ExceptionTools::safeCallWithResult()} - В случае возникновения исключения, вернет переданное значение
+ * <br>- {@see ExceptionTools::safeCallWithCallable()} - В случае возникновения исключения - перехватит его и выполнит переданную функцию
+ * <br>- {@see ExceptionTools::safeCallFunctions()} - Вызовет список функций. Результаты выполнения функций - игнорируются
+ * <br>- {@see ExceptionTools::callAndReturnException()} - Перехватит и вернет пойманное исключение (или NULL)
+ * <br>- {@see ExceptionTools::wasCalledWithException()} - Выполнит функцию, и проверит, не вернула ли она необходимое исключение
  *
  * Test cases for class {@see ExceptionToolsTest}
  *

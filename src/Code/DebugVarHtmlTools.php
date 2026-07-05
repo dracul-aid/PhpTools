@@ -15,9 +15,9 @@ namespace DraculAid\PhpTools\Code;
  * Набор отладочных функций для получения информации о переменных с HTML форматированием
  *
  * Оглавление:
- * <br>{@see DebugVarHtmlTools::varDump()} - Аналог {@see var_dump()}
- * <br>{@see DebugVarHtmlTools::printR()} - Аналог {@see print_r()}
- * <br>{@see DebugVarHtmlTools::json()} - Вернет переданное значение ввиде отформатированной JSON строки
+ * <br>- {@see DebugVarHtmlTools::varDump()} - Аналог {@see var_dump()}
+ * <br>- {@see DebugVarHtmlTools::printR()} - Аналог {@see print_r()}
+ * <br>- {@see DebugVarHtmlTools::json()} - Вернет переданное значение ввиде отформатированной JSON строки
  *
  * @since 0.4.0
  */

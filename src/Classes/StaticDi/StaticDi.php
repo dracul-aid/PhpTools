@@ -21,7 +21,7 @@ use DraculAid\PhpTools\tests\Classes\StaticDiTest;
  *
  * Инструмент позволяет использовать в качестве "ключа" имя класса и возвращает "имя класса", в любой момент, инструмент
  * можно сконфигурировать так, что бы возвращалось иное имя класса
- * ```php
+ * <code>
  * // Версия класса для "прода"
  * class A {
  *     public static function isLive(): bool {
@@ -42,14 +42,14 @@ use DraculAid\PhpTools\tests\Classes\StaticDiTest;
  * StaticDi::$rules[A::class] = B::class;
  * // И теперь будем получать класс B
  * StaticDi::get(A::class)::isLive();
- * ```
+ * </code>
  *
  * Оглавление:
- * <br>{@see StaticDi::getDefaultInstance()} Вернет Singleton объект "Контейнера"
- * <br>{@see StaticDi::getClass()} Вернет имя класса, для указанного класса-ключа
- * <br>{@see StaticDi::keyGetClass()} Вернет имя класса, для указанного строкового ключа
+ * <br>- {@see StaticDi::getDefaultInstance()} - Вернет Singleton объект "Контейнера"
+ * <br>- {@see StaticDi::getClass()} - Вернет имя класса, для указанного класса-ключа
+ * <br>- {@see StaticDi::keyGetClass()} - Вернет имя класса, для указанного строкового ключа
  * <br>---
- * <br>{@see self::$rules} Список правил
+ * <br>- {@see self::$rules} - Список правил
  *
  * @link https://github.com/dracul-aid/PhpTools/blob/master/Documentation-ru/StaticDi.md Докуметация (как это работает)
  *

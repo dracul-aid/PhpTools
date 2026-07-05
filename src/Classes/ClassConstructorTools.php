@@ -15,11 +15,11 @@ namespace DraculAid\PhpTools\Classes;
  * Инструменты, для облегчения работы с конструкторами классов (объектов)
  *
  * Оглавление:
- * <br>{@see ClassConstructorTools::getPublicProperties()} - Вернет массив публичных свойств, которые были объявлены в конструкторе класса
- * <br>{@see ClassConstructorTools::isHasOnlyPublicProperties()} - Проверяет, содержит ли конструктор класса только публичные свойства
+ * <br>- {@see ClassConstructorTools::getPublicProperties()} - Вернет массив публичных свойств, которые были объявлены в конструкторе класса
+ * <br>- {@see ClassConstructorTools::isHasOnlyPublicProperties()} - Проверяет, содержит ли конструктор класса только публичные свойства
  *
  * См также:
- * <br>{@see ClassTools::createObject()} Облегчает создание объектов, позволяя создавать объекты без вызова конструктора и(или) установить также и свойства
+ * <br>- {@see ClassTools::createObject()} - Облегчает создание объектов, позволяя создавать объекты без вызова конструктора и(или) установить также и свойства
  *
  * @since 1.2.0
  */

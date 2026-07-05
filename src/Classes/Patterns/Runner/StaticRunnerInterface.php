@@ -22,7 +22,7 @@ namespace DraculAid\PhpTools\Classes\Patterns\Runner;
  *
  * Выполнить действие заложенное в класс, реализующие интерфейс можно вызывать как
  * <pre>
- * StaticRunnerInterface::exe()
+ *     StaticRunnerInterface::exe()
  * </pre>
  *
  * @since 0.6.0

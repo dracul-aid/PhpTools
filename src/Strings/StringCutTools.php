@@ -17,13 +17,13 @@ use DraculAid\PhpTools\tests\Strings\StringCutToolsTest;
  * Статический класс для осуществления обрезания строк
  *
  * Оглавление:
- * <br>{@see StringCutTools::firstSubstrBefore()} - Обрежет строку до указанной подстроки (или подстрок)
- * <br>{@see StringCutTools::firstSubstrAfter()} - Вырежет строку с указанной подстроки (или подстрок) до конца, если такая подстрока есть
- * <br>{@see StringCutTools::trimInString()} - Удалит все повторяющиеся пробелы, в том числе и внутри строки
- * <br>{@see StringCutTools::quoteTrim()} - Удалит из начала и конца строки все кавычки
- * <br>{@see StringCutTools::clearMultiSpaces()} - Удалит повторяющиеся пробельные символы
- * <br>{@see StringCutTools::mask()} - Маскирует строку
- * <br>{@see StringCutTools::resize()} - Обрежет или дополнит строку до указанной длины
+ * <br>- {@see StringCutTools::firstSubstrBefore()} - Обрежет строку до указанной подстроки (или подстрок)
+ * <br>- {@see StringCutTools::firstSubstrAfter()} - Вырежет строку с указанной подстроки (или подстрок) до конца, если такая подстрока есть
+ * <br>- {@see StringCutTools::trimInString()} - Удалит все повторяющиеся пробелы, в том числе и внутри строки
+ * <br>- {@see StringCutTools::quoteTrim()} - Удалит из начала и конца строки все кавычки
+ * <br>- {@see StringCutTools::clearMultiSpaces()} - Удалит повторяющиеся пробельные символы
+ * <br>- {@see StringCutTools::mask()} - Маскирует строку
+ * <br>- {@see StringCutTools::resize()} - Обрежет или дополнит строку до указанной длины
  *
  * @todo Реализовать StringCut::afterLastSubstr() - Обрежет строку после указанной подстроки (или подстрок)
  * @todo Реализовать StringCut::fromBetweenSubstr() - Обрежет строку между указанными подстроками

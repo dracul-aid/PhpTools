@@ -18,8 +18,8 @@ use DraculAid\PhpTools\tests\Strings\ArrayAndStringToolsTest;
  * Преобразование массивов в строку и обратно
  *
  * Оглавление
- * <br>{@see ArrayAndStringTools::arrayToStringWithoutEmpty()} Преобразует массив в строку, аналогично PHP функции {@see implode()} но с игнорированием пустых значений
- * <br>{@see ArrayAndStringTools::subStringToArray()} Разбивает строку на подстроки указанной длины и помещает все подстроки в массив
+ * <br>- {@see ArrayAndStringTools::arrayToStringWithoutEmpty()} - Преобразует массив в строку, аналогично PHP функции {@see implode()} но с игнорированием пустых значений
+ * <br>- {@see ArrayAndStringTools::subStringToArray()} - Разбивает строку на подстроки указанной длины и помещает все подстроки в массив
  *
  * Test cases for class {@see ArrayAndStringToolsTest}
  *

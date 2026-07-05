@@ -21,17 +21,17 @@ use DraculAid\PhpTools\tests\Code\ScriptLoaderTest;
  *
  * Оглавление
  * <br>--- Изолированный вызов
- * <br>{@see ScriptLoader::exeRequire()} с помощью `require()`
- * <br>{@see ScriptLoader::exeRequireOnce()} с помощью `require_once()`
- * <br>{@see ScriptLoader::exeInclude()} с помощью `include()`
- * <br>{@see ScriptLoader::exeIncludeOnce()} с помощью `include_once()`
- * <br>{@see ScriptLoader::exeEval()} с помощью `eval()`
+ * <br>- {@see ScriptLoader::exeRequire()} - с помощью `require()`
+ * <br>- {@see ScriptLoader::exeRequireOnce()} - с помощью `require_once()`
+ * <br>- {@see ScriptLoader::exeInclude()} - с помощью `include()`
+ * <br>- {@see ScriptLoader::exeIncludeOnce()} - с помощью `include_once()`
+ * <br>- {@see ScriptLoader::exeEval()} - с помощью `eval()`
  * <br>--- Изолированный вызов и перехват потока вывода
- * <br>{@see ScriptLoader::obRequire()} с помощью `require()`
- * <br>{@see ScriptLoader::obRequireOnce()} с помощью `require_once()`
- * <br>{@see ScriptLoader::obInclude()} с помощью `include()`
- * <br>{@see ScriptLoader::obIncludeOnce()} с помощью `include_once()`
- * <br>{@see ScriptLoader::obEval()} с помощью `eval()`
+ * <br>- {@see ScriptLoader::obRequire()} - с помощью `require()`
+ * <br>- {@see ScriptLoader::obRequireOnce()} - с помощью `require_once()`
+ * <br>- {@see ScriptLoader::obInclude()} - с помощью `include()`
+ * <br>- {@see ScriptLoader::obIncludeOnce()} - с помощью `include_once()`
+ * <br>- {@see ScriptLoader::obEval()} - с помощью `eval()`
  *
  * Test cases for class {@see ScriptLoaderTest}
  *

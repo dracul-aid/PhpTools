@@ -17,18 +17,18 @@ use DraculAid\PhpTools\tests\DateTime\Dictionary\TimestampConstantsTest;
  * Константы связанные с таймштампами
  *
  * Оглавление:
- * <br>{@see TimestampConstants::YEAR_SEC} - Кол-во секунд в году (365 дней)
- * <br>{@see TimestampConstants::YEAR_LEAP_SEC} - Кол-во секунд в високосном году (366 дней)
- * <br>{@see TimestampConstants::MON_28_SEC} - Кол-во секунд в феврале (28 дней)
- * <br>{@see TimestampConstants::MON_29_SEC} - Кол-во секунд в феврале високосного года (29 дней)
- * <br>{@see TimestampConstants::MON_30_SEC} - Кол-во секунд в месяце (30 дней)
- * <br>{@see TimestampConstants::MON_31_SEC} - Кол-во секунд в месяце (31 дней)
- * <br>{@see TimestampConstants::WEEK_SEC} - Кол-во секунд в неделе
- * <br>{@see TimestampConstants::DAY_SEC} - Кол-во секунд в сутках
- * <br>{@see TimestampConstants::HOUR_SEC} - Кол-во секунд в часе
- * <br>{@see TimestampConstants::MINUTE_SEC} - Кол-во секунд в минуте
+ * <br>- {@see TimestampConstants::YEAR_SEC} - Кол-во секунд в году (365 дней)
+ * <br>- {@see TimestampConstants::YEAR_LEAP_SEC} - Кол-во секунд в високосном году (366 дней)
+ * <br>- {@see TimestampConstants::MON_28_SEC} - Кол-во секунд в феврале (28 дней)
+ * <br>- {@see TimestampConstants::MON_29_SEC} - Кол-во секунд в феврале високосного года (29 дней)
+ * <br>- {@see TimestampConstants::MON_30_SEC} - Кол-во секунд в месяце (30 дней)
+ * <br>- {@see TimestampConstants::MON_31_SEC} - Кол-во секунд в месяце (31 дней)
+ * <br>- {@see TimestampConstants::WEEK_SEC} - Кол-во секунд в неделе
+ * <br>- {@see TimestampConstants::DAY_SEC} - Кол-во секунд в сутках
+ * <br>- {@see TimestampConstants::HOUR_SEC} - Кол-во секунд в часе
+ * <br>- {@see TimestampConstants::MINUTE_SEC} - Кол-во секунд в минуте
  * <br>* * *
- * <br>{@see TimestampConstants::MILLISECOND_MODIFICATION} - Поправка для приведения таймштампа в JS формат (1 сек = 1000 миллисекунд)
+ * <br>- {@see TimestampConstants::MILLISECOND_MODIFICATION} - Поправка для приведения таймштампа в JS формат (1 сек = 1000 миллисекунд)
  *
  * Test cases for class {@see TimestampConstantsTest}
  *

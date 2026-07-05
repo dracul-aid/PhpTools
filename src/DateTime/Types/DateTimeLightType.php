@@ -19,23 +19,23 @@ use DraculAid\PhpTools\DateTime\Dictionary\DateTimeFormats;
  * Минималистичный объект для хранения даты-времени
  *
  * Оглавление:
- * <br> {@see DateTimeLightType::getTimestamp()} Вернет таймштамп установленной даты-времени
- * <br> {@see DateTimeLightType::format()} Вернет форматированную строку с представлением даты-времени
+ * <br>- {@see DateTimeLightType::getTimestamp()} - Вернет таймштамп установленной даты-времени
+ * <br>- {@see DateTimeLightType::format()} - Вернет форматированную строку с представлением даты-времени
  * <br>--- Доступ через свойства (запись и чтение)
- * <br> {@see DateTimeLightType::$year} Год (например, 2018)
- * <br> {@see DateTimeLightType::$mon} Номер месяца (1 - 12)
- * <br> {@see DateTimeLightType::$day} Номер дня месяца (1 - 31)
- * <br> {@see DateTimeLightType::$hour} Час (0 - 23)
- * <br> {@see DateTimeLightType::$minute} Минута (0 - 60)
- * <br> {@see DateTimeLightType::$second} Секунда (0 - 60)
+ * <br>- {@see DateTimeLightType::$year} - Год (например, 2018)
+ * <br>- {@see DateTimeLightType::$mon} - Номер месяца (1 - 12)
+ * <br>- {@see DateTimeLightType::$day} - Номер дня месяца (1 - 31)
+ * <br>- {@see DateTimeLightType::$hour} - Час (0 - 23)
+ * <br>- {@see DateTimeLightType::$minute} - Минута (0 - 60)
+ * <br>- {@see DateTimeLightType::$second} - Секунда (0 - 60)
  * <br>--- Смена даты-времени
- * <br> {@see DateTimeLightType::setDate()} Установит новую дату-время
- * <br> {@see DateTimeLightType::setYear()} Год (например, 2018)
- * <br> {@see DateTimeLightType::setMon()} Номер месяца (1 - 12)
- * <br> {@see DateTimeLightType::setDay()} Номер дня месяца (1 - 31)
- * <br> {@see DateTimeLightType::setHour()} Час (0 - 23)
- * <br> {@see DateTimeLightType::setMinutes()} Минута (0 - 60)
- * <br> {@see DateTimeLightType::setSecond()} Секунда (0 - 60)
+ * <br>- {@see DateTimeLightType::setDate()} - Установит новую дату-время
+ * <br>- {@see DateTimeLightType::setYear()} - Год (например, 2018)
+ * <br>- {@see DateTimeLightType::setMon()} - Номер месяца (1 - 12)
+ * <br>- {@see DateTimeLightType::setDay()} - Номер дня месяца (1 - 31)
+ * <br>- {@see DateTimeLightType::setHour()} - Час (0 - 23)
+ * <br>- {@see DateTimeLightType::setMinutes()} - Минута (0 - 60)
+ * <br>- {@see DateTimeLightType::setSecond()} - Секунда (0 - 60)
  *
  * @property int $year Год (например, 2018)
  * @property int $mon Номер месяца (1 - 12)

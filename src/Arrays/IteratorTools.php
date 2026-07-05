@@ -8,8 +8,8 @@ use DraculAid\PhpTools\Arrays\Objects\IteratorSafeRunner;
  * Набор инструментов для работы с итераторами (массивы, перебор объектов, а также {@see \Traversable})
  *
  * Оглавление:
- * <br>{@see IteratorTools::count()} Вернет кол-во элементов в перебираемом
- * <br>{@see IteratorTools::iterateAndRewind()} Переберет перебираемое, если надо, перемотав его в начало после перебора
+ * <br>- {@see IteratorTools::count()} - Вернет кол-во элементов в перебираемом
+ * <br>- {@see IteratorTools::iterateAndRewind()} - Переберет перебираемое, если надо, перемотав его в начало после перебора
  *
  * @since 1.2.0
  */

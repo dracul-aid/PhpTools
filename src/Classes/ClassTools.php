@@ -19,14 +19,14 @@ use DraculAid\PhpTools\tests\Classes\ClassToolsTest;
  * Статический класс с функциями, для работы с классами
  *
  * Оглавление:
- * <br>{@see ClassTools::createObject()} - Создаст объект и установит в него свойства
- * <br>{@see ClassTools::isLoad()} - Проверит, данное имя является загруженным классом, трейтом, перечислением или интерфейсом
- * <br>{@see ClassTools::isInternal()} - Проверит, является ли указанный класс встроенным в PHP классом
- * <br>{@see ClassTools::isAsArray()} - Проверит, реализует ли класс (объект) полный доступ "как к массиву"
+ * <br>- {@see ClassTools::createObject()} - Создаст объект и установит в него свойства
+ * <br>- {@see ClassTools::isLoad()} - Проверит, данное имя является загруженным классом, трейтом, перечислением или интерфейсом
+ * <br>- {@see ClassTools::isInternal()} - Проверит, является ли указанный класс встроенным в PHP классом
+ * <br>- {@see ClassTools::isAsArray()} - Проверит, реализует ли класс (объект) полный доступ "как к массиву"
  * <br>--- Имя класса и его пространство имен
- * <br>{@see ClassTools::getNamespace()} - Вернет пространство имен класса
- * <br>{@see ClassTools::getNameWithoutNamespace()} - Вернет имя класса, без пространства имен
- * <br>{@see ClassTools::getNameAndNamespace()} - Вернет имя класса и его пространство имен
+ * <br>- {@see ClassTools::getNamespace()} - Вернет пространство имен класса
+ * <br>- {@see ClassTools::getNameWithoutNamespace()} - Вернет имя класса, без пространства имен
+ * <br>- {@see ClassTools::getNameAndNamespace()} - Вернет имя класса и его пространство имен
  *
  * Test cases for class {@see ClassToolsTest}
  *

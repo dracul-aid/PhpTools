@@ -18,21 +18,21 @@ use DraculAid\PhpTools\tests\DateTime\Dictionary\DaysDictionaryTest;
  *
  * Оглавление
  * <br>--- Содержимое дня
- * <br>{@see DaysDictionary::HOURS_IN_DAY} Кол-во часов в сутках
- * <br>{@see DaysDictionary::MINUTES_IN_DAY} Кол-во минут в сутках
- * <br>{@see DaysDictionary::SECONDS_IN_DAY} Кол-во секунд в сутках
+ * <br>- {@see DaysDictionary::HOURS_IN_DAY} - Кол-во часов в сутках
+ * <br>- {@see DaysDictionary::MINUTES_IN_DAY} - Кол-во минут в сутках
+ * <br>- {@see DaysDictionary::SECONDS_IN_DAY} - Кол-во секунд в сутках
  * <br>--- Номера дней недели
- * <br>{@see DaysDictionary::PHP_FIRST_DAY_NUMBER_IN_USA} Номер первого дня в форматах даны США (Воскресенье)
- * <br>{@see DaysDictionary::PHP_FIRST_DAY_NUMBER} Номер первого дня в международном формате (Понедельник)
- * <br>{@see DaysDictionary::PHP_LAST_DAY_NUMBER_IN_USA} Номер последнего дня в неделе в форматах даны США (Суббота)
- * <br>{@see DaysDictionary::GETDATE_DAY_TO_NUMBER_DAY} Преобразование номеров дней недели из формата функции {@see getdate()}
- * <br>Номера дней недели в международном формате {@see DaysDictionary::DAY_1} - {@see DaysDictionary::DAY_7}
- * <br>Номера дней недели в формате PHP функции {@see getdate()} {@see DaysDictionary::GETDATE_DAY_1} - {@see DaysDictionary::GETDATE_DAY_7}
+ * <br>- {@see DaysDictionary::PHP_FIRST_DAY_NUMBER_IN_USA} - Номер первого дня в форматах даны США (Воскресенье)
+ * <br>- {@see DaysDictionary::PHP_FIRST_DAY_NUMBER} - Номер первого дня в международном формате (Понедельник)
+ * <br>- {@see DaysDictionary::PHP_LAST_DAY_NUMBER_IN_USA} - Номер последнего дня в неделе в форматах даны США (Суббота)
+ * <br>- {@see DaysDictionary::GETDATE_DAY_TO_NUMBER_DAY} - Преобразование номеров дней недели из формата функции {@see getdate()}
+ * <br>- Номера дней недели в международном формате {@see DaysDictionary::DAY_1} - {@see DaysDictionary::DAY_7}
+ * <br>- Номера дней недели в формате PHP функции {@see getdate()} {@see DaysDictionary::GETDATE_DAY_1} - {@see DaysDictionary::GETDATE_DAY_7}
  * <br>--- Буквенные коды дней недели
- * <br>{@see DaysDictionary::getDayLabel()} Вернет буквенный код дня или FALSE если номер дня неверный
- * <br>{@see DaysDictionary::getDayLabelOrException()} Вернет буквенный код дня или выбросит исключение}
- * <br>{@see DaysDictionary::CHAR2_LIST} Список 2 буквенных кодов дней недели
- * <br>{@see DaysDictionary::CHAR3_LIST} Список 3 буквенных кодов дней недели
+ * <br>- {@see DaysDictionary::getDayLabel()} - Вернет буквенный код дня или FALSE если номер дня неверный
+ * <br>- {@see DaysDictionary::getDayLabelOrException()} - Вернет буквенный код дня или выбросит исключение}
+ * <br>- {@see DaysDictionary::CHAR2_LIST} - Список 2 буквенных кодов дней недели
+ * <br>- {@see DaysDictionary::CHAR3_LIST} - Список 3 буквенных кодов дней недели
  *
  * Test cases for class {@see DaysDictionaryTest}
  *

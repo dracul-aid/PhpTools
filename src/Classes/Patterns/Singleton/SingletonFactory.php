@@ -18,11 +18,11 @@ use DraculAid\PhpTools\tests\Classes\Patterns\Singleton\SingletonFactoryTest;
  * Позволяет работать с любым классом, как с классом-одиночкой
  *
  * Оглавление:
- * <br>{@see SingletonFactory::createObject()} - Создаст объект и установит в него свойства
- * <br>{@see SingletonFactory::createObjectForIndex()} - Создаст уникальный объект для строкового индекса
+ * <br>- {@see SingletonFactory::createObject()} - Создаст объект и установит в него свойства
+ * <br>- {@see SingletonFactory::createObjectForIndex()} - Создаст уникальный объект для строкового индекса
  * <br>* * *
- * <br>{@see SingletonFactory::$singletonObjects} - Созданные синглтон-объекты
- * <br>{@see SingletonFactory::$uniqKeyObjects} - Созданные синглтон-объекты
+ * <br>- {@see SingletonFactory::$singletonObjects} - Созданные синглтон-объекты
+ * <br>- {@see SingletonFactory::$uniqKeyObjects} - Созданные синглтон-объекты
  *
  * Test cases for class {@see SingletonFactoryTest}
  *

@@ -20,33 +20,33 @@ use DraculAid\PhpTools\tests\DateTime\NowTimeGetterTest;
  * Статический класс, с набором функций, для получения частей текущей даты-времени
  *
  * Оглавление:
- * <br> {@see NowTimeGetter::getClock()} - Вернет текущие часы
- * <br> {@see NowTimeGetter::setClock()} - Заменит текущие часы
+ * <br>- {@see NowTimeGetter::getClock()} - Вернет текущие часы
+ * <br>- {@see NowTimeGetter::setClock()} - Заменит текущие часы
  * <br>--- SQL форматы
- * <br> {@see NowTimeGetter::sqlDate()} - SQL дата (ДДДД-ММ-ДД)
- * <br> {@see NowTimeGetter::sqlTime()} - SQL время (ЧЧ:ММ:СС)
- * <br> {@see NowTimeGetter::sqlDateTime()} - SQL дата-время DATETIME (ДДДД-ММ-ДД ЧЧ:ММ:СС)
+ * <br>- {@see NowTimeGetter::sqlDate()} - SQL дата (ДДДД-ММ-ДД)
+ * <br>- {@see NowTimeGetter::sqlTime()} - SQL время (ЧЧ:ММ:СС)
+ * <br>- {@see NowTimeGetter::sqlDateTime()} - SQL дата-время DATETIME (ДДДД-ММ-ДД ЧЧ:ММ:СС)
  * <br>--- Год
- * <br> {@see NowTimeGetter::getYear()} - Год (например, 2018)
- * <br> {@see NowTimeGetter::getYearDay()} - День года (1 - 366)
- * <br> {@see NowTimeGetter::getYearDay2()} - День года с ведущим нулем (001 - 366)
+ * <br>- {@see NowTimeGetter::getYear()} - Год (например, 2018)
+ * <br>- {@see NowTimeGetter::getYearDay()} - День года (1 - 366)
+ * <br>- {@see NowTimeGetter::getYearDay2()} - День года с ведущим нулем (001 - 366)
  * <br>--- Месяц
- * <br> {@see NowTimeGetter::getMon()} - Месяца (1 - 12)
- * <br> {@see NowTimeGetter::getMon2()} - Месяца с ведущим нулем (01 - 12)
- * <br> {@see NowTimeGetter::getMonDay()} - Текущий день месяца (1 - 31)
- * <br> {@see NowTimeGetter::getMonDay2()} - Текущий день месяца с ведущим нулем (01 - 31)
+ * <br>- {@see NowTimeGetter::getMon()} - Месяца (1 - 12)
+ * <br>- {@see NowTimeGetter::getMon2()} - Месяца с ведущим нулем (01 - 12)
+ * <br>- {@see NowTimeGetter::getMonDay()} - Текущий день месяца (1 - 31)
+ * <br>- {@see NowTimeGetter::getMonDay2()} - Текущий день месяца с ведущим нулем (01 - 31)
  * <br>--- Неделя
- * <br> {@see NowTimeGetter::getWeek()} - Неделя (01 - 52)
- * <br> {@see NowTimeGetter::getWeek2()} - Неделя с ведущим нулем (01 - 52)
- * <br> {@see NowTimeGetter::getWeekDay()} - День недели (1 - понедельник ... 7 - воскресенье)
- * <br> {@see NowTimeGetter::getWeekDayUSA()} - День недели для США (0 - воскресенье, 1 - понедельник ... 6 - суббота)
+ * <br>- {@see NowTimeGetter::getWeek()} - Неделя (01 - 52)
+ * <br>- {@see NowTimeGetter::getWeek2()} - Неделя с ведущим нулем (01 - 52)
+ * <br>- {@see NowTimeGetter::getWeekDay()} - День недели (1 - понедельник ... 7 - воскресенье)
+ * <br>- {@see NowTimeGetter::getWeekDayUSA()} - День недели для США (0 - воскресенье, 1 - понедельник ... 6 - суббота)
  * <br>--- Время
- * <br> {@see NowTimeGetter::getHour()} - Час (0 - 23)
- * <br> {@see NowTimeGetter::getHour2()} - Час с ведущим 0-ом (00 - 23)
- * <br> {@see NowTimeGetter::getMinute()} - Минута (0 - 59)
- * <br> {@see NowTimeGetter::getMinute2()} - Минута с ведущим 0-ом (00 - 59)
- * <br> {@see NowTimeGetter::getSecond()} - Секунда (0 - 59)
- * <br> {@see NowTimeGetter::getSecond2()} - Секунда с ведущим 0-ом (00 - 59)
+ * <br>- {@see NowTimeGetter::getHour()} - Час (0 - 23)
+ * <br>- {@see NowTimeGetter::getHour2()} - Час с ведущим 0-ом (00 - 23)
+ * <br>- {@see NowTimeGetter::getMinute()} - Минута (0 - 59)
+ * <br>- {@see NowTimeGetter::getMinute2()} - Минута с ведущим 0-ом (00 - 59)
+ * <br>- {@see NowTimeGetter::getSecond()} - Секунда (0 - 59)
+ * <br>- {@see NowTimeGetter::getSecond2()} - Секунда с ведущим 0-ом (00 - 59)
  *
  * Test cases for class {@see NowTimeGetterTest}
  *

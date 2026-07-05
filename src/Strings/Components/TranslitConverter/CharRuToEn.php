@@ -24,8 +24,8 @@ use DraculAid\PhpTools\tests\Strings\Components\TranslitConverter\CharRuToEnTest
  * <br>{@see TranslitConverter} Класс, для работы с транслитом
  *
  * Оглавление
- * <br>{@see CharRuToEn::LIST} Соответствия различных символов юникода (включая кириллицу) и латиницы
- * <br>{@see CharRuToEn::CYRILLIC_TU_EN} Соответствия символов кириллицы и латиницы
+ * <br>- {@see CharRuToEn::LIST} - Соответствия различных символов юникода (включая кириллицу) и латиницы
+ * <br>- {@see CharRuToEn::CYRILLIC_TU_EN} - Соответствия символов кириллицы и латиницы
  *
  * Test cases for class {@see CharRuToEnTest}
  *

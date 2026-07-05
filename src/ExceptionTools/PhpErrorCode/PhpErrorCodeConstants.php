@@ -18,14 +18,14 @@ namespace DraculAid\PhpTools\ExceptionTools\PhpErrorCode;
  * <br>- {@see PhpErrorCodeRuDescriptionsConstants} Описание и названия ошибок на русском языке
  *
  * Оглавление:
- * <br>- {@see PhpErrorCodeConstants::NAMES} Список названий констант ошибок
- * <br>- {@see PhpErrorCodeConstants::ALL} Полный список всех типов PHP ошибок
+ * <br>- {@see PhpErrorCodeConstants::NAMES} - Список названий констант ошибок
+ * <br>- {@see PhpErrorCodeConstants::ALL} - Полный список всех типов PHP ошибок
  * <br>--- Списки типов ошибок:
- * <br>- {@see PhpErrorCodeConstants::WARNINGS_AND_NOTICES} Список Предупреждений (Ошибок НЕ приводящих к прекращению выполнения скрипта)
- * <br>- {@see PhpErrorCodeConstants::FATAL_ERRORS} Список ошибок, приводящих к прекращению выполнения скрипта
- * <br>- {@see PhpErrorCodeConstants::SCRIPT_ERRORS} Список ошибок связанный с непосредственным выполнением кода
- * <br>- {@see PhpErrorCodeConstants::CORE_ERRORS} Список ошибок относящихся к ядру PHP (т.е. не связанных с кодом)
- * <br>- {@see PhpErrorCodeConstants::CODE_ERRORS} Список ошибок связанных с компиляцией кода
+ * <br>- {@see PhpErrorCodeConstants::WARNINGS_AND_NOTICES} - Список Предупреждений (Ошибок НЕ приводящих к прекращению выполнения скрипта)
+ * <br>- {@see PhpErrorCodeConstants::FATAL_ERRORS} - Список ошибок, приводящих к прекращению выполнения скрипта
+ * <br>- {@see PhpErrorCodeConstants::SCRIPT_ERRORS} - Список ошибок связанный с непосредственным выполнением кода
+ * <br>- {@see PhpErrorCodeConstants::CORE_ERRORS} - Список ошибок относящихся к ядру PHP (т.е. не связанных с кодом)
+ * <br>- {@see PhpErrorCodeConstants::CODE_ERRORS} - Список ошибок связанных с компиляцией кода
  * <br>- {@see PhpErrorCodeConstants::DEPRECATED_ERRORS} - Ошибки связанные с использованием "устаревшего" кода
  * <br>- {@see PhpErrorCodeConstants::USER_ERRORS} - "Пользовательские" ошибки
  *

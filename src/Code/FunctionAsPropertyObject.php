@@ -20,11 +20,11 @@ use DraculAid\PhpTools\tests\Code\FunctionAsPropertyObjectTest;
  * методов классов, а также языковых конструкций PHP
  *
  * Оглавление:
- * <br>{@see FunctionAsPropertyObject::getOrCreate()} Вернет (если надо создаст) объект, хранящий функцию
- * <br>{@see self::setFunction()} Заменит установленную функцию
- * <br>{@see self::call()} Произведет вызов
- * <br>{@see self::callSafe()} Произведет защищенный вызов
- * <br>{@see self::getFunction()} Вернет установленную функцию
+ * <br>- {@see FunctionAsPropertyObject::getOrCreate()} - Вернет (если надо создаст) объект, хранящий функцию
+ * <br>- {@see self::setFunction()} - Заменит установленную функцию
+ * <br>- {@see self::call()} - Произведет вызов
+ * <br>- {@see self::callSafe()} - Произведет защищенный вызов
+ * <br>- {@see self::getFunction()} - Вернет установленную функцию
  *
  * Test cases for class {@see FunctionAsPropertyObjectTest}
  *

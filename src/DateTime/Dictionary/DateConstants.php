@@ -18,18 +18,18 @@ use DraculAid\PhpTools\tests\DateTime\Dictionary\DateConstantsTest;
  *
  * Оглавление:
  * <br>--- Размеры элементов даты (в днях)
- * <br>{@see DateConstants::YEAR_DAYS} Кол-во дней в году (365, не високосный год)
- * <br>{@see DateConstants::YEAR_LEAP_DAYS} Кол-во дней в високосном году (366)
- * <br>{@see DateConstants::MON_31} 31 день в месяце (Январь, Март, Июнь, Август, Октябрь, Декабрь)
- * <br>{@see DateConstants::MON_30} 30 дней в месяце (Апрель, Июль, Сентябрь, Ноябрь)
- * <br>{@see DateConstants::MON_29} Кол-во дней в Феврале високосного года (29 дней)
- * <br>{@see DateConstants::MON_28} Кол-во дней в Феврале (28 дней)
- * <br>{@see DateConstants::WEEK_DAYS} Кол-во дней в неделе
+ * <br>- {@see DateConstants::YEAR_DAYS} - Кол-во дней в году (365, не високосный год)
+ * <br>- {@see DateConstants::YEAR_LEAP_DAYS} - Кол-во дней в високосном году (366)
+ * <br>- {@see DateConstants::MON_31} - 31 день в месяце (Январь, Март, Июнь, Август, Октябрь, Декабрь)
+ * <br>- {@see DateConstants::MON_30} - 30 дней в месяце (Апрель, Июль, Сентябрь, Ноябрь)
+ * <br>- {@see DateConstants::MON_29} - Кол-во дней в Феврале високосного года (29 дней)
+ * <br>- {@see DateConstants::MON_28} - Кол-во дней в Феврале (28 дней)
+ * <br>- {@see DateConstants::WEEK_DAYS} - Кол-во дней в неделе
  * <br>--- Списки месяцев
- * <br>{@see DateConstants::MON_DAY_COUNT_LIST} Массив с кол-вом дней в каждом месяце
- * <br>{@see DateConstants::MON_31_DAY_LIST} Список месяцев в которых 31 День (Январь, Март, Май, Июль, Август, Октябрь, Декабрь)
- * <br>{@see DateConstants::MON_30_DAY_LIST} Список месяцев в которых 30 Дней (Апрель, Июнь, Сентябрь, Ноябрь)
- * <br>{@see DateConstants::MON_SHORT_LIST} Список коротких месяцев, т.е. 28 - 30 дней (Февраль, Апрель, Июнь, Сентябрь, Ноябрь)
+ * <br>- {@see DateConstants::MON_DAY_COUNT_LIST} - Массив с кол-вом дней в каждом месяце
+ * <br>- {@see DateConstants::MON_31_DAY_LIST} - Список месяцев в которых 31 День (Январь, Март, Май, Июль, Август, Октябрь, Декабрь)
+ * <br>- {@see DateConstants::MON_30_DAY_LIST} - Список месяцев в которых 30 Дней (Апрель, Июнь, Сентябрь, Ноябрь)
+ * <br>- {@see DateConstants::MON_SHORT_LIST} - Список коротких месяцев, т.е. 28 - 30 дней (Февраль, Апрель, Июнь, Сентябрь, Ноябрь)
  *
  * Test cases for class {@see DateConstantsTest}
  *

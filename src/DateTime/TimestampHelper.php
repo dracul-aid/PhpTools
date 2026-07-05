@@ -20,15 +20,15 @@ use DraculAid\PhpTools\tests\DateTime\TimestampHelperTest;
  * Набор функция для облегчения работы с PHP таймштампами (кол-во секунд с 1 января 1970-го года)
  *
  * <br>--- Преобразования в другие форматы
- * <br>+ {@see TimestampHelper::toJsTimestamp()} - Преобразование в JS таймштамп
- * <br>+ {@see TimestampHelper::toString()} - Преобразование в строку (устойчив к таймштампам с микросекундами)
+ * <br>{@see TimestampHelper::toJsTimestamp()} - Преобразование в JS таймштамп
+ * <br>{@see TimestampHelper::toString()} - Преобразование в строку (устойчив к таймштампам с микросекундами)
  * <br>--- Создание таймштампов
- * <br>+ {@see TimestampHelper::getTimestamp()} - Вернет таймштамп, из разного представления даты-времени
- * <br>+ {@see TimestampHelper::getYearDay()} - Определенного дня года
- * <br>+ {@see TimestampHelper::getMonDay()} - Определенного дня месяца
- * <br>+ {@see TimestampHelper::getWeekDay()} - Определенного дня недели
- * <br>+ {@see TimestampHelper::getFirstWeek()} - 1-го дня 1 недели года (полночь)
- * <br>+ {@see TimestampHelper::getdateArrayToTimestamp()} - Преобразует массив {@see getdate()} в таймштамп
+ * <br>{@see TimestampHelper::getTimestamp()} - Вернет таймштамп, из разного представления даты-времени
+ * <br>{@see TimestampHelper::getYearDay()} - Определенного дня года
+ * <br>{@see TimestampHelper::getMonDay()} - Определенного дня месяца
+ * <br>{@see TimestampHelper::getWeekDay()} - Определенного дня недели
+ * <br>{@see TimestampHelper::getFirstWeek()} - 1-го дня 1 недели года (полночь)
+ * <br>{@see TimestampHelper::getdateArrayToTimestamp()} - Преобразует массив {@see getdate()} в таймштамп
  *
  * @see DateTimeHelper Набор функий для работы с датой и временем
  * @see DateTimeObjectHelper Набор функий для работы с объектами даты и времени

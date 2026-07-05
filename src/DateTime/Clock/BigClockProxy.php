@@ -21,13 +21,13 @@ use Psr\Clock\ClockInterface;
  * Прокси класс для перехода от PSR-20 ({@see ClockInterface}) часов к {@see BigClockInterface}
  *
  * Оглавление:
- * <br>+{@see self::now()} - Вернет немутабельный объект даты времени ({@see \DateTimeImmutable})
- * <br>+{@see self::timestamp()} - Вернет таймштамп текущего времени
- * <br>+{@see self::timestampJs()} - Вернет таймштамп текущего времени в JS форматера (1 сек = 1000 мс)
- * <br>+{@see self::microtime()} - Вернет кол-во секунд и долей секунд
- * <br>+{@see self::format()} - Вернет текущую дату-время в указанном формате
- * <br>+{@see self::dateTime()} - Вернет мутабельный объект даты времени ({@see \DateTime})
- * <br>+{@see self::object()} - Вернет дату-время ввиде указанного объекта {@see \DateTimeInterface}
+ * <br>- {@see self::now()} - Вернет немутабельный объект даты времени ({@see \DateTimeImmutable})
+ * <br>- {@see self::timestamp()} - Вернет таймштамп текущего времени
+ * <br>- {@see self::timestampJs()} - Вернет таймштамп текущего времени в JS форматера (1 сек = 1000 мс)
+ * <br>- {@see self::microtime()} - Вернет кол-во секунд и долей секунд
+ * <br>- {@see self::format()} - Вернет текущую дату-время в указанном формате
+ * <br>- {@see self::dateTime()} - Вернет мутабельный объект даты времени ({@see \DateTime})
+ * <br>- {@see self::object()} - Вернет дату-время ввиде указанного объекта {@see \DateTimeInterface}
  *
  * Test cases for class {@see BigClockProxyTest}
  *

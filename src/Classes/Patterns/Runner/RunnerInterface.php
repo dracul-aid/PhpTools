@@ -20,7 +20,7 @@ namespace DraculAid\PhpTools\Classes\Patterns\Runner;
  *
  * Выполнить действие заложенное в класс, реализующие интерфейс можно вызывать как
  * <pre>
- * new (RunnerInterface())::run()
+ *     new (RunnerInterface())::run()
  * </pre>
  *
  * @since 0.6.0

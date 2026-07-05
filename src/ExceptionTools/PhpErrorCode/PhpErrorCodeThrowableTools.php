@@ -17,11 +17,11 @@ use DraculAid\PhpTools\ExceptionTools\PhpErrorCode\Errors\Interfaces\PhpCodeErro
  * Набор инструментов для работы с ошибками PHP (см {@see \Error})
  *
  * Оглавление:
- * <br>- {@see PhpErrorCodeThrowableTools::TYPE_AND_BASIC_ERROR_CLASSES} Соответствие типов ошибок и классов встроенных в PHP ошибок
- * <br>- {@see PhpErrorCodeThrowableTools::TYPE_AND_ERROR_CLASSES} Соответствие типов ошибок и классов ошибок
+ * <br>- {@see PhpErrorCodeThrowableTools::TYPE_AND_BASIC_ERROR_CLASSES} - Соответствие типов ошибок и классов встроенных в PHP ошибок
+ * <br>- {@see PhpErrorCodeThrowableTools::TYPE_AND_ERROR_CLASSES} - Соответствие типов ошибок и классов ошибок
  * <br>--- Создание объектов ошибок:
- * <br>- {@see PhpErrorCodeThrowableTools::getErrorObject()} Вернет объект ошибку, по типу ошибки
- * <br>- {@see PhpErrorCodeThrowableTools::getBasicErrorObject()} Вернет объект PHP ошибки, по типу ошибки
+ * <br>- {@see PhpErrorCodeThrowableTools::getErrorObject()} - Вернет объект ошибку, по типу ошибки
+ * <br>- {@see PhpErrorCodeThrowableTools::getBasicErrorObject()} - Вернет объект PHP ошибки, по типу ошибки
  *
  * @since 0.5.0
  */

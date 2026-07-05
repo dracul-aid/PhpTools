@@ -17,8 +17,8 @@ namespace DraculAid\PhpTools\ExceptionTools\PhpErrorCode\Descriptions;
  * См также {@see PhpErrorCodeRuDescriptionsConstants} - описание на русском языке
  *
  * Оглавление:
- * <br>- {@see PhpErrorCodeEnDescriptionsConstants::TITLES} Названия типов ошибок
- * <br>- {@see PhpErrorCodeEnDescriptionsConstants::DESCRIPTIONS} Краткое описание типов ошибок
+ * <br>- {@see PhpErrorCodeEnDescriptionsConstants::TITLES} - Названия типов ошибок
+ * <br>- {@see PhpErrorCodeEnDescriptionsConstants::DESCRIPTIONS} - Краткое описание типов ошибок
  *
  * Test cases for class {@see PhpErrorCodeDescriptionsConstantsTest}
  *

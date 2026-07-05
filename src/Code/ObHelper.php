@@ -22,10 +22,10 @@ use DraculAid\PhpTools\tests\Code\ObHelperTest;
  * @link https://www.php.net/manual/ru/ref.outcontrol.php Функии PHP для контроля вывода
  *
  * Оглавление:
- * <br>{@see ObHelper::callFunction()} Функцию
- * <br>{@see ObHelper::callWithFunctionHelper()} Функцию и языковую конструкцию
- * <br>{@see ObHelper::callNotPublicMethod()} Непубличный метод класса (в том числе и статический)
- * <br>{@see ObHelper::callMethodFromEmptyObject()} Позволяет вызвать метод "пустого объекта"
+ * <br>- {@see ObHelper::callFunction()} - Функцию
+ * <br>- {@see ObHelper::callWithFunctionHelper()} - Функцию и языковую конструкцию
+ * <br>- {@see ObHelper::callNotPublicMethod()} - Непубличный метод класса (в том числе и статический)
+ * <br>- {@see ObHelper::callMethodFromEmptyObject()} - Позволяет вызвать метод "пустого объекта"
  *
  * Test cases for class {@see ObHelperTest}
  *

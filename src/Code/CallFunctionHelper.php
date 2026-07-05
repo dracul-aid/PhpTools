@@ -23,13 +23,13 @@ use DraculAid\PhpTools\tests\Code\CallFunctionHelperTest;
  * 2. Позволяет вызывать функции, передавая в них больше аргументов, чем готова принять функция
  *
  * Оглавление
- * <br>{@see CallFunctionHelper::STRUCTURES} Список структур, которые можно вызвать через {@see CallFunctionHelper::exe()}
- * <br>{@see CallFunctionHelper::exe()} Вызовет функцию или языковую конструкцию
- * <br>{@see CallFunctionHelper::callMethodFromEmptyObject()} Позволяет вызвать метод класса (объект для вызова будет создан без вызова конструктора)
- * <br>{@see CallFunctionHelper::isStructures()} Проверяет переданное значение, является оно языковой конструкцией или нет
- * <br>{@see CallFunctionHelper::isClassCallable()} Проверит, "вызываемое" является вызовом метода или нет
- * <br>{@see CallFunctionHelper::isCallable()} Проверяет, может ли переданная строка (иное `callable`) быть вызвано как "функция"
- * <br>{@see CallFunctionHelper::getReflectionForCallable()} Вернет рефлексию для "Вызываемого", определив чем оно является, методом или функцией
+ * <br>- {@see CallFunctionHelper::STRUCTURES} - Список структур, которые можно вызвать через {@see CallFunctionHelper::exe()}
+ * <br>- {@see CallFunctionHelper::exe()} - Вызовет функцию или языковую конструкцию
+ * <br>- {@see CallFunctionHelper::callMethodFromEmptyObject()} - Позволяет вызвать метод класса (объект для вызова будет создан без вызова конструктора)
+ * <br>- {@see CallFunctionHelper::isStructures()} - Проверяет переданное значение, является оно языковой конструкцией или нет
+ * <br>- {@see CallFunctionHelper::isClassCallable()} - Проверит, "вызываемое" является вызовом метода или нет
+ * <br>- {@see CallFunctionHelper::isCallable()} - Проверяет, может ли переданная строка (иное `callable`) быть вызвано как "функция"
+ * <br>- {@see CallFunctionHelper::getReflectionForCallable()} - Вернет рефлексию для "Вызываемого", определив чем оно является, методом или функцией
  *
  * Test cases for class {@see CallFunctionHelperTest}
  *

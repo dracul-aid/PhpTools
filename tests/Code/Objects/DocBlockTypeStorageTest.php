@@ -9,26 +9,28 @@
  * file that was distributed with this source code.
  */
 
-namespace DraculAid\PhpTools\tests\Code;
+namespace DraculAid\PhpTools\tests\Code\Objects;
 
 use DraculAid\PhpTools\Classes\ClassNotPublicManager;
-use DraculAid\PhpTools\Code\DocTypeObject;
+use DraculAid\PhpTools\Code\Objects\DocBlockTypeStorage;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for {@covers DocTypeObject}
+ * Test for {@covers DocBlockTypeStorage}
  *
- * @run php tests/run.php tests/Code/CodeTypeObjectTest.php
- *
- * @deprecated Устарел с 1.4.0, будет удален не ранее v2.0.0
+ * @run php tests/run.php tests/Code/Objects/DocBlockTypeStorageTest.php
  */
-class CodeTypeObjectTest extends TestCase
+class DocBlockTypeStorageTest extends TestCase
 {
     public function testRun(): void
     {
+        $testFunctionCreateFromPhp = DocBlockTypeStorage::createFromPhp(...);
+        $testFunctionCreateFromSql = DocBlockTypeStorage::createFromSql(...);
+        $testFunctionCreateFromDocBlock = DocBlockTypeStorage::createFromDocBlock(...);
+
         // * * * PHP типы
 
-        $testObj = DocTypeObject::createFromPhp('int|float');
+        $testObj = $testFunctionCreateFromPhp('int|float');
         self::assertCount(2, array_keys(ClassNotPublicManager::readProperty($testObj, 'types')));
         self::assertTrue($testObj->isWithType('int'));
         self::assertTrue($testObj->isWithType('float'));
@@ -36,7 +38,7 @@ class CodeTypeObjectTest extends TestCase
 
         // * * * DocBlock типы
 
-        $testObj = DocTypeObject::createFromDocBlock('integer|double|str|boolean');
+        $testObj = $testFunctionCreateFromDocBlock('integer|double|str|boolean');
         self::assertCount(4, array_keys(ClassNotPublicManager::readProperty($testObj, 'types')));
         self::assertTrue($testObj->isWithType('int'));
         self::assertTrue($testObj->isWithType('float'));
@@ -47,11 +49,11 @@ class CodeTypeObjectTest extends TestCase
 
         // * * * SQL типы
 
-        $testObj = DocTypeObject::createFromSql('tinyint', false);
+        $testObj = $testFunctionCreateFromSql('tinyint', false);
         self::assertCount(1, array_keys(ClassNotPublicManager::readProperty($testObj, 'types')));
         self::assertTrue($testObj->isWithType('int'));
 
-        $testObj = DocTypeObject::createFromSql('smallint', true);
+        $testObj = $testFunctionCreateFromSql('smallint', true);
         self::assertCount(2, array_keys(ClassNotPublicManager::readProperty($testObj, 'types')));
         self::assertTrue($testObj->isWithType('int'));
         self::assertTrue($testObj->isWithType('null'));
@@ -60,34 +62,34 @@ class CodeTypeObjectTest extends TestCase
 
         // * * * Проверки типов
 
-        $testObj = DocTypeObject::createFromPhp('string');
+        $testObj = $testFunctionCreateFromPhp('string');
         self::assertFalse($testObj->isWithBool());
         self::assertFalse($testObj->isWithNull());
         self::assertFalse($testObj->isWithNumber());
         self::assertFalse($testObj->isWithType('int'));
         self::assertTrue($testObj->isWithType('string'));
 
-        $testObj = DocTypeObject::createFromPhp('bool');
+        $testObj = $testFunctionCreateFromPhp('bool');
         self::assertTrue($testObj->isWithBool());
         self::assertFalse($testObj->isWithNull());
         self::assertFalse($testObj->isWithNumber());
 
-        $testObj = DocTypeObject::createFromPhp('false');
+        $testObj = $testFunctionCreateFromPhp('false');
         self::assertTrue($testObj->isWithBool());
         self::assertFalse($testObj->isWithNull());
         self::assertFalse($testObj->isWithNumber());
 
-        $testObj = DocTypeObject::createFromPhp('true');
+        $testObj = $testFunctionCreateFromPhp('true');
         self::assertTrue($testObj->isWithBool());
         self::assertFalse($testObj->isWithNull());
         self::assertFalse($testObj->isWithNumber());
 
-        $testObj = DocTypeObject::createFromPhp('int');
+        $testObj = $testFunctionCreateFromPhp('int');
         self::assertFalse($testObj->isWithBool());
         self::assertFalse($testObj->isWithNull());
         self::assertTrue($testObj->isWithNumber());
 
-        $testObj = DocTypeObject::createFromPhp('float');
+        $testObj = $testFunctionCreateFromPhp('float');
         self::assertFalse($testObj->isWithBool());
         self::assertFalse($testObj->isWithNull());
         self::assertTrue($testObj->isWithNumber());

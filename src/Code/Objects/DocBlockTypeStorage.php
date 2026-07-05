@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace DraculAid\PhpTools\Code;
+namespace DraculAid\PhpTools\Code\Objects;
 
-use DraculAid\PhpTools\tests\Code\CodeTypeObjectTest;
+use DraculAid\PhpTools\tests\Code\Objects\DocBlockTypeStorageTest;
 
 /**
  * Класс, для хранения типов данных (совместим с DocBlock/PhpBlock)
@@ -21,9 +21,9 @@ use DraculAid\PhpTools\tests\Code\CodeTypeObjectTest;
  *
  * Оглавление
  * <br>--- Создание объекта
- * <br>{@see CodeTypeObject::createFromPhp()} Создает с переданными PHP типами
- * <br>{@see CodeTypeObject::createFromSql()} Создает с переданным SQL типом
- * <br>{@see CodeTypeObject::createFromDocBlock()} Установит тип(ы) данных принятых в DocBlock / PhpDoc
+ * <br>{@see DocBlockTypeStorage::createFromPhp()} Создает с переданными PHP типами
+ * <br>{@see DocBlockTypeStorage::createFromSql()} Создает с переданным SQL типом
+ * <br>{@see DocBlockTypeStorage::createFromDocBlock()} Установит тип(ы) данных принятых в DocBlock / PhpDoc
  * <br>--- Установка типов
  * <br>{@see self::set()} Установит тип данных
  * <br>{@see self::setFromSql()} Установит тип по SQL типу
@@ -37,15 +37,15 @@ use DraculAid\PhpTools\tests\Code\CodeTypeObjectTest;
  * <br>{@see self::getIterator()} Позволит перебрать все типы
  * <br>{@see self::getType()} Вернет все типы ввиде массива
  *
- * @method static CodeTypeObject createFromPhp(string|string[] $type) Создает с переданными PHP типами
- * @method static CodeTypeObject createFromSql(string $type, bool $isNull) Создает с переданным SQL типом
- * @method static CodeTypeObject createFromDocBlock(string|string[] $type) Создает с переданными DocBlock типами
+ * @method static DocBlockTypeStorage createFromPhp(string|string[] $type) Создает с переданными PHP типами
+ * @method static DocBlockTypeStorage createFromSql(string $type, bool $isNull) Создает с переданным SQL типом
+ * @method static DocBlockTypeStorage createFromDocBlock(string|string[] $type) Создает с переданными DocBlock типами
  *
- * Test cases for class {@see CodeTypeObjectTest}
+ * Test cases for class {@see DocBlockTypeStorageTest}
  *
- * @since 0.3.0
+ * @since 1.4.0
  */
-class CodeTypeObject implements \IteratorAggregate, \Stringable
+class DocBlockTypeStorage implements \IteratorAggregate, \Stringable
 {
     /**
      * Хранит список типов

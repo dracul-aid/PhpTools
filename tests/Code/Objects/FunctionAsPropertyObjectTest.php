@@ -9,18 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace DraculAid\PhpTools\tests\Code;
+namespace DraculAid\PhpTools\tests\Code\Objects;
 
-use DraculAid\PhpTools\Code\FunctionAsPropertyObject;
+use DraculAid\PhpTools\Code\Objects\FunctionAsPropertyObject;
 use DraculAid\PhpTools\ExceptionTools\ExceptionTools;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test for {@coversDefaultClass FunctionAsPropertyObject}
  *
- * @run php tests/run.php tests/Code/FunctionAsPropertyObjectTest.php
- *
- * @deprecated Устарел с 1.4.0, будет удален не ранее v2.0.0
+ * @run php tests/run.php tests/Code/Objects/FunctionAsPropertyObjectTest.php
  */
 class FunctionAsPropertyObjectTest extends TestCase
 {
@@ -31,6 +29,8 @@ class FunctionAsPropertyObjectTest extends TestCase
      * Test for {@covers FunctionAsPropertyObject::callSafe()}
      *
      * @return void
+     * @throws \ReflectionException
+     * @throws \Throwable
      */
     public function testCreateAndSet(): void
     {

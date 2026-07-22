@@ -47,6 +47,27 @@ class Utf8ToolsTest extends TestCase
     }
 
     /**
+     * Test for {@covers Utf8Tools::numberDecode()}
+     *
+     * @return void
+     */
+    public function testNumberDecode(): void
+    {
+        $testFunction = Utf8Tools::numberDecode(...);
+
+        self::assertSame('', $testFunction(''));
+        self::assertSame('Обычный текст', $testFunction('Обычный текст'));
+        self::assertSame('A€', $testFunction('\u0041\u20AC'));
+        self::assertSame('Привет!', $testFunction('\u041F\u0440\\u0438\\u0432\u0435\u0442!'));
+        self::assertSame('😀', $testFunction('\\uD83D\\uDE00'));
+        self::assertSame('😀', $testFunction('\\ud83d\\ude00'));
+        self::assertSame('123😀456', $testFunction('123\\ud83d\\ude00456'));
+        self::assertSame('До 😀 после', $testFunction('До \\uD83D\\uDE00 после'));
+        self::assertSame('\\uD83D', $testFunction('\\uD83D'));
+        self::assertSame('\\uDE00', $testFunction('\\uDE00'));
+    }
+
+    /**
      * Test for {@covers Utf8Tools::clearFatChars()}
      *
      * @return void

@@ -19,6 +19,7 @@ use DraculAid\PhpTools\tests\Strings\Utf8ToolsTest;
  *
  * Оглавление:
  * <br>- {@see Utf8Tools::calculationCharLen()} - Проводит вычисление длины в байтах читаемого символа UTF-8 строки
+ * <br>- {@see Utf8Tools::numberDecode()} - Преобразует экранированные коды UFT8 символов в строке, в UFT8 символы
  * <br>- {@see Utf8Tools::clearFatChars()} - Очистит UTF-8 строку от символов, размер которых превышает указанное число байт
  * <br>- {@see Utf8Tools::convertToUtf8mb3()} - Очистит UTF-8 строку от 4 байтовых символов
  *
@@ -53,6 +54,43 @@ final class Utf8Tools
             $charCode < 240 => 3,
             default => 4,
         };
+    }
+
+    /**
+     * Найдет в строке "номера UTF-8" символов и преобразует их в сами символы (\u0041 => A, \u20AC => 3, \uD83D\uDE00 => U+1F600 => 😀)
+     *
+     * @param   string   $string
+     *
+     * @return string
+     *
+     * @since 1.4.0
+     */
+    public static function numberDecode(string $string): string
+    {
+        return preg_replace_callback(
+            '/\\\\u([dD][89aAbB][0-9a-fA-F]{2})\\\\u([dD][c-fC-F][0-9a-fA-F]{2})|\\\\u([0-9a-fA-F]{4})/',
+            static function (array $matches): string {
+                // Суррогатная пара: \uD800-\uDBFF + \uDC00-\uDFFF
+                if ($matches[1] !== '') {
+                    $high = hexdec($matches[1]);
+                    $low = hexdec($matches[2]);
+                    $codePoint = 0x10000 + (($high - 0xD800) << 10) + ($low - 0xDC00);
+
+                    return mb_chr($codePoint, 'UTF-8');
+                }
+
+                // Обычная последовательность \uXXXX
+                $codePoint = hexdec($matches[3]);
+
+                // Одиночный суррогат не является корректным символом
+                if ($codePoint >= 0xD800 && $codePoint <= 0xDFFF) {
+                    return $matches[0];
+                }
+
+                return mb_chr($codePoint, 'UTF-8');
+            },
+            $string
+        );
     }
 
     /**

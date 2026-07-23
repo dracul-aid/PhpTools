@@ -28,7 +28,7 @@ console: ## Войти в консоль запущенного контейне
 
 .PHONY: test
 test: ## Запустить юнит-тесты `make test` Все тесты или `make test arguments=tests/ExceptionTools/ResultExceptionTest.php` Конкретно указанный тест
-	$(DOCKER_RUN) php tests/run.php $(if $(arguments),$(arguments),tests)
+	$(DOCKER_RUN) php tests/run.php $(if $(arguments),$(arguments),tests) --display-warnings --display-deprecations --display-phpunit-deprecations --display-notices --display-errors
 
 .PHONY: psalm
 psalm: ## Запустить PSALM проверки

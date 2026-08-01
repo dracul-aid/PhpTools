@@ -29,25 +29,15 @@ class PhpErrorCodeDescriptionsConstantsTest extends TestCase
      * @covers PhpErrorCodeEnDescriptionsConstants::TITLES
      * @covers PhpErrorCodeRuDescriptionsConstants::DESCRIPTIONS
      * @covers PhpErrorCodeRuDescriptionsConstants::DESCRIPTIONS
-     * @dataProvider DataProviderForRun()
      *
-     * @param class-string<PhpErrorCodeEnDescriptionsConstants|PhpErrorCodeRuDescriptionsConstants> $className
      * @return void
      */
-    public function testRun(string $className): void
+    public function testRun(): void
     {
-        self::assertEquals(PhpErrorCodeConstants::ALL, array_keys($className::TITLES));
-        self::assertEquals(PhpErrorCodeConstants::ALL, array_keys($className::DESCRIPTIONS));
-    }
-
-    /**
-     * @return array<int, class-string<PhpErrorCodeEnDescriptionsConstants|PhpErrorCodeRuDescriptionsConstants>[]>
-     */
-    public function DataProviderForRun(): array
-    {
-        return [
-            [PhpErrorCodeEnDescriptionsConstants::class],
-            [PhpErrorCodeRuDescriptionsConstants::class],
-        ];
+        foreach ([PhpErrorCodeEnDescriptionsConstants::class, PhpErrorCodeRuDescriptionsConstants::class] as $className)
+        {
+            self::assertEquals(PhpErrorCodeConstants::ALL, array_keys($className::TITLES));
+            self::assertEquals(PhpErrorCodeConstants::ALL, array_keys($className::DESCRIPTIONS));
+        }
     }
 }

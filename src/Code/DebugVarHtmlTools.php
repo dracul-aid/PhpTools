@@ -18,8 +18,14 @@ namespace DraculAid\PhpTools\Code;
  * <br>- {@see DebugVarHtmlTools::varDump()} - Аналог {@see var_dump()}
  * <br>- {@see DebugVarHtmlTools::printR()} - Аналог {@see print_r()}
  * <br>- {@see DebugVarHtmlTools::json()} - Вернет переданное значение ввиде отформатированной JSON строки
+ * <br>- {@see DebugVarHtmlTools::minDebugValue()} - Вернет короткое дебаг-значение переменной
+ * <br>- {@see DebugVarHtmlTools::minDebugValueCases()} - Вернет короткие дебаг значения для переданных переменных
+ *
+ * @see DebugVarTools Аналогичный инструментарий без HTML оформления
  *
  * @since 0.4.0
+ *
+ * @todo  Реализовать юнит-тесты для остальных функций
  */
 final class DebugVarHtmlTools
 {
@@ -66,6 +72,22 @@ final class DebugVarHtmlTools
     }
 
     /**
+     * Вернет короткое дебаг-значение переменной
+     *
+     * @param   mixed   $values
+     *
+     * @return  string
+     *
+     * @since 1.4.0
+     */
+    public static function minDebugValue(mixed $values): string
+    {
+        return self::htmlBlock(
+            DebugVarTools::minDebugValue($values)
+        );
+    }
+
+    /**
      * Обернет переданную строку в HTML теги
      *
      * @param   string   $string
@@ -75,5 +97,26 @@ final class DebugVarHtmlTools
     private static function htmlBlock(string $string): string
     {
         return "<pre><code>{$string}</code></pre>";
+    }
+
+    /**
+     * Вернет короткие дебаг значения для переданных переменных
+     *
+     * @param   array   $cases   Массив, со списком значений для вывода
+     *
+     * @return string
+     *
+     * @since 1.4.0
+     */
+    public static function minDebugValueCases(array $cases): string
+    {
+        $result = '';
+
+        foreach ($cases as $var)
+        {
+            $result .= self::minDebugValue($var);
+        }
+
+        return $result;
     }
 }

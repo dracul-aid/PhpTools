@@ -39,41 +39,43 @@ class StringCutToolsTest extends TestCase
      */
     private function testFirstSubstrBefore(): void
     {
+        $testFunctionFirstSubstrBefore = StringCutTools::firstSubstrBefore(...);
+
         self::assertEquals(
             'ZZZ Мама мыла раму WWW',
-            StringCutTools::firstSubstrBefore('ZZZ Мама мыла раму WWW', '123')
+            $testFunctionFirstSubstrBefore('ZZZ Мама мыла раму WWW', '123')
         );
         self::assertEquals(
             'ZZZ Мама мыла раму WWW',
-            StringCutTools::firstSubstrBefore('ZZZ Мама мыла раму WWW', ['123', 'жмых'])
+            $testFunctionFirstSubstrBefore('ZZZ Мама мыла раму WWW', ['123', 'жмых'])
         );
         self::assertEquals(
             'ZZZ Мама мыла раму WWW',
-            StringCutTools::firstSubstrBefore('ZZZ Мама мыла раму WWW', 'Мама', false, 10)
+            $testFunctionFirstSubstrBefore('ZZZ Мама мыла раму WWW', 'Мама', false, 10)
         );
 
         // * * *
 
         self::assertEquals(
             'ZZZ Мама ',
-            StringCutTools::firstSubstrBefore('ZZZ Мама мыла раму WWW', ['123', 'мыла'])
+            $testFunctionFirstSubstrBefore('ZZZ Мама мыла раму WWW', ['123', 'мыла'])
         );
         self::assertEquals(
             'ZZZ Мама ',
-            StringCutTools::firstSubstrBefore('ZZZ Мама мыла раму WWW', ['123', 'мыла'], false)
+            $testFunctionFirstSubstrBefore('ZZZ Мама мыла раму WWW', ['123', 'мыла'], false)
         );
         self::assertEquals(
             'ZZZ Мама мыла',
-            StringCutTools::firstSubstrBefore('ZZZ Мама мыла раму WWW', ['123', 'мыла'], true)
+            $testFunctionFirstSubstrBefore('ZZZ Мама мыла раму WWW', ['123', 'мыла'], true)
         );
 
         self::assertEquals(
             'ZZZ Мама ',
-            StringCutTools::firstSubstrBefore('ZZZ Мама мыла мыла раму WWW', 'мыла')
+            $testFunctionFirstSubstrBefore('ZZZ Мама мыла мыла раму WWW', 'мыла')
         );
         self::assertEquals(
             'ZZZ Мама мыла и снова ',
-            StringCutTools::firstSubstrBefore('ZZZ Мама мыла и снова мыла раму WWW', 'мыла', false, 12)
+            $testFunctionFirstSubstrBefore('ZZZ Мама мыла и снова мыла раму WWW', 'мыла', false, 12)
         );
     }
 
@@ -84,41 +86,43 @@ class StringCutToolsTest extends TestCase
      */
     private function testFirstSubstrAfter(): void
     {
+        $testFunctionFirstSubstrAfter = StringCutTools::firstSubstrAfter(...);
+
         self::assertEquals(
             'ZZZ Мама мыла раму WWW',
-            StringCutTools::firstSubstrAfter('ZZZ Мама мыла раму WWW', '123')
+            $testFunctionFirstSubstrAfter('ZZZ Мама мыла раму WWW', '123')
         );
         self::assertEquals(
             'ZZZ Мама мыла раму WWW',
-            StringCutTools::firstSubstrAfter('ZZZ Мама мыла раму WWW', ['123', 'жмых'])
+            $testFunctionFirstSubstrAfter('ZZZ Мама мыла раму WWW', ['123', 'жмых'])
         );
         self::assertEquals(
             'ZZZ Мама мыла раму WWW',
-            StringCutTools::firstSubstrAfter('ZZZ Мама мыла раму WWW', 'Мама', false, 10)
+            $testFunctionFirstSubstrAfter('ZZZ Мама мыла раму WWW', 'Мама', false, 10)
         );
 
         // * * *
 
         self::assertEquals(
             ' раму WWW',
-            StringCutTools::firstSubstrAfter('ZZZ Мама мыла раму WWW', ['123', 'мыла'])
+            $testFunctionFirstSubstrAfter('ZZZ Мама мыла раму WWW', ['123', 'мыла'])
         );
         self::assertEquals(
             ' раму WWW',
-            StringCutTools::firstSubstrAfter('ZZZ Мама мыла раму WWW', ['123', 'мыла'], false)
+            $testFunctionFirstSubstrAfter('ZZZ Мама мыла раму WWW', ['123', 'мыла'], false)
         );
         self::assertEquals(
             'мыла раму WWW',
-            StringCutTools::firstSubstrAfter('ZZZ Мама мыла раму WWW', ['123', 'мыла'], true)
+            $testFunctionFirstSubstrAfter('ZZZ Мама мыла раму WWW', ['123', 'мыла'], true)
         );
 
         self::assertEquals(
             ' мыла раму WWW',
-            StringCutTools::firstSubstrAfter('ZZZ Мама мыла мыла раму WWW', 'мыла')
+            $testFunctionFirstSubstrAfter('ZZZ Мама мыла мыла раму WWW', 'мыла')
         );
         self::assertEquals(
             ' раму WWW',
-            StringCutTools::firstSubstrAfter('ZZZ Мама мыла и снова мыла раму WWW', 'мыла', false, 12)
+            $testFunctionFirstSubstrAfter('ZZZ Мама мыла и снова мыла раму WWW', 'мыла', false, 12)
         );
     }
 
@@ -129,9 +133,11 @@ class StringCutToolsTest extends TestCase
      */
     private function testTrimInString(): void
     {
-        self::assertEquals(' домик на дереве ', StringCutTools::trimInString('   домик на дереве   '));
-        self::assertEquals('домик на дереве', StringCutTools::trimInString('домик   на      дереве'));
-        self::assertEquals('домик на дереве', StringCutTools::trimInString('домик  на       дереве'));
+        $testFunctionTrimInString = StringCutTools::trimInString(...);
+
+        self::assertEquals(' домик на дереве ', $testFunctionTrimInString('   домик на дереве   '));
+        self::assertEquals('домик на дереве', $testFunctionTrimInString('домик   на      дереве'));
+        self::assertEquals('домик на дереве', $testFunctionTrimInString('домик  на       дереве'));
     }
 
     /**
@@ -141,16 +147,18 @@ class StringCutToolsTest extends TestCase
      */
     private function testQuoteTrim(): void
     {
-        self::assertEquals('домик на дереве', StringCutTools::quoteTrim('"домик на дереве"'));
-        self::assertEquals('домик на дереве', StringCutTools::quoteTrim('\'домик на дереве\''));
-        self::assertEquals('домик на дереве', StringCutTools::quoteTrim('`домик на дереве`'));
-        self::assertEquals('домик на дереве', StringCutTools::quoteTrim('«домик на дереве»'));
-        self::assertEquals('домик на дереве', StringCutTools::quoteTrim('”домик на дереве”'));
-        self::assertEquals('домик на дереве', StringCutTools::quoteTrim('„домик на дереве„'));
-        self::assertEquals('домик на дереве', StringCutTools::quoteTrim('‚домик на дереве‚'));
-        self::assertEquals('домик на дереве', StringCutTools::quoteTrim('’домик на дереве’'));
+        $testFunctionQuoteTrim = StringCutTools::quoteTrim(...);
 
-        self::assertEquals('домик на дереве', StringCutTools::quoteTrim('"\'`домик на дереве"\'`'));
+        self::assertEquals('домик на дереве', $testFunctionQuoteTrim('"домик на дереве"'));
+        self::assertEquals('домик на дереве', $testFunctionQuoteTrim('\'домик на дереве\''));
+        self::assertEquals('домик на дереве', $testFunctionQuoteTrim('`домик на дереве`'));
+        self::assertEquals('домик на дереве', $testFunctionQuoteTrim('«домик на дереве»'));
+        self::assertEquals('домик на дереве', $testFunctionQuoteTrim('”домик на дереве”'));
+        self::assertEquals('домик на дереве', $testFunctionQuoteTrim('„домик на дереве„'));
+        self::assertEquals('домик на дереве', $testFunctionQuoteTrim('‚домик на дереве‚'));
+        self::assertEquals('домик на дереве', $testFunctionQuoteTrim('’домик на дереве’'));
+
+        self::assertEquals('домик на дереве', $testFunctionQuoteTrim('"\'`домик на дереве"\'`'));
     }
 
     /**
@@ -160,19 +168,21 @@ class StringCutToolsTest extends TestCase
      */
     private function testClearMultiSpaces(): void
     {
-        self::assertEquals('', StringCutTools::clearMultiSpaces(''));
-        self::assertEquals(' ', StringCutTools::clearMultiSpaces(' '));
-        self::assertEquals(' ', StringCutTools::clearMultiSpaces('   '));
-        self::assertEquals(' ', StringCutTools::clearMultiSpaces("\n\t      "));
+        $testFunctionClearMultiSpaces = StringCutTools::clearMultiSpaces(...);
 
-        self::assertEquals('', StringCutTools::clearMultiSpaces('', '!'));
-        self::assertEquals('!', StringCutTools::clearMultiSpaces(' ', '!'));
-        self::assertEquals('!', StringCutTools::clearMultiSpaces("\n\t      ", '!'));
-        self::assertEquals('123', StringCutTools::clearMultiSpaces("\n\t      ", '123'));
+        self::assertEquals('', $testFunctionClearMultiSpaces(''));
+        self::assertEquals(' ', $testFunctionClearMultiSpaces(' '));
+        self::assertEquals(' ', $testFunctionClearMultiSpaces('   '));
+        self::assertEquals(' ', $testFunctionClearMultiSpaces("\n\t      "));
 
-        self::assertEquals('abc', StringCutTools::clearMultiSpaces('abc'));
-        self::assertEquals(' abc ', StringCutTools::clearMultiSpaces(' abc '));
-        self::assertEquals(' abc ', StringCutTools::clearMultiSpaces("\n\tabc      "));
+        self::assertEquals('', $testFunctionClearMultiSpaces('', '!'));
+        self::assertEquals('!', $testFunctionClearMultiSpaces(' ', '!'));
+        self::assertEquals('!', $testFunctionClearMultiSpaces("\n\t      ", '!'));
+        self::assertEquals('123', $testFunctionClearMultiSpaces("\n\t      ", '123'));
+
+        self::assertEquals('abc', $testFunctionClearMultiSpaces('abc'));
+        self::assertEquals(' abc ', $testFunctionClearMultiSpaces(' abc '));
+        self::assertEquals(' abc ', $testFunctionClearMultiSpaces("\n\tabc      "));
     }
 
     /**

@@ -27,24 +27,26 @@ class ExceptionToolsTest extends TestCase
      */
     public function testSafeCallWithResult(): void
     {
+        $testFunctionSafeCallWithResult = ExceptionTools::safeCallWithResult(...);
+
         self::assertEquals(
             'ABC',
-            ExceptionTools::safeCallWithResult(function (): string {return 'ABC';})
+            $testFunctionSafeCallWithResult(function (): string {return 'ABC';})
         );
 
         self::assertEquals(
             3,
-            ExceptionTools::safeCallWithResult(function (int $a, int $b): int {return $a + $b;}, [1, 2])
+            $testFunctionSafeCallWithResult(function (int $a, int $b): int {return $a + $b;}, [1, 2])
         );
 
         self::assertEquals(
             null,
-            ExceptionTools::safeCallWithResult(function (): never {throw new \Exception();}, [])
+            $testFunctionSafeCallWithResult(function (): never {throw new \Exception();}, [])
         );
 
         self::assertEquals(
             100,
-            ExceptionTools::safeCallWithResult(function (): never {throw new \Exception();}, [], 100)
+            $testFunctionSafeCallWithResult(function (): never {throw new \Exception();}, [], 100)
         );
     }
 
@@ -55,12 +57,14 @@ class ExceptionToolsTest extends TestCase
      */
     public function testSafeCallWithCallable(): void
     {
+        $testFunctionSafeCallWithCallable = ExceptionTools::safeCallWithCallable(...);
+
         $callableFunction = function () use (&$callableCall): int {$callableCall = true; return 777;};
 
         $callableCall = false;
         self::assertEquals(
             3,
-            ExceptionTools::safeCallWithCallable(function (int $a, int $b): int {return $a + $b;}, [1, 2], $callableFunction)
+            $testFunctionSafeCallWithCallable(function (int $a, int $b): int {return $a + $b;}, [1, 2], $callableFunction)
         );
         /** @psalm-suppress  RedundantCondition Псалм просто не понимает, что переменная передается в функцию по ссылке и может измениться */
         self::assertFalse($callableCall);
@@ -68,7 +72,7 @@ class ExceptionToolsTest extends TestCase
         $callableCall = false;
         self::assertEquals(
             777,
-            ExceptionTools::safeCallWithCallable(function (): never {throw new \Exception();}, [], $callableFunction)
+            $testFunctionSafeCallWithCallable(function (): never {throw new \Exception();}, [], $callableFunction)
         );
         self::assertTrue($callableCall);
     }
@@ -80,6 +84,8 @@ class ExceptionToolsTest extends TestCase
      */
     public function testSafeCallFunctions(): void
     {
+        $testFunctionSafeCallFunctions = ExceptionTools::safeCallFunctions(...);
+
         $functionList = [
             function (): int {return 123;},
             function (): never {throw new \Exception();},
@@ -89,7 +95,7 @@ class ExceptionToolsTest extends TestCase
         // * * *
 
         $callableCall = false;
-        ExceptionTools::safeCallFunctions($functionList);
+        $testFunctionSafeCallFunctions($functionList);
         self::assertTrue($callableCall);
 
         // * * *
@@ -99,7 +105,7 @@ class ExceptionToolsTest extends TestCase
         };
 
         $callableCall = false;
-        ExceptionTools::safeCallFunctions($functionGenerator());
+        $testFunctionSafeCallFunctions($functionGenerator());
         self::assertTrue($callableCall);
     }
 
@@ -108,17 +114,19 @@ class ExceptionToolsTest extends TestCase
      */
     public function testCallAndReturnException(): void
     {
+        $testFunctionCallAndReturnException = ExceptionTools::callAndReturnException(...);
+
         $testException = new \Exception();
 
         self::assertNull(
-            ExceptionTools::callAndReturnException(function () {return 123;})
+            $testFunctionCallAndReturnException(function () {return 123;})
         );
 
-        $resultException = ExceptionTools::callAndReturnException(function () use ($testException) {throw $testException;});
+        $resultException = $testFunctionCallAndReturnException(function () use ($testException) {throw $testException;});
         self::assertTrue($testException === $resultException);
 
         self::assertNull(
-            ExceptionTools::callAndReturnException(function (int $a, int $b) {return $a + $b;}, [1, 2], $result)
+            $testFunctionCallAndReturnException(function (int $a, int $b) {return $a + $b;}, [1, 2], $result)
         );
         self::assertEquals(3, $result);
     }
@@ -128,16 +136,18 @@ class ExceptionToolsTest extends TestCase
      */
     public function testWasCalledWithException(): void
     {
+        $testFunctionWasCalledWithException = ExceptionTools::wasCalledWithException(...);
+
         $testException = new \Exception();
 
         $result = null;
         self::assertFalse(
-            ExceptionTools::wasCalledWithException(function () use (&$result) {$result = true;}, [], \Exception::class)
+            $testFunctionWasCalledWithException(function () use (&$result) {$result = true;}, [], \Exception::class)
         );
         self::assertTrue($result);
 
         self::assertFalse(
-            ExceptionTools::wasCalledWithException(
+            $testFunctionWasCalledWithException(
                 function (int $a, int $b) use (&$result) {$result = $a + $b;},
                 [1, 2],
                 \Exception::class
@@ -155,38 +165,38 @@ class ExceptionToolsTest extends TestCase
         );
 
         self::assertTrue(
-            ExceptionTools::wasCalledWithException(function () use ($testException) {throw $testException;}, [], \Exception::class)
+            $testFunctionWasCalledWithException(function () use ($testException) {throw $testException;}, [], \Exception::class)
         );
 
         self::assertTrue(
-            ExceptionTools::wasCalledWithException(
+            $testFunctionWasCalledWithException(
                 function () {throw new \Exception('AAA');}, [], \Exception::class, 'AAA'
             )
         );
         self::assertFalse(
-            ExceptionTools::wasCalledWithException(
+            $testFunctionWasCalledWithException(
                 function () {throw new \Exception('BBB');}, [], \Exception::class, 'AAA'
             )
         );
 
         self::assertTrue(
-            ExceptionTools::wasCalledWithException(
+            $testFunctionWasCalledWithException(
                 function () {throw new \Exception('AAA', 100);}, [], \Exception::class, null, 100
             )
         );
         self::assertFalse(
-            ExceptionTools::wasCalledWithException(
+            $testFunctionWasCalledWithException(
                 function () {throw new \Exception('AAA', 100);}, [], \Exception::class, null, 200
             )
         );
         self::assertFalse(
-            ExceptionTools::wasCalledWithException(
+            $testFunctionWasCalledWithException(
                 function () {throw new \Exception('AAA', 100);}, [], \Exception::class, 'BBB', 100
             )
         );
 
         self::assertFalse(
-            ExceptionTools::wasCalledWithException(function () {return 123;}, [], \Exception::class, null, null, $result)
+            $testFunctionWasCalledWithException(function () {return 123;}, [], \Exception::class, null, null, $result)
         );
         self::assertEquals(123, $result);
     }
@@ -243,7 +253,7 @@ class ExceptionToolsTest extends TestCase
         $function = ExceptionTools::callAndResendException(...);
 
         // этот вызов не должен упасть
-        ExceptionTools::callAndResendException(fn () => 1 + 1, [], \RuntimeException::class);
+        $function(fn () => 1 + 1, [], \RuntimeException::class);
 
         // перехватываем ошибку
         try {

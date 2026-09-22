@@ -29,10 +29,12 @@ class TranslitConverterTest extends TestCase
      */
     public function testToUrl(): void
     {
-        self::assertEquals('dom-i-more', TranslitConverter::toUrl('дом и море'));
-        self::assertEquals('dom-home-dom', TranslitConverter::toUrl('дом, home, дом'));
-        self::assertEquals('dom_dom', TranslitConverter::toUrl('дом_дом'));
-        self::assertEquals('dom_rom-123', TranslitConverter::toUrl('дом___ром---123'));
+        $testFunctionToUrl = TranslitConverter::toUrl(...);
+
+        self::assertEquals('dom-i-more', $testFunctionToUrl('дом и море'));
+        self::assertEquals('dom-home-dom', $testFunctionToUrl('дом, home, дом'));
+        self::assertEquals('dom_dom', $testFunctionToUrl('дом_дом'));
+        self::assertEquals('dom_rom-123', $testFunctionToUrl('дом___ром---123'));
     }
 
     /**

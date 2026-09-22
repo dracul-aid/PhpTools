@@ -33,11 +33,13 @@ class TimestampHelperTest extends TestCase
      */
     public function testToJsTimestamp(): void
     {
+        $testFunction = TimestampHelper::toJsTimestamp(...);
+
         $timestamp = time();
-        self::assertEquals($timestamp * 1000, TimestampHelper::toJsTimestamp($timestamp));
+        self::assertEquals($timestamp * 1000, $testFunction($timestamp));
 
         $timeObject = new \DateTime('2018-09-05 1:02:08.123456');
-        self::assertEquals($timeObject->getTimestamp() * 1000 + 123, TimestampHelper::toJsTimestamp($timeObject));
+        self::assertEquals($timeObject->getTimestamp() * 1000 + 123, $testFunction($timeObject));
     }
 
     /**
@@ -49,22 +51,24 @@ class TimestampHelperTest extends TestCase
      */
     public function testToString(): void
     {
+        $testFunction = TimestampHelper::toString(...);
+
         $trueDateString = new \DateTime('2018-09-05 1:02:08.000000');
         self::assertEquals(
             $trueDateString->format(DateTimeFormats::FUNCTIONS),
-            TimestampHelper::toString($trueDateString->getTimestamp())
+            $testFunction($trueDateString->getTimestamp())
         );
 
         $trueDateString = new \DateTime('2018-09-05 1:02:08.123456');
         self::assertEquals(
             $trueDateString->format(DateTimeFormats::FUNCTIONS),
-            TimestampHelper::toString($trueDateString->getTimestamp() + 0.123456)
+            $testFunction($trueDateString->getTimestamp() + 0.123456)
         );
 
         $trueDateString = new \DateTime('2018-09-05 1:02:08.000000');
         self::assertEquals(
             $trueDateString->format(DateTimeFormats::VIEW_FOR_PEOPLE),
-            TimestampHelper::toString($trueDateString->getTimestamp(), DateTimeFormats::VIEW_FOR_PEOPLE)
+            $testFunction($trueDateString->getTimestamp(), DateTimeFormats::VIEW_FOR_PEOPLE)
         );
     }
 
@@ -81,6 +85,8 @@ class TimestampHelperTest extends TestCase
      */
     public function testGetTimestamp(): void
     {
+        $testFunction = TimestampHelper::getTimestamp(...);
+
         $testTimestamp = strtotime('2018-09-05 1:02:08');
 
         // * * * Преобразование в таймштамп
@@ -103,7 +109,7 @@ class TimestampHelperTest extends TestCase
             ],
         ];
 
-        $this->callTestFunctionList([TimestampHelper::class, 'getTimestamp'], $testCases);
+        $this->callTestFunctionList($testFunction, $testCases);
 
         // * * * Проверка аргументов неверного типа
 
@@ -114,9 +120,12 @@ class TimestampHelperTest extends TestCase
      * Test for {@covers TimestampHelper::getdateArrayToTimestamp()}
      *
      * @return void
+     * @throws \Throwable Указывает на провал теста
      */
     public function testGetdateArrayToTimestamp(): void
     {
+        $testFunction = TimestampHelper::getdateArrayToTimestamp(...);
+
         // Если все нужные данные есть
 
         $testTimestamp = time();
@@ -130,30 +139,30 @@ class TimestampHelperTest extends TestCase
             4 => [time(), [['year' => null, 'mon' => null, 'mday' => null]]],
         ];
 
-        $this->callTestFunctionList([TimestampHelper::class, 'getdateArrayToTimestamp'], $testCases);
+        $this->callTestFunctionList($testFunction, $testCases);
 
         // * * * Если нет необходимых данных
 
         self::assertTrue(ExceptionTools::wasCalledWithException(
-            [TimestampHelper::class, 'getdateArrayToTimestamp'],
+            $testFunction,
             [],
             \TypeError::class,
         ));
 
         self::assertTrue(ExceptionTools::wasCalledWithException(
-            [TimestampHelper::class, 'getdateArrayToTimestamp'],
+            $testFunction,
             [['year' => 123]],
             \TypeError::class,
         ));
 
         self::assertTrue(ExceptionTools::wasCalledWithException(
-            [TimestampHelper::class, 'getdateArrayToTimestamp'],
+            $testFunction,
             [['year' => 123, 'mon' => 55]],
             \TypeError::class,
         ));
 
         self::assertTrue(ExceptionTools::wasCalledWithException(
-            [TimestampHelper::class, 'getdateArrayToTimestamp'],
+            $testFunction,
             [['year' => 123, 'mday' => 55]],
             \TypeError::class,
         ));
@@ -166,6 +175,8 @@ class TimestampHelperTest extends TestCase
      */
     public function testGetYearDay(): void
     {
+        $testFunction = TimestampHelper::getYearDay(...);
+
         $nowYear = NowTimeGetter::getYear();
         $nowYearDay = NowTimeGetter::getYearDay();
 
@@ -179,7 +190,7 @@ class TimestampHelperTest extends TestCase
             6 => [strtotime("{$nowYear}-01-00 0:00:00 + {$nowYearDay} day"), [null, null]],
         ];
 
-        $this->callTestFunctionList([TimestampHelper::class, 'getYearDay'], $testCases);
+        $this->callTestFunctionList($testFunction, $testCases);
     }
 
     /**
@@ -189,6 +200,8 @@ class TimestampHelperTest extends TestCase
      */
     public function testGetMonDay(): void
     {
+        $testFunction = TimestampHelper::getMonDay(...);
+
         $nowDate = new \DateTime();
 
         $testCases = [
@@ -202,18 +215,18 @@ class TimestampHelperTest extends TestCase
             6 => [strtotime($nowDate->format('2022-5-d 0:00:00')), [2022, 5, null]],
         ];
 
-        $this->callTestFunctionList([TimestampHelper::class, 'getMonDay'], $testCases);
+        $this->callTestFunctionList($testFunction, $testCases);
 
         // * * * Проверка передачи невалидной даты
 
         self::assertTrue(ExceptionTools::wasCalledWithException(
-            [TimestampHelper::class, 'getMonDay'],
+            $testFunction,
             [2022, 13, 10],
             \LogicException::class
         ));
 
         self::assertTrue(ExceptionTools::wasCalledWithException(
-            [TimestampHelper::class, 'getMonDay'],
+            $testFunction,
             [2022, 2, 30],
             \LogicException::class
         ));
@@ -227,6 +240,9 @@ class TimestampHelperTest extends TestCase
      */
     public function testGetFirstWeek(): void
     {
+        $testFunctionGetFirstWeek = TimestampHelper::getFirstWeek(...);
+        $testFunctionGetWeekDay = TimestampHelper::getWeekDay(...);
+
         $testCases = [
             0 => [strtotime('2023-01-02'), [2023]], // 1-января 2023: воскресенье
             1 => [strtotime('2022-01-03'), [2022]], // 1-января 2022: суббота
@@ -237,7 +253,7 @@ class TimestampHelperTest extends TestCase
             6 => [strtotime('2026-01-01'), [2026]], // 1-января 2026: четверг
         ];
 
-        $this->callTestFunctionList([TimestampHelper::class, 'getFirstWeek'], $testCases);
+        $this->callTestFunctionList($testFunctionGetFirstWeek, $testCases);
 
         // * * *
 
@@ -255,7 +271,7 @@ class TimestampHelperTest extends TestCase
             5 => [strtotime($nowDate->format('Y-01-01 0:00:00')), [null, 1, 1]],
         ];
 
-        $this->callTestFunctionList([TimestampHelper::class, 'getWeekDay'], $testCases);
+        $this->callTestFunctionList($testFunctionGetWeekDay, $testCases);
     }
 
     /**

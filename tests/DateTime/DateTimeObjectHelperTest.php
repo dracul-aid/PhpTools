@@ -31,38 +31,40 @@ class DateTimeObjectHelperTest extends AbstractProjectTestCase
      */
     public function testGetDateObject(): void
     {
+        $testFunction = DateTimeObjectHelper::getDateObject(...);
+
         $testTimestamp = new \DateTime('2018-09-05 1:02:08.123456');
 
         // * * * Аргументы, приводящие к созданию объекта
 
         self::assertTimestamp(
             time(),
-            DateTimeObjectHelper::getDateObject()->getTimestamp()
+            $testFunction()->getTimestamp()
         );
         self::assertTimestamp(
             time(),
-            DateTimeObjectHelper::getDateObject(null)
+            $testFunction(null)
                 ->getTimestamp()
         );
         self::assertTimestamp(
             $testTimestamp->getTimestamp(),
-            DateTimeObjectHelper::getDateObject($testTimestamp->getTimestamp())
+            $testFunction($testTimestamp->getTimestamp())
                 ->getTimestamp()
         );
         self::assertEquals(
             $testTimestamp->format(DateTimeFormats::TIMESTAMP_WITH_MICROSECONDS),
-            DateTimeObjectHelper::getDateObject(
+            $testFunction(
                     (float)$testTimestamp->format(DateTimeFormats::TIMESTAMP_WITH_MICROSECONDS)
                 )->format(DateTimeFormats::TIMESTAMP_WITH_MICROSECONDS)
         );
         self::assertTimestamp(
             $testTimestamp->getTimestamp(),
-            DateTimeObjectHelper::getDateObject('2018-09-05 1:02:08')
+            $testFunction('2018-09-05 1:02:08')
                 ->getTimestamp()
         );
         self::assertTimestamp(
             $testTimestamp->getTimestamp(),
-            DateTimeObjectHelper::getDateObject(
+            $testFunction(
                     ['year' => 2018, 'mon' => 9, 'mday' => 5, 'hours' => 1, 'minutes' => 2, 'seconds' => 8]
                 )
                 ->getTimestamp()
@@ -74,36 +76,36 @@ class DateTimeObjectHelperTest extends AbstractProjectTestCase
 
         self::assertTimestamp(
             $testObject->getTimestamp(),
-            DateTimeObjectHelper::getDateObject($testObject)
+            $testFunction($testObject)
                 ->getTimestamp()
         );
-        self::assertTrue($testObject === DateTimeObjectHelper::getDateObject($testObject));
+        self::assertTrue($testObject === $testFunction($testObject));
 
         self::assertTimestamp(
             $testObject->getTimestamp(),
-            DateTimeObjectHelper::getDateObject($testObject, DateTimeExtendedType::class)
+            $testFunction($testObject, DateTimeExtendedType::class)
                 ->getTimestamp()
         );
-        self::assertTrue($testObject === DateTimeObjectHelper::getDateObject($testObject));
+        self::assertTrue($testObject === $testFunction($testObject));
 
 
         // * * * Аргументы-даты ввиде объектов, приводящих к созданию новых объектов
 
         self::assertTimestamp(
             $testTimestamp->getTimestamp(),
-            DateTimeObjectHelper::getDateObject(new \DateTime('2018-09-05 1:02:08.123456'))
+            $testFunction(new \DateTime('2018-09-05 1:02:08.123456'))
                 ->getTimestamp()
         );
 
         self::assertTimestamp(
             $testTimestamp->getTimestamp(),
-            DateTimeObjectHelper::getDateObject(new TimestampType('2018-09-05 1:02:08.123456'))
+            $testFunction(new TimestampType('2018-09-05 1:02:08.123456'))
                 ->getTimestamp()
         );
 
         self::assertEquals(
             DateTimeExtendedType::class,
-            get_class(DateTimeObjectHelper::getDateObject(new \DateTimeImmutable('2018-09-05 1:02:08.123456')))
+            get_class($testFunction(new \DateTimeImmutable('2018-09-05 1:02:08.123456')))
         );
     }
 
@@ -114,24 +116,26 @@ class DateTimeObjectHelperTest extends AbstractProjectTestCase
      */
     public function testCopyDateTimeObject(): void
     {
+        $testFunction = DateTimeObjectHelper::copyDateTimeObject(...);
+
         self::assertEquals(
             TimestampType::class,
-            get_class(DateTimeObjectHelper::copyDateTimeObject(new TimestampType()))
+            get_class($testFunction(new TimestampType()))
         );
 
         self::assertEquals(
             TimestampType::class,
-            get_class(DateTimeObjectHelper::copyDateTimeObject(new \DateTime(), TimestampType::class))
+            get_class($testFunction(new \DateTime(), TimestampType::class))
         );
 
         $testObject = new TimestampType();
         self::assertTrue(
-            TimestampType::class !== DateTimeObjectHelper::copyDateTimeObject($testObject)
+            TimestampType::class !== $testFunction($testObject)
         );
 
         self::assertEquals(
             strtotime('2022-06-15 12:30:30'),
-            DateTimeObjectHelper::copyDateTimeObject(new \DateTime('2022-06-15 12:30:30'), TimestampType::class)
+            $testFunction(new \DateTime('2022-06-15 12:30:30'), TimestampType::class)
                 ->getTimestamp()
         );
     }
@@ -143,21 +147,23 @@ class DateTimeObjectHelperTest extends AbstractProjectTestCase
      */
     public function testIsGetTimestamp(): void
     {
-        self::assertFalse(DateTimeObjectHelper::isGetTimestamp(new \stdClass()));
+        $testFunction = DateTimeObjectHelper::isGetTimestamp(...);
 
-        self::assertTrue(DateTimeObjectHelper::isGetTimestamp(new \DateTime()));
-        self::assertTrue(DateTimeObjectHelper::isGetTimestamp(new \DateTimeImmutable()));
-        self::assertTrue(DateTimeObjectHelper::isGetTimestamp(new TimestampType()));
+        self::assertFalse($testFunction(new \stdClass()));
+
+        self::assertTrue($testFunction(new \DateTime()));
+        self::assertTrue($testFunction(new \DateTimeImmutable()));
+        self::assertTrue($testFunction(new TimestampType()));
 
         // * * * Проверка функции, возвращающей таймштамп
 
         $objectWithFunction = new class(){public function getTimestamp(): int {return 123123;}};
         $objectWithoutFunction = new class(){};
 
-        self::assertFalse(DateTimeObjectHelper::isGetTimestamp($objectWithFunction));
-        self::assertFalse(DateTimeObjectHelper::isGetTimestamp($objectWithFunction, false));
-        self::assertTrue(DateTimeObjectHelper::isGetTimestamp($objectWithFunction, true));
+        self::assertFalse($testFunction($objectWithFunction));
+        self::assertFalse($testFunction($objectWithFunction, false));
+        self::assertTrue($testFunction($objectWithFunction, true));
 
-        self::assertFalse(DateTimeObjectHelper::isGetTimestamp($objectWithoutFunction, true));
+        self::assertFalse($testFunction($objectWithoutFunction, true));
     }
 }

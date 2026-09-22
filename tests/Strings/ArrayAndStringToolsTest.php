@@ -29,26 +29,28 @@ class ArrayAndStringToolsTest extends TestCase
      */
     public function testArrayToStringWithoutEmpty(): void
     {
-        self::assertEquals('', ArrayAndStringTools::arrayToStringWithoutEmpty('-', []));
-        self::assertEquals('', ArrayAndStringTools::arrayToStringWithoutEmpty('-', ['', 0, false, null]));
-        self::assertEquals('', ArrayAndStringTools::arrayToStringWithoutEmpty('-', ['', 0, false, null], false));
-        self::assertEquals('0', ArrayAndStringTools::arrayToStringWithoutEmpty('-', ['', 0, false, null], true));
+        $testFunctionArrayToStringWithoutEmpty = ArrayAndStringTools::arrayToStringWithoutEmpty(...);
 
-        self::assertEquals('1', ArrayAndStringTools::arrayToStringWithoutEmpty('-', ['', 0, 1, false, null]));
-        self::assertEquals('1', ArrayAndStringTools::arrayToStringWithoutEmpty('-', ['', 0, 1, false, null], false));
-        self::assertEquals('0-1', ArrayAndStringTools::arrayToStringWithoutEmpty('-', ['', 0, 1, false, null], true));
+        self::assertEquals('', $testFunctionArrayToStringWithoutEmpty('-', []));
+        self::assertEquals('', $testFunctionArrayToStringWithoutEmpty('-', ['', 0, false, null]));
+        self::assertEquals('', $testFunctionArrayToStringWithoutEmpty('-', ['', 0, false, null], false));
+        self::assertEquals('0', $testFunctionArrayToStringWithoutEmpty('-', ['', 0, false, null], true));
+
+        self::assertEquals('1', $testFunctionArrayToStringWithoutEmpty('-', ['', 0, 1, false, null]));
+        self::assertEquals('1', $testFunctionArrayToStringWithoutEmpty('-', ['', 0, 1, false, null], false));
+        self::assertEquals('0-1', $testFunctionArrayToStringWithoutEmpty('-', ['', 0, 1, false, null], true));
 
         // проверка языковых конструкций
-        self::assertEquals('-0--', ArrayAndStringTools::arrayToStringWithoutEmpty('-', ['', 0, 1, false, null], 'empty'));
-        self::assertEquals('-0-1-', ArrayAndStringTools::arrayToStringWithoutEmpty('-', ['', 0, 1, false, null], 'isset'));
+        self::assertEquals('-0--', $testFunctionArrayToStringWithoutEmpty('-', ['', 0, 1, false, null], 'empty'));
+        self::assertEquals('-0-1-', $testFunctionArrayToStringWithoutEmpty('-', ['', 0, 1, false, null], 'isset'));
 
         // проверка функций (с 1 аргументом)
-        self::assertEquals('0-1-2', ArrayAndStringTools::arrayToStringWithoutEmpty('-', ['', 0, 1, 2, false, null], 'is_int'));
+        self::assertEquals('0-1-2', $testFunctionArrayToStringWithoutEmpty('-', ['', 0, 1, 2, false, null], 'is_int'));
 
         // проверка функций (с 2 аргументами)
         self::assertEquals(
             '0-2',
-            ArrayAndStringTools::arrayToStringWithoutEmpty(
+            $testFunctionArrayToStringWithoutEmpty(
                 '-',
                 [0, 1, 2],
                 function (int $value, int $index) {
@@ -65,12 +67,14 @@ class ArrayAndStringToolsTest extends TestCase
      */
     public function testSubStringToArray(): void
     {
-        self::assertEquals(['123', '456', '7'], ArrayAndStringTools::subStringToArray('1234567', 3));
-        self::assertEquals(['123', '456', '7'], ArrayAndStringTools::subStringToArray('1234567', 3, false));
-        self::assertEquals(['567', '234', '1'], ArrayAndStringTools::subStringToArray('1234567', 3, true));
+        $testFunctionSubStringToArray = ArrayAndStringTools::subStringToArray(...);
 
-        self::assertEquals(['ЯZZ', 'яzz'], ArrayAndStringTools::subStringToArray('ЯZZяzz', 3, false));
-        self::assertEquals(['ЯZZ', 'яzz'], ArrayAndStringTools::subStringToArray('ЯZZяzz', 3, false, true));
-        self::assertEquals(['ЯZ', 'Zя', 'zz'], ArrayAndStringTools::subStringToArray('ЯZZяzz', 3, false, false));
+        self::assertEquals(['123', '456', '7'], $testFunctionSubStringToArray('1234567', 3));
+        self::assertEquals(['123', '456', '7'], $testFunctionSubStringToArray('1234567', 3, false));
+        self::assertEquals(['567', '234', '1'], $testFunctionSubStringToArray('1234567', 3, true));
+
+        self::assertEquals(['ЯZZ', 'яzz'], $testFunctionSubStringToArray('ЯZZяzz', 3, false));
+        self::assertEquals(['ЯZZ', 'яzz'], $testFunctionSubStringToArray('ЯZZяzz', 3, false, true));
+        self::assertEquals(['ЯZ', 'Zя', 'zz'], $testFunctionSubStringToArray('ЯZZяzz', 3, false, false));
     }
 }

@@ -28,9 +28,11 @@ class StringToolsTest extends TestCase
      */
     public function testLengthTrim(): void
     {
-        self::assertEquals(3, StringTools::lengthTrim('  обж  '));
-        self::assertEquals(3, StringTools::lengthTrim('  abc  '));
-        self::assertEquals(3, StringTools::lengthTrim('-abc-', '-'));
+        $testFunctionLengthTrim = StringTools::lengthTrim(...);
+
+        self::assertEquals(3, $testFunctionLengthTrim('  обж  '));
+        self::assertEquals(3, $testFunctionLengthTrim('  abc  '));
+        self::assertEquals(3, $testFunctionLengthTrim('-abc-', '-'));
     }
 
     /**
@@ -41,11 +43,15 @@ class StringToolsTest extends TestCase
      */
     public function testIpFilename(): void
     {
-        self::assertEquals('128p200p100p150', StringTools::ipFilenameEncode('128.200.100.150'));
-        self::assertEquals('128x200x100xx', StringTools::ipFilenameEncode('128:200:100::'));
+        $testFunctionIpFilenameEncode = StringTools::ipFilenameEncode(...);
 
-        self::assertEquals('128.200.100.150', StringTools::ipFilenameDecode('128p200p100p150'));
-        self::assertEquals('128:200:100::', StringTools::ipFilenameDecode('128x200x100xx'));
+        $testFunctionIpFilenameDecode = StringTools::ipFilenameDecode(...);
+
+        self::assertEquals('128p200p100p150', $testFunctionIpFilenameEncode('128.200.100.150'));
+        self::assertEquals('128x200x100xx', $testFunctionIpFilenameEncode('128:200:100::'));
+
+        self::assertEquals('128.200.100.150', $testFunctionIpFilenameDecode('128p200p100p150'));
+        self::assertEquals('128:200:100::', $testFunctionIpFilenameDecode('128x200x100xx'));
     }
 
     /**

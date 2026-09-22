@@ -21,7 +21,7 @@ use DraculAid\PhpTools\Code\DebugVarHtmlTools;
 class DebugVarHtmlToolsTest extends AbstractDebugVarToolsTestClass
 {
     /**
-     * @covers DebugVarHtmlTools::minDebugValueCases()
+     * @covers DebugVarHtmlTools::minDebugValue()
      *
      * @return void
      */

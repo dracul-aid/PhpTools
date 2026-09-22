@@ -28,22 +28,24 @@ class Utf8ToolsTest extends TestCase
      */
     public function testCalculationCharLen(): void
     {
-        self::assertEquals(0, Utf8Tools::calculationCharLen(''));
+        $testFunctionCalculationCharLen = Utf8Tools::calculationCharLen(...);
 
-        self::assertEquals(1, Utf8Tools::calculationCharLen(mb_chr(127)));
-        self::assertEquals(1, Utf8Tools::calculationCharLen('W'));
+        self::assertEquals(0, $testFunctionCalculationCharLen(''));
 
-        self::assertEquals(2, Utf8Tools::calculationCharLen(mb_chr(128)));
-        self::assertEquals(2, Utf8Tools::calculationCharLen(chr(128) . chr(1)));
-        self::assertEquals(2, Utf8Tools::calculationCharLen(chr(223) . chr(1)));
-        self::assertEquals(2, Utf8Tools::calculationCharLen(mb_chr(2047)));
-        self::assertEquals(2, Utf8Tools::calculationCharLen('Я'));
+        self::assertEquals(1, $testFunctionCalculationCharLen(mb_chr(127)));
+        self::assertEquals(1, $testFunctionCalculationCharLen('W'));
 
-        self::assertEquals(3, Utf8Tools::calculationCharLen(mb_chr(2048)));
-        self::assertEquals(3, Utf8Tools::calculationCharLen(chr(224) . chr(1)));
-        self::assertEquals(3, Utf8Tools::calculationCharLen(chr(239) . chr(1)));
+        self::assertEquals(2, $testFunctionCalculationCharLen(mb_chr(128)));
+        self::assertEquals(2, $testFunctionCalculationCharLen(chr(128) . chr(1)));
+        self::assertEquals(2, $testFunctionCalculationCharLen(chr(223) . chr(1)));
+        self::assertEquals(2, $testFunctionCalculationCharLen(mb_chr(2047)));
+        self::assertEquals(2, $testFunctionCalculationCharLen('Я'));
 
-        self::assertEquals(4, Utf8Tools::calculationCharLen(chr(240) . chr(1)));
+        self::assertEquals(3, $testFunctionCalculationCharLen(mb_chr(2048)));
+        self::assertEquals(3, $testFunctionCalculationCharLen(chr(224) . chr(1)));
+        self::assertEquals(3, $testFunctionCalculationCharLen(chr(239) . chr(1)));
+
+        self::assertEquals(4, $testFunctionCalculationCharLen(chr(240) . chr(1)));
     }
 
     /**
@@ -74,32 +76,34 @@ class Utf8ToolsTest extends TestCase
      */
     public function testFatChars(): void
     {
+        $testFunctionClearFatChars = Utf8Tools::clearFatChars(...);
+
         /** @psalm-suppress InvalidArgument Нужно для проверки работы функции */
-        self::assertEquals('', Utf8Tools::clearFatChars('', 0));
+        self::assertEquals('', $testFunctionClearFatChars('', 0));
         /** @psalm-suppress InvalidArgument Нужно для проверки работы функции */
-        self::assertEquals('', Utf8Tools::clearFatChars('abd', 0));
+        self::assertEquals('', $testFunctionClearFatChars('abd', 0));
 
         // оставит только 1 байтовые символы
-        self::assertEquals('', Utf8Tools::clearFatChars('', 1));
-        self::assertEquals('', Utf8Tools::clearFatChars('ЯблокиНаСнегу', 1));
-        self::assertEquals('', Utf8Tools::clearFatChars(mb_chr(2048) . mb_chr(2048), 1)); // это 3 байтовые символы
-        self::assertEquals('abcwzf', Utf8Tools::clearFatChars('abcwzfЯ', 1));
-        self::assertEquals('abcwzf', Utf8Tools::clearFatChars('ЯблокиabcнаwzfСнегу', 1));
+        self::assertEquals('', $testFunctionClearFatChars('', 1));
+        self::assertEquals('', $testFunctionClearFatChars('ЯблокиНаСнегу', 1));
+        self::assertEquals('', $testFunctionClearFatChars(mb_chr(2048) . mb_chr(2048), 1)); // это 3 байтовые символы
+        self::assertEquals('abcwzf', $testFunctionClearFatChars('abcwzfЯ', 1));
+        self::assertEquals('abcwzf', $testFunctionClearFatChars('ЯблокиabcнаwzfСнегу', 1));
 
         // оставит только 2 байтовые символы
-        self::assertEquals('', Utf8Tools::clearFatChars('', 2));
-        self::assertEquals('aswdf', Utf8Tools::clearFatChars('aswdf', 2));
-        self::assertEquals('ЯблокиНаСнегу', Utf8Tools::clearFatChars('ЯблокиНаСнегу', 2));
-        self::assertEquals('', Utf8Tools::clearFatChars(mb_chr(2048) . mb_chr(2048), 2)); // это 3 байтовые символы
-        self::assertEquals('ЯблокиabcнаwzfСнегу', Utf8Tools::clearFatChars(mb_chr(2048) . 'ЯблокиabcнаwzfСнегу', 2));
-        self::assertEquals('ЯблокиabcнаwzfСнегу', Utf8Tools::clearFatChars('ЯблокиabcнаwzfСнегу' . mb_chr(2048), 2));
+        self::assertEquals('', $testFunctionClearFatChars('', 2));
+        self::assertEquals('aswdf', $testFunctionClearFatChars('aswdf', 2));
+        self::assertEquals('ЯблокиНаСнегу', $testFunctionClearFatChars('ЯблокиНаСнегу', 2));
+        self::assertEquals('', $testFunctionClearFatChars(mb_chr(2048) . mb_chr(2048), 2)); // это 3 байтовые символы
+        self::assertEquals('ЯблокиabcнаwzfСнегу', $testFunctionClearFatChars(mb_chr(2048) . 'ЯблокиabcнаwzfСнегу', 2));
+        self::assertEquals('ЯблокиabcнаwzfСнегу', $testFunctionClearFatChars('ЯблокиabcнаwzfСнегу' . mb_chr(2048), 2));
 
         // оставит только 3 байтовые символы
-        self::assertEquals('', Utf8Tools::clearFatChars('', 3));
-        self::assertEquals('aswdf', Utf8Tools::clearFatChars('aswdf', 3));
-        self::assertEquals('ЯблокиНаСнегу', Utf8Tools::clearFatChars('ЯблокиНаСнегу', 3));
-        self::assertEquals(mb_chr(2048) . mb_chr(2048), Utf8Tools::clearFatChars(mb_chr(2048) . mb_chr(2048), 3)); // это 3 байтовые символы
-        self::assertEquals('', Utf8Tools::clearFatChars(chr(240) . chr(1), 3)); // это 4 байтовые символ
+        self::assertEquals('', $testFunctionClearFatChars('', 3));
+        self::assertEquals('aswdf', $testFunctionClearFatChars('aswdf', 3));
+        self::assertEquals('ЯблокиНаСнегу', $testFunctionClearFatChars('ЯблокиНаСнегу', 3));
+        self::assertEquals(mb_chr(2048) . mb_chr(2048), $testFunctionClearFatChars(mb_chr(2048) . mb_chr(2048), 3)); // это 3 байтовые символы
+        self::assertEquals('', $testFunctionClearFatChars(chr(240) . chr(1), 3)); // это 4 байтовые символ
 
         // оставит только 4 байтовые символы
         $this->testFatCharsFor4Bits([Utf8Tools::class, 'clearFatChars'], true);
@@ -158,10 +162,12 @@ class Utf8ToolsTest extends TestCase
      */
     private function testFatCharsForMore4Bits(): void
     {
-        self::assertEquals('яблоки', Utf8Tools::clearFatChars('яблоки', 5));
-        self::assertEquals('aswdf', Utf8Tools::clearFatChars('aswdf', 5));
-        self::assertEquals('ЯблокиНаСнегу', Utf8Tools::clearFatChars('ЯблокиНаСнегу', 5));
-        self::assertEquals(mb_chr(2048) . mb_chr(2048), Utf8Tools::clearFatChars(mb_chr(2048) . mb_chr(2048), 5)); // это 3 байтовые символы
-        self::assertEquals(chr(240) . chr(1), Utf8Tools::clearFatChars(chr(240) . chr(1), 5)); // это 4 байтовые символ
+        $testFunctionClearFatChars = Utf8Tools::clearFatChars(...);
+
+        self::assertEquals('яблоки', $testFunctionClearFatChars('яблоки', 5));
+        self::assertEquals('aswdf', $testFunctionClearFatChars('aswdf', 5));
+        self::assertEquals('ЯблокиНаСнегу', $testFunctionClearFatChars('ЯблокиНаСнегу', 5));
+        self::assertEquals(mb_chr(2048) . mb_chr(2048), $testFunctionClearFatChars(mb_chr(2048) . mb_chr(2048), 5)); // это 3 байтовые символы
+        self::assertEquals(chr(240) . chr(1), $testFunctionClearFatChars(chr(240) . chr(1), 5)); // это 4 байтовые символ
     }
 }

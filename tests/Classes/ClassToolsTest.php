@@ -28,25 +28,28 @@ class ClassToolsTest extends TestCase
      */
     public function testIsLoad(): void
     {
+        $testFunctionIsLoad = ClassTools::isLoad(...);
+        $testFunctionIsInternal = ClassTools::isInternal(...);
+
         $this->createTestTraitAndEnum($traitName, $enumName);
 
         // * * *
 
-        self::assertTrue(ClassTools::isLoad(\stdClass::class));
-        self::assertTrue(ClassTools::isLoad(static::class));
+        self::assertTrue($testFunctionIsLoad(\stdClass::class));
+        self::assertTrue($testFunctionIsLoad(static::class));
 
-        self::assertTrue(ClassTools::isLoad(\Throwable::class));
-        self::assertTrue(ClassTools::isLoad(Test::class));
+        self::assertTrue($testFunctionIsLoad(\Throwable::class));
+        self::assertTrue($testFunctionIsLoad(Test::class));
 
         /**
          * @psalm-suppress PossiblyNullArgument Пслам не умеет нормально работать с "ссылками" (а эта переменная получает значение ппо ссылке выше
          * @psalm-suppress ArgumentTypeCoercion Пслам не умеет нормально работать с "ссылками" (а эта переменная получает значение ппо ссылке выше
          */
-        self::assertTrue(ClassTools::isLoad($traitName));
-        self::assertTrue(ClassTools::isLoad($enumName));
+        self::assertTrue($testFunctionIsLoad($traitName));
+        self::assertTrue($testFunctionIsLoad($enumName));
 
         /** @psalm-suppress UndefinedClass Мы знаем что такой класс не существует, проверяем, как функция отреагирует на такой кейс */
-        self::assertFalse(ClassTools::isInternal(_______NoClassName_______::class));
+        self::assertFalse($testFunctionIsInternal(_______NoClassName_______::class));
     }
 
     /**
@@ -54,8 +57,10 @@ class ClassToolsTest extends TestCase
      */
     public function testIsInternal(): void
     {
-        self::assertTrue(ClassTools::isInternal(\stdClass::class));
-        self::assertFalse(ClassTools::isInternal(static::class));
+        $testFunction = ClassTools::isInternal(...);
+
+        self::assertTrue($testFunction(\stdClass::class));
+        self::assertFalse($testFunction(static::class));
     }
 
     /**
@@ -63,11 +68,13 @@ class ClassToolsTest extends TestCase
      */
     public function testIsAsArray(): void
     {
-        self::assertFalse(ClassTools::isAsArray(\stdClass::class));
-        self::assertFalse(ClassTools::isAsArray(new \stdClass));
+        $testFunction = ClassTools::isAsArray(...);
 
-        self::assertTrue(ClassTools::isAsArray(\ArrayObject::class));
-        self::assertTrue(ClassTools::isAsArray(new \ArrayObject([])));
+        self::assertFalse($testFunction(\stdClass::class));
+        self::assertFalse($testFunction(new \stdClass));
+
+        self::assertTrue($testFunction(\ArrayObject::class));
+        self::assertTrue($testFunction(new \ArrayObject([])));
     }
 
     /**
@@ -77,27 +84,31 @@ class ClassToolsTest extends TestCase
      */
     public function testGetNameOrNamespace(): void
     {
-        self::assertEquals('catalog\\subcatalog', ClassTools::getNamespace('catalog\\subcatalog\\class'));
-        self::assertEquals('catalog', ClassTools::getNamespace('catalog\\class'));
-        self::assertEquals('', ClassTools::getNamespace('class'));
+        $testFunctionGetNamespace = ClassTools::getNamespace(...);
+        $testFunctionGetNameWithoutNamespace = ClassTools::getNameWithoutNamespace(...);
+        $testFunctionGetNameAndNamespace = ClassTools::getNameAndNamespace(...);
+
+        self::assertEquals('catalog\\subcatalog', $testFunctionGetNamespace('catalog\\subcatalog\\class'));
+        self::assertEquals('catalog', $testFunctionGetNamespace('catalog\\class'));
+        self::assertEquals('', $testFunctionGetNamespace('class'));
 
         // * * *
 
-        self::assertEquals('class', ClassTools::getNameWithoutNamespace('catalog\\subcatalog\\class'));
-        self::assertEquals('class', ClassTools::getNameWithoutNamespace('catalog\\class'));
-        self::assertEquals('class', ClassTools::getNameWithoutNamespace('class'));
+        self::assertEquals('class', $testFunctionGetNameWithoutNamespace('catalog\\subcatalog\\class'));
+        self::assertEquals('class', $testFunctionGetNameWithoutNamespace('catalog\\class'));
+        self::assertEquals('class', $testFunctionGetNameWithoutNamespace('class'));
 
         // * * *
 
-        [$namespace, $name] = ClassTools::getNameAndNamespace('catalog\\subcatalog\\class');
+        [$namespace, $name] = $testFunctionGetNameAndNamespace('catalog\\subcatalog\\class');
         self::assertEquals('catalog\\subcatalog', $namespace);
         self::assertEquals('class', $name);
 
-        [$namespace, $name] = ClassTools::getNameAndNamespace('catalog\\class');
+        [$namespace, $name] = $testFunctionGetNameAndNamespace('catalog\\class');
         self::assertEquals('catalog', $namespace);
         self::assertEquals('class', $name);
 
-        [$namespace, $name] = ClassTools::getNameAndNamespace('class');
+        [$namespace, $name] = $testFunctionGetNameAndNamespace('class');
         self::assertEquals('', $namespace);
         self::assertEquals('class', $name);
     }
@@ -107,8 +118,10 @@ class ClassToolsTest extends TestCase
      */
     public function testCreateObjectWithoutConstructor(): void
     {
+        $testFunction = ClassTools::createObject(...);
+
         $className = get_class($this->createObject());
-        $testObject = ClassTools::createObject($className, false, ['public_var' => '123', 'private_var' => 'ABC']);
+        $testObject = $testFunction($className, false, ['public_var' => '123', 'private_var' => 'ABC']);
 
         self::assertEquals("123", $testObject->public_var);
         self::assertEquals("construct_var_not_set", $testObject->construct_var);
@@ -121,8 +134,10 @@ class ClassToolsTest extends TestCase
      */
     public function testCreateObjectWithConstructor(): void
     {
+        $testFunction = ClassTools::createObject(...);
+
         $className = get_class($this->createObject());
-        $testObject = ClassTools::createObject($className, ['XXX'], ['public_var' => '123', 'private_var' => 'ABC']);
+        $testObject = $testFunction($className, ['XXX'], ['public_var' => '123', 'private_var' => 'ABC']);
 
         self::assertEquals("123", $testObject->public_var);
         self::assertEquals("construct_var_set_ok", $testObject->construct_var);

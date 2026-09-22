@@ -29,6 +29,8 @@ class ArrayIteratorTest extends TestCase
      */
     public function testAsArray(): void
     {
+        $testFunction = ArrayIterator::map(...);
+
         self::assertFalse(false);
 
         // * * * Для массивов
@@ -37,19 +39,19 @@ class ArrayIteratorTest extends TestCase
 
         self::assertEquals(
             [1, 2, 3, 4],
-            iterator_to_array(ArrayIterator::map($arrayTest))
+            iterator_to_array($testFunction($arrayTest))
         );
         self::assertEquals(
             [1, 2, 3, 4],
-            iterator_to_array(ArrayIterator::map($arrayTest, false))
+            iterator_to_array($testFunction($arrayTest, false))
         );
         self::assertEquals(
             ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
-            iterator_to_array(ArrayIterator::map($arrayTest, true))
+            iterator_to_array($testFunction($arrayTest, true))
         );
         self::assertEquals(
             ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
-            iterator_to_array(ArrayIterator::map($arrayTest, true, false))
+            iterator_to_array($testFunction($arrayTest, true, false))
         );
 
         // * * * Для объектов, имеющих доступ, как к массиву
@@ -58,19 +60,19 @@ class ArrayIteratorTest extends TestCase
 
         self::assertEquals(
             [1, 2, 3, 4],
-            iterator_to_array(ArrayIterator::map($arrayTest))
+            iterator_to_array($testFunction($arrayTest))
         );
         self::assertEquals(
             [1, 2, 3, 4],
-            iterator_to_array(ArrayIterator::map($arrayTest, false))
+            iterator_to_array($testFunction($arrayTest, false))
         );
         self::assertEquals(
             ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
-            iterator_to_array(ArrayIterator::map($arrayTest, true))
+            iterator_to_array($testFunction($arrayTest, true))
         );
         self::assertEquals(
             ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
-            iterator_to_array(ArrayIterator::map($arrayTest, true, false))
+            iterator_to_array($testFunction($arrayTest, true, false))
         );
     }
 
@@ -81,21 +83,21 @@ class ArrayIteratorTest extends TestCase
      */
     public function testMapGetKey(): void
     {
-        $notPublicProxy = ClassNotPublicManager::getInstanceFor(ArrayIterator::class);
+        $testFunction = fn(...$arguments) => ClassNotPublicManager::callMethod([ArrayIterator::class, 'mapGetKey'], $arguments);
 
         self::assertEquals(
             12,
-            $notPublicProxy->callStatic('mapGetKey', [12, ['a' => 'aaa', 'b'=>'bbb'], true])
+            $testFunction(12, ['a' => 'aaa', 'b'=>'bbb'], true)
         );
 
         self::assertEquals(
             'aaa',
-            $notPublicProxy->callStatic('mapGetKey', [12, ['a' => 'aaa', 'b'=>'bbb'], 'a'])
+            $testFunction(12, ['a' => 'aaa', 'b'=>'bbb'], 'a')
         );
 
         self::assertEquals(
             '333',
-            $notPublicProxy->callStatic('mapGetKey', [12, ['a' => 'aaa', 'b'=>'bbb', 3 => '333'], 3])
+            $testFunction(12, ['a' => 'aaa', 'b'=>'bbb', 3 => '333'], 3)
         );
     }
 
@@ -106,18 +108,18 @@ class ArrayIteratorTest extends TestCase
      */
     public function testMapGetValues(): void
     {
-        $notPublicProxy = ClassNotPublicManager::getInstanceFor(ArrayIterator::class);
+        $testFunction = fn(...$arguments) => ClassNotPublicManager::callMethod([ArrayIterator::class, 'mapGetValues'], $arguments);
 
         // * * * Вложенный элемент строка
 
         self::assertEquals(
             'ABCD',
-            $notPublicProxy->callStatic('mapGetValues', ['ABCD', false])
+            $testFunction('ABCD', false)
         );
 
         self::assertEquals(
             'B',
-            $notPublicProxy->callStatic('mapGetValues', ['ABCD', 1])
+            $testFunction('ABCD', 1)
         );
 
         // * * * Вложенный элемент масссив
@@ -126,22 +128,22 @@ class ArrayIteratorTest extends TestCase
 
         self::assertEquals(
             ['a' => 'aaa', 'b'=>'bbb', 3 => '333'],
-            $notPublicProxy->callStatic('mapGetValues', [$data, false])
+            $testFunction($data, false)
         );
 
         self::assertEquals(
             'aaa',
-            $notPublicProxy->callStatic('mapGetValues', [$data, 'a'])
+            $testFunction($data, 'a')
         );
 
         self::assertEquals(
             '333',
-            $notPublicProxy->callStatic('mapGetValues', [$data, 3])
+            $testFunction($data, 3)
         );
 
         self::assertEquals(
             ['a' => 'aaa', 3 => '333'],
-            $notPublicProxy->callStatic('mapGetValues', [$data, ['a', 3]])
+            $testFunction($data, ['a', 3])
         );
 
         // * * * Вложенный элемент объект схожий с массивом
@@ -150,22 +152,22 @@ class ArrayIteratorTest extends TestCase
 
         self::assertEquals(
             new \ArrayObject(['a' => 'aaa', 'b'=>'bbb', 3 => '333']),
-            $notPublicProxy->callStatic('mapGetValues', [$data, false])
+            $testFunction($data, false)
         );
 
         self::assertEquals(
             'aaa',
-            $notPublicProxy->callStatic('mapGetValues', [$data, 'a'])
+            $testFunction($data, 'a')
         );
 
         self::assertEquals(
             '333',
-            $notPublicProxy->callStatic('mapGetValues', [$data, 3])
+            $testFunction($data, 3)
         );
 
         self::assertEquals(
             ['a' => 'aaa', 3 => '333'],
-            $notPublicProxy->callStatic('mapGetValues', [$data, ['a', 3]])
+            $testFunction($data, ['a', 3])
         );
     }
 }

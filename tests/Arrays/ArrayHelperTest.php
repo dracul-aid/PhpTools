@@ -28,15 +28,17 @@ class ArrayHelperTest extends TestCase
      */
     public function testIsAsArray(): void
     {
-        self::assertFalse(ArrayHelper::isAsArray(111));
-        self::assertFalse(ArrayHelper::isAsArray(111.222));
-        self::assertFalse(ArrayHelper::isAsArray('ABC'));
-        self::assertFalse(ArrayHelper::isAsArray(null));
-        self::assertFalse(ArrayHelper::isAsArray(true));
-        self::assertFalse(ArrayHelper::isAsArray(new \stdClass()));
+        $testFunction = ArrayHelper::isAsArray(...);
 
-        self::assertTrue(ArrayHelper::isAsArray([]));
-        self::assertTrue(ArrayHelper::isAsArray(new \ArrayObject()));
+        self::assertFalse($testFunction(111));
+        self::assertFalse($testFunction(111.222));
+        self::assertFalse($testFunction('ABC'));
+        self::assertFalse($testFunction(null));
+        self::assertFalse($testFunction(true));
+        self::assertFalse($testFunction(new \stdClass()));
+
+        self::assertTrue($testFunction([]));
+        self::assertTrue($testFunction(new \ArrayObject()));
     }
 
     /**
@@ -46,12 +48,14 @@ class ArrayHelperTest extends TestCase
      */
     public function testCountSafe(): void
     {
-        self::assertEquals(0, ArrayHelper::countSafe(111));
-        self::assertEquals(12, ArrayHelper::countSafe(111, 12));
-        self::assertEquals(0, ArrayHelper::countSafe([], 12));
-        self::assertEquals(4, ArrayHelper::countSafe([1, 3, 5, 7], 12));
-        self::assertEquals(0, ArrayHelper::countSafe(new \ArrayObject([]), 12));
-        self::assertEquals(4, ArrayHelper::countSafe(new \ArrayObject([1, 3, 5, 7]), 12));
+        $testFunction = ArrayHelper::countSafe(...);
+
+        self::assertEquals(0, $testFunction(111));
+        self::assertEquals(12, $testFunction(111, 12));
+        self::assertEquals(0, $testFunction([], 12));
+        self::assertEquals(4, $testFunction([1, 3, 5, 7], 12));
+        self::assertEquals(0, $testFunction(new \ArrayObject([]), 12));
+        self::assertEquals(4, $testFunction(new \ArrayObject([1, 3, 5, 7]), 12));
     }
 
     /**
@@ -61,21 +65,23 @@ class ArrayHelperTest extends TestCase
      */
     public function testKeyExist(): void
     {
-        self::assertFalse(ArrayHelper::keyExist([], 'test-key'));
-        self::assertTrue(ArrayHelper::keyExist(['test-key' => null], 'test-key'));
-        self::assertTrue(ArrayHelper::keyExist(['test-key' => 111], 'test-key'));
+        $testFunction = ArrayHelper::keyExist(...);
 
-        self::assertFalse(ArrayHelper::keyExist(new \ArrayObject(), 'test-key'));
-        self::assertFalse(ArrayHelper::keyExist(new \ArrayObject(['test-key' => null]), 'test-key'));
-        self::assertTrue(ArrayHelper::keyExist(new \ArrayObject(['test-key' => 111]), 'test-key'));
+        self::assertFalse($testFunction([], 'test-key'));
+        self::assertTrue($testFunction(['test-key' => null], 'test-key'));
+        self::assertTrue($testFunction(['test-key' => 111], 'test-key'));
 
-        self::assertFalse(ArrayHelper::keyExist(new \ArrayObject(), 'test-key', false));
-        self::assertFalse(ArrayHelper::keyExist(new \ArrayObject(['test-key' => null]), 'test-key', false));
-        self::assertTrue(ArrayHelper::keyExist(new \ArrayObject(['test-key' => 111]), 'test-key', false));
+        self::assertFalse($testFunction(new \ArrayObject(), 'test-key'));
+        self::assertFalse($testFunction(new \ArrayObject(['test-key' => null]), 'test-key'));
+        self::assertTrue($testFunction(new \ArrayObject(['test-key' => 111]), 'test-key'));
 
-        self::assertFalse(ArrayHelper::keyExist(new \ArrayObject(), 'test-key', true));
-        self::assertTrue(ArrayHelper::keyExist(new \ArrayObject(['test-key' => null]), 'test-key', true));
-        self::assertTrue(ArrayHelper::keyExist(new \ArrayObject(['test-key' => 111]), 'test-key', true));
+        self::assertFalse($testFunction(new \ArrayObject(), 'test-key', false));
+        self::assertFalse($testFunction(new \ArrayObject(['test-key' => null]), 'test-key', false));
+        self::assertTrue($testFunction(new \ArrayObject(['test-key' => 111]), 'test-key', false));
+
+        self::assertFalse($testFunction(new \ArrayObject(), 'test-key', true));
+        self::assertTrue($testFunction(new \ArrayObject(['test-key' => null]), 'test-key', true));
+        self::assertTrue($testFunction(new \ArrayObject(['test-key' => 111]), 'test-key', true));
     }
 
     /**
@@ -85,16 +91,18 @@ class ArrayHelperTest extends TestCase
      */
     public function testGetNewIndex(): void
     {
+        $testFunction = ArrayHelper::getNewIndex(...);
+
         self::assertTrue(true);
 
         $arr = [];
-        self::assertEquals(0, ArrayHelper::getNewIndex($arr));
+        self::assertEquals(0, $testFunction($arr));
 
         $arr = ['A'];
-        self::assertEquals(1, ArrayHelper::getNewIndex($arr));
+        self::assertEquals(1, $testFunction($arr));
 
         $arr = [1 => 'A'];
-        self::assertEquals(2, ArrayHelper::getNewIndex($arr));
+        self::assertEquals(2, $testFunction($arr));
     }
 
     /**
@@ -104,10 +112,12 @@ class ArrayHelperTest extends TestCase
      */
     public function testSetInPositionAndMoveOldValues(): void
     {
+        $testFunction = ArrayHelper::setInPositionAndMoveOldValues(...);
+
         // массив в который производится вставка пуст - вернем вставляемые данные
         self::assertEquals(
             [0=>'a', 1=>'b', 2=>'c', 3=>'d', 4=>'e'],
-            ArrayHelper::setInPositionAndMoveOldValues(
+            $testFunction(
                 [],
                 0,
                 'a', 'b', 'c', 'd', 'e'
@@ -117,7 +127,7 @@ class ArrayHelperTest extends TestCase
         // вставляемых данных нет - вернем изначальный массив как есть
         self::assertEquals(
             [0=>'a', 1=>'b', 2=>'c', 3=>'d', 4=>'e'],
-            ArrayHelper::setInPositionAndMoveOldValues(
+            $testFunction(
                 [0=>'a', 1=>'b', 2=>'c', 3=>'d', 4=>'e'],
                 0,
                 ... []
@@ -127,7 +137,7 @@ class ArrayHelperTest extends TestCase
         // позиция для вставки превышает кол-во элементов в изначальном массиве - вставим в конец массива
         self::assertEquals(
             [0=>'a', 1=>'b', 2=>'c', 3=>'d', 4=>'e'],
-            ArrayHelper::setInPositionAndMoveOldValues(
+            $testFunction(
                     [0=>'a', 1=>'b'],
                     100,
                     'c', 'd', 'e'
@@ -137,7 +147,7 @@ class ArrayHelperTest extends TestCase
         // вставляем данные в центр существующего массива
         self::assertEquals(
             [0=>'a', 1=>'b', 2=>'x', 3=>'y', 4=>'z', 5=>'c', 6=>'d', 7=>'e'],
-            ArrayHelper::setInPositionAndMoveOldValues(
+            $testFunction(
                 [0=>'a', 1=>'b', 2=>'c', 3=>'d', 4=>'e'],
                 2,
                 'x', 'y', 'z'
@@ -147,7 +157,7 @@ class ArrayHelperTest extends TestCase
         // вставляем данные в центр существующего массива с Отрицательным индексом
         self::assertEquals(
             [0=>'a', 1=>'b', 2=>'x', 3=>'y', 4=>'z', 5=>'c', 6=>'d', 7=>'e'],
-            ArrayHelper::setInPositionAndMoveOldValues(
+            $testFunction(
                 [0=>'a', 1=>'b', 2=>'c', 3=>'d', 4=>'e'],
                 -3,
                 'x', 'y', 'z'
@@ -162,21 +172,23 @@ class ArrayHelperTest extends TestCase
      */
     public function testGetByIndexes(): void
     {
+        $testFunction = ArrayHelper::getByIndexes(...);
+
         $array = ['a' => 'AAA', 'b' => 'BBB', 'c' => 'CCC'];
 
         self::assertEquals(
             ['a' => 'AAA', 'c' => 'CCC'],
-            ArrayHelper::getByIndexes($array, ['a', 'c'])
+            $testFunction($array, ['a', 'c'])
         );
 
         self::assertEquals(
             ['a' => 'AAA', 'x' => null],
-            ArrayHelper::getByIndexes($array, ['a', 'x'])
+            $testFunction($array, ['a', 'x'])
         );
 
         self::assertEquals(
             ['a' => 'AAA', 'x' => 'XXX'],
-            ArrayHelper::getByIndexes($array, ['a', 'x'], 'XXX')
+            $testFunction($array, ['a', 'x'], 'XXX')
         );
     }
 
@@ -187,38 +199,40 @@ class ArrayHelperTest extends TestCase
      */
     public function testIsList(): void
     {
+        $testFunction = ArrayHelper::isList(...);
+
         // * * * Для массивов
 
-        self::assertTrue(ArrayHelper::isList([]));
-        self::assertTrue(ArrayHelper::isList([1, 2, 3]));
-        self::assertTrue(ArrayHelper::isList([0 => 1, 1 => 2, 2 => 3]));
-        self::assertTrue(ArrayHelper::isList(['0' => 'a', 1 => 'b']));
-        self::assertTrue(ArrayHelper::isList(['0' => 'a', '1' => 'b']));
+        self::assertTrue($testFunction([]));
+        self::assertTrue($testFunction([1, 2, 3]));
+        self::assertTrue($testFunction([0 => 1, 1 => 2, 2 => 3]));
+        self::assertTrue($testFunction(['0' => 'a', 1 => 'b']));
+        self::assertTrue($testFunction(['0' => 'a', '1' => 'b']));
 
-        self::assertFalse(ArrayHelper::isList([1 => 'a', 0 => 'b']));
-        self::assertFalse(ArrayHelper::isList(['a' => 1, 'b' => 2]));
-        self::assertFalse(ArrayHelper::isList([0 => 'a', 2 => 'b']));
-        self::assertFalse(ArrayHelper::isList(['1' => 'a', '2' => 'b']));
+        self::assertFalse($testFunction([1 => 'a', 0 => 'b']));
+        self::assertFalse($testFunction(['a' => 1, 'b' => 2]));
+        self::assertFalse($testFunction([0 => 'a', 2 => 'b']));
+        self::assertFalse($testFunction(['1' => 'a', '2' => 'b']));
 
         // * * * Для итерируемых объектов
 
-        self::assertTrue(ArrayHelper::isList(new \ArrayObject([])));
-        self::assertTrue(ArrayHelper::isList(new \ArrayObject([1, 2, 3])));
-        self::assertTrue(ArrayHelper::isList(new \ArrayObject([0 => 1, 1 => 2, 2 => 3])));
-        self::assertTrue(ArrayHelper::isList(new \ArrayObject(['0' => 'a', 1 => 'b'])));
-        self::assertTrue(ArrayHelper::isList(new \ArrayObject(['0' => 'a', '1' => 'b'])));
+        self::assertTrue($testFunction(new \ArrayObject([])));
+        self::assertTrue($testFunction(new \ArrayObject([1, 2, 3])));
+        self::assertTrue($testFunction(new \ArrayObject([0 => 1, 1 => 2, 2 => 3])));
+        self::assertTrue($testFunction(new \ArrayObject(['0' => 'a', 1 => 'b'])));
+        self::assertTrue($testFunction(new \ArrayObject(['0' => 'a', '1' => 'b'])));
 
-        self::assertFalse(ArrayHelper::isList(new \ArrayObject([1 => 'a', 0 => 'b'])));
-        self::assertFalse(ArrayHelper::isList(new \ArrayObject(['a' => 1, 'b' => 2])));
-        self::assertFalse(ArrayHelper::isList(new \ArrayObject([0 => 'a', 2 => 'b'])));
-        self::assertFalse(ArrayHelper::isList(new \ArrayObject(['1' => 'a', '2' => 'b'])));
+        self::assertFalse($testFunction(new \ArrayObject([1 => 'a', 0 => 'b'])));
+        self::assertFalse($testFunction(new \ArrayObject(['a' => 1, 'b' => 2])));
+        self::assertFalse($testFunction(new \ArrayObject([0 => 'a', 2 => 'b'])));
+        self::assertFalse($testFunction(new \ArrayObject(['1' => 'a', '2' => 'b'])));
 
         // * * * Убеждаемся, что не падает, если ключи объекты
 
         $keyObject = new class() {};
         $testObject = new \WeakMap();
         $testObject[$keyObject] = 123;
-        self::assertFalse(ArrayHelper::isList($testObject));
+        self::assertFalse($testFunction($testObject));
     }
 
     /**
@@ -228,21 +242,23 @@ class ArrayHelperTest extends TestCase
      */
     public function testIsTypeArray(): void
     {
+        $testFunction = ArrayHelper::isTypeArray(...);
+
         // * * * Для массивов
 
-        self::assertTrue(ArrayHelper::isTypeArray([], 'int'));
-        self::assertTrue(ArrayHelper::isTypeArray([1, 2, 3], 'int'));
+        self::assertTrue($testFunction([], 'int'));
+        self::assertTrue($testFunction([1, 2, 3], 'int'));
 
-        self::assertFalse(ArrayHelper::isTypeArray(['1', '2', '3'], 'int'));
-        self::assertFalse(ArrayHelper::isTypeArray(['x', 'y', 'z'], 'int'));
+        self::assertFalse($testFunction(['1', '2', '3'], 'int'));
+        self::assertFalse($testFunction(['x', 'y', 'z'], 'int'));
 
         // * * * Для итерируемых объектов
 
-        self::assertTrue(ArrayHelper::isTypeArray(new \ArrayObject([]), 'int'));
-        self::assertTrue(ArrayHelper::isTypeArray(new \ArrayObject([1, 2, 3]), 'int'));
+        self::assertTrue($testFunction(new \ArrayObject([]), 'int'));
+        self::assertTrue($testFunction(new \ArrayObject([1, 2, 3]), 'int'));
 
-        self::assertFalse(ArrayHelper::isTypeArray(new \ArrayObject(['1', '2', '3']), 'int'));
-        self::assertFalse(ArrayHelper::isTypeArray(new \ArrayObject(['x', 'y', 'z']), 'int'));
+        self::assertFalse($testFunction(new \ArrayObject(['1', '2', '3']), 'int'));
+        self::assertFalse($testFunction(new \ArrayObject(['x', 'y', 'z']), 'int'));
     }
 
     /**
@@ -253,41 +269,43 @@ class ArrayHelperTest extends TestCase
      */
     public function testIsVector(): void
     {
+        $testFunction = ArrayHelper::isVector(...);
+
         // * * * Для массивов
 
-        self::assertTrue(ArrayHelper::isVector([], 'int'));
-        self::assertTrue(ArrayHelper::isVector([1, 2, 3], 'int'));
-        self::assertTrue(ArrayHelper::isVector([0 => 1, 1 => 2, 2 => 3], 'int'));
-        self::assertTrue(ArrayHelper::isVector(['0' => 1, '1' => 2], 'int'));
+        self::assertTrue($testFunction([], 'int'));
+        self::assertTrue($testFunction([1, 2, 3], 'int'));
+        self::assertTrue($testFunction([0 => 1, 1 => 2, 2 => 3], 'int'));
+        self::assertTrue($testFunction(['0' => 1, '1' => 2], 'int'));
 
-        self::assertFalse(ArrayHelper::isVector([1 => 'a', 0 => 'b'], 'int'));
-        self::assertFalse(ArrayHelper::isVector(['a' => 1, 'b' => 2], 'int'));
-        self::assertFalse(ArrayHelper::isVector([0 => 'a', 2 => 'b'], 'int'));
-        self::assertFalse(ArrayHelper::isVector(['1' => 'a', '2' => 'b'], 'int'));
-        self::assertFalse(ArrayHelper::isVector([0 => 'a', 1 => 'b'], 'int'));
-        self::assertFalse(ArrayHelper::isVector(['0' => 'a', '1' => 'b'], 'int'));
+        self::assertFalse($testFunction([1 => 'a', 0 => 'b'], 'int'));
+        self::assertFalse($testFunction(['a' => 1, 'b' => 2], 'int'));
+        self::assertFalse($testFunction([0 => 'a', 2 => 'b'], 'int'));
+        self::assertFalse($testFunction(['1' => 'a', '2' => 'b'], 'int'));
+        self::assertFalse($testFunction([0 => 'a', 1 => 'b'], 'int'));
+        self::assertFalse($testFunction(['0' => 'a', '1' => 'b'], 'int'));
 
         // * * * Для итерируемых объектов
 
-        self::assertTrue(ArrayHelper::isVector(new \ArrayObject([]), 'int'));
-        self::assertTrue(ArrayHelper::isVector(new \ArrayObject([1, 2, 3]), 'int'));
-        self::assertTrue(ArrayHelper::isVector(new \ArrayObject([0 => 1, 1 => 2, 2 => 3]), 'int'));
-        self::assertTrue(ArrayHelper::isVector(new \ArrayObject(['0' => 1, '1' => 2]), 'int'));
+        self::assertTrue($testFunction(new \ArrayObject([]), 'int'));
+        self::assertTrue($testFunction(new \ArrayObject([1, 2, 3]), 'int'));
+        self::assertTrue($testFunction(new \ArrayObject([0 => 1, 1 => 2, 2 => 3]), 'int'));
+        self::assertTrue($testFunction(new \ArrayObject(['0' => 1, '1' => 2]), 'int'));
 
-        self::assertFalse(ArrayHelper::isVector(new \ArrayObject([1 => 'a', 0 => 'b']), 'int'));
-        self::assertFalse(ArrayHelper::isVector(new \ArrayObject(['a' => 1, 'b' => 2]), 'int'));
-        self::assertFalse(ArrayHelper::isVector(new \ArrayObject([0 => 'a', 2 => 'b']), 'int'));
-        self::assertFalse(ArrayHelper::isVector(new \ArrayObject(['1' => 'a', '2' => 'b']), 'int'));
-        self::assertFalse(ArrayHelper::isVector(new \ArrayObject([0 => 'a', 1 => 'b']), 'int'));
-        self::assertFalse(ArrayHelper::isVector(new \ArrayObject(['0' => 'a', '1' => 'b']), 'int'));
+        self::assertFalse($testFunction(new \ArrayObject([1 => 'a', 0 => 'b']), 'int'));
+        self::assertFalse($testFunction(new \ArrayObject(['a' => 1, 'b' => 2]), 'int'));
+        self::assertFalse($testFunction(new \ArrayObject([0 => 'a', 2 => 'b']), 'int'));
+        self::assertFalse($testFunction(new \ArrayObject(['1' => 'a', '2' => 'b']), 'int'));
+        self::assertFalse($testFunction(new \ArrayObject([0 => 'a', 1 => 'b']), 'int'));
+        self::assertFalse($testFunction(new \ArrayObject(['0' => 'a', '1' => 'b']), 'int'));
 
         // * * * Убеждаемся, что не падает, если ключи объекты
 
         $keyObject = new class ( ) { };
         $testObject = new \WeakMap();
         $testObject[$keyObject] = 123;
-        self::assertFalse(ArrayHelper::isVector($testObject, 'int'));
-        self::assertFalse(ArrayHelper::isVector($testObject, 'string'));
+        self::assertFalse($testFunction($testObject, 'int'));
+        self::assertFalse($testFunction($testObject, 'string'));
     }
 
     /**

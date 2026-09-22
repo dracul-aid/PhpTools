@@ -36,50 +36,84 @@ class DateTimeValidatorTest extends TestCase
      */
     public function testRun(): void
     {
-        self::assertTrue(DateTimeValidator::year(2050));
-        self::assertTrue(DateTimeValidator::year(0));
-        self::assertTrue(DateTimeValidator::year(-250));
-        self::assertFalse(DateTimeValidator::year(10000));
+        $testFunctionYear = DateTimeValidator::year(...);
 
-        self::assertTrue(DateTimeValidator::yearDay(1));
-        self::assertTrue(DateTimeValidator::yearDay(366));
-        self::assertFalse(DateTimeValidator::yearDay(367));
-        self::assertFalse(DateTimeValidator::yearDay(0));
+        self::assertTrue($testFunctionYear(2050));
+        self::assertTrue($testFunctionYear(0));
+        self::assertTrue($testFunctionYear(-250));
+        self::assertFalse($testFunctionYear(10000));
 
-        self::assertTrue(DateTimeValidator::mon(1));
-        self::assertTrue(DateTimeValidator::mon(12));
-        self::assertFalse(DateTimeValidator::mon(0));
-        self::assertFalse(DateTimeValidator::mon(13));
+        // * * *
 
-        self::assertTrue(DateTimeValidator::week(1));
-        self::assertTrue(DateTimeValidator::week(52));
-        self::assertFalse(DateTimeValidator::week(0));
-        self::assertFalse(DateTimeValidator::week(53));
+        $testFunctionYearDay = DateTimeValidator::yearDay(...);
 
-        self::assertTrue(DateTimeValidator::weekDay(1));
-        self::assertTrue(DateTimeValidator::weekDay(7));
-        self::assertFalse(DateTimeValidator::weekDay(0));
-        self::assertFalse(DateTimeValidator::weekDay(8));
+        self::assertTrue($testFunctionYearDay(1));
+        self::assertTrue($testFunctionYearDay(366));
+        self::assertFalse($testFunctionYearDay(367));
+        self::assertFalse($testFunctionYearDay(0));
 
-        self::assertTrue(DateTimeValidator::day(1));
-        self::assertTrue(DateTimeValidator::day(31));
-        self::assertFalse(DateTimeValidator::day(0));
-        self::assertFalse(DateTimeValidator::day(32));
+        // * * *
 
-        self::assertTrue(DateTimeValidator::hour(0));
-        self::assertTrue(DateTimeValidator::hour(23));
-        self::assertFalse(DateTimeValidator::hour(-1));
-        self::assertFalse(DateTimeValidator::hour(24));
+        $testFunctionMon = DateTimeValidator::mon(...);
 
-        self::assertTrue(DateTimeValidator::minute(0));
-        self::assertTrue(DateTimeValidator::minute(59));
-        self::assertFalse(DateTimeValidator::minute(-1));
-        self::assertFalse(DateTimeValidator::minute(60));
+        self::assertTrue($testFunctionMon(1));
+        self::assertTrue($testFunctionMon(12));
+        self::assertFalse($testFunctionMon(0));
+        self::assertFalse($testFunctionMon(13));
 
-        self::assertTrue(DateTimeValidator::second(0));
-        self::assertTrue(DateTimeValidator::second(59));
-        self::assertFalse(DateTimeValidator::second(-1));
-        self::assertFalse(DateTimeValidator::second(60));
+        // * * *
+
+        $testFunctionWeek = DateTimeValidator::week(...);
+
+        self::assertTrue($testFunctionWeek(1));
+        self::assertTrue($testFunctionWeek(52));
+        self::assertFalse($testFunctionWeek(0));
+        self::assertFalse($testFunctionWeek(53));
+
+        // * * *
+
+        $testFunctionWeekDay = DateTimeValidator::weekDay(...);
+
+        self::assertTrue($testFunctionWeekDay(1));
+        self::assertTrue($testFunctionWeekDay(7));
+        self::assertFalse($testFunctionWeekDay(0));
+        self::assertFalse($testFunctionWeekDay(8));
+
+        // * * *
+
+        $testFunctionDay = DateTimeValidator::day(...);
+
+        self::assertTrue($testFunctionDay(1));
+        self::assertTrue($testFunctionDay(31));
+        self::assertFalse($testFunctionDay(0));
+        self::assertFalse($testFunctionDay(32));
+
+        // * * *
+
+        $testFunctionHour = DateTimeValidator::hour(...);
+
+        self::assertTrue($testFunctionHour(0));
+        self::assertTrue($testFunctionHour(23));
+        self::assertFalse($testFunctionHour(-1));
+        self::assertFalse($testFunctionHour(24));
+
+        // * * *
+
+        $testFunctionMinute = DateTimeValidator::minute(...);
+
+        self::assertTrue($testFunctionMinute(0));
+        self::assertTrue($testFunctionMinute(59));
+        self::assertFalse($testFunctionMinute(-1));
+        self::assertFalse($testFunctionMinute(60));
+
+        // * * *
+
+        $testFunctionSecond = DateTimeValidator::second(...);
+
+        self::assertTrue($testFunctionSecond(0));
+        self::assertTrue($testFunctionSecond(59));
+        self::assertFalse($testFunctionSecond(-1));
+        self::assertFalse($testFunctionSecond(60));
     }
 
     /**

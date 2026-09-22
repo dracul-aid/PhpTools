@@ -33,20 +33,22 @@ class StringSearchToolsTest extends TestCase
      */
     private function runTestPosition(): void
     {
-        self::assertNull(StringSearchTools::position('', ['str']));
-        self::assertNull(StringSearchTools::position('str', []));
-        self::assertNull(StringSearchTools::position('BBB', ['AAA']));
+        $testFunctionPosition = StringSearchTools::position(...);
 
-        self::assertEquals(0, StringSearchTools::position('AAA', ['AAA']));
-        self::assertEquals(1, StringSearchTools::position('BAAA', ['AAA']));
-        self::assertEquals(0, StringSearchTools::position('BAAA', ['AAA', 'B']));
+        self::assertNull($testFunctionPosition('', ['str']));
+        self::assertNull($testFunctionPosition('str', []));
+        self::assertNull($testFunctionPosition('BBB', ['AAA']));
 
-        self::assertEquals(3, StringSearchTools::position('AAABBBCCC', ['BBB', 'CCC']));
+        self::assertEquals(0, $testFunctionPosition('AAA', ['AAA']));
+        self::assertEquals(1, $testFunctionPosition('BAAA', ['AAA']));
+        self::assertEquals(0, $testFunctionPosition('BAAA', ['AAA', 'B']));
 
-        self::assertEquals(6, StringSearchTools::position('AAABBBCCC', ['BBB', 'CCC'], 5));
+        self::assertEquals(3, $testFunctionPosition('AAABBBCCC', ['BBB', 'CCC']));
 
-        self::assertEquals([0, 'AAA'], StringSearchTools::position('AAA', ['AAA'], 0, true, true));
-        self::assertEquals([6, 'CCC'], StringSearchTools::position('AAABBBCCC', ['BBB', 'CCC'], 5, true, true));
+        self::assertEquals(6, $testFunctionPosition('AAABBBCCC', ['BBB', 'CCC'], 5));
+
+        self::assertEquals([0, 'AAA'], $testFunctionPosition('AAA', ['AAA'], 0, true, true));
+        self::assertEquals([6, 'CCC'], $testFunctionPosition('AAABBBCCC', ['BBB', 'CCC'], 5, true, true));
 
         // * * * Проверка поддержки перебираемого
 
@@ -55,7 +57,7 @@ class StringSearchToolsTest extends TestCase
             yield 'str222';
         };
 
-        self::assertEquals(2, StringSearchTools::position('01str222', $iterableFunction()));
+        self::assertEquals(2, $testFunctionPosition('01str222', $iterableFunction()));
     }
 
     /**
@@ -63,17 +65,19 @@ class StringSearchToolsTest extends TestCase
      */
     private function runTestInCenter(): void
     {
-        self::assertFalse(StringSearchTools::inCenter('Я', 'Я'));
-        self::assertFalse(StringSearchTools::inCenter('Я', 'ЯГ'));
-        self::assertFalse(StringSearchTools::inCenter('ЯГ', 'Я'));
-        self::assertFalse(StringSearchTools::inCenter('AГ', 'Г'));
+        $testFunctionInCenter = StringSearchTools::inCenter(...);
 
-        self::assertFalse(StringSearchTools::inCenter('ЯГШ', 'Я'));
-        self::assertFalse(StringSearchTools::inCenter('ЯГШ', 'Ш'));
-        self::assertFalse(StringSearchTools::inCenter('ЯГШ', 'Л'));
-        self::assertFalse(StringSearchTools::inCenter('ЯГШ', 'Q'));
+        self::assertFalse($testFunctionInCenter('Я', 'Я'));
+        self::assertFalse($testFunctionInCenter('Я', 'ЯГ'));
+        self::assertFalse($testFunctionInCenter('ЯГ', 'Я'));
+        self::assertFalse($testFunctionInCenter('AГ', 'Г'));
 
-        self::assertTrue(StringSearchTools::inCenter('ЯГШ', 'Г'));
+        self::assertFalse($testFunctionInCenter('ЯГШ', 'Я'));
+        self::assertFalse($testFunctionInCenter('ЯГШ', 'Ш'));
+        self::assertFalse($testFunctionInCenter('ЯГШ', 'Л'));
+        self::assertFalse($testFunctionInCenter('ЯГШ', 'Q'));
+
+        self::assertTrue($testFunctionInCenter('ЯГШ', 'Г'));
     }
 
     /**
@@ -81,34 +85,36 @@ class StringSearchToolsTest extends TestCase
      */
     private function runTestInString(): void
     {
-        self::assertTrue(StringSearchTools::inString('ЯБЪЧШ', ['start' => 'ЯБ']));
-        self::assertFalse(StringSearchTools::inString('ЯБЪЧШ', ['start' => 'БЪ']));
+        $testFunctionInString = StringSearchTools::inString(...);
 
-        self::assertTrue(StringSearchTools::inString('ЯБЪЧШ', ['end' => 'ЧШ']));
-        self::assertFalse(StringSearchTools::inString('ЯБЪЧШ', ['end' => 'ЪЧ']));
+        self::assertTrue($testFunctionInString('ЯБЪЧШ', ['start' => 'ЯБ']));
+        self::assertFalse($testFunctionInString('ЯБЪЧШ', ['start' => 'БЪ']));
 
-        self::assertTrue(StringSearchTools::inString('ЯБЪЧШ', ['center' => 'БЪЧ']));
-        self::assertFalse(StringSearchTools::inString('ЯБЪЧШ', ['center' => 'ЯБЪЧШ']));
-        self::assertFalse(StringSearchTools::inString('ЯБЪЧШ', ['center' => 'ЧШ']));
-        self::assertFalse(StringSearchTools::inString('ЯБЪЧШ', ['center' => 'ЯБ']));
+        self::assertTrue($testFunctionInString('ЯБЪЧШ', ['end' => 'ЧШ']));
+        self::assertFalse($testFunctionInString('ЯБЪЧШ', ['end' => 'ЪЧ']));
 
-        self::assertTrue(StringSearchTools::inString('ЯБЪЧШ', ['content' => 'ЯБЪЧШ']));
-        self::assertTrue(StringSearchTools::inString('ЯБЪЧШ', ['content' => 'ЯБЪ']));
-        self::assertTrue(StringSearchTools::inString('ЯБЪЧШ', ['content' => 'ЪЧШ']));
-        self::assertTrue(StringSearchTools::inString('ЯБЪЧШ', ['content' => 'БЪЧ']));
-        self::assertFalse(StringSearchTools::inString('ЯБЪЧШ', ['content' => 'Q']));
+        self::assertTrue($testFunctionInString('ЯБЪЧШ', ['center' => 'БЪЧ']));
+        self::assertFalse($testFunctionInString('ЯБЪЧШ', ['center' => 'ЯБЪЧШ']));
+        self::assertFalse($testFunctionInString('ЯБЪЧШ', ['center' => 'ЧШ']));
+        self::assertFalse($testFunctionInString('ЯБЪЧШ', ['center' => 'ЯБ']));
 
-        self::assertTrue(StringSearchTools::inString('ЯБЪЧШЯ', ['border' => 'Я']));
-        self::assertFalse(StringSearchTools::inString('ЯБЪЧШ', ['border' => 'Я']));
-        self::assertFalse(StringSearchTools::inString('ЯБЪЧШ', ['border' => 'Ш']));
+        self::assertTrue($testFunctionInString('ЯБЪЧШ', ['content' => 'ЯБЪЧШ']));
+        self::assertTrue($testFunctionInString('ЯБЪЧШ', ['content' => 'ЯБЪ']));
+        self::assertTrue($testFunctionInString('ЯБЪЧШ', ['content' => 'ЪЧШ']));
+        self::assertTrue($testFunctionInString('ЯБЪЧШ', ['content' => 'БЪЧ']));
+        self::assertFalse($testFunctionInString('ЯБЪЧШ', ['content' => 'Q']));
+
+        self::assertTrue($testFunctionInString('ЯБЪЧШЯ', ['border' => 'Я']));
+        self::assertFalse($testFunctionInString('ЯБЪЧШ', ['border' => 'Я']));
+        self::assertFalse($testFunctionInString('ЯБЪЧШ', ['border' => 'Ш']));
 
         // * * *
 
-        self::assertTrue(StringSearchTools::inString('ЯБЪЧШЯ', ['start' => 'ЯБ', 'end' => 'ШЯ', 'center' => 'БЪЧШ', 'content' => 'ЯБЪЧШЯ', 'border' => 'Я']));
-        self::assertFalse(StringSearchTools::inString('ЯБЪЧШЯ', ['start' => 'ЯБ1', 'end' => 'ШЯ', 'center' => 'БЪЧШ', 'content' => 'ЯБЪЧШЯ', 'border' => 'Я']));
-        self::assertFalse(StringSearchTools::inString('ЯБЪЧШЯ', ['start' => 'ЯБ', 'end' => 'ШЯ1', 'center' => 'БЪЧШ', 'content' => 'ЯБЪЧШЯ', 'border' => 'Я']));
-        self::assertFalse(StringSearchTools::inString('ЯБЪЧШЯ', ['start' => 'ЯБ', 'end' => 'ШЯ', 'center' => 'БЪЧ1', 'content' => 'ЯБЪЧШЯ', 'border' => 'Я']));
-        self::assertFalse(StringSearchTools::inString('ЯБЪЧШЯ', ['start' => 'ЯБ', 'end' => 'ШЯ', 'center' => 'БЪЧШ', 'content' => 'ЯБЪЧШ1', 'border' => 'Я']));
-        self::assertFalse(StringSearchTools::inString('ЯБЪЧШЯ', ['start' => 'ЯБ', 'end' => 'ШЯ', 'center' => 'БЪЧШ', 'content' => 'ЯБЪЧШЯ', 'border' => 'Я1']));
+        self::assertTrue($testFunctionInString('ЯБЪЧШЯ', ['start' => 'ЯБ', 'end' => 'ШЯ', 'center' => 'БЪЧШ', 'content' => 'ЯБЪЧШЯ', 'border' => 'Я']));
+        self::assertFalse($testFunctionInString('ЯБЪЧШЯ', ['start' => 'ЯБ1', 'end' => 'ШЯ', 'center' => 'БЪЧШ', 'content' => 'ЯБЪЧШЯ', 'border' => 'Я']));
+        self::assertFalse($testFunctionInString('ЯБЪЧШЯ', ['start' => 'ЯБ', 'end' => 'ШЯ1', 'center' => 'БЪЧШ', 'content' => 'ЯБЪЧШЯ', 'border' => 'Я']));
+        self::assertFalse($testFunctionInString('ЯБЪЧШЯ', ['start' => 'ЯБ', 'end' => 'ШЯ', 'center' => 'БЪЧ1', 'content' => 'ЯБЪЧШЯ', 'border' => 'Я']));
+        self::assertFalse($testFunctionInString('ЯБЪЧШЯ', ['start' => 'ЯБ', 'end' => 'ШЯ', 'center' => 'БЪЧШ', 'content' => 'ЯБЪЧШ1', 'border' => 'Я']));
+        self::assertFalse($testFunctionInString('ЯБЪЧШЯ', ['start' => 'ЯБ', 'end' => 'ШЯ', 'center' => 'БЪЧШ', 'content' => 'ЯБЪЧШЯ', 'border' => 'Я1']));
     }
 }

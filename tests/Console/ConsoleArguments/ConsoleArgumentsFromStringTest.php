@@ -29,51 +29,53 @@ class ConsoleArgumentsFromStringTest extends TestCase
      */
     public function testRun(): void
     {
+        $testFunction = ConsoleArgumentsFromString::exe(...);
+
         // смотрим, что ничего не падает с пустой строкой
-        $argumentsObject = ConsoleArgumentsFromString::exe('');
+        $argumentsObject = $testFunction('');
         self::assertEquals([], iterator_to_array($argumentsObject->getIterator()));
         self::assertEquals([], iterator_to_array($argumentsObject->getIterator(true)));
 
         // * * * "Безымянные" команды
 
         // 1 "безымянная" команда
-        $argumentsObject = ConsoleArgumentsFromString::exe('first');
+        $argumentsObject = $testFunction('first');
         self::assertEquals(['first'], iterator_to_array($argumentsObject->getIterator()));
         self::assertEquals([], iterator_to_array($argumentsObject->getIterator(true)));
 
         // 1 "безымянная" команда + ложные пробелы
-        $argumentsObject = ConsoleArgumentsFromString::exe('    second ');
+        $argumentsObject = $testFunction('    second ');
         self::assertEquals(['second'], iterator_to_array($argumentsObject->getIterator()));
         self::assertEquals([], iterator_to_array($argumentsObject->getIterator(true)));
 
         // куча разных вариантов "безымянных" команд + ложные пробелы
-        $argumentsObject = ConsoleArgumentsFromString::exe('aaa  "bb zz" \'ccc \'   `ddd`');
+        $argumentsObject = $testFunction('aaa  "bb zz" \'ccc \'   `ddd`');
         self::assertEquals(['aaa', 'bb zz', 'ccc ', 'ddd'], iterator_to_array($argumentsObject->getIterator()));
         self::assertEquals([], iterator_to_array($argumentsObject->getIterator(true)));
 
         // безымянная команда с равенством
-        $argumentsObject = ConsoleArgumentsFromString::exe('*abc*=ddd a=b=c');
+        $argumentsObject = $testFunction('*abc*=ddd a=b=c');
         self::assertEquals(['*abc*=ddd', 'a=b=c'], iterator_to_array($argumentsObject->getIterator()));
         self::assertEquals([], iterator_to_array($argumentsObject->getIterator(true)));
 
         // * * * "Именованные" команды
 
         // Одна именованная команда
-        $argumentsObject = ConsoleArgumentsFromString::exe('-f=123');
+        $argumentsObject = $testFunction('-f=123');
         self::assertEquals(['123'], iterator_to_array($argumentsObject->getIterator()));
         self::assertEquals(['-f' => '123'], iterator_to_array($argumentsObject->getIterator(true)));
-        $argumentsObject = ConsoleArgumentsFromString::exe('--first="a b c"');
+        $argumentsObject = $testFunction('--first="a b c"');
         self::assertEquals(['a b c'], iterator_to_array($argumentsObject->getIterator()));
         self::assertEquals(['--first' => 'a b c'], iterator_to_array($argumentsObject->getIterator(true)));
 
         // Несколько "именованных команд"
-        $argumentsObject = ConsoleArgumentsFromString::exe('-f=`FFFFFFF`     -a=11 --abc= -k');
+        $argumentsObject = $testFunction('-f=`FFFFFFF`     -a=11 --abc= -k');
         self::assertEquals(['FFFFFFF', '11', '', true], iterator_to_array($argumentsObject->getIterator()));
         self::assertEquals(['-f' => 'FFFFFFF', '-a' => '11', '--abc' => '', '-k' => true], iterator_to_array($argumentsObject->getIterator(true)));
 
         // * * * "Безымянные" и "Именованные" команды
 
-        $argumentsObject = ConsoleArgumentsFromString::exe('a1  b2== -c3== -d4=44=44  ---x=`123   123`');
+        $argumentsObject = $testFunction('a1  b2== -c3== -d4=44=44  ---x=`123   123`');
         self::assertEquals(['a1', 'b2==', '=', '44=44', '123   123'], iterator_to_array($argumentsObject->getIterator()));
         self::assertEquals(['-c3' => '=', '-d4' => '44=44', '---x' => '123   123'], iterator_to_array($argumentsObject->getIterator(true)));
     }

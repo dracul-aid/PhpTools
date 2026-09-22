@@ -33,8 +33,10 @@ class StaticDiTest extends TestCase
      */
     public function testGetDefaultInstanceWithoutEvents(): void
     {
-        $staticDiFirst = StaticDi::getDefaultInstance();
-        $staticDiSecond = StaticDi::getDefaultInstance();
+        $testFunction = StaticDi::getDefaultInstance(...);
+
+        $staticDiFirst = $testFunction();
+        $staticDiSecond = $testFunction();
 
         self::assertTrue($staticDiFirst === $staticDiSecond);
     }
@@ -46,6 +48,8 @@ class StaticDiTest extends TestCase
      */
     public function testGetDefaultInstanceWithEvents(): void
     {
+        $testFunction = StaticDi::getDefaultInstance(...);
+
         $f1Var = 0;
         $f2Var = 0;
 
@@ -62,11 +66,11 @@ class StaticDiTest extends TestCase
 
         // * * * проводим тест
 
-        $staticDiFirst = StaticDi::getDefaultInstance();
+        $staticDiFirst = $testFunction();
         self::assertEquals(10, $f1Var);
         self::assertEquals(100, $f2Var);
 
-        $staticDiSecond = StaticDi::getDefaultInstance();
+        $staticDiSecond = $testFunction();
         self::assertEquals(10, $f1Var);
         self::assertEquals(100, $f2Var);
 
@@ -110,13 +114,16 @@ class StaticDiTest extends TestCase
      */
     private function testGetClass(): void
     {
+        /** @var \Closure(class-string): class-string $testFunction Тип функции без шаблонного параметра метода */
+        $testFunction = StaticDi::get(...);
+
         $staticDiTest = StaticDi::getDefaultInstance();
 
-        self::assertTrue($staticDiTest->getClass(\DateTime::class) === StaticDi::get(\DateTime::class));
+        self::assertTrue($staticDiTest->getClass(\DateTime::class) === $testFunction(\DateTime::class));
 
         $staticDiTest->rules = [\DateTime::class => 'aaaa'];
-        self::assertEquals('aaaa', StaticDi::get(\DateTime::class));
-        self::assertTrue($staticDiTest->getClass(\DateTime::class) === StaticDi::get(\DateTime::class));
+        self::assertEquals('aaaa', $testFunction(\DateTime::class));
+        self::assertTrue($staticDiTest->getClass(\DateTime::class) === $testFunction(\DateTime::class));
     }
 
     /**

@@ -38,11 +38,13 @@ class ObHelperTest extends TestCase
      */
     public function testWithFunctionHelper(): void
     {
-        $this->standardFunctionTests([ObHelper::class, 'callWithFunctionHelper'], 'ObHelper::callWithFunctionHelper');
+        $testFunction = ObHelper::callWithFunctionHelper(...);
+
+        $this->standardFunctionTests($testFunction, 'ObHelper::callWithFunctionHelper');
 
         self::assertEquals(
             '==098==',
-            ObHelper::callWithFunctionHelper(
+            $testFunction(
                 function () {echo "==098==";},
                 ['aaa', 'bbb']
             )
@@ -50,7 +52,7 @@ class ObHelperTest extends TestCase
 
         self::assertEquals(
             '==555==',
-            ObHelper::callWithFunctionHelper(
+            $testFunction(
                 'echo',
                 ['==555==']
             )
@@ -64,6 +66,8 @@ class ObHelperTest extends TestCase
      */
     public function testCallNotPublicMethod(): void
     {
+        $testFunction = ObHelper::callNotPublicMethod(...);
+
         $object = new class() {
             protected function notPublicPrint(): void
             {
@@ -80,7 +84,7 @@ class ObHelperTest extends TestCase
 
         self::assertEquals(
             '===111===',
-            ObHelper::callNotPublicMethod(
+            $testFunction(
                 [$object, 'notPublicPrint'],
             ),
         );
@@ -88,7 +92,7 @@ class ObHelperTest extends TestCase
         $testReturn = null;
         self::assertEquals(
             '===xyz===',
-            ObHelper::callNotPublicMethod(
+            $testFunction(
                 [$object, 'notPublicPrintAndReturn'],
                 ['xyz'],
                 $testReturn
@@ -104,6 +108,8 @@ class ObHelperTest extends TestCase
      */
     public function testCallMethodFromEmptyObject(): void
     {
+        $testFunction = ObHelper::callMethodFromEmptyObject(...);
+
         $object = new class() {
             protected string $str = '===';
             public function __construct() {
@@ -125,7 +131,7 @@ class ObHelperTest extends TestCase
 
         self::assertEquals(
             '===111===',
-            ObHelper::callMethodFromEmptyObject(
+            $testFunction(
                 [$testClass, 'notPublicPrint'],
             ),
         );
@@ -133,7 +139,7 @@ class ObHelperTest extends TestCase
         $testReturn = null;
         self::assertEquals(
             '===xyz===',
-            ObHelper::callMethodFromEmptyObject(
+            $testFunction(
                 [$testClass, 'notPublicPrintAndReturn'],
                 ['xyz'],
                 [],

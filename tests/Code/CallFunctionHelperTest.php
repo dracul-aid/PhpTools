@@ -31,19 +31,22 @@ class CallFunctionHelperTest extends TestCase
      */
     public function testIsStructures(): void
     {
+        $testFunctionIsStructures = CallFunctionHelper::isStructures(...);
+        $testFunctionIsCallable = CallFunctionHelper::isCallable(...);
+
         foreach (CallFunctionHelper::STRUCTURES as $name)
         {
-            self::assertTrue(CallFunctionHelper::isStructures($name), "isStructures: Error for {$name}");
-            self::assertTrue(CallFunctionHelper::isCallable($name), "isCallable: Error for {$name}");
+            self::assertTrue($testFunctionIsStructures($name), "isStructures: Error for {$name}");
+            self::assertTrue($testFunctionIsCallable($name), "isCallable: Error for {$name}");
         }
 
-        self::assertFalse(CallFunctionHelper::isStructures('is_int'));
-        self::assertTrue(CallFunctionHelper::isCallable('is_int'));
-        self::assertFalse(CallFunctionHelper::isStructures(CallFunctionHelper::class . '::isStructures'));
-        self::assertTrue(CallFunctionHelper::isCallable(CallFunctionHelper::class . '::isStructures'));
+        self::assertFalse($testFunctionIsStructures('is_int'));
+        self::assertTrue($testFunctionIsCallable('is_int'));
+        self::assertFalse($testFunctionIsStructures(CallFunctionHelper::class . '::isStructures'));
+        self::assertTrue($testFunctionIsCallable(CallFunctionHelper::class . '::isStructures'));
 
-        self::assertTrue(CallFunctionHelper::isCallable([CallFunctionHelper::class, 'isStructures']));
-        self::assertTrue(CallFunctionHelper::isCallable([$this, 'testIsStructures']));
+        self::assertTrue($testFunctionIsCallable([CallFunctionHelper::class, 'isStructures']));
+        self::assertTrue($testFunctionIsCallable([$this, 'testIsStructures']));
     }
 
     /**
@@ -58,70 +61,72 @@ class CallFunctionHelperTest extends TestCase
      */
     public function testExe(): void
     {
+        $testFunction = CallFunctionHelper::exe(...);
+
         // создание объекта
-        $t = CallFunctionHelper::exe('new ' . \stdClass::class);
+        $t = $testFunction('new ' . \stdClass::class);
         self::assertTrue($t instanceof \stdClass);
         /** @var \ArrayObject $t */
-        $t = CallFunctionHelper::exe('new ' . \ArrayObject::class, [0, 1, 2, 3]);
+        $t = $testFunction('new ' . \ArrayObject::class, [0, 1, 2, 3]);
         self::assertTrue($t instanceof \ArrayObject);
         self::assertEquals([0, 1, 2, 3], $t->getArrayCopy());
 
         // isset()
         $t = null;
-        self::assertFalse(CallFunctionHelper::exe('isset', $t));
+        self::assertFalse($testFunction('isset', $t));
         $t = false;
-        self::assertTrue(CallFunctionHelper::exe('isset', $t));
+        self::assertTrue($testFunction('isset', $t));
         $t = false; $a = null;
-        self::assertTrue(CallFunctionHelper::exe('isset', $t, $a));
+        self::assertTrue($testFunction('isset', $t, $a));
 
         // empty()
         $t = null; $a = null;
-        self::assertTrue(CallFunctionHelper::exe('empty', $t, $a));
+        self::assertTrue($testFunction('empty', $t, $a));
         $t = false;
-        self::assertTrue(CallFunctionHelper::exe('empty', $t, $a));
+        self::assertTrue($testFunction('empty', $t, $a));
         $t = '123';
-        self::assertFalse(CallFunctionHelper::exe('empty', $t, $a));
+        self::assertFalse($testFunction('empty', $t, $a));
 
         // echo()
         ob_start();
-        self::assertNull(CallFunctionHelper::exe('echo', ''));
+        self::assertNull($testFunction('echo', ''));
         self::assertEquals('', ob_get_contents());
         ob_clean();
-        self::assertNull(CallFunctionHelper::exe('echo', 'ABC'));
+        self::assertNull($testFunction('echo', 'ABC'));
         self::assertEquals('ABC', ob_get_contents());
         ob_clean();
-        self::assertNull(CallFunctionHelper::exe('echo', 'ABC', 278));
+        self::assertNull($testFunction('echo', 'ABC', 278));
         self::assertEquals('ABC278', ob_get_contents());
         ob_end_clean();
 
         // print()
         ob_start();
-        self::assertEquals(1, CallFunctionHelper::exe('print', ''));
+        self::assertEquals(1, $testFunction('print', ''));
         self::assertEquals('', ob_get_contents());
         ob_clean();
-        self::assertEquals(1, CallFunctionHelper::exe('print', 'ABC'));
+        self::assertEquals(1, $testFunction('print', 'ABC'));
         self::assertEquals('ABC', ob_get_contents());
         ob_clean();
-        self::assertEquals(1, CallFunctionHelper::exe('print', 'ЯФЖ'));
+        self::assertEquals(1, $testFunction('print', 'ЯФЖ'));
         self::assertEquals('ЯФЖ', ob_get_contents());
         ob_end_clean();
 
 
         // * * * Вызов функций
         $t = 'XXX';
-        self::assertTrue((bool)CallFunctionHelper::exe('time', $t));
+        self::assertTrue((bool)$testFunction('time', $t));
         $t = 'XXX';
-        self::assertFalse(CallFunctionHelper::exe('is_int', $t));
+        self::assertFalse($testFunction('is_int', $t));
         $t = 0;
-        self::assertTrue(CallFunctionHelper::exe('is_int', $t));
+        self::assertTrue($testFunction('is_int', $t));
         $t = 1; $a = 'XYZ';
-        self::assertTrue(CallFunctionHelper::exe('is_int', $t, $a));
+        self::assertTrue($testFunction('is_int', $t, $a));
 
         // вызов методов
         $testObject = $this->getTestObject();
-        self::assertEquals(3, CallFunctionHelper::exe([$testObject, 'f2'], 5, 2));
-        self::assertEquals(4, CallFunctionHelper::exe($testObject->f2(...), 6, 2));
-        self::assertEquals(9, CallFunctionHelper::exe($testObject::f1(...), 8, 1));
+        self::assertEquals(3, $testFunction([$testObject, 'f2'], 5, 2));
+        self::assertEquals(4, $testFunction($testObject->f2(...), 6, 2));
+        self::assertEquals(9, $testFunction($testObject::f1(...), 8, 1));
     }
 
     /**
@@ -131,6 +136,8 @@ class CallFunctionHelperTest extends TestCase
      */
     public function testCallMethodFromEmptyObject(): void
     {
+        $testFunction = CallFunctionHelper::callMethodFromEmptyObject(...);
+
         $testClass = get_class(new class ('default-protected') {
             public string $varPublic = 'default-public';
             protected string $varProtected;
@@ -156,31 +163,31 @@ class CallFunctionHelperTest extends TestCase
 
         self::assertEquals(
             'default-public-AA',
-            CallFunctionHelper::callMethodFromEmptyObject([$testClass, 'getVarPublic'])
+            $testFunction([$testClass, 'getVarPublic'])
         );
         self::assertEquals(
             'default-public-BB',
-            CallFunctionHelper::callMethodFromEmptyObject([$testClass, 'getVarPublic'], ['BB'])
+            $testFunction([$testClass, 'getVarPublic'], ['BB'])
         );
         self::assertEquals(
             'XYZ-ZZ',
-            CallFunctionHelper::callMethodFromEmptyObject([$testClass, 'getVarProtected'], ['ZZ'], ['varProtected' => 'XYZ'])
+            $testFunction([$testClass, 'getVarProtected'], ['ZZ'], ['varProtected' => 'XYZ'])
         );
         self::assertEquals(
             'ABC',
-            CallFunctionHelper::callMethodFromEmptyObject([$testClass, 'getVarPrivate'], [], ['varPrivate' => 'ABC'])
+            $testFunction([$testClass, 'getVarPrivate'], [], ['varPrivate' => 'ABC'])
         );
 
         self::assertTrue(
             ExceptionTools::wasCalledWithException(
-                [CallFunctionHelper::class, 'callMethodFromEmptyObject'],
+                $testFunction,
                 [[1, 'method']],
                 \TypeError::class
             )
         );
         self::assertTrue(
             ExceptionTools::wasCalledWithException(
-                [CallFunctionHelper::class, 'callMethodFromEmptyObject'],
+                $testFunction,
                 [['class', 1]],
                 \TypeError::class
             )

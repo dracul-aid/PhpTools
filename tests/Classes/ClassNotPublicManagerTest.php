@@ -23,15 +23,17 @@ class ClassNotPublicManagerTest extends TestCase
 {
     public function testCreate(): void
     {
-        $manager1 = ClassNotPublicManager::getInstanceFor(\stdClass::class);
-        $manager2 = ClassNotPublicManager::getInstanceFor(\stdClass::class);
+        $testFunction = ClassNotPublicManager::getInstanceFor(...);
+
+        $manager1 = $testFunction(\stdClass::class);
+        $manager2 = $testFunction(\stdClass::class);
 
         self::assertTrue($manager1 === $manager2);
 
         // * * *
 
-        $manager1 = ClassNotPublicManager::getInstanceFor(new \stdClass);
-        $manager2 = ClassNotPublicManager::getInstanceFor(new \stdClass);
+        $manager1 = $testFunction(new \stdClass);
+        $manager2 = $testFunction(new \stdClass);
 
         self::assertFalse($manager1 === $manager2);
     }
@@ -180,78 +182,84 @@ class ClassNotPublicManagerTest extends TestCase
      */
     public function testEasyObject(): void
     {
+        $testFunctionExecute = ClassNotPublicManager::execute(...);
+        $testFunctionReadConstant = ClassNotPublicManager::readConstant(...);
+        $testFunctionReadProperty = ClassNotPublicManager::readProperty(...);
+        $testFunctionWriteProperty = ClassNotPublicManager::writeProperty(...);
+        $testFunctionCallMethod = ClassNotPublicManager::callMethod(...);
+
         // * * * Чтение из объекта
 
         [$testObject, $testClass, $testParent] = $this->createObject();
 
         // выполнение произвольного кода
         // (ниже по коду свойства меняют значения, поэтому эту проверку лучше всего оставлять в начале)
-        self::assertEquals('private_var_value---double_private_var_value', ClassNotPublicManager::execute($testObject, function () {return "{$this->private_var}---{$this->parent_private_var}";}));
-        self::assertEquals('only_parent_var_value---parent_private_var_value', ClassNotPublicManager::execute($testObject, function () {return "{$this->only_parent_var}---{$this->parent_private_var}";}, $testParent));
-        self::assertEquals('private_var_value---double_private_var_value', ClassNotPublicManager::execute($testObject, function () {return "{$this->private_var}---{$this->parent_private_var}";}, $testClass));
+        self::assertEquals('private_var_value---double_private_var_value', $testFunctionExecute($testObject, function () {return "{$this->private_var}---{$this->parent_private_var}";}));
+        self::assertEquals('only_parent_var_value---parent_private_var_value', $testFunctionExecute($testObject, function () {return "{$this->only_parent_var}---{$this->parent_private_var}";}, $testParent));
+        self::assertEquals('private_var_value---double_private_var_value', $testFunctionExecute($testObject, function () {return "{$this->private_var}---{$this->parent_private_var}";}, $testClass));
 
         // чтение констант класса
-        self::assertEquals('private_const_value', ClassNotPublicManager::readConstant($testObject, 'PRIVATE_CONST'));
+        self::assertEquals('private_const_value', $testFunctionReadConstant($testObject, 'PRIVATE_CONST'));
 
         // чтение констант объекта
-        self::assertEquals('private_const_value', ClassNotPublicManager::readConstant($testObject, 'PRIVATE_CONST'));
-        self::assertEquals('parent_private_const_value', ClassNotPublicManager::readConstant($testObject, 'PARENT_PRIVATE_CONST', $testParent));
-        self::assertEquals('double_private_const_value', ClassNotPublicManager::readConstant($testObject, 'PARENT_PRIVATE_CONST', $testClass));
+        self::assertEquals('private_const_value', $testFunctionReadConstant($testObject, 'PRIVATE_CONST'));
+        self::assertEquals('parent_private_const_value', $testFunctionReadConstant($testObject, 'PARENT_PRIVATE_CONST', $testParent));
+        self::assertEquals('double_private_const_value', $testFunctionReadConstant($testObject, 'PARENT_PRIVATE_CONST', $testClass));
 
         // чтение статических свойств
-        self::assertEquals('private_static_var_value', ClassNotPublicManager::readProperty($testClass, 'private_static_var'));
-        self::assertEquals('parent_private_static_var_value', ClassNotPublicManager::readProperty($testClass, 'parent_private_static_var', $testParent));
-        self::assertEquals('double_private_static_var_value', ClassNotPublicManager::readProperty($testClass, 'parent_private_static_var', $testClass));
+        self::assertEquals('private_static_var_value', $testFunctionReadProperty($testClass, 'private_static_var'));
+        self::assertEquals('parent_private_static_var_value', $testFunctionReadProperty($testClass, 'parent_private_static_var', $testParent));
+        self::assertEquals('double_private_static_var_value', $testFunctionReadProperty($testClass, 'parent_private_static_var', $testClass));
 
         // чтение свойств
-        self::assertEquals('private_var_value', ClassNotPublicManager::readProperty($testObject,'private_var'));
-        self::assertEquals('parent_private_var_value', ClassNotPublicManager::readProperty($testObject, 'parent_private_var', $testParent));
-        self::assertEquals('double_private_var_value', ClassNotPublicManager::readProperty($testObject, 'parent_private_var', $testClass));
+        self::assertEquals('private_var_value', $testFunctionReadProperty($testObject,'private_var'));
+        self::assertEquals('parent_private_var_value', $testFunctionReadProperty($testObject, 'parent_private_var', $testParent));
+        self::assertEquals('double_private_var_value', $testFunctionReadProperty($testObject, 'parent_private_var', $testClass));
 
         // запись статических свойств
-        ClassNotPublicManager::writeProperty($testClass, 'private_static_var', '222');
-        self::assertEquals('222', ClassNotPublicManager::readProperty($testClass, 'private_static_var'));
-        ClassNotPublicManager::writeProperty($testClass, ['private_static_var' => 'BBB']);
-        self::assertEquals('BBB', ClassNotPublicManager::readProperty($testClass, 'private_static_var'));
-        ClassNotPublicManager::writeProperty($testClass, 'parent_private_static_var', 'parent_222', $testParent);
-        self::assertEquals('parent_222', ClassNotPublicManager::readProperty($testClass, 'parent_private_static_var', $testParent));
-        ClassNotPublicManager::writeProperty($testClass, 'parent_private_static_var', 'double_222', $testClass);
-        self::assertEquals('double_222', ClassNotPublicManager::readProperty($testClass, 'parent_private_static_var', $testClass));
+        $testFunctionWriteProperty($testClass, 'private_static_var', '222');
+        self::assertEquals('222', $testFunctionReadProperty($testClass, 'private_static_var'));
+        $testFunctionWriteProperty($testClass, ['private_static_var' => 'BBB']);
+        self::assertEquals('BBB', $testFunctionReadProperty($testClass, 'private_static_var'));
+        $testFunctionWriteProperty($testClass, 'parent_private_static_var', 'parent_222', $testParent);
+        self::assertEquals('parent_222', $testFunctionReadProperty($testClass, 'parent_private_static_var', $testParent));
+        $testFunctionWriteProperty($testClass, 'parent_private_static_var', 'double_222', $testClass);
+        self::assertEquals('double_222', $testFunctionReadProperty($testClass, 'parent_private_static_var', $testClass));
 
         // запись свойств
-        ClassNotPublicManager::writeProperty($testObject, 'private_var', '111');
-        self::assertEquals('111', ClassNotPublicManager::readProperty($testObject,'private_var'));
-        ClassNotPublicManager::writeProperty($testObject, ['private_var' => 'AAA']);
-        self::assertEquals('AAA', ClassNotPublicManager::readProperty($testObject,'private_var'));
-        ClassNotPublicManager::writeProperty($testObject, 'parent_private_var', 'parent_111', $testParent);
-        self::assertEquals('parent_111', ClassNotPublicManager::readProperty($testObject, 'parent_private_var', $testParent));
-        ClassNotPublicManager::writeProperty($testObject, 'parent_private_var', 'double_111', $testClass);
-        self::assertEquals('double_111', ClassNotPublicManager::readProperty($testObject, 'parent_private_var', $testClass));
+        $testFunctionWriteProperty($testObject, 'private_var', '111');
+        self::assertEquals('111', $testFunctionReadProperty($testObject,'private_var'));
+        $testFunctionWriteProperty($testObject, ['private_var' => 'AAA']);
+        self::assertEquals('AAA', $testFunctionReadProperty($testObject,'private_var'));
+        $testFunctionWriteProperty($testObject, 'parent_private_var', 'parent_111', $testParent);
+        self::assertEquals('parent_111', $testFunctionReadProperty($testObject, 'parent_private_var', $testParent));
+        $testFunctionWriteProperty($testObject, 'parent_private_var', 'double_111', $testClass);
+        self::assertEquals('double_111', $testFunctionReadProperty($testObject, 'parent_private_var', $testClass));
 
         // Вызов статических методов
         $f_t1 = 'С111';
-        self::assertEquals("private_static_function_return_[С111]_D222", ClassNotPublicManager::callMethod([$testObject, 'private_static_function'], [&$f_t1, 'D222']));
+        self::assertEquals("private_static_function_return_[С111]_D222", $testFunctionCallMethod([$testObject, 'private_static_function'], [&$f_t1, 'D222']));
         self::assertEquals('[С111]', $f_t1);
         // -
         $f_t1 = 'С111';
-        self::assertEquals("parent_private_static_function_return_[С111]_D222", ClassNotPublicManager::callMethod([$testObject, 'parent_private_static_function'], [&$f_t1, 'D222'], $testParent));
+        self::assertEquals("parent_private_static_function_return_[С111]_D222", $testFunctionCallMethod([$testObject, 'parent_private_static_function'], [&$f_t1, 'D222'], $testParent));
         self::assertEquals('[С111]', $f_t1);
         // -
         $f_t1 = 'С111';
-        self::assertEquals("double_private_static_function_return_[С111]_D222", ClassNotPublicManager::callMethod([$testObject, 'parent_private_static_function'], [&$f_t1, 'D222'], $testClass));
+        self::assertEquals("double_private_static_function_return_[С111]_D222", $testFunctionCallMethod([$testObject, 'parent_private_static_function'], [&$f_t1, 'D222'], $testClass));
         self::assertEquals('[С111]', $f_t1);
 
         // Вызов методов
         $f_t1 = 'A111';
-        self::assertEquals("private_function_return_[A111]_B222", ClassNotPublicManager::callMethod([$testObject, 'private_function'], [&$f_t1, 'B222']));
+        self::assertEquals("private_function_return_[A111]_B222", $testFunctionCallMethod([$testObject, 'private_function'], [&$f_t1, 'B222']));
         self::assertEquals("[A111]", $f_t1);
         // -
         $f_t1 = 'С111';
-        self::assertEquals("parent_private_function_return_[С111]_D222", ClassNotPublicManager::callMethod([$testObject, 'parent_private_function'], [&$f_t1, 'D222'], $testParent));
+        self::assertEquals("parent_private_function_return_[С111]_D222", $testFunctionCallMethod([$testObject, 'parent_private_function'], [&$f_t1, 'D222'], $testParent));
         self::assertEquals('[С111]', $f_t1);
         // -
         $f_t1 = 'С111';
-        self::assertEquals("double_private_function_return_[С111]_D222", ClassNotPublicManager::callMethod([$testObject, 'parent_private_function'], [&$f_t1, 'D222'], $testClass));
+        self::assertEquals("double_private_function_return_[С111]_D222", $testFunctionCallMethod([$testObject, 'parent_private_function'], [&$f_t1, 'D222'], $testClass));
         self::assertEquals('[С111]', $f_t1);
 
 
@@ -261,38 +269,38 @@ class ClassNotPublicManagerTest extends TestCase
 
         // выполнение произвольного кода
         // (ниже по коду свойства меняют значения, поэтому эту проверку лучше всего оставлять в начале)
-        self::assertEquals('private_static_var_value---double_private_static_var_value', ClassNotPublicManager::execute($testClass, function () {return self::$private_static_var . '---' . self::$parent_private_static_var;}));
-        self::assertEquals('only_parent_static_var_value---parent_private_static_var_value', ClassNotPublicManager::execute($testClass, function () {return self::$only_parent_static_var . '---' . self::$parent_private_static_var;}, $testParent));
-        self::assertEquals('private_static_var_value---double_private_static_var_value', ClassNotPublicManager::execute($testClass, function () {return self::$private_static_var . '---' . self::$parent_private_static_var;}, $testClass));
+        self::assertEquals('private_static_var_value---double_private_static_var_value', $testFunctionExecute($testClass, function () {return self::$private_static_var . '---' . self::$parent_private_static_var;}));
+        self::assertEquals('only_parent_static_var_value---parent_private_static_var_value', $testFunctionExecute($testClass, function () {return self::$only_parent_static_var . '---' . self::$parent_private_static_var;}, $testParent));
+        self::assertEquals('private_static_var_value---double_private_static_var_value', $testFunctionExecute($testClass, function () {return self::$private_static_var . '---' . self::$parent_private_static_var;}, $testClass));
 
         // чтение констант
-        self::assertEquals('private_const_value', ClassNotPublicManager::readConstant($testClass, 'PRIVATE_CONST'));
-        self::assertEquals('parent_private_const_value', ClassNotPublicManager::readConstant($testClass, 'PARENT_PRIVATE_CONST', $testParent));
-        self::assertEquals('double_private_const_value', ClassNotPublicManager::readConstant($testClass, 'PARENT_PRIVATE_CONST', $testClass));
+        self::assertEquals('private_const_value', $testFunctionReadConstant($testClass, 'PRIVATE_CONST'));
+        self::assertEquals('parent_private_const_value', $testFunctionReadConstant($testClass, 'PARENT_PRIVATE_CONST', $testParent));
+        self::assertEquals('double_private_const_value', $testFunctionReadConstant($testClass, 'PARENT_PRIVATE_CONST', $testClass));
 
         // чтение и запись статического свойства
-        self::assertEquals('private_static_var_value', ClassNotPublicManager::readProperty($testClass, 'private_static_var'));
-        ClassNotPublicManager::writeProperty($testClass, 'private_static_var', '222');
-        self::assertEquals('222', ClassNotPublicManager::readProperty($testClass, 'private_static_var'));
+        self::assertEquals('private_static_var_value', $testFunctionReadProperty($testClass, 'private_static_var'));
+        $testFunctionWriteProperty($testClass, 'private_static_var', '222');
+        self::assertEquals('222', $testFunctionReadProperty($testClass, 'private_static_var'));
         // -
-        self::assertEquals('parent_private_static_var_value', ClassNotPublicManager::readProperty($testClass, 'parent_private_static_var', $testParent));
-        ClassNotPublicManager::writeProperty($testClass, 'parent_private_static_var', 'parent_222', $testParent);
-        self::assertEquals('parent_222', ClassNotPublicManager::readProperty($testClass, 'parent_private_static_var', $testParent));
+        self::assertEquals('parent_private_static_var_value', $testFunctionReadProperty($testClass, 'parent_private_static_var', $testParent));
+        $testFunctionWriteProperty($testClass, 'parent_private_static_var', 'parent_222', $testParent);
+        self::assertEquals('parent_222', $testFunctionReadProperty($testClass, 'parent_private_static_var', $testParent));
         // -
-        self::assertEquals('double_private_static_var_value', ClassNotPublicManager::readProperty($testClass, 'parent_private_static_var', $testClass));
-        ClassNotPublicManager::writeProperty($testClass, 'parent_private_static_var', 'double_222', $testClass);
-        self::assertEquals('double_222', ClassNotPublicManager::readProperty($testClass, 'parent_private_static_var', $testClass));
+        self::assertEquals('double_private_static_var_value', $testFunctionReadProperty($testClass, 'parent_private_static_var', $testClass));
+        $testFunctionWriteProperty($testClass, 'parent_private_static_var', 'double_222', $testClass);
+        self::assertEquals('double_222', $testFunctionReadProperty($testClass, 'parent_private_static_var', $testClass));
 
         $f_t1 = 'С111';
-        self::assertEquals("private_static_function_return_[С111]_D222", ClassNotPublicManager::callMethod([$testClass, 'private_static_function'], [&$f_t1, 'D222']));
+        self::assertEquals("private_static_function_return_[С111]_D222", $testFunctionCallMethod([$testClass, 'private_static_function'], [&$f_t1, 'D222']));
         self::assertEquals('[С111]', $f_t1);
         // -
         $f_t1 = 'С111';
-        self::assertEquals("parent_private_static_function_return_[С111]_D222", ClassNotPublicManager::callMethod([$testClass, 'parent_private_static_function'], [&$f_t1, 'D222'], $testParent));
+        self::assertEquals("parent_private_static_function_return_[С111]_D222", $testFunctionCallMethod([$testClass, 'parent_private_static_function'], [&$f_t1, 'D222'], $testParent));
         self::assertEquals('[С111]', $f_t1);
         // -
         $f_t1 = 'С111';
-        self::assertEquals("double_private_static_function_return_[С111]_D222", ClassNotPublicManager::callMethod([$testClass, 'parent_private_static_function'], [&$f_t1, 'D222'], $testClass));
+        self::assertEquals("double_private_static_function_return_[С111]_D222", $testFunctionCallMethod([$testClass, 'parent_private_static_function'], [&$f_t1, 'D222'], $testClass));
         self::assertEquals('[С111]', $f_t1);
     }
 

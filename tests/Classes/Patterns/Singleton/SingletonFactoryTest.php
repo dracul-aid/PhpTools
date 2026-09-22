@@ -26,8 +26,10 @@ class SingletonFactoryTest extends TestCase
      */
     public function testCreateObject(): void
     {
-        $object1 = SingletonFactory::createObject(\stdClass::class);
-        $object2 = SingletonFactory::createObject(\stdClass::class);
+        $testFunction = SingletonFactory::createObject(...);
+
+        $object1 = $testFunction(\stdClass::class);
+        $object2 = $testFunction(\stdClass::class);
         $objectNotSingleton = new \stdClass;
 
         self::assertTrue($object1 === $object2);
@@ -41,9 +43,11 @@ class SingletonFactoryTest extends TestCase
      */
     public function testCreateObjectForIndex(): void
     {
-        $object1 = SingletonFactory::createObjectForIndex('index1', \stdClass::class);
-        $object2 = SingletonFactory::createObjectForIndex('index1', \stdClass::class);
-        $object3 = SingletonFactory::createObjectForIndex('index2', \stdClass::class);
+        $testFunction = SingletonFactory::createObjectForIndex(...);
+
+        $object1 = $testFunction('index1', \stdClass::class);
+        $object2 = $testFunction('index1', \stdClass::class);
+        $object3 = $testFunction('index2', \stdClass::class);
         $object4 = SingletonFactory::createObject(\stdClass::class);
         $objectNotSingleton = new \stdClass;
 

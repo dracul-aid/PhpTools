@@ -33,12 +33,14 @@ class DateTimeHelperTest extends TestCase
      */
     public function testGetTimezoneOffsetSec(): void
     {
-        self::assertEquals((int)Date('Z'), DateTimeHelper::getTimezoneOffsetSec());
-        self::assertEquals((int)Date('Z'), DateTimeHelper::getTimezoneOffsetSec(null));
+        $testFunction = DateTimeHelper::getTimezoneOffsetSec(...);
 
-        self::assertEquals(0, DateTimeHelper::getTimezoneOffsetSec('UTC'));
-        self::assertEquals(-10*60*60, DateTimeHelper::getTimezoneOffsetSec('HST'));
-        self::assertEquals(3*60*60, DateTimeHelper::getTimezoneOffsetSec('MSK'));
+        self::assertEquals((int)Date('Z'), $testFunction());
+        self::assertEquals((int)Date('Z'), $testFunction(null));
+
+        self::assertEquals(0, $testFunction('UTC'));
+        self::assertEquals(-10*60*60, $testFunction('HST'));
+        self::assertEquals(3*60*60, $testFunction('MSK'));
     }
 
     /**
@@ -51,6 +53,9 @@ class DateTimeHelperTest extends TestCase
      */
     public function testGetDateArrayAndIsValidDateArray(): void
     {
+        $testFunctionIsValidDateArray = DateTimeHelper::isValidDateArray(...);
+        $testFunctionGetDateArray = DateTimeHelper::getDateArray(...);
+
         $dateArray = [
             'year' => 2023, 'mon' => 2, 'yday' => 35, 'mday' => 5, 'wday' => 0,
             'hours' => 12, 'minutes' => 30,  'seconds' => 30,
@@ -58,44 +63,44 @@ class DateTimeHelperTest extends TestCase
             0 => mktime(12, 30, 30, 2, 5, 2023)
         ];
 
-        self::assertTrue(DateTimeHelper::isValidDateArray($dateArray));
+        self::assertTrue($testFunctionIsValidDateArray($dateArray));
 
         foreach ($dateArray as $key => $value)
         {
             $testArray = $dateArray;
             unset($testArray[$key]);
-            self::assertFalse(DateTimeHelper::isValidDateArray($testArray));
+            self::assertFalse($testFunctionIsValidDateArray($testArray));
         }
 
         // * * *
 
-        self::assertEquals(getdate(time()), DateTimeHelper::getDateArray());
-        self::assertEquals(getdate(time()), DateTimeHelper::getDateArray(null));
-        self::assertEquals($dateArray, DateTimeHelper::getDateArray($dateArray[0]));
-        self::assertEquals($dateArray, DateTimeHelper::getDateArray($dateArray[0] + 0.123456));
+        self::assertEquals(getdate(time()), $testFunctionGetDateArray());
+        self::assertEquals(getdate(time()), $testFunctionGetDateArray(null));
+        self::assertEquals($dateArray, $testFunctionGetDateArray($dateArray[0]));
+        self::assertEquals($dateArray, $testFunctionGetDateArray($dateArray[0] + 0.123456));
         self::assertEquals(
             $dateArray,
-            DateTimeHelper::getDateArray("{$dateArray['year']}-{$dateArray['mon']}-{$dateArray['mday']} {$dateArray['hours']}:{$dateArray['minutes']}:{$dateArray['seconds']}")
+            $testFunctionGetDateArray("{$dateArray['year']}-{$dateArray['mon']}-{$dateArray['mday']} {$dateArray['hours']}:{$dateArray['minutes']}:{$dateArray['seconds']}")
         );
         self::assertEquals(
             $dateArray,
-            DateTimeHelper::getDateArray($dateArray)
+            $testFunctionGetDateArray($dateArray)
         );
         self::assertEquals(
             $dateArray,
-            DateTimeHelper::getDateArray(new \DateTime("{$dateArray['year']}-{$dateArray['mon']}-{$dateArray['mday']} {$dateArray['hours']}:{$dateArray['minutes']}:{$dateArray['seconds']}"))
+            $testFunctionGetDateArray(new \DateTime("{$dateArray['year']}-{$dateArray['mon']}-{$dateArray['mday']} {$dateArray['hours']}:{$dateArray['minutes']}:{$dateArray['seconds']}"))
         );
         self::assertEquals(
             $dateArray,
-            DateTimeHelper::getDateArray(new \DateTimeImmutable("{$dateArray['year']}-{$dateArray['mon']}-{$dateArray['mday']} {$dateArray['hours']}:{$dateArray['minutes']}:{$dateArray['seconds']}"))
+            $testFunctionGetDateArray(new \DateTimeImmutable("{$dateArray['year']}-{$dateArray['mon']}-{$dateArray['mday']} {$dateArray['hours']}:{$dateArray['minutes']}:{$dateArray['seconds']}"))
         );
         self::assertEquals(
             $dateArray,
-            DateTimeHelper::getDateArray(new TimestampType("{$dateArray['year']}-{$dateArray['mon']}-{$dateArray['mday']} {$dateArray['hours']}:{$dateArray['minutes']}:{$dateArray['seconds']}"))
+            $testFunctionGetDateArray(new TimestampType("{$dateArray['year']}-{$dateArray['mon']}-{$dateArray['mday']} {$dateArray['hours']}:{$dateArray['minutes']}:{$dateArray['seconds']}"))
         );
         self::assertEquals(
             $dateArray,
-            DateTimeHelper::getDateArray(
+            $testFunctionGetDateArray(
                 new class($dateArray) implements GetTimestampInterface {
                     private array $dateArray;
                     public function __construct(array $dateArray) {
@@ -119,15 +124,17 @@ class DateTimeHelperTest extends TestCase
      */
     public function testGetTimeString(): void
     {
-        self::assertEquals(date(DateTimeFormats::SQL_TIME), DateTimeHelper::getTimeString());
-        self::assertEquals(date(DateTimeFormats::SQL_TIME), DateTimeHelper::getTimeString(null));
-        self::assertEquals('00:00:00', DateTimeHelper::getTimeString(false));
-        self::assertEquals('23:59:59', DateTimeHelper::getTimeString(true));
-        self::assertEquals(date(DateTimeFormats::SQL_TIME), DateTimeHelper::getTimeString(time()));
+        $testFunction = DateTimeHelper::getTimeString(...);
+
+        self::assertEquals(date(DateTimeFormats::SQL_TIME), $testFunction());
+        self::assertEquals(date(DateTimeFormats::SQL_TIME), $testFunction(null));
+        self::assertEquals('00:00:00', $testFunction(false));
+        self::assertEquals('23:59:59', $testFunction(true));
+        self::assertEquals(date(DateTimeFormats::SQL_TIME), $testFunction(time()));
         /** @psalm-suppress InvalidOperand Псалм ругается на недопустимые арифметические операции, причина, члены операций теоретически могут быть разными типами, на практике такого быть не может */
-        self::assertEquals(date(DateTimeFormats::SQL_TIME), DateTimeHelper::getTimeString(time() + 0.123456));
-        self::assertEquals('00:00:00', DateTimeHelper::getTimeString(new \DateTime('Now midnight')));
-        self::assertEquals('00:00:00', DateTimeHelper::getTimeString(new \DateTimeImmutable('Now midnight')));
+        self::assertEquals(date(DateTimeFormats::SQL_TIME), $testFunction(time() + 0.123456));
+        self::assertEquals('00:00:00', $testFunction(new \DateTime('Now midnight')));
+        self::assertEquals('00:00:00', $testFunction(new \DateTimeImmutable('Now midnight')));
     }
 
     /**
@@ -138,17 +145,21 @@ class DateTimeHelperTest extends TestCase
      */
     public function testGetTimeIntAndGetDaySecFromDateTime(): void
     {
-        self::assertEquals(0, DateTimeHelper::getDaySecFromDateTime("2021-07-15 0:00:00.123567"));
-        self::assertEquals(7820, DateTimeHelper::getDaySecFromDateTime("2021-07-15 2:10:20.123567"));
+        $testFunctionGetDaySecFromDateTime = DateTimeHelper::getDaySecFromDateTime(...);
+
+        self::assertEquals(0, $testFunctionGetDaySecFromDateTime("2021-07-15 0:00:00.123567"));
+        self::assertEquals(7820, $testFunctionGetDaySecFromDateTime("2021-07-15 2:10:20.123567"));
 
         // * * *
 
-        self::assertEquals(DateTimeHelper::getDaySecFromDateTime(), DateTimeHelper::getTimeInt());
-        self::assertEquals(123456, DateTimeHelper::getTimeInt(123456));
-        self::assertEquals(123456, DateTimeHelper::getTimeInt(123456.789));
-        self::assertEquals(0, DateTimeHelper::getTimeInt(false));
-        self::assertEquals(TimestampConstants::DAY_SEC - 1, DateTimeHelper::getTimeInt(true));
-        self::assertEquals(0, DateTimeHelper::getTimeInt(new \DateTime('Now midnight')));
-        self::assertEquals(0, DateTimeHelper::getTimeInt(new \DateTimeImmutable('Now midnight')));
+        $testFunctionGetTimeInt = DateTimeHelper::getTimeInt(...);
+
+        self::assertEquals($testFunctionGetDaySecFromDateTime(), $testFunctionGetTimeInt());
+        self::assertEquals(123456, $testFunctionGetTimeInt(123456));
+        self::assertEquals(123456, $testFunctionGetTimeInt(123456.789));
+        self::assertEquals(0, $testFunctionGetTimeInt(false));
+        self::assertEquals(TimestampConstants::DAY_SEC - 1, $testFunctionGetTimeInt(true));
+        self::assertEquals(0, $testFunctionGetTimeInt(new \DateTime('Now midnight')));
+        self::assertEquals(0, $testFunctionGetTimeInt(new \DateTimeImmutable('Now midnight')));
     }
 }

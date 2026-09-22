@@ -23,20 +23,22 @@ class IteratorToolsTest extends TestCase
      */
     public function testCount(): void
     {
-        self::assertEquals(0, IteratorTools::count([]));
-        self::assertEquals(3, IteratorTools::count([1, 3, 5]));
+        $testFunction = IteratorTools::count(...);
 
-        self::assertEquals(2, IteratorTools::count($this->getTestObject()));
+        self::assertEquals(0, $testFunction([]));
+        self::assertEquals(3, $testFunction([1, 3, 5]));
 
-        self::assertEquals(222, IteratorTools::count($this->getTestCountable()));
+        self::assertEquals(2, $testFunction($this->getTestObject()));
+
+        self::assertEquals(222, $testFunction($this->getTestCountable()));
 
         self::assertEquals(
             \LogicException::class,
-            get_class(ExceptionTools::callAndReturnException([IteratorTools::class, 'count'], [$this->getTestGenerator()]))
+            get_class(ExceptionTools::callAndReturnException($testFunction, [$this->getTestGenerator()]))
         );
 
         $testIterator = $this->getTestIterator();
-        self::assertEquals(5, IteratorTools::count($testIterator));
+        self::assertEquals(5, $testFunction($testIterator));
         self::assertEquals(0, $testIterator->cursor);
     }
 

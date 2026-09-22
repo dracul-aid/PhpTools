@@ -40,35 +40,37 @@ class CharToolsTest extends TestCase
      */
     private function runTestGetType(): void
     {
-        self::assertFalse(CharTools::getType('123'));
+        $testFunctionGetType = CharTools::getType(...);
 
-        self::assertEquals(0, CharTools::getType(''));
-        self::assertEquals(0, CharTools::getType('+'));
-        self::assertEquals(0, CharTools::getType('-'));
-        self::assertEquals(0, CharTools::getType('!'));
-        self::assertEquals(0, CharTools::getType('.'));
+        self::assertFalse($testFunctionGetType('123'));
 
-        self::assertEquals(CharTypes::IS_ABC_LOWER, CharTools::getType('a'));
-        self::assertEquals(CharTypes::IS_ABC_LOWER, CharTools::getType('z'));
+        self::assertEquals(0, $testFunctionGetType(''));
+        self::assertEquals(0, $testFunctionGetType('+'));
+        self::assertEquals(0, $testFunctionGetType('-'));
+        self::assertEquals(0, $testFunctionGetType('!'));
+        self::assertEquals(0, $testFunctionGetType('.'));
 
-        self::assertEquals(CharTypes::IS_ABC_UPPER, CharTools::getType('A'));
-        self::assertEquals(CharTypes::IS_ABC_UPPER, CharTools::getType('Z'));
+        self::assertEquals(CharTypes::IS_ABC_LOWER, $testFunctionGetType('a'));
+        self::assertEquals(CharTypes::IS_ABC_LOWER, $testFunctionGetType('z'));
 
-        self::assertEquals(CharTypes::IS_NUMBER, CharTools::getType('1'));
-        self::assertEquals(CharTypes::IS_NUMBER, CharTools::getType('0'));
-        self::assertEquals(CharTypes::IS_NUMBER, CharTools::getType('9'));
+        self::assertEquals(CharTypes::IS_ABC_UPPER, $testFunctionGetType('A'));
+        self::assertEquals(CharTypes::IS_ABC_UPPER, $testFunctionGetType('Z'));
 
-        // * * *
-
-        self::assertEquals(CharTypes::IS_ABC_LOWER, CharTools::getType('a', true));
-        self::assertEquals(CharTypes::IS_ABC_UPPER, CharTools::getType('A', true));
-        self::assertEquals(0, CharTools::getType('1', true));
+        self::assertEquals(CharTypes::IS_NUMBER, $testFunctionGetType('1'));
+        self::assertEquals(CharTypes::IS_NUMBER, $testFunctionGetType('0'));
+        self::assertEquals(CharTypes::IS_NUMBER, $testFunctionGetType('9'));
 
         // * * *
 
-        self::assertEquals(0, CharTools::getType('a', false));
-        self::assertEquals(0, CharTools::getType('A', false));
-        self::assertEquals(CharTypes::IS_NUMBER, CharTools::getType('1', false));
+        self::assertEquals(CharTypes::IS_ABC_LOWER, $testFunctionGetType('a', true));
+        self::assertEquals(CharTypes::IS_ABC_UPPER, $testFunctionGetType('A', true));
+        self::assertEquals(0, $testFunctionGetType('1', true));
+
+        // * * *
+
+        self::assertEquals(0, $testFunctionGetType('a', false));
+        self::assertEquals(0, $testFunctionGetType('A', false));
+        self::assertEquals(CharTypes::IS_NUMBER, $testFunctionGetType('1', false));
     }
 
     /**
@@ -76,10 +78,12 @@ class CharToolsTest extends TestCase
      */
     private function runTestIsStartNameOfVar(): void
     {
+        $testFunctionIsStartNameOfVar = CharTools::isStartNameOfVar(...);
+
         $this->runTestForNameOfVar('isStartNameOfVar');
 
-        self::assertFalse(CharTools::isStartNameOfVar('0'));
-        self::assertFalse(CharTools::isStartNameOfVar('9'));
+        self::assertFalse($testFunctionIsStartNameOfVar('0'));
+        self::assertFalse($testFunctionIsStartNameOfVar('9'));
     }
 
     /**
@@ -87,24 +91,28 @@ class CharToolsTest extends TestCase
      */
     private function runTestIsInsideNameOfVar(): void
     {
+        $testFunctionIsInsideNameOfVar = CharTools::isInsideNameOfVar(...);
+
         $this->runTestForNameOfVar('isInsideNameOfVar');
 
-        self::assertTrue(CharTools::isInsideNameOfVar('0'));
-        self::assertTrue(CharTools::isInsideNameOfVar('9'));
+        self::assertTrue($testFunctionIsInsideNameOfVar('0'));
+        self::assertTrue($testFunctionIsInsideNameOfVar('9'));
     }
 
     private function runTestForNameOfVar(string $functionName): void
     {
-        self::assertFalse([CharTools::class, $functionName](''));
-        self::assertFalse([CharTools::class, $functionName]('123'));
+        $testFunction = CharTools::$functionName(...);
 
-        self::assertFalse([CharTools::class, $functionName]('-'));
+        self::assertFalse($testFunction(''));
+        self::assertFalse($testFunction('123'));
 
-        self::assertTrue([CharTools::class, $functionName]('_'));
-        self::assertTrue([CharTools::class, $functionName]('A'));
-        self::assertTrue([CharTools::class, $functionName]('Z'));
-        self::assertTrue([CharTools::class, $functionName]('a'));
-        self::assertTrue([CharTools::class, $functionName]('z'));
+        self::assertFalse($testFunction('-'));
+
+        self::assertTrue($testFunction('_'));
+        self::assertTrue($testFunction('A'));
+        self::assertTrue($testFunction('Z'));
+        self::assertTrue($testFunction('a'));
+        self::assertTrue($testFunction('z'));
     }
 
     /**
@@ -112,10 +120,12 @@ class CharToolsTest extends TestCase
      */
     private function runTestIsNumber(): void
     {
+        $testFunctionIsNumber = CharTools::isNumber(...);
+
         $this->runTestNumbersDefaultCases('isNumber');
 
-        self::assertFalse(CharTools::isNumber('A'));
-        self::assertFalse(CharTools::isNumber('a'));
+        self::assertFalse($testFunctionIsNumber('A'));
+        self::assertFalse($testFunctionIsNumber('a'));
     }
 
     /**
@@ -123,32 +133,36 @@ class CharToolsTest extends TestCase
      */
     private function runTestIsHex(): void
     {
+        $testFunctionIsHex = CharTools::isHex(...);
+
         $this->runTestNumbersDefaultCases('isHex');
 
-        self::assertTrue(CharTools::isHex('A'));
-        self::assertTrue(CharTools::isHex('a'));
-        self::assertTrue(CharTools::isHex('F'));
-        self::assertTrue(CharTools::isHex('f'));
+        self::assertTrue($testFunctionIsHex('A'));
+        self::assertTrue($testFunctionIsHex('a'));
+        self::assertTrue($testFunctionIsHex('F'));
+        self::assertTrue($testFunctionIsHex('f'));
 
-        self::assertFalse(CharTools::isHex('G'));
-        self::assertFalse(CharTools::isHex('g'));
+        self::assertFalse($testFunctionIsHex('G'));
+        self::assertFalse($testFunctionIsHex('g'));
     }
 
     private function runTestNumbersDefaultCases(string $functionName): void
     {
-        self::assertFalse([CharTools::class, $functionName](''), "Error {$functionName}()");
-        self::assertFalse([CharTools::class, $functionName]('123'), "Error {$functionName}()");
+        $testFunction = CharTools::$functionName(...);
 
-        self::assertFalse([CharTools::class, $functionName]('-'), "Error {$functionName}()");
-        self::assertFalse([CharTools::class, $functionName]('_'), "Error {$functionName}()");
-        self::assertFalse([CharTools::class, $functionName](' '), "Error {$functionName}()");
-        self::assertFalse([CharTools::class, $functionName]('!'), "Error {$functionName}()");
+        self::assertFalse($testFunction(''), "Error {$functionName}()");
+        self::assertFalse($testFunction('123'), "Error {$functionName}()");
 
-        self::assertFalse([CharTools::class, $functionName]('Z'), "Error {$functionName}()");
-        self::assertFalse([CharTools::class, $functionName]('z'), "Error {$functionName}()");
+        self::assertFalse($testFunction('-'), "Error {$functionName}()");
+        self::assertFalse($testFunction('_'), "Error {$functionName}()");
+        self::assertFalse($testFunction(' '), "Error {$functionName}()");
+        self::assertFalse($testFunction('!'), "Error {$functionName}()");
 
-        self::assertTrue([CharTools::class, $functionName]('0'), "Error {$functionName}()");
-        self::assertTrue([CharTools::class, $functionName]('9'), "Error {$functionName}()");
+        self::assertFalse($testFunction('Z'), "Error {$functionName}()");
+        self::assertFalse($testFunction('z'), "Error {$functionName}()");
+
+        self::assertTrue($testFunction('0'), "Error {$functionName}()");
+        self::assertTrue($testFunction('9'), "Error {$functionName}()");
     }
 
     /**
@@ -156,12 +170,14 @@ class CharToolsTest extends TestCase
      */
     private function runTestIsAbc(): void
     {
+        $testFunctionIsAbc = CharTools::isAbc(...);
+
         $this->runTestAbsFalseCases('isAbc');
 
-        self::assertTrue(CharTools::isAbc('A'));
-        self::assertTrue(CharTools::isAbc('Z'));
-        self::assertTrue(CharTools::isAbc('a'));
-        self::assertTrue(CharTools::isAbc('z'));
+        self::assertTrue($testFunctionIsAbc('A'));
+        self::assertTrue($testFunctionIsAbc('Z'));
+        self::assertTrue($testFunctionIsAbc('a'));
+        self::assertTrue($testFunctionIsAbc('z'));
     }
 
     /**
@@ -169,13 +185,15 @@ class CharToolsTest extends TestCase
      */
     private function runTestIsAbcLow(): void
     {
+        $testFunctionIsAbcLower = CharTools::isAbcLower(...);
+
         $this->runTestAbsFalseCases('isAbcLower');
 
-        self::assertFalse(CharTools::isAbcLower('A'));
-        self::assertFalse(CharTools::isAbcLower('Z'));
+        self::assertFalse($testFunctionIsAbcLower('A'));
+        self::assertFalse($testFunctionIsAbcLower('Z'));
 
-        self::assertTrue(CharTools::isAbcLower('a'));
-        self::assertTrue(CharTools::isAbcLower('z'));
+        self::assertTrue($testFunctionIsAbcLower('a'));
+        self::assertTrue($testFunctionIsAbcLower('z'));
     }
 
     /**
@@ -183,26 +201,30 @@ class CharToolsTest extends TestCase
      */
     private function runTestIsAbcUpper(): void
     {
+        $testFunctionIsAbcUpper = CharTools::isAbcUpper(...);
+
         $this->runTestAbsFalseCases('isAbcUpper');
 
-        self::assertFalse(CharTools::isAbcUpper('a'));
-        self::assertFalse(CharTools::isAbcUpper('z'));
+        self::assertFalse($testFunctionIsAbcUpper('a'));
+        self::assertFalse($testFunctionIsAbcUpper('z'));
 
-        self::assertTrue(CharTools::isAbcUpper('A'));
-        self::assertTrue(CharTools::isAbcUpper('Z'));
+        self::assertTrue($testFunctionIsAbcUpper('A'));
+        self::assertTrue($testFunctionIsAbcUpper('Z'));
     }
 
     private function runTestAbsFalseCases(string $functionName): void
     {
-        self::assertFalse([CharTools::class, $functionName](''), "Error {$functionName}()");
-        self::assertFalse([CharTools::class, $functionName]('ABC'), "Error {$functionName}()");
+        $testFunction = CharTools::$functionName(...);
 
-        self::assertFalse([CharTools::class, $functionName]('0'), "Error {$functionName}()");
-        self::assertFalse([CharTools::class, $functionName]('9'), "Error {$functionName}()");
+        self::assertFalse($testFunction(''), "Error {$functionName}()");
+        self::assertFalse($testFunction('ABC'), "Error {$functionName}()");
 
-        self::assertFalse([CharTools::class, $functionName]('-'), "Error {$functionName}()");
-        self::assertFalse([CharTools::class, $functionName]('_'), "Error {$functionName}()");
-        self::assertFalse([CharTools::class, $functionName](' '), "Error {$functionName}()");
-        self::assertFalse([CharTools::class, $functionName]('!'), "Error {$functionName}()");
+        self::assertFalse($testFunction('0'), "Error {$functionName}()");
+        self::assertFalse($testFunction('9'), "Error {$functionName}()");
+
+        self::assertFalse($testFunction('-'), "Error {$functionName}()");
+        self::assertFalse($testFunction('_'), "Error {$functionName}()");
+        self::assertFalse($testFunction(' '), "Error {$functionName}()");
+        self::assertFalse($testFunction('!'), "Error {$functionName}()");
     }
 }

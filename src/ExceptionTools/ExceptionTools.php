@@ -64,6 +64,8 @@ final class ExceptionTools
      *                                                   <br>Вызов: <code>f(\Throwable $exception, array $arguments, callable $function): mixed</code>
      *
      * @return  mixed
+     *
+     * @psalm-param callable(\Throwable, array, callable|array): mixed $callableForException
      */
     public static function safeCallWithCallable(callable|array $function, array $arguments, callable $callableForException): mixed
     {
@@ -87,6 +89,8 @@ final class ExceptionTools
      *                                                             <br>Вызов: <code>f(\Throwable $exception, callable $function): mixed</code>
      *
      * @return  void
+     *
+     * @psalm-param null|callable(\Throwable, callable): mixed $callableForException
      */
     public static function safeCallFunctions(iterable $functions, null|callable $callableForException = null): void
     {

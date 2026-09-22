@@ -23,6 +23,7 @@ use DraculAid\PhpTools\tests\ExceptionTools\ExceptionToolsTest;
  * <br>- {@see ExceptionTools::safeCallFunctions()} - Вызовет список функций. Результаты выполнения функций - игнорируются
  * <br>- {@see ExceptionTools::callAndReturnException()} - Перехватит и вернет пойманное исключение (или NULL)
  * <br>- {@see ExceptionTools::wasCalledWithException()} - Выполнит функцию, и проверит, не вернула ли она необходимое исключение
+ * <br>- {@see ExceptionTools::callAndResendException()} - Вызовет функцию, если в ходе выполнения будет поймано исключение, перебросит его
  *
  * Test cases for class {@see ExceptionToolsTest}
  *
@@ -163,6 +164,36 @@ final class ExceptionTools
             if ($throwableCode !== null && $throwableCode !== $exception->getCode()) return false;
 
             return true;
+        }
+    }
+
+    /**
+     * Вызовет функцию, если в ходе выполнения будет поймано исключение, перебросит его
+     *
+     * Брошенное исключение, получит текст оригинального исключения/ошибки, если передан $message, то он будет дополнен
+     * оригинальным текстом ошибки/исключения.
+     *
+     * @param   callable|array             $function          Вызываемая функция
+     * @param   array                      $arguments         Аргументы для вызова функции
+     * @param   class-string<\Throwable>   $resendException   Касс, нового исключения
+     * @param   string                     $message           Текст сообщения, в конце будет дополнен текстом оригинального сообщения
+     *
+     * @return  mixed       Вернет результат работы переданной функции
+     * @throws \Throwable   В случае, переданное $resendException исключения, выбрасывается, если в ходе выполнения функции
+     *                      было поймаша ошибка или исключение
+     *
+     * @since 1.4.0
+     */
+    public static function callAndResendException(callable|array $function, array $arguments, string $resendException, string $message = ''): mixed
+    {
+        try
+        {
+            return self::functionCall($function, $arguments);
+        }
+        catch (\Throwable $exception)
+        {
+            $message = $message ? "{$message}. Original Message: {$exception->getMessage()}" : $exception->getMessage();
+            throw new $resendException($message, $exception->getCode(), $exception);
         }
     }
 

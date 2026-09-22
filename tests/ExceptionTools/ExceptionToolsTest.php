@@ -235,6 +235,48 @@ class ExceptionToolsTest extends TestCase
         }
     }
 
+    /**
+     * Test for {@covers ExceptionTools::callAndResendException()}
+     */
+    public function testCallAndResendException(): void
+    {
+        $function = ExceptionTools::callAndResendException(...);
+
+        // этот вызов не должен упасть
+        ExceptionTools::callAndResendException(fn () => 1 + 1, [], \RuntimeException::class);
+
+        // перехватываем ошибку
+        try {
+            $function(
+                function () {
+                    throw new \LogicException('AAA', 123);
+                },
+                [],
+                \RuntimeException::class
+            );
+        } catch (\RuntimeException $err) {
+            self::assertEquals('AAA', $err->getMessage());
+            self::assertEquals(123, $err->getCode());
+            self::assertEquals(get_class($err), \RuntimeException::class);
+        }
+
+        // переопределение текста ошибки
+        try {
+            $function(
+                function () {
+                    throw new \LogicException('AAA', 123);
+                },
+                [],
+                \Error::class,
+                'BBBB'
+            );
+        } catch (\Error $err) {
+            self::assertEquals('BBBB. Original Message: AAA', $err->getMessage());
+            self::assertEquals(123, $err->getCode());
+            self::assertEquals(get_class($err), \Error::class);
+        }
+    }
+
     private function createTestObjectForTestFunctionCall(): object
     {
         return new class() {

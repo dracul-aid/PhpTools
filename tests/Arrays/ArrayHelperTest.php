@@ -93,8 +93,6 @@ class ArrayHelperTest extends TestCase
     {
         $testFunction = ArrayHelper::getNewIndex(...);
 
-        self::assertTrue(true);
-
         $arr = [];
         self::assertEquals(0, $testFunction($arr));
 
